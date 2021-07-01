@@ -8,14 +8,33 @@
 
     <title>{{ config('app.name') }}</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
 <body>
-    <div class="font-sans text-gray-900 antialiased">
+    <nav class="nav">
+        <div class="nav-navbar">
+            <div class="nav-navbar-logo">
+                <img src="{{ asset('storage/formula-ja.png') }}" alt="{{ config('app.name') }}">
+                <p>{{ config('app.name') }}</p>
+            </div>
+            <div class="nav-navbar-links">
+                <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.index')) active @endif">Home</a>
+                <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.about')) active @endif">Sobre nós</a>
+                <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.blog')) active @endif">Blog</a>
+                <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.contact')) active @endif">Contato</a>
+            </div>
+            <div class="nav-navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    <main>
         @yield('content')
-    </div>
+    </main>
+    <script src="{{ asset('js/scripts.js') }}" defer></script>
 </body>
 
 </html>

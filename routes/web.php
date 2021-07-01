@@ -8,7 +8,7 @@ use App\Http\Controllers\Guest\UploadController;
 use Illuminate\Support\Facades\Route;
 
 Route::namespace('Guest')->group(function() {
-    Route::get('/', [IndexController::class,'index']);
+    Route::get('/', [IndexController::class,'index'])->name('guest.index');
 
     Route::post('enviar-receita', [UploadController::class, 'send']);
     Route::post('criar-farmacia', [PharmacyController::class, 'create']);
