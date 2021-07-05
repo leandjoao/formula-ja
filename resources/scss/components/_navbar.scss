@@ -3,6 +3,7 @@
     width: 100%;
     transition: all ease .2s;
     position: fixed;
+    z-index: 9;
 
     &.fixed {
         background-color: white;
@@ -32,22 +33,7 @@
         justify-content: space-between;
         align-items: center;
         height: 100%;
-
-        @include mobile-only {
-            width: 100%;
-            padding: 0 $gap;
-        }
-
-        @include tablet {
-            width: 90%;
-            margin: 0 auto;
-        }
-
-        @include desktop {
-            width: 1200px;
-            margin: 0 auto;
-            padding: 0 $gap;
-        }
+        @include container;
 
         &-logo {
             display: flex;

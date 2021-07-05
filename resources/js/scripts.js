@@ -19,10 +19,7 @@ menuToggle.addEventListener('click', function (e) {
     e.preventDefault();
     menuToggle.classList.toggle('open');
     mobileMenu.classList.toggle('open');
-
-    if (menuToggle.classList.contains('open')) {
-        navbar.style.backgroundColor = 'white';
-    } else {
-        navbar.style.backgroundColor = 'transparent';
+    if (!navbar.classList.contains('fixed')) {
+        navbar.classList.toggle('fixed');
     }
 })

@@ -21,6 +21,7 @@ body {
   width: 100%;
   transition: all ease 0.2s;
   position: fixed;
+  z-index: 9;
 }
 .nav.fixed {
   background-color: white;
@@ -152,5 +153,191 @@ body {
   }
   .nav-navbar-toggle.open span:last-child {
     transform: rotateZ(-45deg);
+  }
+}
+
+.banner {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+.banner-background {
+  display: flex;
+  height: 85vh;
+}
+@media (max-width: 599px) {
+  .banner-background {
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+  }
+}
+.banner-background-primary {
+  background: white;
+  display: flex;
+  align-items: center;
+  flex: 12;
+}
+@media (min-width: 600px) and (max-width: 1199px) {
+  .banner-background-primary {
+    flex: 6;
+  }
+}
+@media (min-width: 1200px) {
+  .banner-background-primary {
+    padding-left: 16%;
+    flex: 4;
+  }
+}
+@media (max-width: 599px) {
+  .banner-background-primary-text {
+    width: 100%;
+    padding: 0 15px;
+  }
+}
+@media (min-width: 600px) and (max-width: 1199px) {
+  .banner-background-primary-text {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1200px) {
+  .banner-background-primary-text {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+}
+.banner-background-primary-text h4 {
+  margin-bottom: 0;
+  font-size: 22px;
+  color: #61C2C7;
+}
+.banner-background-primary-text h2 {
+  margin: 20px 0 30px;
+  line-height: 1;
+  color: #2E2E2E;
+  font-size: 30px;
+}
+@media (min-width: 600px) and (max-width: 1199px) {
+  .banner-background-primary-text h2 {
+    font-size: 40px;
+  }
+}
+@media (min-width: 1200px) {
+  .banner-background-primary-text h2 {
+    max-width: 70%;
+    font-size: 70px;
+  }
+}
+.banner-background-primary-text p {
+  margin-bottom: 30px;
+  color: #2E2E2E;
+}
+@media (min-width: 1200px) {
+  .banner-background-primary-text p {
+    max-width: 60%;
+  }
+}
+.banner-background-primary-text a {
+  background-color: #61C2C7;
+  padding: 0 22.5px;
+  height: 40px;
+  display: flex;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+  border-radius: 100px;
+  border: 2px solid #61C2C7;
+  transition: all ease 0.2s;
+}
+.banner-background-primary-text a:hover {
+  background-color: transparent;
+  color: #61C2C7;
+}
+.banner-background-secondary {
+  background: #6caaa8;
+  display: block;
+  height: 100vh;
+  width: auto;
+  flex: 1;
+  width: 100%;
+}
+.banner .how-it-works {
+  position: absolute;
+  width: 100%;
+  bottom: 30px;
+}
+@media (min-width: 600px) and (max-width: 1199px) {
+  .banner .how-it-works {
+    bottom: 15px;
+  }
+}
+@media (max-width: 599px) {
+  .banner .how-it-works {
+    position: relative;
+    background: #6caaa8;
+    padding: 0 0 20px;
+  }
+}
+.banner .how-it-works-container {
+  display: flex;
+  margin: 0 auto;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  background: white;
+  box-shadow: 0 0 15px 0 lightgray;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 20px;
+}
+@media (min-width: 600px) and (max-width: 1199px) {
+  .banner .how-it-works-container {
+    padding: 15px;
+  }
+}
+@media (max-width: 599px) {
+  .banner .how-it-works-container {
+    flex-direction: column;
+    width: 60%;
+    gap: 20px;
+  }
+}
+.banner .how-it-works-container-item {
+  width: 160px;
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+.banner .how-it-works-container-item:not(:last-child) {
+  border-right: 1px solid #ededed;
+}
+.banner .how-it-works-container-item img {
+  max-height: 55px;
+}
+.banner .how-it-works-container-item span {
+  color: #2E2E2E;
+  font-size: 0.9em;
+}
+@media (min-width: 600px) and (max-width: 1199px) {
+  .banner .how-it-works-container-item {
+    width: 140px;
+    height: 70px;
+  }
+}
+@media (max-width: 599px) {
+  .banner .how-it-works-container-item {
+    width: 100%;
+    padding: 0 0 10px;
+  }
+  .banner .how-it-works-container-item:not(:last-child) {
+    border-right: 0;
+    border-bottom: 1px solid #ededed;
   }
 }
