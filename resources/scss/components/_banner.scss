@@ -2,81 +2,68 @@
     height: 100vh;
     width: 100%;
     position: relative;
+    background: linear-gradient(-18deg, lighten($primary, 20%), lighten($primary, 35%) 80%);
 
-    &-background {
+    &-container {
         display: flex;
-        height: 85vh;
+        align-items: center;
+        height: 100%;
 
-        @include mobile-only {
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-        }
+        &-text {
+            @include container;
+            position: relative;
+            z-index: 1;
 
-        &-primary {
-            background: white;
-            display: flex;
-            align-items: center;
-            flex: 12;
-
-            @include tablet {
-                flex: 6;
+            h4 {
+                margin-bottom: 0;
+                font-size: 22px;
+                color: $primary;
             }
 
-            @include desktop {
-                padding-left: 16%;
-                flex: 4;
-            }
+            h2 {
+                margin: 20px 0 30px;
+                line-height: 1;
+                color: $text;
+                font-size: 30px;
 
-            &-text {
-                @include container;
-
-                h4 {
-                    margin-bottom: 0;
-                    font-size: 22px;
-                    color: $primary;
+                @include tablet {
+                    font-size: 40px;
                 }
 
-                h2 {
-                    margin: 20px 0 30px;
-                    line-height: 1;
-                    color: $text;
-                    font-size: 30px;
-
-                    @include tablet {
-                        font-size: 40px;
-                    }
-
-                    @include desktop {
-                        max-width: 70%;
-                        font-size: 70px;
-                    }
-                }
-
-                p {
-                    margin-bottom: 30px;
-                    color: $text;
-
-                    @include desktop {
-                        max-width: 60%;
-                    }
-                }
-
-                a {
-                    @include button($primary, white);
+                @include desktop {
+                    max-width: 70%;
+                    font-size: 70px;
                 }
             }
-        }
 
-        &-secondary {
-            background: $secondary;
-            display: block;
-            height: 100vh;
-            width: auto;
-            flex: 1;
-            width: 100%;
+            p {
+                margin-bottom: 30px;
+                color: $text;
+
+                @include desktop {
+                    max-width: 60%;
+                }
+            }
+
+            a {
+                @include button($primary, white);
+            }
+
+            &:before {
+                position: absolute;
+                width: 300px;
+                left: -60px;
+                top: -60px;
+                bottom: -60px;
+                background-image: radial-gradient(lighten($primary, 25%) 3px, transparent 3px);
+                background-size: 30px 30px;
+                content: '';
+                z-index: -1;
+            }
         }
     }
+
+
 
     .how-it-works {
         position: absolute;
@@ -90,7 +77,8 @@
         @include mobile-only {
             position: relative;
             background: $secondary;
-            padding: 0 0 20px;
+            padding: 20px 0;
+            bottom: 0;
         }
 
         &-container {
@@ -109,7 +97,7 @@
 
             @include mobile-only {
                 flex-direction: column;
-                width: 60%;
+                width: 70%;
                 gap: 20px;
             }
 
