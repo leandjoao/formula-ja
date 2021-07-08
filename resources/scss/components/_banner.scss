@@ -1,8 +1,14 @@
+$paddingBanner: 150px;
+
 .banner {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     position: relative;
     background: linear-gradient(-18deg, lighten($primary, 20%), lighten($primary, 35%) 80%);
+
+    @include mobile-only {
+        padding: $paddingBanner 0;
+    }
 
     &-container {
         display: flex;
@@ -78,7 +84,7 @@
             position: relative;
             background: $secondary;
             padding: 20px 0;
-            bottom: 0;
+            bottom: -$paddingBanner;
         }
 
         &-container {

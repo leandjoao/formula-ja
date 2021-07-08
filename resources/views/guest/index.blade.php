@@ -39,4 +39,52 @@
                 </div>
             </div>
     </section>
+
+    <div class="why-us">
+        <div class="why-us-container">
+            <div class="why-us-container-boxes">
+                <div class="boxes">
+                    <div class="boxes-item">
+                        <img src="{{ asset('') }}" alt="">
+                        <p>Titulo</p>
+                        <span>Little Text</span>
+                    </div>
+                    <div class="boxes-item">
+                        <img src="{{ asset('') }}" alt="">
+                        <p>Titulo</p>
+                        <span>Little Text</span>
+                    </div>
+                    <div class="boxes-item">
+                        <img src="{{ asset('') }}" alt="">
+                        <p>Titulo</p>
+                        <span>Little Text</span>
+                    </div>
+                    <div class="boxes-item">
+                        <img src="{{ asset('') }}" alt="">
+                        <p>Titulo</p>
+                        <span>Little Text</span>
+                    </div>
+                </div>
+            </div>
+            <div class="why-us-container-text">
+                <div class="why-us-container-text-content">
+                    <h5>Por que nós?</h5>
+                    <span>O melhor para a sua saúde!</span>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate nec quam sit amet mollis.
+                        Integer urna enim, semper vitae cursus sit amet, hendrerit eget turpis. Duis mauris massa, pharetra
+                        a scelerisque in, imperdiet non leo. Nulla feugiat purus at felis efficitur malesuada. Vestibulum
+                        vestibulum luctus lacus, nec tempor est tincidunt in. Ut velit nunc, rutrum non sem pellentesque,
+                        ultricies ultricies mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur
+                        ridiculus mus.
+                    </p>
+                    <a href="">Ler mais</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pet-cta"></div>
+
+    <div class="blog-section"></div>
 @endsection

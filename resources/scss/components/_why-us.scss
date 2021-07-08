@@ -1,0 +1,108 @@
+.why-us {
+    padding: 50px 0;
+    background: $bg;
+
+    @include desktop {
+        padding: 100px 0 50px;
+    }
+
+    &-container {
+        @include container;
+        display: flex;
+        justify-content: space-between;
+
+        @include mobile-only {
+            flex-direction: column;
+            gap: 20px 0;
+        }
+
+        @include tablet {
+            flex-direction: column-reverse;
+        }
+
+        &-boxes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+
+            .boxes {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+
+                @include desktop {
+                    gap: 30px;
+                }
+
+                @include tablet {
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                }
+
+                &-item {
+                    box-shadow: 2px 4px 10px -2px lightgray;
+                    display: flex;
+                    flex-direction: column;
+                    border-radius: 5px;
+                    padding: $gap;
+                    color: $text;
+                    background: white;
+                    height: 160px;
+                    width: 160px;
+
+                    @include desktop {
+                        height: 200px;
+                        width: 200px;
+                    }
+
+                    &:first-child,
+                    &:nth-child(3) {
+                        margin-top: -25px;
+
+                        @include tablet {
+                            margin-top: 0;
+                        }
+                    }
+
+                    p {
+                        margin: 0;
+                        font-weight: 600;
+                    }
+
+                    span {
+                        font-size: 0.9em;
+                    }
+                }
+            }
+        }
+
+        &-text {
+            flex: 1;
+
+            @include tablet {
+                margin-bottom: 40px;
+            }
+
+            &-content {
+                color: $text;
+
+                h5 {
+                    font-size: 40px;
+                    margin: 0;
+                }
+
+                span {
+                    color: $secondary;
+                }
+
+                p {
+                    margin: 20px 0;
+                }
+
+                a {
+                    @include button($primary, white);
+                }
+            }
+        }
+    }
+}
