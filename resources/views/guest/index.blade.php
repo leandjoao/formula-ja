@@ -17,23 +17,23 @@
     <div class="how-it-works">
         <div class="how-it-works-container">
             <div class="how-it-works-container-item">
-                <img src="{{ asset('icons/upload.png') }}" alt="">
+                <img src="{{ asset('storage/icons/upload.png') }}" alt="">
                 <span>Envio da receita</span>
             </div>
             <div class="how-it-works-container-item">
-                <img src="{{ asset('icons/budget.png') }}" alt="">
+                <img src="{{ asset('storage/icons/budget.png') }}" alt="">
                 <span>Orçamento</span>
             </div>
             <div class="how-it-works-container-item">
-                <img src="{{ asset('icons/payment.png') }}" alt="">
+                <img src="{{ asset('storage/icons/payment.png') }}" alt="">
                 <span>Pagamento</span>
             </div>
             <div class="how-it-works-container-item">
-                <img src="{{ asset('icons/manipulate.png') }}" alt="">
+                <img src="{{ asset('storage/icons/manipulate.png') }}" alt="">
                 <span>Manipulação</span>
             </div>
             <div class="how-it-works-container-item">
-                <img src="{{ asset('icons/deliver.png') }}" alt="">
+                <img src="{{ asset('storage/icons/deliver.png') }}" alt="">
                 <span>Envio do produto</span>
             </div>
         </div>
