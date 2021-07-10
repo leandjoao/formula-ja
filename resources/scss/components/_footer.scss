@@ -1,0 +1,156 @@
+.footer {
+    background: linear-gradient(rgba(0, 0, 0, .6),
+            rgba(0, 0, 0, .6)),
+        url('../storage/footer-bg.jpeg');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 330px;
+
+    @include mobile-only {
+        height: auto;
+        background-position: left;
+    }
+
+    &-container {
+        @include container;
+        color: white;
+        flex: 1;
+        display: flex;
+        align-items: center;
+
+        @include mobile-only {
+            padding-top: $gap;
+            padding-bottom: $gap;
+        }
+
+        &-block {
+            display: flex;
+            justify-content: space-between;
+
+            @include mobile-only {
+                flex-direction: column;
+                gap: $gap;
+            }
+
+            .block {
+                flex: 1;
+
+                &-header {
+                    height: 60px;
+                    display: flex;
+                    align-items: center;
+                    gap: $gap;
+
+                    @include tablet {
+                        h2 {
+                            font-size: 1.1em;
+                            gap: 5px;
+                        }
+                    }
+
+                    img {
+                        height: 40px;
+                    }
+
+                    p {
+                        margin: 0;
+                        font-size: 1.2em;
+                        font-weight: 400;
+                        color: $primary;
+                    }
+                }
+
+                &-links {
+                    padding: 0;
+                    margin: 0;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+
+                    li {
+                        a {
+                            color: white;
+                        }
+                    }
+                }
+
+                &-newsletter {
+                    .newsletter {
+                        &-input {
+                            background-color: white;
+                            width: 100%;
+                            height: 50px;
+                            display: flex;
+                            align-items: center;
+                            border-radius: 100px;
+                            justify-content: space-between;
+                            padding: 5px;
+
+                            input {
+                                flex: 1;
+                                height: 100%;
+                                border-radius: 100px;
+                                border: none;
+                                padding: $gap;
+                                background: transparent;
+                            }
+
+                            button {
+                                @include button($primary, white);
+                                gap: 5px;
+                            }
+                        }
+                    }
+
+                    p {
+                        font-size: 0.9em;
+                    }
+                }
+            }
+        }
+    }
+
+
+    &-copy {
+        background: $primary;
+
+        &-container {
+            @include container;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 45px;
+
+            @include mobile-only {
+                flex-direction: column;
+                text-align: center;
+                height: auto;
+                padding-top: $gap;
+                padding-bottom: $gap;
+            }
+
+            p {
+                margin: 0;
+                color: $bg;
+                font-size: 0.8em;
+            }
+
+            ul {
+                padding: 0;
+                margin: 0;
+                display: flex;
+                gap: $gap;
+
+                li {
+                    a {
+                        color: $bg;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -34,6 +34,64 @@
     <main>
         @yield('content')
     </main>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-container-block">
+                <div class="block">
+                    <div class="block-header">
+                        <h2>Acesso Rápido</h2>
+                    </div>
+                    <ul class="block-links">
+                        <li><a href="{{route('guest.index')}}">Home</a></li>
+                        <li><a href="{{route('guest.index')}}">Sobre nós</a></li>
+                        <li><a href="{{route('guest.index')}}">Blog</a></li>
+                        <li><a href="{{route('guest.index')}}">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="block">
+                    <div class="block-header">
+                        <h2>Informações</h2>
+                    </div>
+                    <ul class="block-links">
+                        <li><a href="">Termos de Uso</a></li>
+                        <li><a href="">Política de Privacidade</a></li>
+                        <li><a href="">Como funciona?</a></li>
+                        <li><a href="">Serviços PET</a></li>
+                    </ul>
+                </div>
+
+                <div class="block">
+                    <div class="block-header">
+                        <img src="{{asset('storage/formula-ja.png')}}" alt="{{config('app.name')}}">
+                        <p>{{config('app.name')}}</p>
+                    </div>
+                    <div class="block-newsletter">
+                        <form action="" class="newsletter">
+                            <div class="newsletter-input">
+                                <input type="text" name="email" id="newsletter-email" placeholder="Seu e-mail">
+                                <button type="submit">Enviar <i class="far fa-paper-plane"></i></button>
+                            </div>
+                        </form>
+                        <p>
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copy">
+            <div class="footer-copy-container">
+                <p>CNPJ: {{config('app.cnpj')}}</p>
+                <p>Copyright &copy; {{date('Y')}}. Todos os direitos reservados. {{config('app.name')}}</p>
+                <ul>
+                    <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                    <li><a href=""><i class="fab fa-youtube"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
     <script src="{{ asset('js/scripts.js') }}" defer></script>
 </body>
 
