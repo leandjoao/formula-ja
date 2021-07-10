@@ -44,24 +44,24 @@
             <div class="why-us-container-boxes">
                 <div class="boxes">
                     <div class="boxes-item">
-                        <img src="{{ asset('') }}" alt="">
-                        <p>Titulo</p>
-                        <span>Little Text</span>
+                        <img src="{{ asset('storage/icons/organic.png') }}" alt="">
+                        <p>100% Orgânico</p>
+                        <span>Duis aute irure dolor in reprehenderit in voluptate</span>
                     </div>
                     <div class="boxes-item">
-                        <img src="{{ asset('') }}" alt="">
-                        <p>Titulo</p>
-                        <span>Little Text</span>
+                        <img src="{{ asset('storage/icons/chemistry.png') }}" alt="">
+                        <p>Sem Química</p>
+                        <span>Duis aute irure dolor in reprehenderit in voluptate</span>
                     </div>
                     <div class="boxes-item">
-                        <img src="{{ asset('') }}" alt="">
-                        <p>Titulo</p>
-                        <span>Little Text</span>
+                        <img src="{{ asset('storage/icons/tested.png') }}" alt="">
+                        <p>Produtos Testados</p>
+                        <span>Duis aute irure dolor in reprehenderit in voluptate</span>
                     </div>
                     <div class="boxes-item">
-                        <img src="{{ asset('') }}" alt="">
-                        <p>Titulo</p>
-                        <span>Little Text</span>
+                        <img src="{{ asset('storage/icons/wellness.png') }}" alt="">
+                        <p>Bem estar garantido</p>
+                        <span>Duis aute irure dolor in reprehenderit in voluptate</span>
                     </div>
                 </div>
             </div>

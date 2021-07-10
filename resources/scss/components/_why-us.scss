@@ -47,7 +47,7 @@
                     padding: $gap;
                     color: $text;
                     background: white;
-                    height: 160px;
+                    height: 100%;
                     width: 160px;
 
                     @include desktop {
@@ -64,13 +64,18 @@
                         }
                     }
 
+                    img {
+                        max-height: 64px;
+                        margin: 10px auto 20px;
+                    }
+
                     p {
                         margin: 0;
                         font-weight: 600;
                     }
 
                     span {
-                        font-size: 0.9em;
+                        font-size: 0.8em;
                     }
                 }
             }

@@ -407,7 +407,7 @@ body {
   padding: 15px;
   color: #2E2E2E;
   background: white;
-  height: 160px;
+  height: 100%;
   width: 160px;
 }
 @media (min-width: 1200px) {
@@ -424,12 +424,16 @@ body {
     margin-top: 0;
   }
 }
+.why-us-container-boxes .boxes-item img {
+  max-height: 64px;
+  margin: 10px auto 20px;
+}
 .why-us-container-boxes .boxes-item p {
   margin: 0;
   font-weight: 600;
 }
 .why-us-container-boxes .boxes-item span {
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 .why-us-container-text {
   flex: 1;
