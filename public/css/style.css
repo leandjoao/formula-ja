@@ -482,7 +482,7 @@ body {
   }
 }
 .pet-container {
-  background: url("../icons/pets.png");
+  background: url("../storage/icons/pets.png");
   background-repeat: no-repeat;
   background-position: center right;
 }
