@@ -1,0 +1,98 @@
+.blog {
+    padding: 30px 0 50px;
+    background: $bg;
+
+    &-container {
+        @include container;
+        color: $text;
+
+        h2 {
+            font-size: 40px;
+            text-align: center;
+            margin: 0;
+        }
+
+        h6 {
+            text-align: center;
+            font-weight: 400;
+            font-size: 1em;
+            margin: 0;
+        }
+
+        &-link {
+            @include button($primary, white);
+            margin: 0 auto;
+        }
+
+        .posts {
+            margin: 40px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: $gap;
+
+            @include mobile-only {
+                grid-template-columns: 1fr;
+            }
+
+            @include tablet {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            p {
+                margin: 0;
+                color: $text;
+            }
+
+            &-item {
+                box-shadow: 0 0 5px 0 lightgray;
+                overflow: hidden;
+                border-radius: 10px;
+                background: white;
+
+                &-image {
+                    height: 200px;
+                    width: 100%;
+                    overflow: hidden;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                &-title {
+                    padding: 10px $gap;
+                    font-size: 1.1em;
+                    max-width: 100%;
+                    font-weight: 500;
+                    overflow: hidden;
+                }
+
+                &-text {
+                    padding: $gap;
+                    font-size: 0.83em;
+                    border-bottom: 1px solid $bg;
+                    border-top: 1px solid $bg;
+                }
+
+                &-footer {
+                    display: flex;
+                    padding: 0 $gap;
+                    justify-content: space-between;
+                    align-items: center;
+                    height: 45px;
+
+                    p {
+                        font-size: 0.9em;
+                        color: lighten($text, 50%);
+                    }
+
+                    a {
+                        color: $primary;
+                        font-size: 0.9em;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -10,6 +10,7 @@
     border-radius: 100px;
     border: 2px solid $background;
     transition: all ease .2s;
+    cursor: pointer;
 
     &:hover {
         background-color: transparent;

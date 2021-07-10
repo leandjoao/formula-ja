@@ -13,7 +13,7 @@ $paddingBanner: 150px;
     &-container {
         display: flex;
         align-items: center;
-        height: 100%;
+        height: 95vh;
 
         &-text {
             @include container;
@@ -38,7 +38,7 @@ $paddingBanner: 150px;
 
                 @include desktop {
                     max-width: 70%;
-                    font-size: 70px;
+                    font-size: 60px;
                 }
             }
 
@@ -75,6 +75,7 @@ $paddingBanner: 150px;
         position: absolute;
         width: 100%;
         bottom: 30px;
+        z-index: 1;
 
         @include tablet {
             bottom: 15px;

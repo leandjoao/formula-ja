@@ -1,0 +1,46 @@
+.pet {
+    background-color: $primary;
+
+    @include mobile-only {
+        padding: 50px 0;
+    }
+
+    &-container {
+        background: url('../icons/pets.png');
+        background-repeat: no-repeat;
+        background-position: center right;
+
+        @include mobile-only {
+            background-position: center;
+            background-blend-mode: color;
+        }
+
+        &-text {
+            @include container;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            color: white;
+            flex-direction: column;
+
+            h2 {
+                font-size: 40px;
+                margin: 0;
+
+                @include tablet {
+                    text-align: center;
+                }
+            }
+
+            p {
+                margin: 0;
+            }
+
+            button {
+                @include button(white, $primary);
+                margin: 40px auto 0;
+            }
+        }
+    }
+}

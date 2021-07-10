@@ -6,7 +6,7 @@
     z-index: 9;
 
     &.fixed {
-        background-color: white;
+        background-color: rgba(255, 255, 255, .92);
         box-shadow: 0 0 10px -2px lightgray;
 
         .nav {
@@ -19,7 +19,7 @@
                             color: $primary;
 
                             @include mobile-only {
-                                color: white;
+                                color: rgba(255, 255, 255, .92);
                             }
                         }
                     }
