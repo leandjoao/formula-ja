@@ -20,7 +20,7 @@
             <div class="nav-navbar-links">
                 <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.index')) active @endif">Home</a>
                 <a href="{{ route('guest.about') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.about')) active @endif">Sobre nós</a>
-                <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.blog')) active @endif">Blog</a>
+                <a href="{{ route('guest.blog') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.blog')) active @endif">Blog</a>
                 <a href="{{ route('guest.contact') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.contact')) active @endif">Contato</a>
             </div>
             <div class="nav-navbar-toggle">

@@ -100,7 +100,7 @@
             <div class="posts">
                 <div class="posts-item">
                     <div class="posts-item-image">
-                        <img src="https://picsum.photos/300/240" alt="">
+                        <img src="http://placehold.it/300x240" alt="">
                     </div>
                     <div class="posts-item-title">
                         <p>Titulo</p>
@@ -109,7 +109,7 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate nec quam sit amet mollis. Integer urna enim, semper vitae cursus sit amet, hendrerit eget turpis.</p>
                     </div>
                     <div class="posts-item-footer">
-                        <p>{{ date('d/m/y - H:m') }}</p>
+                        <p>{{ Carbon\Carbon::now()->diffForHumans() }}</p>
                         <a href="">Ler Mais <i class="fas fa-long-arrow-alt-right"></i></a>
                     </div>
                 </div>

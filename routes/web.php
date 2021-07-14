@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ConfigsController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Guest\AboutController;
+use App\Http\Controllers\Guest\BlogController;
 use App\Http\Controllers\Guest\ContactController;
 use App\Http\Controllers\Guest\IndexController;
 use App\Http\Controllers\Guest\NewsletterController;
@@ -14,7 +15,9 @@ Route::namespace('Guest')->group(function() {
     Route::get('/', [IndexController::class,'index'])->name('guest.index');
     Route::get('sobre-nos', [AboutController::class,'index'])->name('guest.about');
     Route::get('contato', [ContactController::class,'index'])->name('guest.contact');
+    Route::get('blog', [BlogController::class, 'index'])->name('guest.blog');
 
+    Route::post('pesquisa-blog')->name('blog.search');
     Route::post('enviar-newsletter', [NewsletterController::class, 'newsletter'])->name('send.newsletter');
     Route::post('enviar-contato', [ContactController::class, 'send']);
     Route::post('enviar-receita', [UploadController::class, 'send']);
