@@ -27,3 +27,85 @@ body {
 @import "./components/pet";
 @import "./components/blog";
 @import "./components/footer";
+
+@import "./components/form";
+
+.pages {
+    &-header {
+        height: 250px;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        background: linear-gradient(-18deg, lighten($primary, 20%), lighten($primary, 35%) 80%);
+
+        &-title {
+            @include container;
+
+            h2 {
+                color: $text;
+            }
+        }
+    }
+
+    &-content {
+        @include container;
+        display: flex;
+        justify-content: space-between;
+        gap: 3 * $gap;
+        padding: 4 * $gap 1.5 * $gap !important;
+
+        @include mobile-only {
+            flex-direction: column;
+        }
+
+        &-text {
+            padding: 50px 0;
+
+            p {
+                text-align: justify;
+            }
+        }
+
+        &-info {
+            flex: 1;
+
+            .block {
+                background-color: white;
+                padding: 30px;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                gap: $gap;
+                box-shadow: 0 0 10px 0 lightgray;
+                border-radius: 5px;
+
+                &-item {
+                    a {
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        gap: $gap;
+                        color: $text;
+                    }
+                }
+            }
+        }
+
+        &-form {
+            flex: 2;
+
+            @include tablet {
+                flex: 4;
+            }
+
+            h2,
+            p {
+                margin: 0;
+            }
+
+            p {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}

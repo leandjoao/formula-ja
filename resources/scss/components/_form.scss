@@ -1,0 +1,18 @@
+.form {
+    &-input {
+
+        input,
+        textarea {
+            width: 100%;
+            padding: $gap;
+            margin-bottom: $gap;
+            border: 1px solid lightgray;
+            resize: none;
+            background: transparent;
+        }
+
+        button {
+            @include button($primary, white);
+        }
+    }
+}

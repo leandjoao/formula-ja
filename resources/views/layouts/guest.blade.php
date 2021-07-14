@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name') }}</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -20,9 +19,9 @@
             </div>
             <div class="nav-navbar-links">
                 <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.index')) active @endif">Home</a>
-                <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.about')) active @endif">Sobre nós</a>
+                <a href="{{ route('guest.about') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.about')) active @endif">Sobre nós</a>
                 <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.blog')) active @endif">Blog</a>
-                <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.contact')) active @endif">Contato</a>
+                <a href="{{ route('guest.contact') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.contact')) active @endif">Contato</a>
             </div>
             <div class="nav-navbar-toggle">
                 <span></span>
@@ -43,7 +42,7 @@
                     </div>
                     <ul class="block-links">
                         <li><a href="{{route('guest.index')}}">Home</a></li>
-                        <li><a href="{{route('guest.index')}}">Sobre nós</a></li>
+                        <li><a href="{{route('guest.about')}}">Sobre nós</a></li>
                         <li><a href="{{route('guest.index')}}">Blog</a></li>
                         <li><a href="{{route('guest.index')}}">Contato</a></li>
                     </ul>
@@ -66,7 +65,8 @@
                         <p>{{config('app.name')}}</p>
                     </div>
                     <div class="block-newsletter">
-                        <form action="" class="newsletter">
+                        <form action="{{ route('send.newsletter') }}" method="POST" class="newsletter">
+                            @csrf
                             <div class="newsletter-input">
                                 <input type="text" name="email" id="newsletter-email" placeholder="Seu e-mail">
                                 <button type="submit">Enviar <i class="far fa-paper-plane"></i></button>
