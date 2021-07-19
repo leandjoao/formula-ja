@@ -1876,12 +1876,21 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 var navbar = document.querySelector('.nav');
 var menuToggle = navbar.querySelector('.nav-navbar-toggle');
 var mobileMenu = navbar.querySelector('.nav-navbar-links');
+var toTop = document.querySelector('.to-top');
 window.addEventListener('scroll', function () {
   if (window.scrollY != 0) {
     navbar.classList.add('fixed');
+    toTop.style.opacity = 1;
   } else {
     navbar.classList.remove('fixed');
+    toTop.style.opacity = 0;
   }
+});
+toTop.addEventListener('click', function () {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
 });
 menuToggle.addEventListener('click', function (e) {
   e.preventDefault();

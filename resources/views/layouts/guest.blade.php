@@ -20,7 +20,7 @@
             <div class="nav-navbar-links">
                 <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.index')) active @endif">Home</a>
                 <a href="{{ route('guest.about') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.about')) active @endif">Sobre nós</a>
-                <a href="{{ route('guest.blog') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.blog')) active @endif">Blog</a>
+                <a href="{{ route('guest.blog') }}" class="nav-navbar-links-link @if (request()->is('blog*')) active @endif">Blog</a>
                 <a href="{{ route('guest.contact') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.contact')) active @endif">Contato</a>
             </div>
             <div class="nav-navbar-toggle">
@@ -33,6 +33,9 @@
     <main>
         @yield('content')
     </main>
+    <span class="to-top">
+        <i class="fas fa-long-arrow-alt-up"></i>
+    </span>
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-container-block">
@@ -43,8 +46,8 @@
                     <ul class="block-links">
                         <li><a href="{{route('guest.index')}}">Home</a></li>
                         <li><a href="{{route('guest.about')}}">Sobre nós</a></li>
-                        <li><a href="{{route('guest.index')}}">Blog</a></li>
-                        <li><a href="{{route('guest.index')}}">Contato</a></li>
+                        <li><a href="{{route('guest.blog')}}">Blog</a></li>
+                        <li><a href="{{route('guest.contact')}}">Contato</a></li>
                     </ul>
                 </div>
                 <div class="block">

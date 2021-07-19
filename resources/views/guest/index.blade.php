@@ -77,7 +77,7 @@
                         ultricies ultricies mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur
                         ridiculus mus.
                     </p>
-                    <a href="">Ler mais</a>
+                    <a href="{{route('guest.about')}}">Ler mais</a>
                 </div>
             </div>
         </div>
@@ -98,23 +98,25 @@
             <h2>Blog</h2>
             <h6>Fique por dentro das últimas notícias</h6>
             <div class="posts">
-                <div class="posts-item">
-                    <div class="posts-item-image">
-                        <img src="http://placehold.it/300x240" alt="">
+                @foreach ($posts as $post)
+                    <div class="posts-item">
+                        <div class="posts-item-image">
+                            <img src="{{$post['banner']}}" alt="{{$post['title']}}" title="{{$post['title']}}">
+                        </div>
+                        <div class="posts-item-title">
+                            <p>{{$post['title']}}</p>
+                        </div>
+                        <div class="posts-item-text">
+                            {!! Str::limit($post['content'], 100, '...') !!}
+                        </div>
+                        <div class="posts-item-footer">
+                            <p>{{ Carbon\Carbon::parse($post['created_at'])->diffForHumans() }}</p>
+                            <a href="{{route('guest.blog.inner', [$post['category']['label'], $post['slug']])}}">Ler Mais <i class="fas fa-long-arrow-alt-right"></i></a>
+                        </div>
                     </div>
-                    <div class="posts-item-title">
-                        <p>Titulo</p>
-                    </div>
-                    <div class="posts-item-text">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate nec quam sit amet mollis. Integer urna enim, semper vitae cursus sit amet, hendrerit eget turpis.</p>
-                    </div>
-                    <div class="posts-item-footer">
-                        <p>{{ Carbon\Carbon::now()->diffForHumans() }}</p>
-                        <a href="">Ler Mais <i class="fas fa-long-arrow-alt-right"></i></a>
-                    </div>
-                </div>
+                @endforeach
             </div>
-            <a class="blog-container-link" href="">Ler mais no blog</a>
+            <a class="blog-container-link" href="{{route('guest.blog')}}">Ler mais no blog</a>
         </div>
     </div>
     @endsection

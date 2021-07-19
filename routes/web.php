@@ -16,8 +16,11 @@ Route::namespace('Guest')->group(function() {
     Route::get('sobre-nos', [AboutController::class,'index'])->name('guest.about');
     Route::get('contato', [ContactController::class,'index'])->name('guest.contact');
     Route::get('blog', [BlogController::class, 'index'])->name('guest.blog');
+    Route::get('blog/{category}', [BlogController::class, 'category'])->name('guest.blog.category');
+    Route::get('blog/{category}/{slug}', [BlogController::class, 'inner'])->name('guest.blog.inner');
+    
 
-    Route::post('pesquisa-blog')->name('blog.search');
+    Route::post('blog/pesquisa-blog', [BlogController::class, 'search'])->name('blog.search');
     Route::post('enviar-newsletter', [NewsletterController::class, 'newsletter'])->name('send.newsletter');
     Route::post('enviar-contato', [ContactController::class, 'send']);
     Route::post('enviar-receita', [UploadController::class, 'send']);

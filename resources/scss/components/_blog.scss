@@ -73,6 +73,7 @@
                     font-size: 0.83em;
                     border-bottom: 1px solid $bg;
                     border-top: 1px solid $bg;
+                    min-height: 120px;
                 }
 
                 &-footer {
@@ -104,6 +105,7 @@
             align-items: center;
             background: linear-gradient(-18deg, lighten($primary, 10%), lighten($primary, 25%) 60%);
             position: relative;
+            flex-direction: column;
 
             &:before {
                 position: absolute;
@@ -121,6 +123,35 @@
                 font-size: 3.5em;
                 color: white;
                 z-index: 2;
+                margin: 0;
+                line-height: 1;
+            }
+
+            &-breadcrumb {
+                padding: 0;
+                z-index: 2;
+                display: flex;
+                gap: $gap/2;
+
+                li {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: $gap/2;
+
+                    a,
+                    span {
+                        color: white;
+
+                    }
+
+                    &:not(:last-child) {
+                        &:after {
+                            content: '>';
+                            color: white;
+                        }
+                    }
+                }
             }
         }
 
@@ -194,6 +225,8 @@
                                 display: flex;
                                 flex-direction: column;
                                 gap: $gap;
+                                justify-content: space-between;
+                                min-height: 190px;
 
                                 h4,
                                 p,
@@ -227,6 +260,33 @@
                             }
                         }
 
+                    }
+
+                    &-banner {
+                        max-width: 100%;
+
+                        img {
+                            max-width: 100%;
+                        }
+                    }
+
+                    &-text {
+                        text-align: justify;
+                        margin: 40px 0;
+
+                        p,
+                        ul,
+                        span,
+                        h1,
+                        h2,
+                        h3,
+                        h4,
+                        h5,
+                        h6 {
+                            margin: 0;
+                            padding: 0;
+                            color: $text;
+                        }
                     }
                 }
 

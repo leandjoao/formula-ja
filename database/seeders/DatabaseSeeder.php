@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             Access::class,
             User::class,
-            Config::class
+            Config::class,
+            PostCategorySeeder::class,
+            PostSeeder::class
         ]);
     }
 }

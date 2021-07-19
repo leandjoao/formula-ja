@@ -21,6 +21,24 @@ body {
     height: 100%;
 }
 
+.to-top {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    background-color: $primary;
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    box-shadow: 0 0 10px -2px rgba(0, 0, 0, .5);
+    opacity: 0;
+    transition: all ease .4s;
+    cursor: pointer;
+}
+
 @import "./components/navbar";
 @import "./components/banner";
 @import "./components/why-us";
@@ -106,6 +124,47 @@ body {
             p {
                 margin-bottom: 20px;
             }
+        }
+    }
+}
+
+.pagination {
+    padding: 0;
+    display: flex;
+    gap: 5px;
+
+    li {
+        border: 1px solid lightgray;
+
+        &.disabled {
+            cursor: not-allowed;
+            background: #f1f1f1;
+            border-color: lightgray;
+
+            span,
+            a {
+                color: lightgray;
+            }
+        }
+
+        &.active {
+            background: $primary;
+            border-color: $primary;
+
+            span {
+                color: white;
+            }
+        }
+
+        span,
+        a {
+            user-select: none;
+            color: $primary;
+            height: 35px;
+            width: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 }
