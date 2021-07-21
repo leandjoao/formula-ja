@@ -88,35 +88,41 @@
             <div class="pet-container-text">
                 <h2>Não poderiamos deixar nossos amigos de fora!</h2>
                 <p>Envie a receita do seu pet para gente! Teremos o maior prazer em ajudar!</p>
-                <button>Enviar receita</button>
+                <button onclick="toggleModal()">Enviar receita</button>
             </div>
         </div>
     </div>
 
+    @if(!empty($posts))
     <div class="blog">
         <div class="blog-container">
             <h2>Blog</h2>
             <h6>Fique por dentro das últimas notícias</h6>
             <div class="posts">
                 @foreach ($posts as $post)
-                    <div class="posts-item">
-                        <div class="posts-item-image">
-                            <img src="{{$post['banner']}}" alt="{{$post['title']}}" title="{{$post['title']}}">
-                        </div>
-                        <div class="posts-item-title">
-                            <p>{{$post['title']}}</p>
-                        </div>
-                        <div class="posts-item-text">
-                            {!! Str::limit($post['content'], 100, '...') !!}
-                        </div>
-                        <div class="posts-item-footer">
-                            <p>{{ Carbon\Carbon::parse($post['created_at'])->diffForHumans() }}</p>
-                            <a href="{{route('guest.blog.inner', [$post['category']['label'], $post['slug']])}}">Ler Mais <i class="fas fa-long-arrow-alt-right"></i></a>
-                        </div>
+                <div class="posts-item">
+                    <div class="posts-item-image">
+                        <img src="{{$post['banner']}}" alt="{{$post['title']}}" title="{{$post['title']}}">
                     </div>
+                    <div class="posts-item-title">
+                        <p>{{$post['title']}}</p>
+                    </div>
+                    <div class="posts-item-text">
+                        {!! Str::limit($post['content'], 100, '...') !!}
+                    </div>
+                    <div class="posts-item-footer">
+                        <p>{{ Carbon\Carbon::parse($post['created_at'])->diffForHumans() }}</p>
+                        <a href="{{route('guest.blog.inner', [$post['category']['label'], $post['slug']])}}">Ler Mais <i class="fas fa-long-arrow-alt-right"></i></a>
+                    </div>
+                </div>
                 @endforeach
             </div>
             <a class="blog-container-link" href="{{route('guest.blog')}}">Ler mais no blog</a>
         </div>
     </div>
-    @endsection
+    @endif
+@endsection
+
+@section('modal')
+    @include('guest.modal.pet')
+@endsection

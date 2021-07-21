@@ -12,15 +12,15 @@ class NewsletterController extends Controller
     public function newsletter(Request $request)
     {
         $valid = Validator::make($request->all(), [
-            'email' => 'email|unique:newsletters,email|required'
+            'newsletter' => 'email|unique:newsletters,email|required'
         ]);
 
-        if($valid->fails()) return response()->json($valid->errors(), 500);
+        if($valid->fails()) return redirect()->back()->withErrors($valid)->withInput();
 
         $email = new Newsletter();
-        $email->email = $request->email;
+        $email->email = $request->newsletter;
         $email->save();
 
-        return response()->json(['message' => "Sucesso! Seu e-mail foi salvo!"]);
+        return redirect()->back()->with(['status' => ['text' => 'Seu e-mail foi salvo!', 'icon' => 'success']]);
     }
 }

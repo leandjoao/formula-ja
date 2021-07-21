@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 
 class UploadController extends Controller
 {
-    public function send(Request $request): JsonResponse
+    public function send(Request $request)
     {
         $valid = Validator::make($request->all(), [
             "name" => "required",
@@ -23,7 +23,7 @@ class UploadController extends Controller
             "file" => "required|file|mimes:png,jpg,pdf,jpeg|max:2048"
         ]);
 
-        if($valid->fails()) return response()->json($valid->errors(), 500);
+        if($valid->fails()) return redirect()->back()->withErrors($valid)->withInput();
 
         $user = User::query()->where('email', $request->email)->first();
 
@@ -53,6 +53,6 @@ class UploadController extends Controller
 
         // TODO: Disparar e-mail alertando que enviou a receita
 
-        return response()->json(['message' => 'Sucesso! Seu arquivo foi enviado!']);
+        return redirect()->back()->with(['status' => ['text' => 'Recebemos a sua receita!', 'icon' => 'success']]);
     }
 }

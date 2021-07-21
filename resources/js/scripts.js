@@ -1,9 +1,11 @@
-require('./bootstrap')
+require('./bootstrap');
+window.Swal = require('sweetalert2');
 
 const navbar = document.querySelector('.nav')
 const menuToggle = navbar.querySelector('.nav-navbar-toggle');
 const mobileMenu = navbar.querySelector('.nav-navbar-links');
 const toTop = document.querySelector('.to-top');
+const modal = document.querySelector('.modal');
 
 window.addEventListener('scroll', function () {
     if (window.scrollY != 0) {
@@ -28,3 +30,7 @@ menuToggle.addEventListener('click', function (e) {
         navbar.classList.toggle('fixed');
     }
 });
+
+window.toggleModal = function() {
+    modal.classList.toggle('hidden');
+}

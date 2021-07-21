@@ -71,10 +71,11 @@
                         <form action="{{ route('send.newsletter') }}" method="POST" class="newsletter">
                             @csrf
                             <div class="newsletter-input">
-                                <input type="text" name="email" id="newsletter-email" placeholder="Seu e-mail">
+                                <input type="text" name="newsletter" id="newsletter-email" placeholder="Seu e-mail">
                                 <button type="submit">Enviar <i class="far fa-paper-plane"></i></button>
                             </div>
                         </form>
+                        @error('newsletter')<small>{{ $message }}</small>@enderror
                         <p>
                             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                             consequat.
@@ -95,7 +96,29 @@
             </div>
         </div>
     </footer>
-    <script src="{{ asset('js/scripts.js') }}" defer></script>
+    <div class="modal hidden">
+        <div class="modal-box">
+            <button class="modal-box-close" onclick="toggleModal()">
+                <i class="fa fa-times"></i>
+            </button>
+            <div class="modal-box-container">
+                @yield('modal')
+            </div>
+        </div>
+    </div>
+    <script src="{{ asset('js/scripts.js') }}"></script>
+    @if(session()->get('status'))
+    <script type="text/javascript">
+        Swal.fire({
+            text: "{{ session()->get('status.text')}}",
+            icon: "{{ session()->get('status.icon')}}",
+            toast: true,
+            timer: 3000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+            position: 'bottom-end'
+        })
+    </script>
+    @endif
 </body>
-
 </html>

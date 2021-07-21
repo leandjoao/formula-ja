@@ -5,14 +5,40 @@
         textarea {
             width: 100%;
             padding: $gap;
-            margin-bottom: $gap;
             border: 1px solid lightgray;
             resize: none;
             background: transparent;
+            margin-top: 10px;
+
+            &.invalid {
+                border-color: red;
+                color: red;
+            }
+        }
+
+        label {
+            color: red;
+            font-size: 0.9em;
         }
 
         button {
+            margin-top: $gap;
             @include button($primary, white);
         }
+    }
+}
+
+.errors {
+    padding: 0;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    li {
+        background: lighten($color: red, $amount: 45%);
+        color: red;
+        font-size: 0.9em;
+        padding: 10px;
     }
 }

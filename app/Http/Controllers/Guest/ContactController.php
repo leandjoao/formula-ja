@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
-use App\Models\Newsletter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -25,7 +24,7 @@ class ContactController extends Controller
             'message' => 'required'
         ]);
 
-        if($valid->fails()) return response()->json($valid->errors(), 500);
+        if($valid->fails()) return redirect()->back()->withErrors($valid)->withInput();
 
         $message = new Contact();
         $message->name = $request->name;
@@ -37,6 +36,6 @@ class ContactController extends Controller
 
         // Newsletter::query()->findOrNew('',['email' => $request->message]);
 
-        return response()->json(['message' => "Sucesso! Obrigado pelo seu contato."]);
+        return redirect()->back()->with(['status' => ['text' => 'Recebemos o seu contato!', 'icon' => 'success']]);
     }
 }

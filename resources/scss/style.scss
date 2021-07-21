@@ -47,20 +47,39 @@ body {
 @import "./components/footer";
 
 @import "./components/form";
+@import "./components/modal";
 
 .pages {
     &-header {
-        height: 250px;
+        height: 450px;
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(-18deg, lighten($primary, 10%), lighten($primary, 25%) 60%);
+        position: relative;
         flex-direction: column;
-        background: linear-gradient(-18deg, lighten($primary, 20%), lighten($primary, 35%) 80%);
+
+        &:before {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background-image: radial-gradient(lighten($primary, 25%) 3px, transparent 3px);
+            background-size: 30px 30px;
+            content: '';
+            z-index: 1;
+        }
 
         &-title {
-            @include container;
+            z-index: 2;
 
             h2 {
-                color: $text;
+                font-size: 3.5em;
+                color: white;
+                z-index: 2;
+                margin: 0;
+                line-height: 1;
             }
         }
     }
@@ -77,10 +96,10 @@ body {
         }
 
         &-text {
-            padding: 50px 0;
 
             p {
                 text-align: justify;
+                color: $text;
             }
         }
 
@@ -167,4 +186,8 @@ body {
             align-items: center;
         }
     }
+}
+
+.hidden {
+    display: none;
 }

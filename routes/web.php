@@ -18,12 +18,12 @@ Route::namespace('Guest')->group(function() {
     Route::get('blog', [BlogController::class, 'index'])->name('guest.blog');
     Route::get('blog/{category}', [BlogController::class, 'category'])->name('guest.blog.category');
     Route::get('blog/{category}/{slug}', [BlogController::class, 'inner'])->name('guest.blog.inner');
-    
+
 
     Route::post('blog/pesquisa-blog', [BlogController::class, 'search'])->name('blog.search');
     Route::post('enviar-newsletter', [NewsletterController::class, 'newsletter'])->name('send.newsletter');
-    Route::post('enviar-contato', [ContactController::class, 'send']);
-    Route::post('enviar-receita', [UploadController::class, 'send']);
+    Route::post('enviar-contato', [ContactController::class, 'send'])->name('send.contact');
+    Route::post('enviar-receita', [UploadController::class, 'send'])->name('send.receipt');
     Route::post('criar-farmacia', [PharmacyController::class, 'create']);
 });
 
