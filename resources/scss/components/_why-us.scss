@@ -55,15 +55,6 @@
                         width: 200px;
                     }
 
-                    &:first-child,
-                    &:nth-child(3) {
-                        margin-top: -25px;
-
-                        @include tablet {
-                            margin-top: 0;
-                        }
-                    }
-
                     img {
                         max-height: 64px;
                         margin: 10px auto 20px;

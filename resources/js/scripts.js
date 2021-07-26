@@ -1,3 +1,5 @@
+const { default: Splide } = require('@splidejs/splide');
+
 require('./bootstrap');
 window.Swal = require('sweetalert2');
 
@@ -34,3 +36,23 @@ menuToggle.addEventListener('click', function (e) {
 window.toggleModal = function() {
     modal.classList.toggle('hidden');
 }
+
+new Splide('.splide', {
+    type: 'loop',
+    easing: 'linear',
+    rewind : true,
+    perPage: 6,
+    perMove: 1,
+    focus: 'center',
+    gap: 10,
+    autoplay: true,
+    pagination: false,
+    breakpoints: {
+		'1024': {
+            perPage: 4,
+		},
+		'400': {
+            perPage: 1,
+		},
+	}
+}).mount();
