@@ -1,5 +1,3 @@
-const { default: Splide } = require('@splidejs/splide');
-
 require('./bootstrap');
 window.Swal = require('sweetalert2');
 
@@ -37,22 +35,30 @@ window.toggleModal = function() {
     modal.classList.toggle('hidden');
 }
 
-new Splide('.splide', {
-    type: 'loop',
-    easing: 'linear',
-    rewind : true,
-    perPage: 6,
-    perMove: 1,
-    focus: 'center',
-    gap: 10,
-    autoplay: true,
-    pagination: false,
-    breakpoints: {
-		'1024': {
-            perPage: 4,
-		},
-		'400': {
-            perPage: 1,
-		},
-	}
-}).mount();
+const parceiros = new Swiper('.parceiros-slider', {
+    direction: "horizontal",
+    loop: true,
+    slidesPerView: 4,
+    centeredSlides: true,
+    spaceBetween: 30,
+    keyboard: true,
+    navigation: {
+        nextEl: ".parceiros-next",
+        prevEl: ".parceiros-prev",
+    }
+});
+
+parceiros.init();
+
+const depoimentos = new Swiper('.depoimentos-slider', {
+    direction: "horizontal",
+    loop: true,
+    slidesPerView: 2,
+    centeredSlides: true,
+    pagination: {
+        el: ".depoimentos-pagination",
+        clickable: true,
+      },
+});
+
+depoimentos.init();

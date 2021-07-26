@@ -125,20 +125,37 @@
     </div>
 </div>
 @endif
-<div class="parceiros">
-    <h2>Conheça os nossos parceiros</h2>
-    <div class="splide">
-        <div class="splide__track">
-            <ul class="splide__list">
-                @for($i = 0; $i < 10; $i++)
-                    <li class="splide__slide"><img src="http://placehold.it/200x100&text={{$i + 1}}" alt=""></li>
+
+<div class="depoimentos">
+    <div class="depoimentos-container">
+        <div class="depoimentos-container-title">
+            <h3>Depoimentos</h3>
+            <p>Lorem Ipsum</p>
+        </div>
+        <div class="swiper-container depoimentos-slider">
+            <div class="swiper-wrapper">
+                @for($i = 0; $i < 4; $i++)
+                <div class="swiper-slide">
+                    <div class="depoimentos-item">
+                        <div class="depoimentos-item-header">
+                            <img src="{{asset('storage/icons/user.png')}}" alt="">
+                            <p>Nome do Usuário</p>
+                        </div>
+                        <div class="depoimentos-item-content">
+                            <h5>Título</h5>
+                            <p>
+                                Aliquam ultrices a nunc tincidunt semper. Cras dui sapien, cursus eu ultrices quis, sodales eget lorem. Nunc varius mi a orci ornare sagittis. Nam ac venenatis mauris, condimentum malesuada eros. Aenean rutrum, augue vel consequat fringilla, ligula dui venenatis velit, et eleifend metus odio ultrices dui.
+                            </p>
+                            <span><small>{{ date('d/m/Y') }}</small></span>
+                        </div>
+                    </div>
+                </div>
                 @endfor
-            </ul>
+            </div>
+            <div class="swiper-pagination depoimentos-pagination"></div>
         </div>
     </div>
 </div>
-
-<div class="depoimentos"></div>
 
 @endsection
 

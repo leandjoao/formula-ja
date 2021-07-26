@@ -33,6 +33,7 @@
     <main>
         @yield('content')
     </main>
+    @include('components.parceiros')
     <span class="to-top">
         <i class="fas fa-long-arrow-alt-up"></i>
     </span>
@@ -106,6 +107,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
     @if(session()->get('status'))
     <script type="text/javascript">

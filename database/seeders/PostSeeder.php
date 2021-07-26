@@ -22,7 +22,7 @@ class PostSeeder extends Seeder
             $post->content = str_repeat($faker->paragraph, $i + 2);
             $post->category_id = 1;
             $post->slug = Str::slug($faker->word);
-            $post->banner = "http://placehold.it/1920x1080";
+            $post->banner = "https://picsum.photos/1920/1080";
             $post->user_id = 1;
             $post->save();
         }
