@@ -4,6 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{{asset('storage/icon.png')}}">
+    <link rel="apple-touch-icon" href="{{asset('storage/icon.png')}}">
+    <link rel="image_src" href="{{asset('storage/icon.png')}}">
 
     <title>{{ config('app.name') }}</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -15,7 +18,6 @@
         <div class="nav-navbar">
             <div class="nav-navbar-logo">
                 <img src="{{ asset('storage/formula-ja.png') }}" alt="{{ config('app.name') }}">
-                <p>{{ config('app.name') }}</p>
             </div>
             <div class="nav-navbar-links">
                 <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.index')) active @endif">Home</a>
@@ -65,8 +67,7 @@
 
                 <div class="block">
                     <div class="block-header">
-                        <img src="{{asset('storage/formula-ja.png')}}" alt="{{config('app.name')}}">
-                        <p>{{config('app.name')}}</p>
+                        <img src="{{asset('storage/formula-ja-white.png')}}" alt="{{config('app.name')}}">
                     </div>
                     <div class="block-newsletter">
                         <form action="{{ route('send.newsletter') }}" method="POST" class="newsletter">

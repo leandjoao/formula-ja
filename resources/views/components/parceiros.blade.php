@@ -5,7 +5,7 @@
         <div class="swiper-wrapper">
             @for($i = 0; $i < 5; $i++)
             <div class="swiper-slide">
-                <img src="https://picsum.photos/1920/1080" alt="">
+                <img src="{{asset('storage/logo-example.png')}}" alt="">
             </div>
             @endfor
         </div>

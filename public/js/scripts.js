@@ -1911,13 +1911,23 @@ window.toggleModal = function () {
 var parceiros = new Swiper('.parceiros-slider', {
   direction: "horizontal",
   loop: true,
-  slidesPerView: 4,
   centeredSlides: true,
   spaceBetween: 30,
   keyboard: true,
   navigation: {
     nextEl: ".parceiros-next",
     prevEl: ".parceiros-prev"
+  },
+  breakpoints: {
+    "@0.00": {
+      slidesPerView: 2
+    },
+    "@0.75": {
+      slidesPerView: 4
+    },
+    "@1.00": {
+      slidesPerView: 5
+    }
   }
 });
 parceiros.init();
@@ -1929,6 +1939,14 @@ var depoimentos = new Swiper('.depoimentos-slider', {
   pagination: {
     el: ".depoimentos-pagination",
     clickable: true
+  },
+  breakpoints: {
+    "@0.00": {
+      slidesPerView: 1
+    },
+    "@0.75": {
+      slidesPerView: 2
+    }
   }
 });
 depoimentos.init();

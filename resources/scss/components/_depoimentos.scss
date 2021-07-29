@@ -4,7 +4,7 @@
     background: linear-gradient(-18deg, lighten($primary, 10%), lighten($primary, 25%) 90%);
     position: relative;
     flex-direction: column;
-    height: 515px;
+    height: 555px;
     padding: 2 * $gap 0;
 
     &:before {
@@ -65,7 +65,7 @@
 
     &-item {
         width: 500px;
-        height: 350px;
+        height: 380px;
         background-color: white;
         border-radius: 5px;
         box-shadow: 5px 5px 10px -5px rgba($color: #000000, $alpha: 0.4);

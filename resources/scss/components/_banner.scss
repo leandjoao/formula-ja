@@ -5,6 +5,7 @@ $paddingBanner: 150px;
     width: 100%;
     position: relative;
     background: linear-gradient(-18deg, lighten($primary, 20%), lighten($primary, 35%) 80%);
+    overflow-x: hidden;
 
     &-container {
         display: flex;
