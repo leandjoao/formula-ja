@@ -15,59 +15,10 @@
     </div>
 </section>
 
-<div class="how-it-works">
-    <div class="how-it-works-title">
-        <h4>Como funciona?</h4>
-    </div>
-    <div class="how-it-works-container">
-        <div class="how-it-works-container-item">
-            <img src="{{ asset('storage/icons/upload.png') }}" alt="">
-            <span>Envio da receita</span>
-        </div>
-        <div class="how-it-works-container-item">
-            <img src="{{ asset('storage/icons/budget.png') }}" alt="">
-            <span>Orçamento</span>
-        </div>
-        <div class="how-it-works-container-item">
-            <img src="{{ asset('storage/icons/payment.png') }}" alt="">
-            <span>Pagamento</span>
-        </div>
-        <div class="how-it-works-container-item">
-            <img src="{{ asset('storage/icons/manipulate.png') }}" alt="">
-            <span>Manipulação</span>
-        </div>
-        <div class="how-it-works-container-item">
-            <img src="{{ asset('storage/icons/deliver.png') }}" alt="">
-            <span>Envio do produto</span>
-        </div>
-    </div>
-</div>
-
 <div class="why-us">
     <div class="why-us-container">
-        <div class="why-us-container-boxes">
-            <div class="boxes">
-                <div class="boxes-item">
-                    <img src="{{ asset('storage/icons/organic.png') }}" alt="">
-                    <p>100% Orgânico</p>
-                    <span>Duis aute irure dolor in reprehenderit in voluptate</span>
-                </div>
-                <div class="boxes-item">
-                    <img src="{{ asset('storage/icons/chemistry.png') }}" alt="">
-                    <p>Sem Química</p>
-                    <span>Duis aute irure dolor in reprehenderit in voluptate</span>
-                </div>
-                <div class="boxes-item">
-                    <img src="{{ asset('storage/icons/tested.png') }}" alt="">
-                    <p>Produtos Testados</p>
-                    <span>Duis aute irure dolor in reprehenderit in voluptate</span>
-                </div>
-                <div class="boxes-item">
-                    <img src="{{ asset('storage/icons/wellness.png') }}" alt="">
-                    <p>Bem estar garantido</p>
-                    <span>Duis aute irure dolor in reprehenderit in voluptate</span>
-                </div>
-            </div>
+        <div class="why-us-container-image">
+            <img src="{{asset('storage/team.jpeg')}}" alt="">
         </div>
         <div class="why-us-container-text">
             <div class="why-us-container-text-content">
@@ -83,6 +34,39 @@
                 </p>
                 <a href="{{route('guest.about')}}">Ler mais</a>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="hiw">
+    <div class="hiw-title">
+        <h4>Como funciona?</h4>
+    </div>
+    <div class="hiw-container">
+        <div class="hiw-container-step">
+            <img src="{{asset('storage/icons/upload.png')}}" alt="">
+            <p>Envio da Receita</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
+        </div>
+        <div class="hiw-container-step">
+            <img src="{{asset('storage/icons/budget.png')}}" alt="">
+            <p>Orçamento</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
+        </div>
+        <div class="hiw-container-step">
+            <img src="{{asset('storage/icons/payment.png')}}" alt="">
+            <p>Pagamento</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
+        </div>
+        <div class="hiw-container-step">
+            <img src="{{asset('storage/icons/manipulate.png')}}" alt="">
+            <p>Manipulação</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
+        </div>
+        <div class="hiw-container-step">
+            <img src="{{asset('storage/icons/deliver.png')}}" alt="">
+            <p>Envio do produto</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
         </div>
     </div>
 </div>
@@ -156,7 +140,7 @@
         </div>
     </div>
 </div>
-
+@include('components.parceiros')
 @endsection
 
 @section('modal')

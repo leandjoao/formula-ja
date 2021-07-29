@@ -24,7 +24,10 @@
                 <a href="{{ route('guest.about') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.about')) active @endif">Sobre nós</a>
                 <a href="{{ route('guest.blog') }}" class="nav-navbar-links-link @if (request()->is('blog*')) active @endif">Blog</a>
                 <a href="{{ route('guest.contact') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.contact')) active @endif">Contato</a>
+                <a href="{{ route('login') }}" class="nav-navbar-links-link">Fazer Login</a>
+                <a href="{{ route('guest.contact') }}" class="nav-navbar-links-link"><span>Envie sua Receita <i class="fa fa-plus"></i></span></a>
             </div>
+            <a href="{{ route('guest.contact') }}" class="nav-navbar-cta">Envie sua Receita <i class="fa fa-plus"></i></a>
             <div class="nav-navbar-toggle">
                 <span></span>
                 <span></span>
@@ -35,7 +38,6 @@
     <main>
         @yield('content')
     </main>
-    @include('components.parceiros')
     <span class="to-top">
         <i class="fas fa-long-arrow-alt-up"></i>
     </span>
@@ -67,7 +69,7 @@
 
                 <div class="block">
                     <div class="block-header">
-                        <img src="{{asset('storage/formula-ja-white.png')}}" alt="{{config('app.name')}}">
+                        <img src="{{asset('storage/formula-ja-black.png')}}" alt="{{config('app.name')}}">
                     </div>
                     <div class="block-newsletter">
                         <form action="{{ route('send.newsletter') }}" method="POST" class="newsletter">

@@ -1,72 +1,60 @@
-.how-it-works {
+.hiw {
     @include container;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 
     &-title {
+        text-align: center;
+        padding: 100px 0 40px;
+
         h4 {
-            font-size: 1.4em;
-            margin-bottom: 20px;
+            margin: 0;
+            font-size: 2.5em;
+            color: $title;
         }
     }
 
     &-container {
+        padding-bottom: 120px;
         display: flex;
-        margin: 0 auto;
-        width: max-content;
-        background: white;
-        box-shadow: 0 0 15px 0 lightgray;
-        border-radius: 10px;
-        overflow: hidden;
-        padding: 20px;
-
-        @include tablet {
-            padding: 15px;
-        }
+        gap: $gap;
 
         @include mobile-only {
             flex-direction: column;
-            width: 70%;
-            gap: 20px;
+            padding-bottom: 80px;
         }
 
-        &-item {
-            width: 160px;
-            height: 90px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-direction: column;
+        @include tablet {
+            flex-wrap: wrap;
+        }
 
-            &:not(:last-child) {
-                border-right: 1px solid lighten(lightgray, 10%);
+        &-step {
+            box-shadow: 2px 4px 10px -2px lightgray;
+            display: flex;
+            flex-direction: column;
+            border-radius: 5px;
+            padding: $gap;
+            color: $text;
+            background: white;
+            flex: 1;
+            text-align: center;
+
+            @include tablet {
+                flex: 30%;
             }
 
             img {
-                max-height: 55px;
+                max-height: 70px;
+                margin: 10px auto 20px;
+            }
+
+            p {
+                margin: 0;
+                font-weight: 600;
+                color: $title;
             }
 
             span {
+                font-size: 0.8em;
                 color: $text;
-                font-size: 0.9em;
-            }
-
-            @include tablet {
-                width: 140px;
-                height: 70px;
-            }
-
-            @include mobile-only {
-                width: 100%;
-                padding: 0 0 10px;
-
-                &:not(:last-child) {
-                    border-right: 0;
-                    border-bottom: 1px solid lighten(lightgray, 10%);
-                }
             }
         }
     }

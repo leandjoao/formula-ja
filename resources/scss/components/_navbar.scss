@@ -7,7 +7,7 @@
     top: 0;
 
     &.fixed {
-        background-color: rgba(255, 255, 255, .92);
+        background-color: rgba(255, 255, 255, .98);
         box-shadow: 0 0 10px -2px lightgray;
 
         .nav {
@@ -34,13 +34,14 @@
         justify-content: space-between;
         align-items: center;
         height: 100%;
+        overflow: hidden;
         @include container;
 
         &-logo {
             display: flex;
             gap: $gap;
             align-items: center;
-            height: 40px;
+            height: 50px;
 
             img {
                 height: 100%;
@@ -55,7 +56,7 @@
         }
 
         &-links {
-            gap: 0 $gap;
+            gap: $gap;
             height: 100%;
             display: flex;
 
@@ -67,11 +68,27 @@
                 top: 60px;
                 flex-direction: column;
                 gap: 0;
-                transition: all ease .2s;
+                transition: all ease .4s;
                 background-color: white;
 
                 &.open {
                     right: 0;
+                }
+            }
+
+            @include tablet {
+                position: fixed;
+                height: auto;
+                width: 100%;
+                right: 0;
+                top: -100%;
+                flex-direction: column;
+                background-color: white;
+                transition: all ease .4s;
+                padding: 10px 0;
+
+                &.open {
+                    top: 60px;
                 }
             }
 
@@ -80,13 +97,34 @@
                 height: 100%;
                 display: flex;
                 align-items: center;
+                justify-content: center;
 
                 @include mobile-only {
                     color: $text;
                     height: 60px;
                     padding: 0 $gap;
-                    border-bottom: 1px solid lightgray;
                     width: 100%;
+
+                    &:not(:last-child) {
+                        border-bottom: 1px solid lightgray;
+                    }
+                }
+
+                @include tablet {
+                    height: 50px;
+                    padding: 0 $gap;
+                    justify-content: flex-start;
+                }
+
+                &:last-child {
+                    @include tablet {
+                        display: none;
+                    }
+                }
+
+                span {
+                    @include button($primary, white);
+                    gap: 5px;
                 }
 
                 &.active {
@@ -101,42 +139,51 @@
             }
         }
 
-        &-toggle {
+        &-cta {
             display: none;
 
-            @include mobile-only {
+            @include tablet {
+                @include button($primary, white);
                 display: flex;
-                gap: 5px 0;
-                flex-direction: column;
+                gap: 5px;
+            }
+        }
+
+        &-toggle {
+            display: flex;
+            gap: 5px 0;
+            flex-direction: column;
+            position: relative;
+
+            span {
                 width: 25px;
-                position: relative;
+                height: 2px;
+                content: '';
+                background-color: $text;
+                transition: all ease .3s;
+                opacity: 1;
+            }
 
+            &.open {
                 span {
-                    height: 2px;
-                    width: 100%;
-                    content: '';
-                    background-color: $text;
-                    transition: all ease .3s;
-                    opacity: 1;
-                }
+                    &:first-child {
+                        opacity: 0;
+                    }
 
-                &.open {
-                    span {
-                        &:first-child {
-                            opacity: 0;
-                        }
+                    &:nth-child(2) {
+                        transform: rotateZ(45deg);
+                        position: absolute;
+                        top: 7px;
+                    }
 
-                        &:nth-child(2) {
-                            transform: rotateZ(45deg);
-                            position: absolute;
-                            top: 7px;
-                        }
-
-                        &:last-child {
-                            transform: rotateZ(-45deg);
-                        }
+                    &:last-child {
+                        transform: rotateZ(-45deg);
                     }
                 }
+            }
+
+            @include desktop {
+                display: none;
             }
         }
     }

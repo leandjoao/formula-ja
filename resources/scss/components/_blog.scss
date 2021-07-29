@@ -1,5 +1,5 @@
 .blog {
-    padding: 30px 0 50px;
+    padding: 70px 0;
     background: $bg;
 
     &-container {
@@ -10,6 +10,7 @@
             font-size: 40px;
             text-align: center;
             margin: 0;
+            color: $title;
         }
 
         h6 {
@@ -66,6 +67,10 @@
                     max-width: 100%;
                     font-weight: 500;
                     overflow: hidden;
+
+                    p {
+                        color: $title;
+                    }
                 }
 
                 &-text {
@@ -99,7 +104,7 @@
 
     &-section {
         &-banner {
-            height: 400px;
+            height: 450px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -121,7 +126,7 @@
 
             h3 {
                 font-size: 3.5em;
-                color: white;
+                color: $title;
                 z-index: 2;
                 margin: 0;
                 line-height: 1;
@@ -131,24 +136,24 @@
                 padding: 0;
                 z-index: 2;
                 display: flex;
-                gap: $gap/2;
+                gap: 7.5px;
 
                 li {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    gap: $gap/2;
+                    gap: 7.5px;
 
                     a,
                     span {
-                        color: white;
+                        color: $text;
 
                     }
 
                     &:not(:last-child) {
                         &:after {
                             content: '>';
-                            color: white;
+                            color: $text;
                         }
                     }
                 }
@@ -236,6 +241,7 @@
 
                                 h4 {
                                     font-weight: 500;
+                                    color: $title;
                                 }
 
                                 p {

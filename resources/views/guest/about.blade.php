@@ -15,4 +15,5 @@
         </p>
     </div>
 </section>
+@include('components.parceiros')
 @endsection

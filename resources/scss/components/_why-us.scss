@@ -3,13 +3,14 @@
     background: $bg;
 
     @include desktop {
-        padding: 100px 0 50px;
+        padding: 150px 0;
     }
 
     &-container {
         @include container;
         display: flex;
         justify-content: space-between;
+        gap: 2 * $gap;
 
         @include mobile-only {
             flex-direction: column;
@@ -20,59 +21,16 @@
             flex-direction: column-reverse;
         }
 
-        &-boxes {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        &-image {
             flex: 1;
 
-            .boxes {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-
-                @include desktop {
-                    gap: 30px;
-                }
-
-                @include tablet {
-                    grid-template-columns: 1fr 1fr 1fr 1fr;
-                }
-
-                &-item {
-                    box-shadow: 2px 4px 10px -2px lightgray;
-                    display: flex;
-                    flex-direction: column;
-                    border-radius: 5px;
-                    padding: $gap;
-                    color: $text;
-                    background: white;
-                    height: 100%;
-                    width: 160px;
-
-                    @include desktop {
-                        height: 200px;
-                        width: 200px;
-                    }
-
-                    img {
-                        max-height: 64px;
-                        margin: 10px auto 20px;
-                    }
-
-                    p {
-                        margin: 0;
-                        font-weight: 600;
-                    }
-
-                    span {
-                        font-size: 0.8em;
-                    }
-                }
+            img {
+                width: 100%;
             }
         }
 
         &-text {
+
             flex: 1;
 
             @include tablet {
@@ -85,6 +43,7 @@
                 h5 {
                     font-size: 40px;
                     margin: 0;
+                    color: $title;
                 }
 
                 span {

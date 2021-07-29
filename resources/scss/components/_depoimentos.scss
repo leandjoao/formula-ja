@@ -4,8 +4,8 @@
     background: linear-gradient(-18deg, lighten($primary, 10%), lighten($primary, 25%) 90%);
     position: relative;
     flex-direction: column;
-    height: 555px;
-    padding: 2 * $gap 0;
+    height: 655px;
+    padding: 85px 0;
 
     &:before {
         position: absolute;
@@ -26,19 +26,16 @@
         &-title {
             text-align: center;
 
-            h3,
-            p {
-                color: white;
-            }
-
             h3 {
                 font-size: 2em;
                 margin: 0;
                 line-height: 1;
+                color: $title;
             }
 
             p {
                 margin: 0;
+                color: $text;
             }
         }
     }
@@ -71,6 +68,10 @@
         box-shadow: 5px 5px 10px -5px rgba($color: #000000, $alpha: 0.4);
         padding: 2 * $gap;
 
+        @include tablet {
+            width: 330px;
+        }
+
         &-header {
             display: flex;
             align-items: center;
@@ -97,13 +98,17 @@
             p,
             span {
                 margin: 0;
-                color: $text;
+            }
+
+            h5 {
+                color: $title;
             }
 
             p {
                 margin: 10px 0;
                 font-size: 0.8em;
                 word-wrap: break-word;
+                color: $text;
             }
 
             span {
