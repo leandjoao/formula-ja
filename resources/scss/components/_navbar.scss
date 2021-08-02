@@ -34,7 +34,6 @@
         justify-content: space-between;
         align-items: center;
         height: 100%;
-        overflow: hidden;
         @include container;
 
         &-logo {
@@ -98,6 +97,8 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                gap: 5px;
+                cursor: pointer;
 
                 @include mobile-only {
                     color: $text;
@@ -134,6 +135,62 @@
                     @include mobile-only {
                         color: $bg;
                         background-color: $primary;
+                    }
+                }
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+
+                &-content {
+                    display: none;
+                    position: absolute;
+                    background-color: white;
+                    box-shadow: 0 2px 5px -2px lightgray;
+                    z-index: 1;
+                    flex-direction: column;
+                    border-bottom-left-radius: 3px;
+                    border-bottom-right-radius: 3px;
+
+                    @include tablet {
+                        background: white;
+                        box-shadow: none;
+                        width: 100%;
+                        top: 60px;
+                        border-top: 1px solid lightgray;
+                    }
+
+                    @include mobile-only {
+                        background: white;
+                        box-shadow: none;
+                        width: 100%;
+                    }
+
+                    a {
+                        color: $text;
+                        height: 50px;
+                        text-decoration: none;
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                        padding: 0 $gap;
+                        cursor: pointer;
+
+                        &:not(:last-child) {
+                            border-bottom: 1px solid lightgray;
+                        }
+
+                        @include mobile-only {
+                            justify-content: center;
+                            height: 60px;
+                        }
+
+                        @include tablet {
+                            &:not(:last-child) {
+                                border-bottom: none;
+                            }
+                        }
                     }
                 }
             }

@@ -18,7 +18,9 @@
         <div class="auth-container">
             <div class="auth-container-box">
                 <div class="auth-container-box-header">
-                    <img src="{{asset('storage/formula-ja.png')}}" alt="">
+                    <a href="{{ route('guest.index') }}">
+                        <img src="{{asset('storage/formula-ja.png')}}" alt="">
+                    </a>
                     @if(!empty($text))
                         <p>{{$text}}</p>
                     @endif

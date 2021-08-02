@@ -25,7 +25,19 @@
                 <a href="{{ route('guest.pet') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.pet')) active @endif">PET</a>
                 <a href="{{ route('guest.blog') }}" class="nav-navbar-links-link @if (request()->is('blog*')) active @endif">Blog</a>
                 <a href="{{ route('guest.contact') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.contact')) active @endif">Contato</a>
-                <a href="{{ route('login') }}" class="nav-navbar-links-link">Fazer Login</a>
+                @guest
+                    <a href="{{ route('login') }}" class="nav-navbar-links-link">Fazer Login</a>
+                @endguest
+                @auth
+                <div class="dropdown">
+                    <a class="nav-navbar-links-link dropdown-button">Olá! {{ Str::limit(Auth::user()->name, 6, '...') }} <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="{{ route('dashboard') }}"><i class="fa fa-cogs"></i> Dashboard</a>
+                        <a href="{{ route('dashboard') }}"><i class="fa fa-user"></i> Perfil</a>
+                        <a onclick="document.querySelector('#logout').submit();"><i class="fa fa-sign-out-alt"></i> Sair</a>
+                    </div>
+                </div>
+                @endauth
                 <a href="{{ route('guest.receita') }}" class="nav-navbar-links-link"><span>Envie sua Receita <i class="fa fa-plus"></i></span></a>
             </div>
             <a href="{{ route('guest.receita') }}" class="nav-navbar-cta">Envie sua Receita <i class="fa fa-plus"></i></a>
@@ -126,5 +138,10 @@
         })
     </script>
     @endif
+    @auth
+        <form id="logout" action="{{route('logout')}}" method="POST">
+            @csrf
+        </form>
+    @endauth
 </body>
 </html>

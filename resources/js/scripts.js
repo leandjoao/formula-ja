@@ -17,6 +17,32 @@ window.addEventListener('scroll', function () {
     }
 });
 
+const dropdown = document.querySelector('.dropdown');
+if (dropdown) {
+    const dropdownBtn = dropdown.querySelector('.dropdown-button');
+    const dropdownIcon = dropdownBtn.querySelector('i');
+    const dropdownContent = dropdown.querySelector('.dropdown-content');
+
+    window.addEventListener('click', function (e) {
+        if (!dropdown.contains(e.target)) {
+            dropdownContent.style.display = 'none';
+        }
+    })
+
+    dropdownBtn.addEventListener('click', function (e) {
+        if (dropdownContent.style.display === 'flex') {
+            dropdownContent.style.display = 'none';
+            dropdownIcon.classList.add('fa-caret-down');
+            dropdownIcon.classList.remove('fa-caret-up');
+
+        } else {
+            dropdownContent.style.display = 'flex';
+            dropdownIcon.classList.add('fa-caret-up');
+            dropdownIcon.classList.remove('fa-caret-down');
+        }
+    });
+}
+
 toTop.addEventListener('click', function () {
     window.scrollTo({top: 0, behavior: 'smooth'});
 });
@@ -80,3 +106,4 @@ const depoimentos = new Swiper('.depoimentos-slider', {
 });
 
 depoimentos.init();
+

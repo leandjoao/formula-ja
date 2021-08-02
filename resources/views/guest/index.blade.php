@@ -96,7 +96,7 @@
                     <p>{{$post['title']}}</p>
                 </div>
                 <div class="posts-item-text">
-                    {!! Str::limit($post['content'], 100, '...') !!}
+                    {!! Str::limit($post['content'], 130, ' [...]') !!}
                 </div>
                 <div class="posts-item-footer">
                     <p>{{ Carbon\Carbon::parse($post['created_at'])->diffForHumans() }}</p>
