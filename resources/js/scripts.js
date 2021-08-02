@@ -26,6 +26,8 @@ if (dropdown) {
     window.addEventListener('click', function (e) {
         if (!dropdown.contains(e.target)) {
             dropdownContent.style.display = 'none';
+            dropdownIcon.classList.add('fa-caret-down');
+            dropdownIcon.classList.remove('fa-caret-up');
         }
     })
 

@@ -28,9 +28,13 @@
                 @guest
                     <a href="{{ route('login') }}" class="nav-navbar-links-link">Fazer Login</a>
                 @endguest
+                <a href="{{ route('guest.receita') }}" class="nav-navbar-links-link"><span>Envie sua Receita <i class="fa fa-plus"></i></span></a>
                 @auth
                 <div class="dropdown">
-                    <a class="nav-navbar-links-link dropdown-button">Olá! {{ Str::limit(Auth::user()->name, 6, '...') }} <i class="fa fa-caret-down"></i></a>
+                    <div class="nav-navbar-links-link dropdown-button">
+                        <img src="{{ asset('storage/icons/user.png') }}" alt="">
+                        <p>{{ Str::limit(Auth::user()->name, 6, '...') }} <i class="fa fa-caret-down"></i></p>
+                    </div>
                     <div class="dropdown-content">
                         <a href="{{ route('dashboard') }}"><i class="fa fa-cogs"></i> Dashboard</a>
                         <a href="{{ route('dashboard') }}"><i class="fa fa-user"></i> Perfil</a>
@@ -38,7 +42,6 @@
                     </div>
                 </div>
                 @endauth
-                <a href="{{ route('guest.receita') }}" class="nav-navbar-links-link"><span>Envie sua Receita <i class="fa fa-plus"></i></span></a>
             </div>
             <a href="{{ route('guest.receita') }}" class="nav-navbar-cta">Envie sua Receita <i class="fa fa-plus"></i></a>
             <div class="nav-navbar-toggle">

@@ -388,6 +388,13 @@ body {
   position: relative;
   display: inline-block;
 }
+.nav-navbar-links .dropdown-button p {
+  margin: 0;
+}
+.nav-navbar-links .dropdown-button img {
+  max-height: 65%;
+  border-radius: 100px;
+}
 .nav-navbar-links .dropdown-content {
   display: none;
   position: absolute;
