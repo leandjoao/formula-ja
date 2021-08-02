@@ -2028,12 +2028,16 @@ body.is-pet .footer-copy-container ul li a {
   gap: 15px;
   align-items: center;
 }
+.auth-form small {
+  color: #fc3043;
+  font-size: 0.8em;
+}
 .auth-form input {
   width: 100%;
   border-radius: 3px;
   padding: 15px;
   background: #F7F7F8;
-  border: none;
+  border: 1px solid #F7F7F8;
   color: #5d5d5d;
 }
 .auth-form input::-moz-placeholder {
@@ -2044,6 +2048,10 @@ body.is-pet .footer-copy-container ul li a {
 }
 .auth-form input::placeholder {
   color: #fccf3d;
+}
+.auth-form input.invalid {
+  border-color: #fc3043;
+  color: #fc3043;
 }
 .auth-form button {
   background-color: #fccf3d;

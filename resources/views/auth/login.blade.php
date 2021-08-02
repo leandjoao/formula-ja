@@ -2,8 +2,11 @@
 @section('content')
 <form action="{{ route('login') }}" method="POST" class="auth-form">
     @csrf
-    <input type="email" name="email" value="{{ old('email') }}" placeholder="E-mail" required />
-    <input type="password" name="password" placeholder="Senha" required />
+    @if($errors->any())
+        <small>Usuário ou senha inválidos</small>
+    @endif
+    <input type="email" name="email" value="{{ old('email') }}" placeholder="E-mail" @if($errors->any()) class="invalid" @endif required />
+    <input type="password" name="password" @if($errors->any()) class="invalid" @endif placeholder="Senha" required />
     <button>Entrar</button>
     <a href="{{ route('password.request') }}">Recuperar minha senha</a>
     <a href="{{ route('register') }}">Fazer cadastro</a>

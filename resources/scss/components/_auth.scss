@@ -58,16 +58,26 @@
         gap: $gap;
         align-items: center;
 
+        small {
+            color: $secondary;
+            font-size: 0.8em;
+        }
+
         input {
             width: 100%;
             border-radius: 3px;
             padding: 15px;
             background: $bg;
-            border: none;
+            border: 1px solid $bg;
             color: $text;
 
             &::placeholder {
                 color: $primary;
+            }
+
+            &.invalid {
+                border-color: $secondary;
+                color: $secondary;
             }
         }
 
