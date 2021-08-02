@@ -41,19 +41,6 @@ body {
     z-index: 99;
 }
 
-@import "./components/navbar";
-@import "./components/banner";
-@import "./components/hiw";
-@import "./components/why-us";
-@import "./components/pet";
-@import "./components/blog";
-@import "./components/depoimentos";
-@import "./components/parceiros";
-@import "./components/footer";
-
-@import "./components/form";
-@import "./components/modal";
-
 .pages {
     &-header {
         height: 450px;
@@ -94,17 +81,28 @@ body {
         display: flex;
         justify-content: space-between;
         gap: 3 * $gap;
-        padding: 4 * $gap 1.5 * $gap !important;
+        padding: 8 * $gap 1.5 * $gap !important;
 
         @include mobile-only {
             flex-direction: column;
         }
 
+        &-image {
+            flex: 1;
+
+            img {
+                width: 100%;
+            }
+        }
+
         &-text {
+            flex: 1;
 
             p {
                 text-align: justify;
                 color: $text;
+                margin-top: 0;
+                margin-bottom: 20px;
             }
         }
 
@@ -193,9 +191,6 @@ body {
     }
 }
 
-.hidden {
-    display: none;
-}
 
 .swiper {
     &-container {
@@ -236,4 +231,22 @@ body {
             border-radius: 10px;
         }
     }
+}
+
+@import "./components/navbar";
+@import "./components/banner";
+@import "./components/hiw";
+@import "./components/why-us";
+@import "./components/pet";
+@import "./components/blog";
+@import "./components/depoimentos";
+@import "./components/parceiros";
+@import "./components/footer";
+@import "./components/team";
+@import "./components/form";
+@import "./components/modal";
+@import "./components/auth";
+
+.hidden {
+    display: none;
 }

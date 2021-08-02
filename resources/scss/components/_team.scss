@@ -1,0 +1,47 @@
+.team {
+    background-color: $bg;
+    padding: 60px 0;
+
+    &-container {
+        @include container;
+
+        &-title {
+            text-align: center;
+
+            h4 {
+                color: $title;
+                font-size: 2em;
+                margin-top: 0;
+            }
+        }
+
+        &-members {
+            display: flex;
+            align-content: space-between;
+            justify-content: center;
+            gap: 4 * $gap;
+
+            &-member {
+                text-align: center;
+
+                img {
+                    max-width: 128px;
+                    border-radius: 100px;
+                }
+
+                h4,
+                p {
+                    margin: 0;
+                }
+
+                h4 {
+                    color: $title;
+                }
+
+                p {
+                    color: $text;
+                }
+            }
+        }
+    }
+}

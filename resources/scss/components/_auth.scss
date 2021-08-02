@@ -1,0 +1,85 @@
+.auth {
+    height: calc(100% - 45px);
+    background: url('../storage/icons/medicine.png');
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 512px;
+    image-rendering: optimizeQuality;
+
+    @include tablet {
+        background-size: 256px;
+    }
+
+    @include mobile-only {
+        background-size: 64px;
+        background-position: bottom center;
+        height: calc(100% - 109px);
+    }
+
+    &-container {
+        @include container;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        &-box {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+
+            @include tablet {
+                width: 50%;
+                margin: 0 auto;
+            }
+
+            @include mobile-only {
+                width: 100%;
+            }
+
+            &-header {
+                margin-bottom: 30px;
+
+                img {
+                    max-height: 64px;
+                }
+
+                p {
+                    margin: 0;
+                    color: $text;
+                }
+            }
+        }
+    }
+
+    &-form {
+        display: flex;
+        flex-direction: column;
+        gap: $gap;
+        align-items: center;
+
+        input {
+            width: 100%;
+            border-radius: 3px;
+            padding: 15px;
+            background: $bg;
+            border: none;
+            color: $text;
+
+            &::placeholder {
+                color: $primary;
+            }
+        }
+
+        button {
+            @include button($primary, white);
+            width: 100%;
+            justify-content: center;
+        }
+
+        a {
+            color: $text;
+            font-size: 0.7em;
+        }
+    }
+}

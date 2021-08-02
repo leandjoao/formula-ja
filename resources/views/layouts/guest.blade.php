@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
-<body>
+<body @if(request()->routeIs('guest.pet')) class="is-pet" @endif>
     <nav class="nav">
         <div class="nav-navbar">
             <div class="nav-navbar-logo">
@@ -22,12 +22,13 @@
             <div class="nav-navbar-links">
                 <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.index')) active @endif">Home</a>
                 <a href="{{ route('guest.about') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.about')) active @endif">Sobre nós</a>
+                <a href="{{ route('guest.pet') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.pet')) active @endif">PET</a>
                 <a href="{{ route('guest.blog') }}" class="nav-navbar-links-link @if (request()->is('blog*')) active @endif">Blog</a>
                 <a href="{{ route('guest.contact') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.contact')) active @endif">Contato</a>
                 <a href="{{ route('login') }}" class="nav-navbar-links-link">Fazer Login</a>
-                <a href="{{ route('guest.contact') }}" class="nav-navbar-links-link"><span>Envie sua Receita <i class="fa fa-plus"></i></span></a>
+                <a href="{{ route('guest.receita') }}" class="nav-navbar-links-link"><span>Envie sua Receita <i class="fa fa-plus"></i></span></a>
             </div>
-            <a href="{{ route('guest.contact') }}" class="nav-navbar-cta">Envie sua Receita <i class="fa fa-plus"></i></a>
+            <a href="{{ route('guest.receita') }}" class="nav-navbar-cta">Envie sua Receita <i class="fa fa-plus"></i></a>
             <div class="nav-navbar-toggle">
                 <span></span>
                 <span></span>
@@ -60,16 +61,16 @@
                         <h2>Informações</h2>
                     </div>
                     <ul class="block-links">
-                        <li><a href="">Termos de Uso</a></li>
-                        <li><a href="">Política de Privacidade</a></li>
-                        <li><a href="">Como funciona?</a></li>
-                        <li><a href="">Serviços PET</a></li>
+                        <li><a href="{{route('guest.termos')}}">Termos de Uso</a></li>
+                        <li><a href="{{route('guest.privacidade')}}">Política de Privacidade</a></li>
+                        <li><a href="{{route('guest.receita')}}">Enviar sua Receita</a></li>
+                        <li><a href="{{route('guest.pet')}}">PET</a></li>
                     </ul>
                 </div>
 
                 <div class="block">
                     <div class="block-header">
-                        <img src="{{asset('storage/formula-ja-black.png')}}" alt="{{config('app.name')}}">
+                        <img src="@if(request()->routeIs('guest.pet')) {{asset('storage/formula-ja-white.png')}} @else {{asset('storage/formula-ja-black.png')}} @endif" alt="{{config('app.name')}}">
                     </div>
                     <div class="block-newsletter">
                         <form action="{{ route('send.newsletter') }}" method="POST" class="newsletter">

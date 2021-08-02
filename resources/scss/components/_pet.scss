@@ -44,3 +44,160 @@
         }
     }
 }
+
+body {
+    &.is-pet {
+        .nav {
+            &.fixed {
+                .nav {
+                    &-navbar {
+                        &-links {
+                            &-link {
+                                &.active {
+                                    color: $secondary;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &-navbar {
+                &-links {
+                    &-link {
+                        &.active {
+                            color: $secondary;
+
+                            @include mobile-only {
+                                color: $bg !important;
+                                background-color: $secondary;
+                            }
+                        }
+
+                        span {
+                            @include button($secondary, white);
+                        }
+                    }
+                }
+
+                &-cta {
+                    @include tablet {
+                        @include button($secondary, white);
+                    }
+                }
+            }
+        }
+
+        .banner {
+            background: linear-gradient(-18deg, lighten($secondary, 20%), lighten($secondary, 35%) 80%);
+
+            &-container {
+                &::before {
+                    background: url('../storage/dog.png');
+                    background-size: 100%;
+                    background-repeat: no-repeat;
+                }
+
+                &-text {
+                    h4 {
+                        color: $secondary;
+                    }
+
+                    a {
+                        @include button($secondary, white);
+                    }
+
+                    &::before {
+                        background-image: radial-gradient(lighten($secondary, 25%) 3px, transparent 3px);
+                    }
+                }
+            }
+        }
+
+        .to-top {
+            background-color: $secondary;
+        }
+
+        .blog {
+            &-container {
+                &-link {
+                    @include button($secondary, white);
+                }
+
+                .posts {
+                    &-item {
+                        &-footer {
+                            a {
+                                color: $secondary;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .depoimentos {
+            background: linear-gradient(-18deg, lighten($secondary, 10%), lighten($secondary, 25%) 90%);
+
+            &::before {
+                background-image: radial-gradient(lighten($secondary, 25%) 3px, transparent 3px);
+            }
+        }
+
+        .footer {
+            background-color: $secondary;
+
+            &-container {
+                &-block {
+                    .block {
+                        &-header {
+                            h2 {
+                                color: white;
+                            }
+                        }
+
+                        &-links {
+                            li {
+                                a {
+                                    color: white;
+                                }
+                            }
+                        }
+
+                        &-newsletter {
+                            .newsletter {
+                                &-input {
+                                    button {
+                                        @include button($secondary, white);
+                                    }
+                                }
+                            }
+
+                            p {
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &-copy {
+                background: darken($color: $secondary, $amount: 10%);
+
+                &-container {
+                    p {
+                        color: white;
+                    }
+
+                    ul {
+                        li {
+                            a {
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
