@@ -1,0 +1,179 @@
+.nav {
+    overflow-x: scroll;
+    padding: $gap 0;
+
+    &-navbar {
+        &-logo {
+            display: flex;
+            align-items: center;
+            padding: 0 2 * $gap;
+
+            img {
+                max-width: 60%;
+            }
+        }
+
+        &-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            &-item {
+                margin-top: $gap;
+
+                p {
+                    color: $bg;
+                    padding: 0 2 * $gap;
+                    font-size: 0.7em;
+                    text-transform: uppercase;
+                    margin: 0;
+                }
+
+                ul {
+                    padding: 0;
+                    display: flex;
+                    flex-direction: column;
+
+                    li {
+                        padding: 0 2 * $gap;
+                        height: 50px;
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+
+                        &.active {
+                            background: linear-gradient(to left, $dark 10%, lighten($dark, 10%) 100%);
+                            border-left: 4px solid $bg;
+
+                            a {
+                                color: $bg;
+                            }
+                        }
+
+                        &:hover {
+                            a {
+                                color: $bg;
+                            }
+                        }
+
+                        a {
+                            font-size: 0.8em;
+                            color: darken($color: $bg, $amount: 10%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.page {
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        height: 60px;
+        align-items: center;
+        padding: 0 $gap;
+        background: white;
+        box-shadow: 0 0 10px -2px lightgray;
+        color: $text;
+
+        &-toggle {
+            cursor: pointer;
+
+            i {
+                font-size: 1.5em;
+            }
+        }
+
+        &-group {
+            height: 100%;
+            display: flex;
+            gap: 2*$gap;
+            align-items: center;
+
+            &-dropdown {
+                height: 100%;
+
+
+                .dropdown {
+                    height: 100%;
+                    position: relative;
+                    display: inline-block;
+
+                    &-button {
+                        height: 100%;
+                        display: flex;
+                        gap: 10px;
+                        align-items: center;
+                        cursor: pointer;
+
+                        img {
+                            max-height: 65%;
+                            border-radius: 100px;
+                        }
+
+                        p {
+                            i {
+                                margin-left: 10px;
+                            }
+                        }
+                    }
+
+                    &-content {
+                        display: none;
+                        position: absolute;
+                        background-color: white;
+                        box-shadow: 0 2px 5px -2px lightgray;
+                        z-index: 1;
+                        flex-direction: column;
+                        border-bottom-left-radius: 3px;
+                        border-bottom-right-radius: 3px;
+                        min-width: 180px;
+                        right: $gap;
+
+                        @include tablet {
+                            background: white;
+                            box-shadow: none;
+                            width: 100%;
+                            top: 60px;
+                            border-top: 1px solid lightgray;
+                        }
+
+                        @include mobile-only {
+                            background: white;
+                            box-shadow: none;
+                            width: 100%;
+                        }
+
+                        a {
+                            color: $text;
+                            height: 50px;
+                            text-decoration: none;
+                            display: flex;
+                            align-items: center;
+                            gap: 5px;
+                            padding: 0 $gap;
+                            cursor: pointer;
+
+                            &:not(:last-child) {
+                                border-bottom: 1px solid lightgray;
+                            }
+
+                            @include mobile-only {
+                                justify-content: center;
+                                height: 60px;
+                            }
+
+                            @include tablet {
+                                &:not(:last-child) {
+                                    border-bottom: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
