@@ -20,8 +20,8 @@
                 <img src="{{ asset('storage/formula-ja.png') }}" alt="{{ config('app.name') }}">
             </div>
             <div class="nav-navbar-links">
-                <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.index')) active @endif">Home</a>
-                <a href="{{ route('guest.about') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.about')) active @endif">Sobre nós</a>
+                <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.index')) active @endif">Página Inicial</a>
+                <a href="{{ route('guest.about') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.about')) active @endif">A Formula Já</a>
                 <a href="{{ route('guest.pet') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.pet')) active @endif">PET</a>
                 <a href="{{ route('guest.blog') }}" class="nav-navbar-links-link @if (request()->is('blog*')) active @endif">Blog</a>
                 <a href="{{ route('guest.contact') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.contact')) active @endif">Contato</a>
@@ -65,8 +65,8 @@
                         <h2>Acesso Rápido</h2>
                     </div>
                     <ul class="block-links">
-                        <li><a href="{{route('guest.index')}}">Home</a></li>
-                        <li><a href="{{route('guest.about')}}">Sobre nós</a></li>
+                        <li><a href="{{route('guest.index')}}">Página Inicial</a></li>
+                        <li><a href="{{route('guest.about')}}">A Formula Já</a></li>
                         <li><a href="{{route('guest.blog')}}">Blog</a></li>
                         <li><a href="{{route('guest.contact')}}">Contato</a></li>
                     </ul>
@@ -78,7 +78,7 @@
                     <ul class="block-links">
                         <li><a href="{{route('guest.termos')}}">Termos de Uso</a></li>
                         <li><a href="{{route('guest.privacidade')}}">Política de Privacidade</a></li>
-                        <li><a href="{{route('guest.receita')}}">Enviar sua Receita</a></li>
+                        <li><a href="{{route('guest.receita')}}">Envie sua Receita</a></li>
                         <li><a href="{{route('guest.pet')}}">PET</a></li>
                     </ul>
                 </div>

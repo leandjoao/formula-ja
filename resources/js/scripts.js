@@ -1,3 +1,6 @@
+const { default: axios } = require('axios');
+const { default: Swal } = require('sweetalert2');
+
 require('./bootstrap');
 window.Swal = require('sweetalert2');
 
@@ -109,3 +112,77 @@ const depoimentos = new Swiper('.depoimentos-slider', {
 
 depoimentos.init();
 
+
+window.getAddress = async (address) => {
+    const cep = address.replace(/\D/g, '');
+    if (cep != "") {
+        var validacep = /^[0-9]{8}$/;
+        if (validacep.test(cep)) {
+            await axios.get(`https://viacep.com.br/ws/${cep}/json`).then((response) => {
+                const { logradouro, bairro, localidade, uf } = response.data;
+                document.getElementById('street').value = logradouro;
+                document.getElementById('city').value = localidade;
+                document.getElementById('neighborhood').value = bairro;
+                document.getElementById('state').value = uf;
+            });
+        } else {
+            document.getElementById('street').value = '';
+            document.getElementById('city').value = '';
+            document.getElementById('neighborhood').value = '';
+            document.getElementById('state').value = '';
+            document.getElementById('zipCode').value = '';
+            Swal.fire({
+                text: "Ops! CEP Inválido",
+                icon: "error",
+                toast: true,
+                timer: 3000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                position: 'bottom-end'
+            });
+        }
+    } else {
+        document.getElementById('zipCode').value = '';
+        Swal.fire({
+            text: "Ops! CEP Inválido",
+            icon: "error",
+            toast: true,
+            timer: 3000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+            position: 'bottom-end'
+        });
+    }
+}
+
+const steps = document.querySelector('.enviar-container-steps');
+if (steps) {
+    const start = 1;
+    const end = document.querySelectorAll('.enviar-container-steps-step').length;
+    let currentStep = 1;
+
+    const next = document.querySelector('.next');
+    const previous = document.querySelector('.previous');
+
+    next.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (currentStep < end) {
+            document.getElementById(`passo-${currentStep}`).classList.toggle('inativo');
+            document.getElementById(`passo-${currentStep} input`).setAttribute('disabled', true);
+            currentStep++
+            document.getElementById(`passo-${currentStep}`).classList.toggle('inativo');
+            document.getElementById(`passo-${currentStep} input`).removeAttribute('disabled');
+        };
+    });
+
+    previous.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (currentStep > start) {
+            document.getElementById(`passo-${currentStep}`).classList.toggle('inativo');
+            document.getElementById(`passo-${currentStep} input`).setAttribute('disabled', true);
+            currentStep--
+            document.getElementById(`passo-${currentStep}`).classList.toggle('inativo');
+            document.getElementById(`passo-${currentStep} input`).removeAttribute('disabled');
+        };
+    });
+}

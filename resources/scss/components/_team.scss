@@ -1,46 +1,40 @@
 .team {
-    background-color: $bg;
+    background: $bg;
     padding: 60px 0;
+    background-image: url('../storage/team-banner.jpg');
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 40% auto;
+
+    @include tablet {
+        padding: 5px 0;
+        background-size: 55% auto;
+    }
+
+    @include mobile-only {
+        padding: 230px 0 5px;
+        background-position: top;
+        background-size: 100% auto;
+    }
 
     &-container {
         @include container;
 
-        &-title {
-            text-align: center;
+        &-text {
+            color: $text;
+            padding: 0 $gap 0 0;
+            width: 65%;
+
+            @include tablet {
+                width: 40%;
+            }
+
+            @include mobile-only {
+                width: 100%;
+            }
 
             h4 {
-                color: $title;
-                font-size: 2em;
-                margin-top: 0;
-            }
-        }
-
-        &-members {
-            display: flex;
-            align-content: space-between;
-            justify-content: center;
-            gap: 4 * $gap;
-
-            &-member {
-                text-align: center;
-
-                img {
-                    max-width: 128px;
-                    border-radius: 100px;
-                }
-
-                h4,
-                p {
-                    margin: 0;
-                }
-
-                h4 {
-                    color: $title;
-                }
-
-                p {
-                    color: $text;
-                }
+                font-size: 1.8em;
             }
         }
     }

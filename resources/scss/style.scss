@@ -47,20 +47,18 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(-18deg, lighten($primary, 10%), lighten($primary, 25%) 60%);
+        background-image: linear-gradient(-18deg, transparentize(lighten($primary, 1%), 0.6), transparentize(lighten($primary, 5%), 0.6) 80%);
+        background-size: cover;
+        background-position: center right;
         position: relative;
         flex-direction: column;
 
-        &:before {
-            position: absolute;
-            width: 100%;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            background-image: radial-gradient(lighten($primary, 25%) 3px, transparent 3px);
-            background-size: 30px 30px;
-            content: '';
-            z-index: 1;
+        &.about {
+            background-image: linear-gradient(-18deg, transparentize(lighten($primary, 1%), 0.6), transparentize(lighten($primary, 5%), 0.6) 80%), url('../storage/banner-team.jpg');
+        }
+
+        &.contact {
+            background-image: linear-gradient(-18deg, transparentize(lighten($primary, 1%), 0.6), transparentize(lighten($primary, 5%), 0.6) 80%), url('../storage/banner-contact.jpg');
         }
 
         &-title {
@@ -246,6 +244,7 @@ body {
 @import "./components/form";
 @import "./components/modal";
 @import "./components/auth";
+@import "./components/recipt";
 
 .hidden {
     display: none;

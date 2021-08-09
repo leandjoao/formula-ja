@@ -6,9 +6,11 @@
     }
 
     &-container {
-        background: url('../storage/icons/pets.png');
+        background-image: linear-gradient(to left, transparentize($primary, 0.8), transparentize($primary, 0.2) 80%), url('../storage/pet.jpg');
         background-repeat: no-repeat;
-        background-position: center right;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: top right;
 
         @include mobile-only {
             background-position: center;
@@ -37,7 +39,8 @@
                 margin: 0;
             }
 
-            button {
+            button,
+            a {
                 @include button(white, $primary);
                 margin: 40px auto 0;
             }

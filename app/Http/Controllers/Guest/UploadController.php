@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Budget;
 use App\Models\Upload;
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -14,6 +13,17 @@ use Illuminate\Support\Facades\Validator;
 
 class UploadController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function index()
+    {
+        return view('guest.enviarReceita');
+    }
+
+
     public function send(Request $request)
     {
         $valid = Validator::make($request->all(), [

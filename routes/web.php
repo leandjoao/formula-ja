@@ -20,7 +20,7 @@ Route::namespace('Guest')->group(function() {
     Route::get('blog/{category}', [BlogController::class, 'category'])->name('guest.blog.category');
     Route::get('blog/{category}/{slug}', [BlogController::class, 'inner'])->name('guest.blog.inner');
 
-    Route::get('enviar-receita')->name('guest.receita');
+    Route::get('enviar-receita', [UploadController::class, 'index'])->name('guest.receita');
     Route::get('enviar-receita-pet', [PetController::class,'index'])->name('guest.pet');
     Route::get('termos-de-uso')->name('guest.termos');
     Route::get('politica-de-privacidade')->name('guest.privacidade');

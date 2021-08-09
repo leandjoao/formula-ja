@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 @section('content')
-<section class="pages-header">
+<section class="pages-header contact">
     <div class="pages-header-title">
         <h2>Contato</h2>
     </div>
@@ -14,7 +14,7 @@
         </ul>
     </div>
     <div class="pages-content-form">
-        <h2>Fale conosco!</h2>
+        <h2>Como podemos ajudar você?</h2>
         <p>Preencha o formulário abaixo e em breve entraremos em contato</p>
         <form action="{{ route('send.contact') }}" method="POST" class="form">
             @csrf

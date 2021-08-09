@@ -4,39 +4,16 @@ $paddingBanner: 150px;
     min-height: 100vh;
     width: 100%;
     position: relative;
-    background: linear-gradient(-18deg, lighten($primary, 20%), lighten($primary, 35%) 80%);
+    background-image: linear-gradient(-18deg, transparentize(lighten($primary, 20%), 0.6), transparentize(lighten($primary, 35%), 0.6) 80%), url('../storage/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center left;
+    background-size: cover;
     overflow-x: hidden;
 
     &-container {
         display: flex;
         align-items: center;
         height: 100vh;
-
-        &::before {
-            background: url('../storage/doctor.png');
-            background-repeat: no-repeat;
-            background-size: contain;
-            position: absolute;
-            background-position: center bottom;
-            min-width: 25%;
-            width: 100%;
-            max-width: 35%;
-            min-height: 80%;
-            height: 100%;
-            max-height: 85%;
-            content: '';
-            right: 10%;
-            bottom: 0;
-
-            @include tablet {
-                right: -22%;
-                max-width: 65%;
-            }
-
-            @include mobile-only {
-                display: none;
-            }
-        }
 
         &-text {
             @include container;
@@ -62,7 +39,7 @@ $paddingBanner: 150px;
 
                 @include desktop {
                     max-width: 60%;
-                    font-size: 60px;
+                    font-size: 52px;
                 }
             }
 
