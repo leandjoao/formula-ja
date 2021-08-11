@@ -17,6 +17,16 @@
                 box-shadow: 0 0 10px -2px lightgray;
                 transition: all ease .2s;
                 padding: $gap;
+                color: $text;
+
+                p {
+                    font-size: 0.9em;
+
+                    a {
+                        text-decoration: underline;
+                        color: $text;
+                    }
+                }
 
                 &-header {
                     h3 {
@@ -34,16 +44,24 @@
                     .enviar-input {
                         display: flex;
                         gap: 5px;
-                        justify-content: space-between;
+                        align-items: center;
 
                         input {
                             width: 100%;
                             padding: 7px;
-                            border: 1px solid $bg;
+                            border: 1px solid lightgray;
                             border-radius: 3px;
 
-                            &:read-only {
-                                cursor: not-allowed;
+                            &[type="checkbox"] {
+                                width: auto;
+                                cursor: pointer;
+                            }
+
+                            &:not([type="checkbox"]) {
+                                &:read-only {
+                                    cursor: not-allowed;
+                                    border-color: $bg;
+                                }
                             }
                         }
                     }
@@ -51,13 +69,17 @@
 
                 &.inativo {
                     box-shadow: none;
-                    cursor: not-allowed;
+                    display: none;
+
+                    @include desktop {
+                        display: flex;
+                        flex-direction: column;
+                    }
 
                     input {
                         background: $bg;
                         border-color: $bg;
                         color: gray;
-                        cursor: not-allowed;
                     }
                 }
             }
@@ -71,11 +93,24 @@
 
         button {
             &.next {
-                @include button($primary, white)
+                @include button($primary, white);
             }
 
             &.previous {
                 @include button(lightgray, white)
+            }
+        }
+
+        &.submit {
+            @include button($primary, white);
+            width: 100%;
+            justify-content: center;
+
+            &:disabled {
+                @include button(lightgray, white);
+                cursor: not-allowed;
+                width: 100%;
+                justify-content: center;
             }
         }
     }

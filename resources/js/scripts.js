@@ -112,77 +112,142 @@ const depoimentos = new Swiper('.depoimentos-slider', {
 
 depoimentos.init();
 
+const invalidZip = () => {
+    Swal.fire({
+        text: "Ops! CEP Inválido",
+        icon: "error",
+        toast: true,
+        timer: 3000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        position: 'bottom-end'
+    });
+}
 
-window.getAddress = async (address) => {
+const getAddress = async (address) => {
     const cep = address.replace(/\D/g, '');
     if (cep != "") {
         var validacep = /^[0-9]{8}$/;
         if (validacep.test(cep)) {
-            await axios.get(`https://viacep.com.br/ws/${cep}/json`).then((response) => {
-                const { logradouro, bairro, localidade, uf } = response.data;
-                document.getElementById('street').value = logradouro;
-                document.getElementById('city').value = localidade;
-                document.getElementById('neighborhood').value = bairro;
-                document.getElementById('state').value = uf;
-            });
-        } else {
-            document.getElementById('street').value = '';
-            document.getElementById('city').value = '';
-            document.getElementById('neighborhood').value = '';
-            document.getElementById('state').value = '';
-            document.getElementById('zipCode').value = '';
-            Swal.fire({
-                text: "Ops! CEP Inválido",
-                icon: "error",
-                toast: true,
-                timer: 3000,
-                timerProgressBar: true,
-                showConfirmButton: false,
-                position: 'bottom-end'
-            });
+            return await axios.get(`https://viacep.com.br/ws/${cep}/json`);
         }
-    } else {
-        document.getElementById('zipCode').value = '';
-        Swal.fire({
-            text: "Ops! CEP Inválido",
-            icon: "error",
-            toast: true,
-            timer: 3000,
-            timerProgressBar: true,
-            showConfirmButton: false,
-            position: 'bottom-end'
-        });
+        return {data: false};
     }
+    return {data: false};
 }
 
 const steps = document.querySelector('.enviar-container-steps');
 if (steps) {
     const start = 1;
     const end = document.querySelectorAll('.enviar-container-steps-step').length;
+    const sameInfo = document.querySelector('#sameInfo');
+    const zipCode = document.querySelector('#zipCode');
+    const shippingZipCode = document.querySelector('#shippingZipCode');
+    const submit = document.querySelector('.submit');
+
     let currentStep = 1;
 
     const next = document.querySelector('.next');
     const previous = document.querySelector('.previous');
 
+    zipCode.addEventListener('blur', function (cep) {
+        getAddress(cep.target.value).then(function (response) {
+            if (response.data) {
+                const { logradouro, localidade, bairro, uf } = response.data;
+                document.getElementById('street').value = logradouro
+                document.getElementById('city').value = localidade
+                document.getElementById('neighborhood').value = bairro
+                document.getElementById('state').value = uf
+            } else {
+                invalidZip();
+                document.getElementById('street').value = "";
+                document.getElementById('zipCode').value = "";
+                document.getElementById('city').value = "";
+                document.getElementById('neighborhood').value = "";
+                document.getElementById('state').value = "";
+            }
+        });
+    })
+
     next.addEventListener('click', function (e) {
         e.preventDefault();
         if (currentStep < end) {
             document.getElementById(`passo-${currentStep}`).classList.toggle('inativo');
-            document.getElementById(`passo-${currentStep} input`).setAttribute('disabled', true);
             currentStep++
             document.getElementById(`passo-${currentStep}`).classList.toggle('inativo');
-            document.getElementById(`passo-${currentStep} input`).removeAttribute('disabled');
-        };
+        }
+        if (currentStep === end) {
+            next.classList.add('invisible');
+            submit.removeAttribute('disabled');
+        }
+
+        if (currentStep !== start) {
+            previous.classList.remove('invisible');
+        }
     });
 
     previous.addEventListener('click', function (e) {
         e.preventDefault();
         if (currentStep > start) {
             document.getElementById(`passo-${currentStep}`).classList.toggle('inativo');
-            document.getElementById(`passo-${currentStep} input`).setAttribute('disabled', true);
             currentStep--
             document.getElementById(`passo-${currentStep}`).classList.toggle('inativo');
-            document.getElementById(`passo-${currentStep} input`).removeAttribute('disabled');
         };
+
+        if (currentStep === start) {
+            previous.classList.add('invisible');
+        }
+
+        if (currentStep !== end) {
+            submit.setAttribute('disabled', true);
+            next.classList.remove('invisible');
+        }
     });
+
+    sameInfo.addEventListener('change', function (event) {
+        if (event.target.checked) {
+            getAddress(document.getElementById('zipCode').value).then(function (response) {
+                const { logradouro, localidade, bairro, uf } = response.data;
+                document.getElementById('shippingName').value = document.getElementById('name').value;
+                document.getElementById('shippingPhone').value = document.getElementById('phone').value;
+                document.getElementById('shippingZipCode').value = document.getElementById('zipCode').value;
+                document.getElementById('shippingStreet').value = logradouro
+                document.getElementById('shippingNeighborhood').value = bairro
+                document.getElementById('shippingCity').value = localidade
+                document.getElementById('shippingState').value = uf
+                document.getElementById('shippingNumber').value = document.getElementById('number').value;
+                document.getElementById('shippingComplement').value = document.getElementById('complement').value;
+                document.getElementById('shippingReference').value = document.getElementById('reference').value;
+            });
+        } else {
+            document.getElementById('shippingName').value = "";
+            document.getElementById('shippingPhone').value = "";
+            document.getElementById('shippingZipCode').value = "";
+            document.getElementById('shippingStreet').value = "";
+            document.getElementById('shippingNeighborhood').value = "";
+            document.getElementById('shippingCity').value = "";
+            document.getElementById('shippingState').value = "";
+            document.getElementById('shippingNumber').value = "";
+            document.getElementById('shippingComplement').value = "";
+            document.getElementById('shippingReference').value = "";
+        }
+    });
+
+    shippingZipCode.addEventListener('blur', function (cep) {
+        getAddress(cep.target.value).then(function (response) {
+            if (response.data) {
+                const { logradouro, localidade, bairro, uf } = response.data;
+                document.getElementById('shippingStreet').value = logradouro
+                document.getElementById('shippingNeighborhood').value = bairro
+                document.getElementById('shippingCity').value = localidade
+                document.getElementById('shippingState').value = uf
+            } else {
+                invalidZip();
+                document.getElementById('shippingStreet').value = "";
+                document.getElementById('shippingNeighborhood').value = "";
+                document.getElementById('shippingCity').value = "";
+                document.getElementById('shippingState').value = "";
+            }
+        });
+    })
 }

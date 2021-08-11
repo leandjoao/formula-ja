@@ -2004,7 +2004,19 @@ var depoimentos = new Swiper('.depoimentos-slider', {
 });
 depoimentos.init();
 
-window.getAddress = /*#__PURE__*/function () {
+var invalidZip = function invalidZip() {
+  Swal.fire({
+    text: "Ops! CEP Inválido",
+    icon: "error",
+    toast: true,
+    timer: 3000,
+    timerProgressBar: true,
+    showConfirmButton: false,
+    position: 'bottom-end'
+  });
+};
+
+var getAddress = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(address) {
     var cep, validacep;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -2014,67 +2026,34 @@ window.getAddress = /*#__PURE__*/function () {
             cep = address.replace(/\D/g, '');
 
             if (!(cep != "")) {
-              _context.next = 16;
+              _context.next = 8;
               break;
             }
 
             validacep = /^[0-9]{8}$/;
 
             if (!validacep.test(cep)) {
-              _context.next = 8;
+              _context.next = 7;
               break;
             }
 
             _context.next = 6;
-            return axios.get("https://viacep.com.br/ws/".concat(cep, "/json")).then(function (response) {
-              var _response$data = response.data,
-                  logradouro = _response$data.logradouro,
-                  bairro = _response$data.bairro,
-                  localidade = _response$data.localidade,
-                  uf = _response$data.uf;
-              document.getElementById('street').value = logradouro;
-              document.getElementById('city').value = localidade;
-              document.getElementById('neighborhood').value = bairro;
-              document.getElementById('state').value = uf;
-            });
+            return axios.get("https://viacep.com.br/ws/".concat(cep, "/json"));
 
           case 6:
-            _context.next = 14;
-            break;
+            return _context.abrupt("return", _context.sent);
+
+          case 7:
+            return _context.abrupt("return", {
+              data: false
+            });
 
           case 8:
-            document.getElementById('street').value = '';
-            document.getElementById('city').value = '';
-            document.getElementById('neighborhood').value = '';
-            document.getElementById('state').value = '';
-            document.getElementById('zipCode').value = '';
-            Swal.fire({
-              text: "Ops! CEP Inválido",
-              icon: "error",
-              toast: true,
-              timer: 3000,
-              timerProgressBar: true,
-              showConfirmButton: false,
-              position: 'bottom-end'
+            return _context.abrupt("return", {
+              data: false
             });
 
-          case 14:
-            _context.next = 18;
-            break;
-
-          case 16:
-            document.getElementById('zipCode').value = '';
-            Swal.fire({
-              text: "Ops! CEP Inválido",
-              icon: "error",
-              toast: true,
-              timer: 3000,
-              timerProgressBar: true,
-              showConfirmButton: false,
-              position: 'bottom-end'
-            });
-
-          case 18:
+          case 9:
           case "end":
             return _context.stop();
         }
@@ -2082,7 +2061,7 @@ window.getAddress = /*#__PURE__*/function () {
     }, _callee);
   }));
 
-  return function (_x) {
+  return function getAddress(_x) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -2092,34 +2071,125 @@ var steps = document.querySelector('.enviar-container-steps');
 if (steps) {
   var start = 1;
   var end = document.querySelectorAll('.enviar-container-steps-step').length;
+  var sameInfo = document.querySelector('#sameInfo');
+  var zipCode = document.querySelector('#zipCode');
+  var shippingZipCode = document.querySelector('#shippingZipCode');
+  var submit = document.querySelector('.submit');
   var currentStep = 1;
   var next = document.querySelector('.next');
   var previous = document.querySelector('.previous');
+  zipCode.addEventListener('blur', function (cep) {
+    getAddress(cep.target.value).then(function (response) {
+      if (response.data) {
+        var _response$data = response.data,
+            logradouro = _response$data.logradouro,
+            localidade = _response$data.localidade,
+            bairro = _response$data.bairro,
+            uf = _response$data.uf;
+        document.getElementById('street').value = logradouro;
+        document.getElementById('city').value = localidade;
+        document.getElementById('neighborhood').value = bairro;
+        document.getElementById('state').value = uf;
+      } else {
+        invalidZip();
+        document.getElementById('street').value = "";
+        document.getElementById('zipCode').value = "";
+        document.getElementById('city').value = "";
+        document.getElementById('neighborhood').value = "";
+        document.getElementById('state').value = "";
+      }
+    });
+  });
   next.addEventListener('click', function (e) {
     e.preventDefault();
 
     if (currentStep < end) {
       document.getElementById("passo-".concat(currentStep)).classList.toggle('inativo');
-      document.getElementById("passo-".concat(currentStep, " input")).setAttribute('disabled', true);
       currentStep++;
       document.getElementById("passo-".concat(currentStep)).classList.toggle('inativo');
-      document.getElementById("passo-".concat(currentStep, " input")).removeAttribute('disabled');
     }
 
-    ;
+    if (currentStep === end) {
+      next.classList.add('invisible');
+      submit.removeAttribute('disabled');
+    }
+
+    if (currentStep !== start) {
+      previous.classList.remove('invisible');
+    }
   });
   previous.addEventListener('click', function (e) {
     e.preventDefault();
 
     if (currentStep > start) {
       document.getElementById("passo-".concat(currentStep)).classList.toggle('inativo');
-      document.getElementById("passo-".concat(currentStep, " input")).setAttribute('disabled', true);
       currentStep--;
       document.getElementById("passo-".concat(currentStep)).classList.toggle('inativo');
-      document.getElementById("passo-".concat(currentStep, " input")).removeAttribute('disabled');
     }
 
     ;
+
+    if (currentStep === start) {
+      previous.classList.add('invisible');
+    }
+
+    if (currentStep !== end) {
+      submit.setAttribute('disabled', true);
+      next.classList.remove('invisible');
+    }
+  });
+  sameInfo.addEventListener('change', function (event) {
+    if (event.target.checked) {
+      getAddress(document.getElementById('zipCode').value).then(function (response) {
+        var _response$data2 = response.data,
+            logradouro = _response$data2.logradouro,
+            localidade = _response$data2.localidade,
+            bairro = _response$data2.bairro,
+            uf = _response$data2.uf;
+        document.getElementById('shippingName').value = document.getElementById('name').value;
+        document.getElementById('shippingPhone').value = document.getElementById('phone').value;
+        document.getElementById('shippingZipCode').value = document.getElementById('zipCode').value;
+        document.getElementById('shippingStreet').value = logradouro;
+        document.getElementById('shippingNeighborhood').value = bairro;
+        document.getElementById('shippingCity').value = localidade;
+        document.getElementById('shippingState').value = uf;
+        document.getElementById('shippingNumber').value = document.getElementById('number').value;
+        document.getElementById('shippingComplement').value = document.getElementById('complement').value;
+        document.getElementById('shippingReference').value = document.getElementById('reference').value;
+      });
+    } else {
+      document.getElementById('shippingName').value = "";
+      document.getElementById('shippingPhone').value = "";
+      document.getElementById('shippingZipCode').value = "";
+      document.getElementById('shippingStreet').value = "";
+      document.getElementById('shippingNeighborhood').value = "";
+      document.getElementById('shippingCity').value = "";
+      document.getElementById('shippingState').value = "";
+      document.getElementById('shippingNumber').value = "";
+      document.getElementById('shippingComplement').value = "";
+      document.getElementById('shippingReference').value = "";
+    }
+  });
+  shippingZipCode.addEventListener('blur', function (cep) {
+    getAddress(cep.target.value).then(function (response) {
+      if (response.data) {
+        var _response$data3 = response.data,
+            logradouro = _response$data3.logradouro,
+            localidade = _response$data3.localidade,
+            bairro = _response$data3.bairro,
+            uf = _response$data3.uf;
+        document.getElementById('shippingStreet').value = logradouro;
+        document.getElementById('shippingNeighborhood').value = bairro;
+        document.getElementById('shippingCity').value = localidade;
+        document.getElementById('shippingState').value = uf;
+      } else {
+        invalidZip();
+        document.getElementById('shippingStreet').value = "";
+        document.getElementById('shippingNeighborhood').value = "";
+        document.getElementById('shippingCity').value = "";
+        document.getElementById('shippingState').value = "";
+      }
+    });
   });
 }
 

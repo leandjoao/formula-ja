@@ -2149,6 +2149,14 @@ body.is-pet .footer-copy-container ul li a {
   box-shadow: 0 0 10px -2px lightgray;
   transition: all ease 0.2s;
   padding: 15px;
+  color: #5e5f5f;
+}
+.enviar-container-steps-step p {
+  font-size: 0.9em;
+}
+.enviar-container-steps-step p a {
+  text-decoration: underline;
+  color: #5e5f5f;
 }
 .enviar-container-steps-step-header h3 {
   margin: 0;
@@ -2163,29 +2171,40 @@ body.is-pet .footer-copy-container ul li a {
 .enviar-container-steps-step-inputs .enviar-input {
   display: flex;
   gap: 5px;
-  justify-content: space-between;
+  align-items: center;
 }
 .enviar-container-steps-step-inputs .enviar-input input {
   width: 100%;
   padding: 7px;
-  border: 1px solid #f7f7fc;
+  border: 1px solid lightgray;
   border-radius: 3px;
 }
-.enviar-container-steps-step-inputs .enviar-input input:-moz-read-only {
-  cursor: not-allowed;
+.enviar-container-steps-step-inputs .enviar-input input[type=checkbox] {
+  width: auto;
+  cursor: pointer;
 }
-.enviar-container-steps-step-inputs .enviar-input input:read-only {
+.enviar-container-steps-step-inputs .enviar-input input:not([type=checkbox]):-moz-read-only {
   cursor: not-allowed;
+  border-color: #f7f7fc;
+}
+.enviar-container-steps-step-inputs .enviar-input input:not([type=checkbox]):read-only {
+  cursor: not-allowed;
+  border-color: #f7f7fc;
 }
 .enviar-container-steps-step.inativo {
   box-shadow: none;
-  cursor: not-allowed;
+  display: none;
+}
+@media (min-width: 1200px) {
+  .enviar-container-steps-step.inativo {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .enviar-container-steps-step.inativo input {
   background: #f7f7fc;
   border-color: #f7f7fc;
   color: gray;
-  cursor: not-allowed;
 }
 .enviar-buttons {
   margin-top: 40px;
@@ -2232,7 +2251,56 @@ body.is-pet .footer-copy-container ul li a {
   background-color: transparent;
   color: lightgray;
 }
+.enviar-buttons.submit {
+  background-color: #fbcf3d;
+  padding: 0 22.5px;
+  height: 40px;
+  display: flex;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+  border-radius: 100px;
+  border: 2px solid #fbcf3d;
+  transition: all ease 0.2s;
+  cursor: pointer;
+  width: 100%;
+  justify-content: center;
+}
+.enviar-buttons.submit:hover {
+  background-color: transparent;
+  color: #fbcf3d;
+}
+.enviar-buttons.submit:disabled {
+  background-color: lightgray;
+  padding: 0 22.5px;
+  height: 40px;
+  display: flex;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+  border-radius: 100px;
+  border: 2px solid lightgray;
+  transition: all ease 0.2s;
+  cursor: pointer;
+  cursor: not-allowed;
+  width: 100%;
+  justify-content: center;
+}
+.enviar-buttons.submit:disabled:hover {
+  background-color: transparent;
+  color: lightgray;
+}
 
 .hidden {
-  display: none;
+  display: none !important;
+}
+
+.invisible {
+  opacity: 0 !important;
 }
