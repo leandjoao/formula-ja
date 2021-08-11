@@ -92,7 +92,7 @@ body {
         }
 
         .banner {
-            background: linear-gradient(-18deg, lighten($secondary, 20%), lighten($secondary, 35%) 80%);
+            background-image: linear-gradient(-18deg, transparentize(lighten($secondary, 20%), 0.6), transparentize(lighten($secondary, 35%), 0.6) 80%), url('../storage/background-pet.jpeg');
 
             &-container {
                 &::before {
@@ -104,6 +104,14 @@ body {
                 &-text {
                     h4 {
                         color: $secondary;
+                    }
+
+                    h2 {
+                        color: $bg;
+                    }
+
+                    p {
+                        color: $bg
                     }
 
                     a {
@@ -199,6 +207,22 @@ body {
                             }
                         }
                     }
+                }
+            }
+        }
+
+        .enviar {
+            &-buttons {
+                button {
+                    &.next {
+                        @include button($secondary, white);
+                    }
+                }
+
+                &.submit {
+                    @include button($secondary, white);
+                    width: 100%;
+                    justify-content: center;
                 }
             }
         }

@@ -10,7 +10,7 @@
                 consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
                 nulla pariatur.
             </p>
-            <a href="">Envie sua receita!</a>
+            <a href="{{route('guest.receita.pet')}}">Envie sua receita!</a>
         </div>
     </div>
 </section>

@@ -76,7 +76,7 @@
         <div class="pet-container-text">
             <h2>Cuide do bem-estar e saúde do seu animalzinho</h2>
             <p>Envie a receita do seu pet para gente! Teremos o maior prazer em ajudar!</p>
-            <a href="{{route('send.receipt')}}">Enviar receita</a>
+            <a href="{{route('guest.receita.pet')}}">Enviar receita</a>
         </div>
     </div>
 </div>

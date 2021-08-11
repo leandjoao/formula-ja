@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
-<body @if(request()->routeIs('guest.pet')) class="is-pet" @endif>
+<body @if(request()->routeIs('guest.pet') || request()->routeIs('guest.receita.pet')) class="is-pet" @endif>
     <nav class="nav">
         <div class="nav-navbar">
             <div class="nav-navbar-logo">
@@ -28,7 +28,11 @@
                 @guest
                     <a href="{{ route('login') }}" class="nav-navbar-links-link">Fazer Login</a>
                 @endguest
-                <a href="{{ route('guest.receita') }}" class="nav-navbar-links-link"><span>Envie sua Receita <i class="fa fa-plus"></i></span></a>
+                @if(request()->routeIs('guest.pet') || request()->routeIs('guest.receita.pet'))
+                    <a href="{{ route('guest.receita.pet') }}" class="nav-navbar-links-link"><span>Envie sua Receita <i class="fa fa-plus"></i></span></a>
+                @else
+                    <a href="{{ route('guest.receita') }}" class="nav-navbar-links-link"><span>Envie sua Receita <i class="fa fa-plus"></i></span></a>
+                @endif
                 @auth
                 <div class="dropdown">
                     <div class="nav-navbar-links-link dropdown-button">

@@ -3,6 +3,7 @@
 <div class="enviar">
     <div class="enviar-container">
         <form action="" class="enviar-container-steps">
+            @csrf
             <div class="enviar-container-steps-step" id="passo-1">
                 <div class="enviar-container-steps-step-header">
                     <h3>1. Identificação</h3>
@@ -87,6 +88,8 @@
                 <p>Ao clicar em enviar a sua receita, você aceita e está de acordo com os nossos <a href="{{route('guest.termos')}}">Termos de Uso</a> e <a href="{{route('guest.privacidade')}}">Políticas de Privacidade</a>.</p>
                 <button type="submit" class="enviar-buttons submit" disabled>Enviar receita</button>
             </div>
+
+            <input type="checkbox" class="hidden" name="pet" @if(request()->routeIs('guest.receita.pet')) checked @endif>
         </form>
         <div class="enviar-buttons">
             <button class="previous invisible">Voltar</button>

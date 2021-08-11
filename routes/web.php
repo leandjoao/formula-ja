@@ -16,12 +16,13 @@ Route::namespace('Guest')->group(function() {
     Route::get('/', [IndexController::class,'index'])->name('guest.index');
     Route::get('sobre-nos', [AboutController::class,'index'])->name('guest.about');
     Route::get('contato', [ContactController::class,'index'])->name('guest.contact');
+    Route::get('pet', [PetController::class,'index'])->name('guest.pet');
     Route::get('blog', [BlogController::class, 'index'])->name('guest.blog');
     Route::get('blog/{category}', [BlogController::class, 'category'])->name('guest.blog.category');
     Route::get('blog/{category}/{slug}', [BlogController::class, 'inner'])->name('guest.blog.inner');
 
     Route::get('enviar-receita', [UploadController::class, 'index'])->name('guest.receita');
-    Route::get('enviar-receita-pet', [PetController::class,'index'])->name('guest.pet');
+    Route::get('enviar-receita-pet', [UploadController::class, 'pet'])->name('guest.receita.pet');
     Route::get('termos-de-uso')->name('guest.termos');
     Route::get('politica-de-privacidade')->name('guest.privacidade');
 

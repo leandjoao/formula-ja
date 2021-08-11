@@ -23,6 +23,11 @@ class UploadController extends Controller
         return view('guest.enviarReceita');
     }
 
+    public function pet()
+    {
+        return view('guest.enviarReceita');
+    }
+
 
     public function send(Request $request)
     {

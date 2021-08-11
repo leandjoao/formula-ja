@@ -913,7 +913,7 @@ body.is-pet .nav-navbar-links-link span:hover {
   }
 }
 body.is-pet .banner {
-  background: linear-gradient(-18deg, #fd959e, #ffe0e3 80%);
+  background-image: linear-gradient(-18deg, rgba(253, 149, 158, 0.4), rgba(255, 224, 227, 0.4) 80%), url("../storage/background-pet.jpeg");
 }
 body.is-pet .banner-container::before {
   background: url("../storage/dog.png");
@@ -922,6 +922,12 @@ body.is-pet .banner-container::before {
 }
 body.is-pet .banner-container-text h4 {
   color: #fc3043;
+}
+body.is-pet .banner-container-text h2 {
+  color: #f7f7fc;
+}
+body.is-pet .banner-container-text p {
+  color: #f7f7fc;
 }
 body.is-pet .banner-container-text a {
   background-color: #fc3043;
@@ -1018,6 +1024,48 @@ body.is-pet .footer-copy-container p {
 }
 body.is-pet .footer-copy-container ul li a {
   color: white;
+}
+body.is-pet .enviar-buttons button.next {
+  background-color: #fc3043;
+  padding: 0 22.5px;
+  height: 40px;
+  display: flex;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+  border-radius: 100px;
+  border: 2px solid #fc3043;
+  transition: all ease 0.2s;
+  cursor: pointer;
+}
+body.is-pet .enviar-buttons button.next:hover {
+  background-color: transparent;
+  color: #fc3043;
+}
+body.is-pet .enviar-buttons.submit {
+  background-color: #fc3043;
+  padding: 0 22.5px;
+  height: 40px;
+  display: flex;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+  border-radius: 100px;
+  border: 2px solid #fc3043;
+  transition: all ease 0.2s;
+  cursor: pointer;
+  width: 100%;
+  justify-content: center;
+}
+body.is-pet .enviar-buttons.submit:hover {
+  background-color: transparent;
+  color: #fc3043;
 }
 
 .blog {
