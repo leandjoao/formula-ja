@@ -19,6 +19,7 @@ body {
     padding: 0;
     width: 100%;
     height: 100%;
+    color: $text;
 }
 
 body {
@@ -53,3 +54,4 @@ body {
 
 @import "./dashboard/navbar";
 @import "./dashboard/main";
+@import "./dashboard/profile";

@@ -140,5 +140,35 @@
         </div>
     </div>
 </div>
+
+<div class="duvidas">
+    <div class="duvidas-container">
+        <div class="duvidas-container-text">
+            <h3>Dúvidas</h3>
+            <p>Aliquam ultrices a nunc tincidunt semper. Cras dui sapien, cursus eu ultrices quis, sodales eget lorem. Nunc varius mi a orci ornare sagittis. Nam ac venenatis mauris, condimentum malesuada eros. Aenean rutrum, augue vel consequat fringilla, ligula dui venenatis velit, et eleifend metus odio ultrices dui.</p>
+        </div>
+        <div class="duvidas-container-collapsible">
+            <div class="collapsible">
+                <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> Lorem Ipsum</div>
+                <div class="collapsible-content-text">
+                    <p>Aliquam ultrices a nunc tincidunt semper. Cras dui sapien, cursus eu ultrices quis, sodales eget lorem. Nunc varius mi a orci ornare sagittis. Nam ac venenatis mauris, condimentum malesuada eros. Aenean rutrum, augue vel consequat fringilla, ligula dui venenatis velit, et eleifend metus odio ultrices dui.</p>
+                </div>
+                <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> Lorem Ipsum</div>
+                <div class="collapsible-content-text">
+                    <p>Aliquam ultrices a nunc tincidunt semper. Cras dui sapien, cursus eu ultrices quis, sodales eget lorem. Nunc varius mi a orci ornare sagittis. Nam ac venenatis mauris, condimentum malesuada eros. Aenean rutrum, augue vel consequat fringilla, ligula dui venenatis velit, et eleifend metus odio ultrices dui.</p>
+                </div>
+                <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> Lorem Ipsum</div>
+                <div class="collapsible-content-text">
+                    <p>Aliquam ultrices a nunc tincidunt semper. Cras dui sapien, cursus eu ultrices quis, sodales eget lorem. Nunc varius mi a orci ornare sagittis. Nam ac venenatis mauris, condimentum malesuada eros. Aenean rutrum, augue vel consequat fringilla, ligula dui venenatis velit, et eleifend metus odio ultrices dui.</p>
+                </div>
+                <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> Lorem Ipsum</div>
+                <div class="collapsible-content-text">
+                    <p>Aliquam ultrices a nunc tincidunt semper. Cras dui sapien, cursus eu ultrices quis, sodales eget lorem. Nunc varius mi a orci ornare sagittis. Nam ac venenatis mauris, condimentum malesuada eros. Aenean rutrum, augue vel consequat fringilla, ligula dui venenatis velit, et eleifend metus odio ultrices dui.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @include('components.parceiros')
 @endsection

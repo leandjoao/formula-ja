@@ -9,7 +9,6 @@
     <link rel="image_src" href="{{asset('storage/icon.png')}}">
 
     <title>{{ config('app.name') }}</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
@@ -43,7 +42,7 @@
                     </div>
                     <div class="dropdown-content">
                         <a href="{{ route('dashboard') }}"><i class="fa fa-cogs"></i> Dashboard</a>
-                        <a href="{{ route('dashboard') }}"><i class="fa fa-user"></i> Perfil</a>
+                        <a href="{{ route('profile') }}"><i class="fa fa-user"></i> Perfil</a>
                         <a onclick="document.querySelector('#logout').submit();"><i class="fa fa-sign-out-alt"></i> Sair</a>
                     </div>
                 </div>
@@ -122,7 +121,7 @@
             </div>
         </div>
     </footer>
-    {{-- MODAL
+
     <div class="modal hidden">
         <div class="modal-box">
             <button class="modal-box-close" onclick="toggleModal()">
@@ -133,7 +132,7 @@
             </div>
         </div>
     </div>
-    --}}
+
     <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
     @if(session()->get('status'))

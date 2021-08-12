@@ -4,7 +4,7 @@
     <div class="banner-container">
         <div class="banner-container-text">
             <h4>Lorem Ipsum</h4>
-            <h2>Lorem Ipsum dolor sit amet consectetur adipiscing elit</h2>
+            <h2>Cuide do bem-estar e saúde do seu animalzinho</h2>
             <p>
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                 consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat

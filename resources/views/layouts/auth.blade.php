@@ -9,7 +9,6 @@
     <link rel="image_src" href="{{asset('storage/icon.png')}}">
 
     <title>{{config('app.name')}}</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 </head>

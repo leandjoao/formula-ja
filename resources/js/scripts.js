@@ -88,7 +88,6 @@ const parceiros = new Swiper('.parceiros-slider', {
         },
     }
 });
-
 parceiros.init();
 
 const depoimentos = new Swiper('.depoimentos-slider', {
@@ -109,8 +108,32 @@ const depoimentos = new Swiper('.depoimentos-slider', {
         },
     }
 });
-
 depoimentos.init();
+
+
+const collapsible = document.querySelector('.collapsible');
+if (collapsible) {
+    const title = collapsible.querySelectorAll('.collapsible-content-title');
+    const body = collapsible.querySelectorAll('.collapsible-content-text');
+    let i;
+    for (i = 0; i < title.length; i++) {
+        title[i].addEventListener('click', function () {
+            this.classList.toggle('active');
+
+            body.forEach(item => {
+                item.style.display = "none";
+            })
+
+            let content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+              } else {
+                content.style.display = "block";
+              }
+        });
+    }
+}
+
 
 const invalidZip = () => {
     Swal.fire({

@@ -9,20 +9,21 @@
     <link rel="image_src" href="{{asset('storage/icon.png')}}">
 
     <title>Dashboard :: {{ config('app.name') }}</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 </head>
 <body>
     <nav class="nav">
         <div class="nav-navbar">
             <div class="nav-navbar-logo">
-                <img src="{{asset('storage/formula-ja-white.png')}}" alt="{{ config('app.name') }}">
+                <a href="{{route('guest.index')}}">
+                    <img src="{{asset('storage/formula-ja-white.png')}}" alt="{{ config('app.name') }}">
+                </a>
             </div>
             <div class="nav-navbar-list">
                 <div class="nav-navbar-list-item">
                     <p>Administrativo</p>
                     <ul>
-                        <li class="active"><a href=""><i class="fa fa-tools"></i> Dashboard</a></li>
+                        <li class="active"><a href="{{route('dashboard')}}"><i class="fa fa-tools"></i> Dashboard</a></li>
                         <li><a href=""><i class="far fa-user"></i> Usuários</a></li>
                         <li><a href=""><i class="fa fa-spell-check"></i> Textos</a></li>
                         <li><a href=""><i class="far fa-comments"></i> Depoimentos</a></li>
@@ -57,7 +58,7 @@
 
                     </div>
                     <div class="dropdown-content">
-                        <a href="{{ route('dashboard') }}"><i class="fa fa-user"></i> Perfil</a>
+                        <a href="{{ route('profile') }}"><i class="fa fa-user"></i> Perfil</a>
                         <a onclick="document.querySelector('#logout').submit();"><i class="fa fa-sign-out-alt"></i> Sair</a>
                     </div>
                 </div>

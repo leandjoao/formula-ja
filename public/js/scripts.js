@@ -2003,6 +2003,31 @@ var depoimentos = new Swiper('.depoimentos-slider', {
   }
 });
 depoimentos.init();
+var collapsible = document.querySelector('.collapsible');
+
+if (collapsible) {
+  (function () {
+    var title = collapsible.querySelectorAll('.collapsible-content-title');
+    var body = collapsible.querySelectorAll('.collapsible-content-text');
+    var i;
+
+    for (i = 0; i < title.length; i++) {
+      title[i].addEventListener('click', function () {
+        this.classList.toggle('active');
+        body.forEach(function (item) {
+          item.style.display = "none";
+        });
+        var content = this.nextElementSibling;
+
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+  })();
+}
 
 var invalidZip = function invalidZip() {
   Swal.fire({

@@ -1,0 +1,47 @@
+$navWidth: 200px;
+
+.profile {
+    &-navlist {
+        @include section;
+        padding: 0;
+        width: $navWidth;
+
+        li {
+            color: $text;
+            height: 60px;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            padding: 0 $gap;
+
+            &:not(:last-child) {
+                border-bottom: 1px solid lightgray;
+            }
+
+            &:hover {
+                cursor: default;
+
+                &:not(:first-child) {
+                    cursor: pointer;
+                    background: $blue;
+                    color: $bg;
+                }
+            }
+
+            &.active {
+                background: $blue;
+                color: $bg;
+            }
+        }
+
+        &-title {
+            font-weight: 600;
+        }
+    }
+
+    &-form {
+        @include section;
+        width: calc(100% - calc(#{$navWidth} - #{$gap}));
+        padding: $gap;
+    }
+}

@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\ConfigsController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Guest\AboutController;
 use App\Http\Controllers\Guest\BlogController;
 use App\Http\Controllers\Guest\ContactController;
@@ -41,8 +41,8 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('dashboard')->group(function(){
             Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 
-            Route::prefix('configs')->group(function() {
-                Route::get('/', [ConfigsController::class, 'index'])->name('configs');
+            Route::prefix('profile')->group(function() {
+                Route::get('/', [ProfileController::class, 'index'])->name('profile');
             });
         });
     });

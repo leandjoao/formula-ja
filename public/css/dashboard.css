@@ -14,6 +14,7 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
+  color: #5e5f5f;
 }
 
 body {
@@ -204,6 +205,8 @@ main {
 }
 .main-header h3 {
   margin: 0;
+  font-weight: 500;
+  font-size: 1.5em;
 }
 .main-content {
   display: flex;
@@ -329,4 +332,49 @@ main {
 .main-list-content table tbody tr td span.recusado {
   background: #fc3043;
   color: #f7f7fc;
+}
+
+.profile-navlist {
+  border-radius: 3px;
+  box-shadow: 0 0 10px -2px lightgray;
+  margin: 0;
+  background: white;
+  height: 100%;
+  padding: 0;
+  width: 200px;
+}
+.profile-navlist li {
+  color: #5e5f5f;
+  height: 60px;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+}
+.profile-navlist li:not(:last-child) {
+  border-bottom: 1px solid lightgray;
+}
+.profile-navlist li:hover {
+  cursor: default;
+}
+.profile-navlist li:hover:not(:first-child) {
+  cursor: pointer;
+  background: #09f;
+  color: #f7f7fc;
+}
+.profile-navlist li.active {
+  background: #09f;
+  color: #f7f7fc;
+}
+.profile-navlist-title {
+  font-weight: 600;
+}
+.profile-form {
+  border-radius: 3px;
+  box-shadow: 0 0 10px -2px lightgray;
+  margin: 0;
+  background: white;
+  height: 100%;
+  width: calc(100% - calc(200px - 15px));
+  padding: 15px;
 }

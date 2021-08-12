@@ -45,7 +45,9 @@
         }
     }
 
-    &-pet {
+    &-parceiros {
+        padding: $gap;
+
         &-header {
             margin-bottom: 20px;
 
@@ -57,6 +59,21 @@
 
         &-input {
             max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: $gap;
+
+            input,
+            textarea {
+                padding: $gap;
+                border: 1px solid lightgray;
+                resize: none;
+                border-radius: 3px;
+            }
+
+            button {
+                @include button($primary, white);
+            }
         }
     }
 }

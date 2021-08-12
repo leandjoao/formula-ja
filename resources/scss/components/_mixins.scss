@@ -35,3 +35,11 @@
         padding: 0 $gap;
     }
 }
+
+@mixin section {
+    border-radius: 3px;
+    box-shadow: 0 0 10px -2px lightgray;
+    margin: 0;
+    background: white;
+    height: 100%;
+}

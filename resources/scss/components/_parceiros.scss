@@ -2,10 +2,13 @@
     @include container;
     padding-top: 80px !important;
     padding-bottom: 80px !important;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
 
     h2 {
-        margin: 0 0 20px;
+        margin: 0;
         color: $title;
         font-size: 2em;
     }
@@ -29,5 +32,9 @@
                 }
             }
         }
+    }
+
+    button {
+        @include button($primary, white);
     }
 }

@@ -1,0 +1,87 @@
+.duvidas {
+    background: $bg;
+
+    &-container {
+        @include container;
+        display: flex;
+        padding-top: 80px !important;
+        padding-bottom: 80px !important;
+        color: $text;
+        justify-content: space-between;
+        gap: 4 * $gap;
+        align-items: center;
+
+        @include mobile-only {
+            flex-direction: column;
+            gap: $gap;
+            padding-top: 30px !important;
+            padding-bottom: 60px !important;
+        }
+
+        @include tablet {
+            gap: 2 * $gap;
+        }
+
+        &-text {
+            flex: 1;
+
+            h3 {
+                font-size: 1.5em;
+
+                @include mobile-only {
+                    text-align: center;
+                }
+            }
+        }
+
+        &-collapsible {
+            flex: 1.5;
+
+            @include mobile-only {
+                width: 100%;
+            }
+
+            @include tablet {
+                flex: 2.5;
+            }
+
+            .collapsible {
+                display: flex;
+                flex-direction: column;
+
+                &-content {
+
+                    &-title {
+                        background: $primary;
+                        height: 60px;
+                        display: flex;
+                        align-items: center;
+                        padding: 0 $gap;
+                        border-radius: 3px 3px 0 0;
+                        cursor: pointer;
+                        gap: $gap;
+                        margin-top: $gap;
+                        box-shadow: 0 4px 10px -2px lightgray;
+
+                        i {
+                            color: $bg;
+                        }
+                    }
+
+                    &-text {
+                        display: none;
+                        background: white;
+                        border-radius: 0 0 3px 3px;
+                        padding: $gap;
+                        box-shadow: 0 4px 10px -2px lightgray;
+
+                        p {
+                            margin: 0;
+                            font-size: 0.9em;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
