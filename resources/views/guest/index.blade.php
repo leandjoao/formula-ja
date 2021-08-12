@@ -142,7 +142,3 @@
 </div>
 @include('components.parceiros')
 @endsection
-
-@section('modal')
-@include('guest.modal.pet')
-@endsection

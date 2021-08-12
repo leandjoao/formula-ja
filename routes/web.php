@@ -9,6 +9,7 @@ use App\Http\Controllers\Guest\IndexController;
 use App\Http\Controllers\Guest\NewsletterController;
 use App\Http\Controllers\Guest\PetController;
 use App\Http\Controllers\Guest\PharmacyController;
+use App\Http\Controllers\Guest\TermsPolitcsController;
 use App\Http\Controllers\Guest\UploadController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +24,8 @@ Route::namespace('Guest')->group(function() {
 
     Route::get('enviar-receita', [UploadController::class, 'index'])->name('guest.receita');
     Route::get('enviar-receita-pet', [UploadController::class, 'pet'])->name('guest.receita.pet');
-    Route::get('termos-de-uso')->name('guest.termos');
-    Route::get('politica-de-privacidade')->name('guest.privacidade');
+    Route::get('termos-de-uso', [TermsPolitcsController::class, 'terms'])->name('guest.termos');
+    Route::get('politica-de-privacidade', [TermsPolitcsController::class, 'politics'])->name('guest.privacidade');
 
 
     Route::post('blog/pesquisa-blog', [BlogController::class, 'search'])->name('blog.search');

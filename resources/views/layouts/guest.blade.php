@@ -17,7 +17,9 @@
     <nav class="nav">
         <div class="nav-navbar">
             <div class="nav-navbar-logo">
-                <img src="{{ asset('storage/formula-ja.png') }}" alt="{{ config('app.name') }}">
+                <a href="{{route('guest.index')}}">
+                    <img src="{{ asset('storage/formula-ja.png') }}" alt="{{ config('app.name') }}">
+                </a>
             </div>
             <div class="nav-navbar-links">
                 <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.index')) active @endif">Página Inicial</a>
@@ -120,6 +122,7 @@
             </div>
         </div>
     </footer>
+    {{-- MODAL
     <div class="modal hidden">
         <div class="modal-box">
             <button class="modal-box-close" onclick="toggleModal()">
@@ -130,6 +133,7 @@
             </div>
         </div>
     </div>
+    --}}
     <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
     @if(session()->get('status'))

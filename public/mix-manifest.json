@@ -1,4 +1,6 @@
 {
     "/js/scripts.js": "/js/scripts.js",
-    "/css/style.css": "/css/style.css"
+    "/js/dashboard.js": "/js/dashboard.js",
+    "/css/style.css": "/css/style.css",
+    "/css/dashboard.css": "/css/dashboard.css"
 }

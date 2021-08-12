@@ -68,6 +68,8 @@ body {
             &-navbar {
                 &-links {
                     &-link {
+                        color: $bg;
+
                         &.active {
                             color: $secondary;
 

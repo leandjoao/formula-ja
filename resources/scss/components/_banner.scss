@@ -10,6 +10,15 @@ $paddingBanner: 150px;
     background-size: cover;
     overflow-x: hidden;
 
+    @include tablet {
+        background-position: center right;
+    }
+
+    @include mobile-only {
+        background-position: center right;
+        background-blend-mode: difference;
+    }
+
     &-container {
         display: flex;
         align-items: center;
@@ -29,30 +38,34 @@ $paddingBanner: 150px;
             h2 {
                 margin: 20px 0 30px;
                 line-height: 1;
-                color: $title;
+                color: $bg;
                 font-size: 30px;
 
                 @include tablet {
                     font-size: 40px;
                     max-width: 80%;
+                    color: $title;
                 }
 
                 @include desktop {
                     max-width: 60%;
                     font-size: 52px;
+                    color: $title;
                 }
             }
 
             p {
                 margin-bottom: 30px;
-                color: $text;
+                color: $bg;
 
                 @include desktop {
                     max-width: 60%;
+                    color: $text;
                 }
 
                 @include tablet {
                     max-width: 60%;
+                    color: $text;
                 }
             }
 
@@ -70,6 +83,10 @@ $paddingBanner: 150px;
                 background-size: 30px 30px;
                 content: '';
                 z-index: -1;
+
+                @include mobile-only {
+                    background-image: radial-gradient(transparentize($primary, .6) 3px, transparent 3px);
+                }
             }
         }
     }

@@ -103,7 +103,7 @@ body .page.full {
   padding: 0 15px;
   background: white;
   box-shadow: 0 0 10px -2px lightgray;
-  color: #5d5d5d;
+  color: #5e5f5f;
 }
 .page-header-toggle {
   cursor: pointer;
@@ -168,7 +168,7 @@ body .page.full {
   }
 }
 .page-header-group-dropdown .dropdown-content a {
-  color: #5d5d5d;
+  color: #5e5f5f;
   height: 50px;
   text-decoration: none;
   display: flex;
@@ -238,11 +238,11 @@ main {
 .main-content-boxes-box h5,
 .main-content-boxes-box p {
   margin: 0;
-  color: #5d5d5d;
+  color: #5e5f5f;
 }
 .main-content-boxes-box h5 {
   font-size: 2em;
-  color: #212121;
+  color: #5e5f5f;
 }
 .main-content-boxes-box p {
   font-size: 0.8em;
@@ -263,7 +263,7 @@ main {
   flex-direction: column;
 }
 .main-content-graph small {
-  color: #5d5d5d;
+  color: #5e5f5f;
 }
 .main-content-graph img {
   width: 100%;
@@ -278,7 +278,7 @@ main {
   box-shadow: 0 0 10px -2px lightgray;
 }
 .main-list-header small {
-  color: #5d5d5d;
+  color: #5e5f5f;
 }
 .main-list-content {
   margin-top: 15px;
@@ -291,7 +291,7 @@ main {
   padding: 10px;
   background: #f7f7fc;
   border-radius: 4px;
-  color: #212121;
+  color: #5e5f5f;
   text-align: left;
 }
 @media (max-width: 599px) {
@@ -306,7 +306,7 @@ main {
   padding: 10px;
   font-size: 0.9em;
   border-radius: 4px;
-  color: #5d5d5d;
+  color: #5e5f5f;
 }
 @media (max-width: 599px) {
   .main-list-content table tbody tr td:nth-child(2), .main-list-content table tbody tr td:last-child {
@@ -323,7 +323,7 @@ main {
   color: #f7f7fc;
 }
 .main-list-content table tbody tr td span.pendente {
-  background: #fccf3d;
+  background: #fbcf3d;
   color: #f7f7fc;
 }
 .main-list-content table tbody tr td span.recusado {

@@ -120,6 +120,24 @@ body {
   margin-top: 0;
   margin-bottom: 20px;
 }
+.pages-content-text h4 {
+  font-size: 1.5em;
+  color: #5e5f5f;
+}
+.pages-content-text ul {
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 0;
+}
+.pages-content-text ul li {
+  color: #5e5f5f;
+}
+.pages-content-text-footer p {
+  margin: 0;
+}
+.pages-content-text-footer p a {
+  color: #fbcf3d;
+}
 .pages-content-info {
   flex: 1;
 }
@@ -272,7 +290,10 @@ body {
   align-items: center;
   height: 50px;
 }
-.nav-navbar-logo img {
+.nav-navbar-logo a {
+  height: 100%;
+}
+.nav-navbar-logo a img {
   height: 100%;
 }
 .nav-navbar-logo p {
@@ -510,6 +531,17 @@ body {
   background-size: cover;
   overflow-x: hidden;
 }
+@media (min-width: 600px) and (max-width: 1199px) {
+  .banner {
+    background-position: center right;
+  }
+}
+@media (max-width: 599px) {
+  .banner {
+    background-position: center right;
+    background-blend-mode: difference;
+  }
+}
 .banner-container {
   display: flex;
   align-items: center;
@@ -546,33 +578,37 @@ body {
 .banner-container-text h2 {
   margin: 20px 0 30px;
   line-height: 1;
-  color: #5e5f5f;
+  color: #f7f7fc;
   font-size: 30px;
 }
 @media (min-width: 600px) and (max-width: 1199px) {
   .banner-container-text h2 {
     font-size: 40px;
     max-width: 80%;
+    color: #5e5f5f;
   }
 }
 @media (min-width: 1200px) {
   .banner-container-text h2 {
     max-width: 60%;
     font-size: 52px;
+    color: #5e5f5f;
   }
 }
 .banner-container-text p {
   margin-bottom: 30px;
-  color: #5e5f5f;
+  color: #f7f7fc;
 }
 @media (min-width: 1200px) {
   .banner-container-text p {
     max-width: 60%;
+    color: #5e5f5f;
   }
 }
 @media (min-width: 600px) and (max-width: 1199px) {
   .banner-container-text p {
     max-width: 60%;
+    color: #5e5f5f;
   }
 }
 .banner-container-text a {
@@ -605,6 +641,11 @@ body {
   background-size: 30px 30px;
   content: "";
   z-index: -1;
+}
+@media (max-width: 599px) {
+  .banner-container-text:before {
+    background-image: radial-gradient(rgba(251, 207, 61, 0.4) 3px, transparent 3px);
+  }
 }
 
 @media (max-width: 599px) {
@@ -860,6 +901,9 @@ body {
 
 body.is-pet .nav.fixed .nav-navbar-links-link.active {
   color: #fc3043;
+}
+body.is-pet .nav-navbar-links-link {
+  color: #f7f7fc;
 }
 body.is-pet .nav-navbar-links-link.active {
   color: #fc3043;
