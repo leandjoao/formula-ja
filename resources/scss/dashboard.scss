@@ -49,9 +49,37 @@ body {
             margin-left: 0;
         }
     }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: $gap;
+        width: 100%;
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 3px;
+            border: 1px solid lightgray;
+        }
+
+        button {
+            @include button($primary, white);
+        }
+    }
 }
 
 
 @import "./dashboard/navbar";
 @import "./dashboard/main";
 @import "./dashboard/profile";
+
+.hidden {
+    display: none !important;
+}
+
+.invisible {
+    opacity: 0 !important;
+}

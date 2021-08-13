@@ -23,7 +23,7 @@
                 <div class="nav-navbar-list-item">
                     <p>Administrativo</p>
                     <ul>
-                        <li class="active"><a href="{{route('dashboard')}}"><i class="fa fa-tools"></i> Dashboard</a></li>
+                        <li @if(request()->routeIs('dashboard'))class="active"@endif><a href="{{route('dashboard')}}"><i class="fa fa-tools"></i> Dashboard</a></li>
                         <li><a href=""><i class="far fa-user"></i> Usuários</a></li>
                         <li><a href=""><i class="fa fa-spell-check"></i> Textos</a></li>
                         <li><a href=""><i class="far fa-comments"></i> Depoimentos</a></li>

@@ -1,10 +1,18 @@
 $navWidth: 200px;
 
 .profile {
+    @include tablet {
+        flex-direction: row;
+    }
+
     &-navlist {
         @include section;
         padding: 0;
         width: $navWidth;
+
+        @include mobile-only {
+            width: 100%;
+        }
 
         li {
             color: $text;
@@ -23,14 +31,8 @@ $navWidth: 200px;
 
                 &:not(:first-child) {
                     cursor: pointer;
-                    background: $blue;
-                    color: $bg;
+                    background: $bg;
                 }
-            }
-
-            &.active {
-                background: $blue;
-                color: $bg;
             }
         }
 
@@ -39,9 +41,66 @@ $navWidth: 200px;
         }
     }
 
-    &-form {
-        @include section;
+    &-context {
         width: calc(100% - calc(#{$navWidth} - #{$gap}));
-        padding: $gap;
+
+        @include mobile-only {
+            width: 100%;
+        }
+
+        &-section {
+            @include section;
+            height: auto;
+            padding: $gap;
+            margin-bottom: $gap;
+            display: none;
+
+            &.active {
+                display: block;
+            }
+
+            &-header {
+                margin-bottom: 20px;
+            }
+
+            &-content {
+                display: flex;
+                justify-content: space-between;
+                gap: $gap;
+
+                @include mobile-only {
+                    flex-direction: column-reverse;
+                }
+
+                &-form {
+                    flex: 2;
+                    display: flex;
+                    align-items: center;
+                }
+
+                &-picture {
+                    flex: 1;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    flex-direction: column;
+                    gap: $gap;
+
+                    img {
+                        max-height: 120px;
+                    }
+
+                    label {
+                        align-self: center;
+                        @include button($primary, white);
+                    }
+
+                    small {
+                        text-align: center;
+                    }
+                }
+            }
+        }
     }
 }
