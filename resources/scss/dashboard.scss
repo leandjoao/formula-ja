@@ -68,6 +68,11 @@ body {
         button {
             @include button($primary, white);
         }
+
+        .input-group {
+            display: flex;
+            gap: $gap;
+        }
     }
 }
 
@@ -75,6 +80,8 @@ body {
 @import "./dashboard/navbar";
 @import "./dashboard/main";
 @import "./dashboard/profile";
+@import "./dashboard/listing";
+@import "./dashboard/budget";
 
 .hidden {
     display: none !important;
@@ -82,4 +89,15 @@ body {
 
 .invisible {
     opacity: 0 !important;
+}
+
+.btn-group {
+    display: flex;
+    align-items: center;
+}
+
+@include mobile-only {
+    .hide-on-mobile {
+        display: none;
+    }
 }

@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\BudgetsController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\PartnersController;
+use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Guest\AboutController;
 use App\Http\Controllers\Guest\BlogController;
 use App\Http\Controllers\Guest\ContactController;
@@ -43,6 +48,28 @@ Route::middleware(['auth'])->group(function () {
 
             Route::prefix('profile')->group(function() {
                 Route::get('/', [ProfileController::class, 'index'])->name('profile');
+            });
+
+            Route::prefix('users')->group(function() {
+                Route::get('/', [UsersController::class, 'index'])->name('users');
+            });
+
+            Route::prefix('partners')->group(function() {
+                Route::get('/', [PartnersController::class, 'index'])->name('partners');
+            });
+
+            Route::prefix('contacts')->group(function() {
+                Route::get('/', [AdminContactController::class, 'index'])->name('contact');
+            });
+
+            Route::prefix('budgets')->group(function() {
+                Route::get('/', [BudgetsController::class, 'index'])->name('budgets');
+                Route::get('inner', [BudgetsController::class, 'inner'])->name('budgets.inner');
+            });
+
+            Route::prefix('posts')->group(function() {
+                Route::get('/', [PostsController::class, 'index'])->name('blog');
+                Route::get('category', [PostsController::class, 'category'])->name('blog.category');
             });
         });
     });

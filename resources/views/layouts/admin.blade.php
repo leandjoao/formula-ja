@@ -23,24 +23,30 @@
                 <div class="nav-navbar-list-item">
                     <p>Administrativo</p>
                     <ul>
-                        <li @if(request()->routeIs('dashboard'))class="active"@endif><a href="{{route('dashboard')}}"><i class="fa fa-tools"></i> Dashboard</a></li>
-                        <li><a href=""><i class="far fa-user"></i> Usuários</a></li>
-                        <li><a href=""><i class="fa fa-spell-check"></i> Textos</a></li>
-                        <li><a href=""><i class="far fa-comments"></i> Depoimentos</a></li>
-                        <li><a href=""><i class="far fa-handshake"></i> Parceiros</a></li>
-                        <li><a href=""><i class="fa fa-mail-bulk"></i> Contatos</a></li>
-                        <li><a href=""><i class="fa fa-dollar-sign"></i> Orçamentos</a></li>
-                        <li><a href=""><i class="fa fa-cogs"></i> Configurações</a></li>
+                        @if(Auth::user()->access_level === '1' || Auth::user()->access_level === '3')
+                            <li @if(request()->routeIs('dashboard'))class="active"@endif><a href="{{route('dashboard')}}"><i class="fa fa-tools"></i> Dashboard</a></li>
+                        @endif
+                        @if(Auth::user()->access_level === '1')
+                            <li @if(request()->routeIs('users'))class="active"@endif><a href="{{route('users')}}"><i class="far fa-user"></i> Usuários</a></li>
+                            <li @if(request()->routeIs('partners'))class="active"@endif><a href="{{route('partners')}}"><i class="far fa-handshake"></i> Parceiros</a></li>
+                            <li @if(request()->routeIs('contact'))class="active"@endif><a href="{{route('contact')}}"><i class="fa fa-mail-bulk"></i> Contatos</a></li>
+                            {{-- <li><a href=""><i class="fa fa-spell-check"></i> Textos</a></li> --}}
+                            {{-- <li><a href=""><i class="far fa-comments"></i> Depoimentos</a></li> --}}
+                            {{-- <li><a href=""><i class="fa fa-cogs"></i> Configurações</a></li> --}}
+                        @endif
+                        <li @if(request()->routeIs('budgets'))class="active"@endif><a href="{{route('budgets')}}"><i class="fa fa-dollar-sign"></i> Orçamentos</a></li>
                     </ul>
                 </div>
 
+                @if(Auth::user()->access_level === '1')
                 <div class="nav-navbar-list-item">
                     <p>Blog</p>
                     <ul>
-                        <li><a href=""><i class="fa fa-blog"></i> Posts</a></li>
-                        <li><a href=""><i class="fa fa-th-large"></i> Categorias</a></li>
+                        <li @if(request()->routeIs('blog'))class="active"@endif><a href="{{route('blog')}}"><i class="fa fa-blog"></i> Posts</a></li>
+                        <li @if(request()->routeIs('blog.category'))class="active"@endif><a href="{{ route('blog.category')}}"><i class="fa fa-th-large"></i> Categorias</a></li>
                     </ul>
                 </div>
+                @endif
 
             </div>
         </div>

@@ -1,0 +1,120 @@
+.budget {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+
+    &-infos,
+    &-answer,
+    &-answered {
+        padding: $gap;
+        @include section;
+
+        h3 {
+            margin: 0;
+        }
+    }
+
+    &-infos {
+        table {
+            width: 100%;
+
+            tr {
+                &:nth-child(even) {
+                    background: $bg;
+                }
+
+                th,
+                td {
+                    text-align: left;
+                    padding: 5px 10px;
+
+                    i {
+                        margin-right: $gap;
+
+                        &.fa-times {
+                            color: $secondary;
+                        }
+
+                        &.fa-check {
+                            color: green;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &-answer,
+    &-answered {
+        &-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+            margin-bottom: $gap;
+
+            .btn-group {
+                gap: 5px;
+
+                >div {
+                    gap: 5px;
+                }
+
+                .add {
+                    @include button($blue, white);
+                }
+
+                .remove,
+                .revoke {
+                    @include button($secondary, white);
+                }
+
+                .accept {
+                    @include button(green, white);
+                }
+
+            }
+        }
+    }
+
+    &-answered {
+        &-list {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+
+            li {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+                padding: $gap;
+
+                p {
+                    margin: 0;
+                }
+
+                &:nth-child(odd) {
+                    background: $bg;
+                }
+            }
+        }
+    }
+
+    &-summary {
+        margin-top: $gap;
+        background: $bg;
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 5px;
+        padding: 0 $gap;
+
+        p {
+            margin: 0;
+        }
+    }
+}

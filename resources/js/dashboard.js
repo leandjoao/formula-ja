@@ -115,3 +115,24 @@ if (addressForm) {
     });
 }
 
+
+
+
+/* TODO
+*   SE for farmacia, funcionalidade de adicionar e remover campos
+*   SE for usuário, funcionalidade de aceitar ou recusar orçamento
+*/
+
+const budget = document.querySelector('.budget');
+if (budget) {
+    const answer = budget.querySelector('.budget-answer');
+    const answered = budget.querySelector('.budget-answered');
+    if (answer) {
+        console.log(answer);
+    }
+
+    if (answered) {
+        console.log(answered);
+    }
+}
+
