@@ -12,6 +12,8 @@ class PostsController extends Controller
 {
     public function index(Generator $faker)
     {
+        $this->adminAccess();
+
         $posts = [];
         for($i=0; $i<10; $i++) {
             array_push($posts, [
@@ -27,6 +29,8 @@ class PostsController extends Controller
 
     public function category()
     {
+        $this->adminAccess();
+
         $categories = [
             [
                 'label' => 'teste',

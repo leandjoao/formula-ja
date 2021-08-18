@@ -10,6 +10,8 @@ class UsersController extends Controller
 {
     public function index()
     {
+        $this->adminAccess();
+
         // $users = User::query()->with('access')->paginate(10);
         // $users = User::query()->where('access_level', '=' , '1')->with('access')->paginate(10);
         $users = User::query()->where('access_level', '=' , '2')->with('access')->paginate(10);
