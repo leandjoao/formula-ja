@@ -23,10 +23,10 @@
                 <div class="nav-navbar-list-item">
                     <p>Administrativo</p>
                     <ul>
-                        @if(Auth::user()->access_level === '1' || Auth::user()->access_level === '3')
+                        @if(Auth::user()->access_level === 1 || Auth::user()->access_level === 3)
                             <li @if(request()->routeIs('dashboard'))class="active"@endif><a href="{{route('dashboard')}}"><i class="fa fa-tools"></i> Dashboard</a></li>
                         @endif
-                        @if(Auth::user()->access_level === '1')
+                        @if(Auth::user()->access_level === 1)
                             <li @if(request()->routeIs('users'))class="active"@endif><a href="{{route('users')}}"><i class="far fa-user"></i> Usuários</a></li>
                             <li @if(request()->routeIs('partners'))class="active"@endif><a href="{{route('partners')}}"><i class="far fa-handshake"></i> Parceiros</a></li>
                             <li @if(request()->routeIs('contact'))class="active"@endif><a href="{{route('contact')}}"><i class="fa fa-mail-bulk"></i> Contatos</a></li>
@@ -38,7 +38,7 @@
                     </ul>
                 </div>
 
-                @if(Auth::user()->access_level === '1')
+                @if(Auth::user()->access_level === 1)
                 <div class="nav-navbar-list-item">
                     <p>Blog</p>
                     <ul>

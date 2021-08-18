@@ -23,7 +23,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if(Auth::user()->access_level === '2') {
+                if(Auth::user()->access_level === 2) {
                     return redirect()->route('budgets');
                 }
                 return redirect(RouteServiceProvider::HOME);
