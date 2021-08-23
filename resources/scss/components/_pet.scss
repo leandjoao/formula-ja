@@ -6,7 +6,7 @@
     }
 
     &-container {
-        background-image: linear-gradient(to left, transparentize($primary, 0.8), transparentize($primary, 0.2) 80%), url('../storage/pet.jpg');
+        background-image: linear-gradient(to left, transparentize($pet, 0.8), transparentize($pet, 0.2) 80%), url('../storage/pet.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         background-attachment: fixed;
@@ -41,7 +41,7 @@
 
             button,
             a {
-                @include button(white, $primary);
+                @include button(white, $pet);
                 margin: 40px auto 0;
             }
         }
@@ -57,7 +57,7 @@ body {
                         &-links {
                             &-link {
                                 &.active {
-                                    color: $secondary;
+                                    color: $pet;
                                 }
                             }
                         }
@@ -68,33 +68,31 @@ body {
             &-navbar {
                 &-links {
                     &-link {
-                        color: $bg;
-
                         &.active {
-                            color: $secondary;
+                            color: $pet;
 
                             @include mobile-only {
                                 color: $bg !important;
-                                background-color: $secondary;
+                                background-color: $pet;
                             }
                         }
 
                         span {
-                            @include button($secondary, white);
+                            @include button($pet, white);
                         }
                     }
                 }
 
                 &-cta {
                     @include tablet {
-                        @include button($secondary, white);
+                        @include button($pet, white);
                     }
                 }
             }
         }
 
         .banner {
-            background-image: linear-gradient(-18deg, transparentize(lighten($secondary, 20%), 0.6), transparentize(lighten($secondary, 35%), 0.6) 80%), url('../storage/background-pet.jpeg');
+            background-image: linear-gradient(-18deg, transparentize(lighten($pet, 20%), 0.6), transparentize(lighten($pet, 35%), 0.6) 80%), url('../storage/background-pet.jpeg');
 
             &-container {
                 &::before {
@@ -105,7 +103,7 @@ body {
 
                 &-text {
                     h4 {
-                        color: $secondary;
+                        color: $pet;
                     }
 
                     h2 {
@@ -117,31 +115,31 @@ body {
                     }
 
                     a {
-                        @include button($secondary, white);
+                        @include button($pet, white);
                     }
 
                     &::before {
-                        background-image: radial-gradient(lighten($secondary, 25%) 3px, transparent 3px);
+                        background-image: radial-gradient(lighten($pet, 25%) 3px, transparent 3px);
                     }
                 }
             }
         }
 
         .to-top {
-            background-color: $secondary;
+            background-color: $pet;
         }
 
         .blog {
             &-container {
                 &-link {
-                    @include button($secondary, white);
+                    @include button($pet, white);
                 }
 
                 .posts {
                     &-item {
                         &-footer {
                             a {
-                                color: $secondary;
+                                color: $pet;
                             }
                         }
                     }
@@ -150,15 +148,15 @@ body {
         }
 
         .depoimentos {
-            background: linear-gradient(-18deg, lighten($secondary, 10%), lighten($secondary, 25%) 90%);
+            background: linear-gradient(-18deg, lighten($pet, 10%), lighten($pet, 25%) 90%);
 
             &::before {
-                background-image: radial-gradient(lighten($secondary, 25%) 3px, transparent 3px);
+                background-image: radial-gradient(lighten($pet, 25%) 3px, transparent 3px);
             }
         }
 
         .footer {
-            background-color: $secondary;
+            background-color: $pet;
 
             &-container {
                 &-block {
@@ -181,7 +179,7 @@ body {
                             .newsletter {
                                 &-input {
                                     button {
-                                        @include button($secondary, white);
+                                        @include button($pet, white);
                                     }
                                 }
                             }
@@ -195,7 +193,7 @@ body {
             }
 
             &-copy {
-                background: darken($color: $secondary, $amount: 10%);
+                background: darken($color: $pet, $amount: 10%);
 
                 &-container {
                     p {
@@ -217,12 +215,12 @@ body {
             &-buttons {
                 button {
                     &.next {
-                        @include button($secondary, white);
+                        @include button($pet, white);
                     }
                 }
 
                 &.submit {
-                    @include button($secondary, white);
+                    @include button($pet, white);
                     width: 100%;
                     justify-content: center;
                 }

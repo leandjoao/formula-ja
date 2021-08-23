@@ -4,7 +4,7 @@
     <div class="banner-container">
         <div class="banner-container-text">
             <h4>Lorem Ipsum</h4>
-            <h2>A sua Formula Já na mão</h2>
+            <h2>A sua fórmula, já na mão!</h2>
             <p>
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                 consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
@@ -14,29 +14,6 @@
         </div>
     </div>
 </section>
-
-<div class="why-us">
-    <div class="why-us-container">
-        <div class="why-us-container-image">
-            <img src="{{asset('storage/team.jpeg')}}" alt="">
-        </div>
-        <div class="why-us-container-text">
-            <div class="why-us-container-text-content">
-                <h5>Por que nós?</h5>
-                <span>O melhor para a sua saúde!</span>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate nec quam sit amet mollis.
-                    Integer urna enim, semper vitae cursus sit amet, hendrerit eget turpis. Duis mauris massa, pharetra
-                    a scelerisque in, imperdiet non leo. Nulla feugiat purus at felis efficitur malesuada. Vestibulum
-                    vestibulum luctus lacus, nec tempor est tincidunt in. Ut velit nunc, rutrum non sem pellentesque,
-                    ultricies ultricies mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur
-                    ridiculus mus.
-                </p>
-                <a href="{{route('guest.about')}}">Ler mais</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="hiw">
     <div class="hiw-title">
@@ -67,6 +44,29 @@
             <img src="{{asset('storage/icons/deliver.png')}}" alt="">
             <p>Envio do produto</p>
             <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
+        </div>
+    </div>
+</div>
+
+<div class="why-us">
+    <div class="why-us-container">
+        <div class="why-us-container-image">
+            <img src="{{asset('storage/team.jpeg')}}" alt="">
+        </div>
+        <div class="why-us-container-text">
+            <div class="why-us-container-text-content">
+                <h5>Por que nós?</h5>
+                <span>O melhor para a sua saúde!</span>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate nec quam sit amet mollis.
+                    Integer urna enim, semper vitae cursus sit amet, hendrerit eget turpis. Duis mauris massa, pharetra
+                    a scelerisque in, imperdiet non leo. Nulla feugiat purus at felis efficitur malesuada. Vestibulum
+                    vestibulum luctus lacus, nec tempor est tincidunt in. Ut velit nunc, rutrum non sem pellentesque,
+                    ultricies ultricies mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur
+                    ridiculus mus.
+                </p>
+                <a href="{{route('guest.about')}}">Ler mais</a>
+            </div>
         </div>
     </div>
 </div>

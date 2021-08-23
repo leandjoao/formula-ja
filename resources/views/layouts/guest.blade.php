@@ -90,7 +90,7 @@
 
                 <div class="block">
                     <div class="block-header">
-                        <img src="@if(request()->routeIs('guest.pet')) {{asset('storage/formula-ja-white.png')}} @else {{asset('storage/formula-ja-black.png')}} @endif" alt="{{config('app.name')}}">
+                        <img src="{{asset('storage/formula-ja-white.png')}}" alt="{{config('app.name')}}">
                     </div>
                     <div class="block-newsletter">
                         <form action="{{ route('send.newsletter') }}" method="POST" class="newsletter">

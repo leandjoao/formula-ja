@@ -1,6 +1,38 @@
 @extends('layouts.guest')
 @section('content')
 <div class="enviar">
+    <div class="hiw">
+        <div class="hiw-title">
+            <h4>Como funciona?</h4>
+        </div>
+        <div class="hiw-container">
+            <div class="hiw-container-step">
+                <img src="{{asset('storage/icons/upload.png')}}" alt="">
+                <p>Envio da Receita</p>
+                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
+            </div>
+            <div class="hiw-container-step">
+                <img src="{{asset('storage/icons/budget.png')}}" alt="">
+                <p>Orçamento</p>
+                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
+            </div>
+            <div class="hiw-container-step">
+                <img src="{{asset('storage/icons/payment.png')}}" alt="">
+                <p>Pagamento</p>
+                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
+            </div>
+            <div class="hiw-container-step">
+                <img src="{{asset('storage/icons/manipulate.png')}}" alt="">
+                <p>Manipulação</p>
+                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
+            </div>
+            <div class="hiw-container-step">
+                <img src="{{asset('storage/icons/deliver.png')}}" alt="">
+                <p>Envio do produto</p>
+                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
+            </div>
+        </div>
+    </div>
     <div class="enviar-container">
         <form action="" class="enviar-container-steps">
             @csrf

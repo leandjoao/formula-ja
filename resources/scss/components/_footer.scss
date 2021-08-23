@@ -1,5 +1,5 @@
 .footer {
-    background-color: $primary;
+    background-color: $text;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -12,7 +12,7 @@
 
     &-container {
         @include container;
-        color: $title;
+        color: $bg;
         flex: 1;
         display: flex;
         align-items: center;
@@ -68,7 +68,7 @@
 
                     li {
                         a {
-                            color: $text;
+                            color: $bg;
                         }
                     }
                 }
@@ -116,7 +116,7 @@
 
 
     &-copy {
-        background: darken($color: $primary, $amount: 10%);
+        background: darken($color: $text, $amount: 10%);
 
         &-container {
             @include container;
@@ -135,7 +135,7 @@
 
             p {
                 margin: 0;
-                color: $title;
+                color: $bg;
                 font-size: 0.8em;
             }
 
@@ -147,7 +147,7 @@
 
                 li {
                     a {
-                        color: $title;
+                        color: $bg;
                     }
                 }
             }

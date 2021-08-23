@@ -201,6 +201,7 @@
                             overflow: hidden;
                             background: white;
                             transition: all ease .1s;
+                            border-radius: 10px;
 
                             &-image {
                                 height: 250px;
@@ -302,6 +303,7 @@
                         .block {
                             border: 1px solid lightgray;
                             padding: $gap;
+                            border-radius: 5px;
 
                             h5 {
                                 margin: 0;

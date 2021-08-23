@@ -1,5 +1,5 @@
 .enviar {
-    padding: 9* $gap 0;
+    padding: 0 0 2* $gap;
     background: $bg;
 
     &-container {
@@ -13,7 +13,7 @@
             &-step {
                 flex: 1;
                 background: white;
-                border-radius: 5px;
+                border-radius: 10px;
                 box-shadow: 0 0 10px -2px lightgray;
                 transition: all ease .2s;
                 padding: $gap;

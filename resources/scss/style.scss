@@ -90,6 +90,7 @@ body {
 
             img {
                 width: 100%;
+                border-radius: 10px;
             }
         }
 
@@ -141,7 +142,7 @@ body {
                 flex-direction: column;
                 gap: $gap;
                 box-shadow: 0 0 10px 0 lightgray;
-                border-radius: 5px;
+                border-radius: 10px;
 
                 &-item {
                     a {
@@ -181,6 +182,7 @@ body {
 
     li {
         border: 1px solid lightgray;
+        border-radius: 5px;
 
         &.disabled {
             cursor: not-allowed;

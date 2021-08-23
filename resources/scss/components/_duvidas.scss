@@ -57,7 +57,7 @@
                         display: flex;
                         align-items: center;
                         padding: 0 $gap;
-                        border-radius: 3px 3px 0 0;
+                        border-radius: 10px;
                         cursor: pointer;
                         gap: $gap;
                         margin-top: $gap;
@@ -71,7 +71,7 @@
                     &-text {
                         display: none;
                         background: white;
-                        border-radius: 0 0 3px 3px;
+                        border-radius: 0 0 10px 10px;
                         padding: $gap;
                         box-shadow: 0 4px 10px -2px lightgray;
 
