@@ -56,7 +56,7 @@ class BlogController extends Controller
     public function search(Request $request)
     {
         $search = Post::query()->where('title', 'LIKE', '%'.$request->search.'%')->paginate(9);
-        if($search->total() === 0) {
+        if($search->total() == 0) {
             $category = Category::query()->where('label', 'LIKE', '%'.$request->search.'%')->firstOrFail();
             $search = Post::query()->where('category_id', $category->id)->paginate(9);
         }

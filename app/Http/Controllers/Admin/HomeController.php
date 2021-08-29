@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if(Auth::user()->access_level === 2) {
+        if(Auth::user()->access_level == 2) {
             return redirect()->route('budgets');
         }
 

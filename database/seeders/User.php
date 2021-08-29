@@ -23,7 +23,7 @@ class User extends Seeder
             $user->name = $value;
             $user->email = $value . '@' . config('app.domain');
             $user->password = Hash::make($value);
-            $user->access_level = $key + 1;
+            $user->access_level = (int)$key + 1;
             $user->phone = $faker->phoneNumber;
             $user->save();
         }

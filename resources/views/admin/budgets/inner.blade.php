@@ -39,11 +39,11 @@
                 </table>
             </div>
 
-            @if(Auth::user()->access_level === 1 || Auth::user()->access_level === 2)
+            @if(Auth::user()->access_level == 1 || Auth::user()->access_level == 2)
                 <div class="budget-answered">
                     <div class="budget-answered-title">
                         <h3>Orçamento Respondido</h3>
-                        @if(Auth::user()->access_level === 2)
+                        @if(Auth::user()->access_level == 2)
                         <div class="btn-group">
                             <div class="accept"><i class="fa fa-check"></i> Aceitar</div>
                             <div class="revoke"><i class="fa fa-times"></i> Recusar</div>
@@ -82,7 +82,7 @@
                     </div>
                 </div>
             @endif
-            @if(Auth::user()->access_level === 3)
+            @if(Auth::user()->access_level == 3)
             <div class="budget-answer">
                 <div class="budget-answer-title">
                     <h3>Responder orçamento</h3>

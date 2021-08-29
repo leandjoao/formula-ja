@@ -14,14 +14,14 @@ class Controller extends BaseController
 
     public function adminAccess()
     {
-        if(Auth::user()->access_level !== 1) {
+        if(Auth::user()->access_level != 1) {
             return abort(403);
         }
     }
 
     public function pharmacyAccess()
     {
-        if(Auth::user()->access_level !== 1 || Auth::user()->access_level !== 3) {
+        if(Auth::user()->access_level != 1 || Auth::user()->access_level != 3) {
             return abort(403);
         }
     }
