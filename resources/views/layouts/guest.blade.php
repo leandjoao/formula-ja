@@ -21,11 +21,8 @@
                 </a>
             </div>
             <div class="nav-navbar-links">
-                <a href="{{ route('guest.index') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.index')) active @endif">Página Inicial</a>
-                <a href="{{ route('guest.about') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.about')) active @endif">A Formula Já</a>
+                <a href="" class="nav-navbar-links-link">SAF</a>
                 <a href="{{ route('guest.pet') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.pet')) active @endif">PET</a>
-                <a href="{{ route('guest.blog') }}" class="nav-navbar-links-link @if (request()->is('blog*')) active @endif">Blog</a>
-                <a href="{{ route('guest.contact') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.contact')) active @endif">Contato</a>
                 @guest
                     <a href="{{ route('login') }}" class="nav-navbar-links-link">Fazer Login</a>
                 @endguest
@@ -59,6 +56,12 @@
     <main>
         @yield('content')
     </main>
+    <div class="cta-send">
+        <div class="cta-send-container">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, error?</p>
+        <a href="{{route('guest.receita')}}">Envie sua receita</a>
+        </div>
+    </div>
     <span class="to-top">
         <i class="fas fa-long-arrow-alt-up"></i>
     </span>
@@ -71,8 +74,9 @@
                     </div>
                     <ul class="block-links">
                         <li><a href="{{route('guest.index')}}">Página Inicial</a></li>
-                        <li><a href="{{route('guest.about')}}">A Formula Já</a></li>
+                        <li><a href="{{route('guest.about')}}">A Formulajá</a></li>
                         <li><a href="{{route('guest.blog')}}">Blog</a></li>
+                        <li><a href="{{route('guest.pet')}}">PET</a></li>
                         <li><a href="{{route('guest.contact')}}">Contato</a></li>
                     </ul>
                 </div>
@@ -81,10 +85,13 @@
                         <h2>Informações</h2>
                     </div>
                     <ul class="block-links">
+                        <li><a href="">Dúvidas</a></li>
+                        <li><a href="">SAF</a></li>
+                        <li><a href="">SAC</a></li>
+                        <li><a href="">Seja um parceiro</a></li>
                         <li><a href="{{route('guest.termos')}}">Termos de Uso</a></li>
                         <li><a href="{{route('guest.privacidade')}}">Política de Privacidade</a></li>
                         <li><a href="{{route('guest.receita')}}">Envie sua Receita</a></li>
-                        <li><a href="{{route('guest.pet')}}">PET</a></li>
                     </ul>
                 </div>
 
@@ -105,6 +112,11 @@
                             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                             consequat.
                         </p>
+                        <ul>
+                            <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                            <li><a href=""><i class="fab fa-youtube"></i></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -113,11 +125,6 @@
             <div class="footer-copy-container">
                 <p>CNPJ: {{config('app.cnpj')}}</p>
                 <p>Copyright &copy; {{date('Y')}}. Todos os direitos reservados. {{config('app.name')}}</p>
-                <ul>
-                    <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href=""><i class="fab fa-instagram"></i></a></li>
-                    <li><a href=""><i class="fab fa-youtube"></i></a></li>
-                </ul>
             </div>
         </div>
     </footer>

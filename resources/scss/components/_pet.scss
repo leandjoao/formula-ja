@@ -129,6 +129,20 @@ body {
             background-color: $pet;
         }
 
+        .cta-send {
+            background-color: $bg;
+
+            &-container {
+                p {
+                    color: $pet;
+                }
+
+                a {
+                    @include button($pet, white);
+                }
+            }
+        }
+
         .blog {
             &-container {
                 &-link {
@@ -156,7 +170,7 @@ body {
         }
 
         .footer {
-            background-color: $pet;
+            background-color: $text;
 
             &-container {
                 &-block {
@@ -193,7 +207,7 @@ body {
             }
 
             &-copy {
-                background: darken($color: $pet, $amount: 10%);
+                background: darken($color: $text, $amount: 10%);
 
                 &-container {
                     p {

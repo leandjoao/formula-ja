@@ -109,6 +109,20 @@
                     p {
                         font-size: 0.9em;
                     }
+
+                    ul {
+                        padding: 0;
+                        margin: 0;
+                        display: flex;
+                        gap: $gap;
+
+                        li {
+                            a {
+                                font-size: 1.2em;
+                                color: $bg;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -121,9 +135,9 @@
         &-container {
             @include container;
             display: flex;
-            justify-content: space-between;
             align-items: center;
             height: 45px;
+            gap: $gap;
 
             @include mobile-only {
                 flex-direction: column;
@@ -137,19 +151,6 @@
                 margin: 0;
                 color: $bg;
                 font-size: 0.8em;
-            }
-
-            ul {
-                padding: 0;
-                margin: 0;
-                display: flex;
-                gap: $gap;
-
-                li {
-                    a {
-                        color: $bg;
-                    }
-                }
             }
         }
     }

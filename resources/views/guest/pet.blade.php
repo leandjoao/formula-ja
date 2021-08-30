@@ -77,6 +77,7 @@
 </div>
 @endif
 
+@if(!empty($depoimentos))
 <div class="depoimentos">
     <div class="depoimentos-container">
         <div class="depoimentos-container-title">
@@ -107,6 +108,7 @@
         </div>
     </div>
 </div>
+@endif
 
 <div class="parceiros">
     <h2>Conheça os nossos parceiros</h2>

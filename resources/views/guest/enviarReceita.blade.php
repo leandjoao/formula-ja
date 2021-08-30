@@ -7,27 +7,27 @@
         </div>
         <div class="hiw-container">
             <div class="hiw-container-step">
-                <img src="{{asset('storage/icons/upload.png')}}" alt="">
+                <img src="@if(request()->routeIs('guest.receita.pet')) {{asset('storage/icons/pet/upload.png')}} @else {{asset('storage/icons/upload.png')}} @endif" alt="">
                 <p>Envio da Receita</p>
                 <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
             </div>
             <div class="hiw-container-step">
-                <img src="{{asset('storage/icons/budget.png')}}" alt="">
+                <img src="@if(request()->routeIs('guest.receita.pet')) {{asset('storage/icons/pet/budget.png')}} @else {{asset('storage/icons/budget.png')}} @endif" alt="">
                 <p>Orçamento</p>
                 <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
             </div>
             <div class="hiw-container-step">
-                <img src="{{asset('storage/icons/payment.png')}}" alt="">
+                <img src="@if(request()->routeIs('guest.receita.pet')) {{asset('storage/icons/pet/payment.png')}} @else {{asset('storage/icons/payment.png')}} @endif" alt="">
                 <p>Pagamento</p>
                 <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
             </div>
             <div class="hiw-container-step">
-                <img src="{{asset('storage/icons/manipulate.png')}}" alt="">
+                <img src="@if(request()->routeIs('guest.receita.pet')) {{asset('storage/icons/pet/manipulate.png')}} @else {{asset('storage/icons/manipulate.png')}} @endif" alt="">
                 <p>Manipulação</p>
                 <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
             </div>
             <div class="hiw-container-step">
-                <img src="{{asset('storage/icons/deliver.png')}}" alt="">
+                <img src="@if(request()->routeIs('guest.receita.pet')) {{asset('storage/icons/pet/deliver.png')}} @else {{asset('storage/icons/deliver.png')}} @endif" alt="">
                 <p>Envio do produto</p>
                 <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
             </div>

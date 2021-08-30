@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => 'Formula Já',
+    'name' => 'Formulajá',
 
     'domain' => 'formulaja.com.br',
 

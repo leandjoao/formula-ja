@@ -36,6 +36,7 @@
             background: white;
             flex: 1;
             text-align: center;
+            transition: all ease-in-out .2s;
 
             @include tablet {
                 flex: 30%;
@@ -55,6 +56,10 @@
             span {
                 font-size: 0.8em;
                 color: $text;
+            }
+
+            &:hover {
+                transform: scale(1.1);
             }
         }
     }
