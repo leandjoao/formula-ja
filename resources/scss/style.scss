@@ -2,9 +2,9 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
 @import url('../css/swiper-bundle.min.css');
 
-@import "./components/mixins";
 @import "./components/variables";
 @import "./components/responsive";
+@import "./components/mixins";
 
 * {
     box-sizing: border-box;
@@ -12,6 +12,8 @@
     text-decoration: none;
     outline: none;
     font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 html,
@@ -133,24 +135,33 @@ body {
 
         &-info {
             flex: 1;
+            color: $text;
 
-            .block {
-                background-color: white;
-                padding: 30px;
+            ul {
+                padding: 0;
                 margin: 0;
                 display: flex;
                 flex-direction: column;
-                gap: $gap;
-                box-shadow: 0 0 10px 0 lightgray;
-                border-radius: 10px;
+                gap: 2*$gap;
 
-                &-item {
-                    a {
-                        display: flex;
-                        align-items: center;
-                        width: 100%;
-                        gap: $gap;
+                li {
+                    display: flex;
+                    align-items: center;
+                    gap: 2* $gap;
+
+                    i {
+                        font-size: 1.5em;
+                        min-width: 34px;
+                        text-align: center;
                         color: $text;
+                    }
+
+                    .text {
+                        p {
+                            font-size: 14px;
+                            margin: 0;
+                            color: $text;
+                        }
                     }
                 }
             }
@@ -158,12 +169,13 @@ body {
 
         &-form {
             flex: 2;
+            color: $text;
 
             @include tablet {
                 flex: 4;
             }
 
-            h2,
+            h4,
             p {
                 margin: 0;
             }
@@ -277,6 +289,7 @@ body {
 
         a {
             @include button(white, $primary);
+            animation: shadow-pulse-white 1s infinite;
         }
     }
 }

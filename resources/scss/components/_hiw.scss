@@ -15,7 +15,7 @@
     &-container {
         padding-bottom: 120px;
         display: flex;
-        gap: $gap;
+        gap: 1px;
 
         @include mobile-only {
             flex-direction: column;
@@ -59,7 +59,7 @@
             }
 
             &:hover {
-                transform: scale(1.1);
+                transform: scale(1.2);
             }
         }
     }

@@ -71,6 +71,7 @@ $paddingBanner: 150px;
 
             a {
                 @include button($primary, white);
+                animation: shadow-pulse-primary 1s infinite;
             }
 
             &:before {

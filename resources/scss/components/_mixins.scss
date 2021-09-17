@@ -1,3 +1,5 @@
+@import 'variables';
+
 @mixin button($background, $fontColor) {
     background-color: $background;
     padding: 0 1.5*$gap;
@@ -42,4 +44,34 @@
     margin: 0;
     background: white;
     height: 100%;
+}
+
+@keyframes shadow-pulse-primary {
+    0% {
+        box-shadow: 0 0 0 0px transparentize($primary, .2);
+    }
+
+    100% {
+        box-shadow: 0 0 0 10px transparent;
+    }
+}
+
+@keyframes shadow-pulse-white {
+    0% {
+        box-shadow: 0 0 0 0px transparentize(white, .2);
+    }
+
+    100% {
+        box-shadow: 0 0 0 10px transparent;
+    }
+}
+
+@keyframes shadow-pulse-pet {
+    0% {
+        box-shadow: 0 0 0 0px transparentize($pet, .2);
+    }
+
+    100% {
+        box-shadow: 0 0 0 10px transparent;
+    }
 }

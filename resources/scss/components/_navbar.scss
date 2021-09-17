@@ -1,14 +1,51 @@
+.super {
+    background-color: $text;
+    height: 30px;
+    width: 100%;
+
+    &-container {
+        @include container;
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+        align-items: center;
+
+        &-social,
+        &-links {
+            height: 100%;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+            gap: $gap;
+
+            li {
+                a {
+                    color: white;
+                    font-size: 12px;
+
+                    i {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .nav {
     height: 60px;
     width: 100%;
     transition: all ease .2s;
     position: fixed;
     z-index: 9;
-    top: 0;
+    top: 30px;
     background-color: rgba(255, 255, 255, .98);
     box-shadow: 0 0 10px -2px lightgray;
 
     &.fixed {
+        top: 0;
+
         .nav {
             &-navbar {
                 &-links {
@@ -128,6 +165,7 @@
 
                 span {
                     @include button($primary, white);
+                    animation: shadow-pulse-primary 1s infinite;
                     gap: 5px;
                 }
 

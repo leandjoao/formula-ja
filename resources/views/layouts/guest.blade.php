@@ -13,6 +13,19 @@
 </head>
 
 <body @if(request()->routeIs('guest.pet') || request()->routeIs('guest.receita.pet')) class="is-pet" @endif>
+    <div class="super">
+        <div class="super-container">
+            <ul class="super-container-social">
+                <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                <li><a href=""><i class="fab fa-youtube"></i></a></li>
+            </ul>
+            <ul class="super-container-links">
+                <li><a href="">FAQ</a></li>
+                <li><a href="">Políticas de Privacidade</a></li>
+            </ul>
+        </div>
+    </div>
     <nav class="nav">
         <div class="nav-navbar">
             <div class="nav-navbar-logo">
@@ -142,6 +155,7 @@
 
     <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
+    <script src="//code-eu1.jivosite.com/widget/kuqi5ZCYFS" async></script>
     @if(session()->get('status'))
     <script type="text/javascript">
         Swal.fire({

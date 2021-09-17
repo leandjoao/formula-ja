@@ -42,6 +42,7 @@
             button,
             a {
                 @include button(white, $pet);
+                animation: shadow-pulse-white 1s infinite;
                 margin: 40px auto 0;
             }
         }
@@ -79,6 +80,7 @@ body {
 
                         span {
                             @include button($pet, white);
+                            animation: shadow-pulse-pet 1s infinite;
                         }
                     }
                 }
@@ -116,6 +118,7 @@ body {
 
                     a {
                         @include button($pet, white);
+                        animation: shadow-pulse-pet 1s infinite;
                     }
 
                     &::before {
@@ -139,6 +142,7 @@ body {
 
                 a {
                     @include button($pet, white);
+                    animation: shadow-pulse-pet 1s infinite;
                 }
             }
         }
