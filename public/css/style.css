@@ -571,6 +571,11 @@ body {
   position: relative;
   display: inline-block;
 }
+@media (min-width: 1200px) {
+  .nav-navbar-links .dropdown {
+    width: 150px;
+  }
+}
 .nav-navbar-links .dropdown-button p {
   margin: 0;
 }

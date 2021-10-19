@@ -1,5 +1,7 @@
 const { default: axios } = require("axios");
-const { default: Swal } = require("sweetalert2");
+window.$ = window.jQuery = require('jquery');
+window.mask = require('jquery-mask-plugin');
+window.Swal = require('sweetalert2');
 
 const dropdown = document.querySelector('.dropdown');
 const dropdownBtn = dropdown.querySelector('.dropdown-button');
@@ -54,6 +56,8 @@ const profile = document.querySelector('.profile');
 if (profile) {
     const navlist = profile.querySelectorAll('.profile-navlist-item');
     const context = profile.querySelectorAll('.profile-context-section');
+    const changePicture = profile.querySelector('input[type=file]');
+
     navlist.forEach(nav => {
         nav.addEventListener('click', function (e) {
             context.forEach(item => {
@@ -65,7 +69,20 @@ if (profile) {
             })
         });
     });
+
+    changePicture.addEventListener('change', e => {
+        e.preventDefault();
+        let form = e.target.form;
+        form.submit();
+    });
+
+
+
+
+    $('input[name=phone]').mask('(00) 0000-0000');
+    $('input[name=cep]').mask('00000-000');
 }
+
 
 const invalidZip = () => {
     Swal.fire({
@@ -114,6 +131,7 @@ if (addressForm) {
         })
     });
 }
+
 
 
 

@@ -203,6 +203,9 @@ body .form .input-group {
   display: flex;
   gap: 30px;
   align-items: center;
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
 }
 .page-header-group-dropdown {
   height: 100%;
@@ -580,6 +583,7 @@ main {
   border: 2px solid #fbcf3d;
   transition: all ease 0.2s;
   cursor: pointer;
+  gap: 5px;
 }
 .listing-title button:hover {
   background-color: transparent;

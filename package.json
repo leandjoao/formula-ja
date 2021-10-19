@@ -26,6 +26,8 @@
         "tailwindcss": "^2.0.2"
     },
     "dependencies": {
+        "jquery": "^3.6.0",
+        "jquery-mask-plugin": "^1.14.16",
         "sweetalert2": "^11.0.19"
     }
 }

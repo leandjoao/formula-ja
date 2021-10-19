@@ -38,5 +38,19 @@
             </div>
         </div>
     </footer>
+    <script src="{{asset('js/app.js')}}"></script>
+    @if(session()->get('status'))
+    <script type="text/javascript">
+        Swal.fire({
+            text: "{{ session()->get('status.text')}}",
+            icon: "{{ session()->get('status.icon')}}",
+            toast: true,
+            timer: 3000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+            position: 'bottom-end'
+        })
+    </script>
+    @endif
 </body>
 </html>

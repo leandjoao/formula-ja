@@ -74,9 +74,37 @@
             @yield('content')
         </main>
     </section>
+    <script src="{{ asset('js/dashboard.js') }}"></script>
+    @if(session()->get('status'))
+    <script type="text/javascript">
+        Swal.fire({
+            text: "{{ session()->get('status.text')}}",
+            icon: "{{ session()->get('status.icon')}}",
+            toast: true,
+            timer: 3000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+            position: 'bottom-end'
+        })
+    </script>
+    @endif
+    @if(session()->get('errors'))
+    <script type="text/javascript">
+        Swal.fire({
+            html: "<ul>"+
+                    @foreach (session()->get('errors') as $key => $value)
+                    @foreach ($value as $erro)
+                        "<li>{{ ucfirst($erro) }}</li>"+
+                    @endforeach
+                    @endforeach
+                   "</ul>",
+            icon: "{{ session()->get('icon')}}",
+            position: 'top-center'
+        })
+    </script>
+    @endif
     <form id="logout" action="{{route('logout')}}" method="POST">
         @csrf
     </form>
-    <script src="{{ asset('js/dashboard.js') }}"></script>
 </body>
 </html>

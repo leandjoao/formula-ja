@@ -184,6 +184,10 @@
                 position: relative;
                 display: inline-block;
 
+                @include desktop {
+                    width: 150px;
+                }
+
                 &-button {
                     p {
                         margin: 0;

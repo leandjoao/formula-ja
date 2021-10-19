@@ -24,6 +24,7 @@
 
         button {
             @include button($primary, white);
+            gap: 5px;
         }
     }
 

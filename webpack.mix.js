@@ -6,6 +6,8 @@ mix.sass('resources/scss/style.scss', 'public/css');
 mix.js('resources/js/dashboard.js', 'public/js');
 mix.sass('resources/scss/dashboard.scss', 'public/css');
 
+mix.js('resources/js/app.js', 'public/js');
+
 mix.options({
     processCssUrls: false
 });

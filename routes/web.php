@@ -48,6 +48,12 @@ Route::middleware(['auth'])->group(function () {
 
             Route::prefix('profile')->group(function() {
                 Route::get('/', [ProfileController::class, 'index'])->name('profile');
+
+                Route::post('update-account', [ProfileController::class, 'update'])->name('profile.update');
+                Route::post('change-password', [ProfileController::class, 'changePassword'])->name('profile.password');
+                Route::post('change-address', [ProfileController::class, 'changeAddress'])->name('profile.address');
+                Route::post('change-picture', [ProfileController::class, 'changePicture'])->name('profile.picture');
+                Route::post('delete-account', [ProfileController::class, 'removeAccount'])->name('profile.remove');
             });
 
             Route::prefix('users')->group(function() {
