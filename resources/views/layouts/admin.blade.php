@@ -59,7 +59,7 @@
             <div class="page-header-group">
                 <div class="page-header-group-dropdown dropdown">
                     <div class="dropdown-button">
-                        <img src="{{asset('storage/icons/user.png')}}" alt="{{ Auth::user()->name }}">
+                        <img src="@if(empty(Auth::user()->avatar)) {{asset('storage/icons/user.png')}} @else {{asset('storage/avatar/' . Auth::user()->avatar)}} @endif" alt="Foto de {{Auth::user()->name}}">
                         <p>{{ Auth::user()->name }} <i class="fa fa-caret-down"></i></p>
 
                     </div>
@@ -75,6 +75,8 @@
         </main>
     </section>
     <script src="{{ asset('js/dashboard.js') }}"></script>
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    @yield('extraJS')
     @if(session()->get('status'))
     <script type="text/javascript">
         Swal.fire({

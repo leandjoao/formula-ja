@@ -30,7 +30,7 @@
                         </form>
                     </div>
                     <div class="profile-context-section-content-picture">
-                        <img class="change" src="@if(empty(Auth::user()->profile)) {{asset('storage/icons/user.png')}} @else {{asset('storage/users/' . Auth::user()->profile)}} @endif" alt="Foto de {{Auth::user()->name}}">
+                        <img class="change" src="@if(empty(Auth::user()->avatar)) {{asset('storage/icons/user.png')}} @else {{asset('storage/avatar/' . Auth::user()->avatar)}} @endif" alt="Foto de {{Auth::user()->name}}">
                         <form action="{{route('profile.picture')}}" enctype="multipart/form-data" method="POST" class="form">
                             @csrf
                             <input type="file" name="file" id="profile" accept=".png, .jpg, .jpeg" class="hidden">

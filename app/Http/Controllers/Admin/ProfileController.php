@@ -127,9 +127,13 @@ class ProfileController extends Controller
 
         if($valid->fails()) return redirect()->back()->with(['errors' => $valid->errors()->messages(), 'icon' => 'error']);
 
-        $imageName = Auth::user()->id.'-'.Str::slug(Auth::user()->name).'.'.$request->file->extension();
+        $imageName = Str::random(32).'.'.$request->file->extension();
 
         $request->file->storeAs("public/avatar/", $imageName);
+
+        $user = User::find(Auth::user()->id);
+        $user->avatar = $imageName;
+        $user->save();
 
         return redirect()->back()->with(['status' => ['text' => 'Foto atualizada com sucesso!', 'icon' => 'success']]);
     }

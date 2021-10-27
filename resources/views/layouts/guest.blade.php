@@ -47,7 +47,7 @@
                 @auth
                 <div class="dropdown">
                     <div class="nav-navbar-links-link dropdown-button">
-                        <img src="{{ asset('storage/icons/user.png') }}" alt="">
+                        <img src="@if(empty(Auth::user()->avatar)) {{asset('storage/icons/user.png')}} @else {{asset('storage/avatar/' . Auth::user()->avatar)}} @endif" alt="Foto de {{Auth::user()->name}}">
                         <p>{{ Str::limit(Auth::user()->name, 6, '...') }} <i class="fa fa-caret-down"></i></p>
                     </div>
                     <div class="dropdown-content">

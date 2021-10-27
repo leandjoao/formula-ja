@@ -58,6 +58,8 @@ Route::middleware(['auth'])->group(function () {
 
             Route::prefix('users')->group(function() {
                 Route::get('/', [UsersController::class, 'index'])->name('users');
+
+                Route::get('getUsers', [UsersController::class, 'getUsers'])->name('users.getUsers');
             });
 
             Route::prefix('partners')->group(function() {

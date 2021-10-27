@@ -45,4 +45,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(AccessLevel::class, 'id', 'access_level');
     }
+
+    public function address()
+    {
+        return $this->hasOne(Address::class, 'user_id', 'id');
+    }
 }
