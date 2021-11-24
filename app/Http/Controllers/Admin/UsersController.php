@@ -8,8 +8,10 @@ use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
@@ -17,7 +19,8 @@ class UsersController extends Controller
     {
         $this->adminAccess();
 
-        $users = User::query()->with('access')->paginate(10);
+        $users = User::query()->count();
+
         return view('admin.users.listing', compact('users'));
     }
 
@@ -116,10 +119,10 @@ class UsersController extends Controller
         foreach($records as $record){
             $id = $record->id;
             $phone = $record->phone;
-            $name = $record->name;
+            $name = Str::ucfirst($record->name);
             $email = $record->email;
             $since = Carbon::parse($record->created_at)->diffForHumans();
-            $al = $record->access_level;
+            $al = Str::ucfirst(DB::select('select label from access_levels where id = '.$record->access_level)[0]->label);
 
             $data_arr[] = array(
                 "id" => $id,
@@ -128,6 +131,10 @@ class UsersController extends Controller
                 "email" => $email,
                 "created_at" => $since,
                 "access_level" => $al,
+                "actions" => [
+                    "view" => route('users.view', $id),
+                    "remove" => route('users.remove', $id),
+                ]
             );
         }
 

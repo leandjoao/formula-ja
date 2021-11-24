@@ -7,31 +7,75 @@
     <div class="main-content">
         <div class="listing">
             <div class="listing-title">
-                <h3>Listagem de parceiros ({{count($parceiros)}})</h3>
-                <button><i class="fa fa-plus"></i> Adicionar parceiro</button>
+                <h3>Listagem de parceiros ({{$partners}})</h3>
+                <a href="{{route('partners.create')}}"><i class="fa fa-plus"></i> Adicionar parceiro</a>
             </div>
-            <table class="listing-table" cellspacing=0>
+            <table class="table table-striped table-bordered" cellspacing=0>
                 <thead>
                     <tr>
+                        <th>Logo</th>
                         <th>Nome</th>
                         <th>PET?</th>
+                        <th>Desde</th>
                         <th>Ação</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach ($parceiros as $parceiro)
-                        <tr>
-                            <td>{{ $parceiro['name'] }}</td>
-                            <td>@if($parceiro['pet']) <i class="fa fa-check"></i> @else <i class="fa fa-times"></i> @endif</td>
-                            <td>
-                                <a href=""><i class="fa fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
             </table>
-            {{-- {{$parceiros->links()}} --}}
         </div>
     </div>
 </div>
+@endsection
+@section('extraJS')
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript">
+    function format(d) {
+        return `
+        <td>
+            <a class="button delete" href="${d.remove}">
+                <span class='text'>Remover</span>
+                <span class="icon"><i class="fa fa-trash"></i></span>
+            </a>
+        </td>
+        `;
+    }
+
+    function pet(d) {
+        return `
+        <td>
+            <i class="${(d) ? 'fa fa-check' : 'fa fa-times'}"></i>
+        </td>
+        `;
+    }
+
+    function image(d) {
+        return `
+        <td>
+            <img src="${d.image}" alt="${d.title}" />
+        </td>
+        `;
+    }
+
+    $('.table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{route('partners.getPartners')}}",
+        autoWidth: false,
+        columns: [
+        { data: function (row, type, set) {
+            return image(row.logo);
+        }},
+        { data: 'name' },
+        { data: function (row, type, set) {
+            return pet(row.pet);
+        }, className: 'pet'},
+        { data: 'created_at' },
+        { data: function (row, type, set) {
+            return format(row.actions);
+        }}
+        ],
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/pt_br.json'
+        },
+    });
+</script>
 @endsection

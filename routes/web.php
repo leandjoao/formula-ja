@@ -58,12 +58,20 @@ Route::middleware(['auth'])->group(function () {
 
             Route::prefix('users')->group(function() {
                 Route::get('/', [UsersController::class, 'index'])->name('users');
+                Route::get('create', [UsersController::class, 'showCreate'])->name('users.create');
+                Route::get('view/{id}', [UsersController::class, 'view'])->name('users.view');
+                Route::get('remove/{id}', [UsersController::class, 'remove'])->name('users.remove');
 
                 Route::get('getUsers', [UsersController::class, 'getUsers'])->name('users.getUsers');
             });
 
             Route::prefix('partners')->group(function() {
                 Route::get('/', [PartnersController::class, 'index'])->name('partners');
+                Route::get('create', [PartnersController::class, 'showCreate'])->name('partners.create');
+                Route::post('create', [PartnersController::class, 'create'])->name('partners.create');
+                Route::get('remove/{id}', [PartnersController::class, 'remove'])->name('partners.remove');
+
+                Route::get('getPartners', [PartnersController::class, 'getPartners'])->name('partners.getPartners');
             });
 
             Route::prefix('contacts')->group(function() {

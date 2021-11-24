@@ -49,31 +49,6 @@ body {
             margin-left: 0;
         }
     }
-
-    .form {
-        display: flex;
-        flex-direction: column;
-        gap: $gap;
-        width: 100%;
-
-        input,
-        textarea,
-        select {
-            width: 100%;
-            padding: 10px;
-            border-radius: 3px;
-            border: 1px solid lightgray;
-        }
-
-        button {
-            @include button($primary, white);
-        }
-
-        .input-group {
-            display: flex;
-            gap: $gap;
-        }
-    }
 }
 
 
@@ -82,7 +57,7 @@ body {
 @import "./dashboard/profile";
 @import "./dashboard/listing";
 @import "./dashboard/budget";
-@import "./dashboard/datatable";
+@import "./dashboard/form";
 
 .hidden {
     display: none !important;

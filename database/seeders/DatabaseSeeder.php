@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             User::class,
             Config::class,
             PostCategorySeeder::class,
-            PostSeeder::class
+            PostSeeder::class,
+            PartnersSeeder::class
         ]);
     }
 }

@@ -580,8 +580,13 @@ body {
   margin: 0;
 }
 .nav-navbar-links .dropdown-button img {
-  max-height: 65%;
+  height: 48px;
   border-radius: 100px;
+  width: 48px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 .nav-navbar-links .dropdown-content {
   display: none;

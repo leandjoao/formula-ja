@@ -194,8 +194,11 @@
                     }
 
                     img {
-                        max-height: 65%;
+                        height: 48px;
                         border-radius: 100px;
+                        width: 48px;
+                        object-fit: cover;
+                        object-position: center;
                     }
                 }
 

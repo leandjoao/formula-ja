@@ -1,615 +1,714 @@
-//
-// Colour customisation
-//
-// `!default` allows overriding variables that are defined before @import
-//
+@import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css');
 
-// Border between the header (and footer) and the table body
-$table-header-border: 1px solid #111111 !default;
-
-// Border of rows / cells
-$table-body-border: 1px solid #dddddd !default;
-
-// Row background colour (hover, striping etc are all based on this colour and
-// calculated automatically)
-$table-row-background: #ffffff !default;
-
-// Row colour, when selected (tr.selected)
-$table-row-selected: #b0bed9 !default;
-
-// Text colour of the interaction control elements (info, filter, paging etc)
-$table-control-color: #333333 !default;
-
-// Highlight colour of the paging button for the current page
-$table-paging-button-active: #dcdcdc !default;
-
-// Hover colour of paging buttons on mouse over
-$table-paging-button-hover: #111111 !default;
-
-// Colour to use when shading
-$table-shade: black !default;
-
-// jQuery UI stylesheet imports this one - there are just two places where we
-// don't want DataTabels default styles assigned for jQuery UI, so rather than
-// duplicating the whole file, this is the best option
-$jqueryui: false !default;
-
-// Chrome 83's default inputs are really ugly, so we need to do this for all
-@mixin table-input {
-    border: 1px solid #aaa;
-    border-radius: 3px;
-    padding: 5px;
-    background-color: transparent;
+td.dt-control {
+    background: url("https://www.datatables.net/examples/resources/details_open.png") no-repeat center center;
+    cursor: pointer;
 }
 
-//
-// Functions / mixins
-//
-@function tint($color, $percent) {
-    @return mix(white, $color, $percent);
+tr.dt-hasChild {
+    td.dt-control {
+        background: url("https://www.datatables.net/examples/resources/details_close.png") no-repeat center center;
+    }
 }
 
-@function shade($color, $percent) {
-    @return mix($table-shade, $color, $percent);
-}
-
-@mixin gradient($from, $to) {
-    background-color: $from;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $from), color-stop(100%, $to));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, $from 0%, $to 100%);
-    /* Chrome10+,Safari5.1+ */
-    background: -moz-linear-gradient(top, $from 0%, $to 100%);
-    /* FF3.6+ */
-    background: -ms-linear-gradient(top, $from 0%, $to 100%);
-    /* IE10+ */
-    background: -o-linear-gradient(top, $from 0%, $to 100%);
-    /* Opera 11.10+ */
-    background: linear-gradient(to bottom, $from 0%, $to 100%);
-    /* W3C */
-}
-
-/*
-* Table styles
-*/
 table.dataTable {
-    width: 100%;
-    margin: 0 auto;
-    clear: both;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    overflow: hidden;
+    th.dt-left {
+        text-align: left;
+    }
 
-    /*
-    * Header and footer styles
-    */
+    td.dt-left {
+        text-align: left;
+    }
+
+    th.dt-center {
+        text-align: center;
+    }
+
+    td.dt-center {
+        text-align: center;
+    }
+
+    td.dataTables_empty {
+        text-align: center;
+        text-align: center;
+    }
+
+    th.dt-right {
+        text-align: right;
+    }
+
+    td.dt-right {
+        text-align: right;
+    }
+
+    th.dt-justify {
+        text-align: justify;
+    }
+
+    td.dt-justify {
+        text-align: justify;
+    }
+
+    th.dt-nowrap {
+        white-space: nowrap;
+    }
+
+    td.dt-nowrap {
+        white-space: nowrap;
+    }
 
     thead {
-        background: $primary;
-        color: white;
-    }
-
-    thead,
-    tfoot {
-        th {
-            font-weight: bold;
-        }
-    }
-
-    thead th,
-    thead td {
-        padding: 10px 18px;
-
-        @if not $jqueryui {
-            // jQuery UI defines its own border
-            border-bottom: $table-header-border;
+        th.dt-head-left {
+            text-align: left;
         }
 
-        &:active {
-            outline: none;
-        }
-    }
-
-    tfoot th,
-    tfoot td {
-        padding: 10px 18px 6px 18px;
-
-        @if not $jqueryui {
-            // jQuery UI defines its own border
-            border-top: $table-header-border;
-        }
-    }
-
-    // Sorting
-    @if not $jqueryui {
-
-        // jQuery UI defines its own sort icons
-        thead {
-
-            .sorting,
-            .sorting_asc,
-            .sorting_desc,
-            .sorting_asc_disabled,
-            .sorting_desc_disabled {
-                cursor: pointer;
-                *cursor: hand;
-                background-repeat: no-repeat;
-                background-position: center right;
-            }
-
-            .sorting {
-                background-image: url('../images/sort_both.png');
-            }
-
-            .sorting_asc {
-                background-image: url('../images/sort_asc.png') !important;
-            }
-
-            .sorting_desc {
-                background-image: url('../images/sort_desc.png') !important;
-            }
-
-            .sorting_asc_disabled {
-                background-image: url('../images/sort_asc_disabled.png');
-            }
-
-            .sorting_desc_disabled {
-                background-image: url('../images/sort_desc_disabled.png');
-            }
-        }
-    }
-
-
-    /*
-    * Body styles
-    */
-    tbody {
-        tr {
-            background-color: $table-row-background;
-
-            &.selected {
-                background-color: $table-row-selected;
-            }
+        td.dt-head-left {
+            text-align: left;
         }
 
-        th,
-        td {
-            padding: 8px 10px;
-        }
-    }
-
-
-    // Stripe classes - add "row-border" class to the table to activate
-    &.row-border tbody,
-    &.display tbody {
-
-        th,
-        td {
-            border-top: $table-body-border;
+        th.dt-head-center {
+            text-align: center;
         }
 
-        tr:first-child th,
-        tr:first-child td {
-            border-top: none;
-        }
-    }
-
-
-    // Stripe classes - add "cell-border" class to the table to activate
-    &.cell-border tbody {
-
-        th,
-        td {
-            border-top: $table-body-border;
-            border-right: $table-body-border;
+        td.dt-head-center {
+            text-align: center;
         }
 
-        tr th:first-child,
-        tr td:first-child {
-            border-left: $table-body-border;
+        th.dt-head-right {
+            text-align: right;
         }
 
-        tr:first-child th,
-        tr:first-child td {
-            border-top: none;
-        }
-    }
-
-
-    // Stripe classes - add "stripe" class to the table to activate
-    &.stripe tbody,
-    &.display tbody {
-        tr.odd {
-            background-color: shade($table-row-background, 2.35%); // shade by f9
-
-            &.selected {
-                background-color: shade($table-row-selected, 2.35%);
-            }
-        }
-    }
-
-
-    // Hover classes - add "hover" class to the table to activate
-    &.hover tbody,
-    &.display tbody {
-        tr:hover {
-            background-color: shade($table-row-background, 3.6%); // shade by f5
-
-            &.selected {
-                background-color: shade($table-row-selected, 3.6%);
-            }
-        }
-    }
-
-
-    // Sort column highlighting - add "order-column" class to the table to activate
-    &.order-column,
-    &.display {
-        tbody {
-
-            tr>.sorting_1,
-            tr>.sorting_2,
-            tr>.sorting_3 {
-                background-color: shade($table-row-background, 2%); // shade by fa
-            }
-
-            tr.selected>.sorting_1,
-            tr.selected>.sorting_2,
-            tr.selected>.sorting_3 {
-                background-color: shade($table-row-selected, 2%);
-            }
-        }
-    }
-
-    &.display tbody,
-    &.order-column.stripe tbody {
-        tr.odd {
-            >.sorting_1 {
-                background-color: shade($table-row-background, 5.4%);
-            }
-
-            // shade by f1
-            >.sorting_2 {
-                background-color: shade($table-row-background, 4.7%);
-            }
-
-            // shade by f3
-            >.sorting_3 {
-                background-color: shade($table-row-background, 3.9%);
-            }
-
-            // shade by f5
-
-            &.selected {
-                >.sorting_1 {
-                    background-color: shade($table-row-selected, 5.4%);
-                }
-
-                >.sorting_2 {
-                    background-color: shade($table-row-selected, 4.7%);
-                }
-
-                >.sorting_3 {
-                    background-color: shade($table-row-selected, 3.9%);
-                }
-            }
+        td.dt-head-right {
+            text-align: right;
         }
 
-        tr.even {
-            >.sorting_1 {
-                background-color: shade($table-row-background, 2%);
-            }
-
-            // shade by fa
-            >.sorting_2 {
-                background-color: shade($table-row-background, 1.2%);
-            }
-
-            // shade by fc
-            >.sorting_3 {
-                background-color: shade($table-row-background, 0.4%);
-            }
-
-            // shade by fe
-
-            &.selected {
-                >.sorting_1 {
-                    background-color: shade($table-row-selected, 2%);
-                }
-
-                >.sorting_2 {
-                    background-color: shade($table-row-selected, 1.2%);
-                }
-
-                >.sorting_3 {
-                    background-color: shade($table-row-selected, 0.4%);
-                }
-            }
+        th.dt-head-justify {
+            text-align: justify;
         }
-    }
 
-    &.display tbody,
-    &.order-column.hover tbody {
-        tr:hover {
-            >.sorting_1 {
-                background-color: shade($table-row-background, 8.2%);
-            }
-
-            // shade by ea
-            >.sorting_2 {
-                background-color: shade($table-row-background, 7.5%);
-            }
-
-            // shade by ec
-            >.sorting_3 {
-                background-color: shade($table-row-background, 6.3%);
-            }
-
-            // shade by ef
-
-            &.selected {
-                >.sorting_1 {
-                    background-color: shade($table-row-selected, 8.2%);
-                }
-
-                >.sorting_2 {
-                    background-color: shade($table-row-selected, 7.5%);
-                }
-
-                >.sorting_3 {
-                    background-color: shade($table-row-selected, 6.3%);
-                }
-            }
+        td.dt-head-justify {
+            text-align: justify;
         }
-    }
 
-    &.no-footer {
-        border-bottom: $table-header-border;
-    }
+        th.dt-head-nowrap {
+            white-space: nowrap;
+        }
 
-    &.nowrap {
-
-        th,
-        td {
+        td.dt-head-nowrap {
             white-space: nowrap;
         }
     }
 
-    &.compact {
-
-        thead th,
-        thead td {
-            padding: 4px 17px;
+    tfoot {
+        th.dt-head-left {
+            text-align: left;
         }
 
-        tfoot th,
-        tfoot td {
-            padding: 4px;
+        td.dt-head-left {
+            text-align: left;
         }
 
-        tbody th,
-        tbody td {
-            padding: 4px;
+        th.dt-head-center {
+            text-align: center;
+        }
+
+        td.dt-head-center {
+            text-align: center;
+        }
+
+        th.dt-head-right {
+            text-align: right;
+        }
+
+        td.dt-head-right {
+            text-align: right;
+        }
+
+        th.dt-head-justify {
+            text-align: justify;
+        }
+
+        td.dt-head-justify {
+            text-align: justify;
+        }
+
+        th.dt-head-nowrap {
+            white-space: nowrap;
+        }
+
+        td.dt-head-nowrap {
+            white-space: nowrap;
+        }
+    }
+
+    tbody {
+        th.dt-body-left {
+            text-align: left;
+        }
+
+        td.dt-body-left {
+            text-align: left;
+        }
+
+        th.dt-body-center {
+            text-align: center;
+        }
+
+        td.dt-body-center {
+            text-align: center;
+        }
+
+        th.dt-body-right {
+            text-align: right;
+        }
+
+        td.dt-body-right {
+            text-align: right;
+        }
+
+        th.dt-body-justify {
+            text-align: justify;
+        }
+
+        td.dt-body-justify {
+            text-align: justify;
+        }
+
+        th.dt-body-nowrap {
+            white-space: nowrap;
+        }
+
+        td.dt-body-nowrap {
+            white-space: nowrap;
+        }
+
+        tr {
+            position: relative;
+
+            td {
+                vertical-align: middle;
+
+                img {
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                }
+
+                &.pet {
+                    text-align: center;
+                    color: green;
+
+                    i {
+                        &.fa-times {
+                            color: red;
+                        }
+                    }
+                }
+
+                &:last-child {
+                    width: 160px;
+
+                    a {
+                        color: $text;
+
+                        &.button {
+                            width: 100%;
+                            height: 40px;
+                            margin: 2px 0;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            border: none;
+                            border-radius: 5px;
+                            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+                            transition: 200ms;
+                            outline: none;
+                            text-decoration: none;
+
+                            &:hover {
+                                span {
+                                    &.text {
+                                        color: transparent;
+                                    }
+
+                                    &.icon {
+                                        width: 150px;
+                                        border-left: none;
+                                        transform: translateX(0);
+                                    }
+                                }
+                            }
+
+                            &.delete {
+                                background: #e62222;
+
+                                span {
+                                    &.icon {
+                                        border-left: 1px solid #c41b1b;
+                                    }
+                                }
+                            }
+
+                            &.view {
+                                background: #2270e6;
+
+                                span {
+                                    &.icon {
+                                        border-left: 1px solid #1b51c4;
+                                    }
+                                }
+                            }
+
+                            span {
+                                transition: 200ms;
+
+                                &.text {
+                                    transform: translateX(20px);
+                                    color: white;
+                                }
+
+                                &.icon {
+                                    position: absolute;
+                                    transform: translateX(110px);
+                                    height: 40px;
+                                    width: 40px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    color: #eee;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    clear: both;
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+    max-width: none !important;
+    border-collapse: separate !important;
+    border-spacing: 0;
+
+    td {
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+
+    th {
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+
+    th.dataTables_empty {
+        text-align: center;
+    }
+
+    >thead {
+        >tr {
+            >th {
+                &:active {
+                    outline: none;
+                }
+
+                &:not(.sorting_disabled) {
+                    padding-right: 30px;
+                }
+            }
+
+            >td {
+                &:active {
+                    outline: none;
+                }
+
+                &:not(.sorting_disabled) {
+                    padding-right: 30px;
+                }
+            }
+        }
+
+        .sorting {
+            cursor: pointer;
+            position: relative;
+
+            &:before {
+                position: absolute;
+                bottom: .9em;
+                display: block;
+                opacity: .3;
+                right: 1em;
+                content: "↑";
+            }
+
+            &:after {
+                position: absolute;
+                bottom: .9em;
+                display: block;
+                opacity: .3;
+                right: .5em;
+                content: "↓";
+            }
+        }
+
+        .sorting_asc {
+            cursor: pointer;
+            position: relative;
+
+            &:before {
+                position: absolute;
+                bottom: .9em;
+                display: block;
+                opacity: .3;
+                right: 1em;
+                content: "↑";
+                opacity: 1;
+            }
+
+            &:after {
+                position: absolute;
+                bottom: .9em;
+                display: block;
+                opacity: .3;
+                right: .5em;
+                content: "↓";
+            }
+        }
+
+        .sorting_desc {
+            cursor: pointer;
+            position: relative;
+
+            &:before {
+                position: absolute;
+                bottom: .9em;
+                display: block;
+                opacity: .3;
+                right: 1em;
+                content: "↑";
+            }
+
+            &:after {
+                position: absolute;
+                bottom: .9em;
+                display: block;
+                opacity: .3;
+                right: .5em;
+                content: "↓";
+                opacity: 1;
+            }
+        }
+
+        .sorting_asc_disabled {
+            cursor: pointer;
+            position: relative;
+
+            &:before {
+                position: absolute;
+                bottom: .9em;
+                display: block;
+                opacity: .3;
+                right: 1em;
+                content: "↑";
+                opacity: 0;
+            }
+
+            &:after {
+                position: absolute;
+                bottom: .9em;
+                display: block;
+                opacity: .3;
+                right: .5em;
+                content: "↓";
+            }
+        }
+
+        .sorting_desc_disabled {
+            cursor: pointer;
+            position: relative;
+
+            &:before {
+                position: absolute;
+                bottom: .9em;
+                display: block;
+                opacity: .3;
+                right: 1em;
+                content: "↑";
+            }
+
+            &:after {
+                position: absolute;
+                bottom: .9em;
+                display: block;
+                opacity: .3;
+                right: .5em;
+                content: "↓";
+                opacity: 0;
+            }
         }
     }
 }
 
-// Its not uncommon to use * {border-box} now, but it messes up the column width
-// calculations, so use content-box for the table and cells
-table.dataTable th,
-table.dataTable td {
-    box-sizing: content-box;
+table.dataTable.nowrap {
+    th {
+        white-space: nowrap;
+    }
+
+    td {
+        white-space: nowrap;
+    }
 }
 
-
-/*
-* Control feature layout
-*/
-.dataTables_wrapper {
-    position: relative;
-    clear: both;
-
-    // Page length options
-    .dataTables_length {
-        float: left;
+div.dataTables_wrapper {
+    div.dataTables_length {
+        label {
+            font-weight: normal;
+            text-align: left;
+            white-space: nowrap;
+        }
 
         select {
-            @include table-input;
-            padding: 4px;
+            width: auto;
+            display: inline-block;
         }
     }
 
-    // Filtering input
-    .dataTables_filter {
-        float: right;
+    div.dataTables_filter {
         text-align: right;
+
+        label {
+            font-weight: normal;
+            white-space: nowrap;
+            text-align: left;
+        }
 
         input {
-            @include table-input;
-            margin-left: 3px;
-        }
-    }
-
-    // Table info
-    .dataTables_info {
-        clear: both;
-        float: left;
-        padding-top: 0.755em;
-    }
-
-    // Paging
-    .dataTables_paginate {
-        float: right;
-        text-align: right;
-        padding-top: 0.25em;
-
-        .paginate_button {
-            box-sizing: border-box;
+            margin-left: .5em;
             display: inline-block;
-            min-width: 1.5em;
-            padding: 0.5em 1em;
-            margin-left: 2px;
-            text-align: center;
-            text-decoration: none !important;
-            cursor: pointer;
-            *cursor: hand;
-
-            color: $table-control-color !important;
-            border: 1px solid transparent;
-            border-radius: 2px;
-
-            &.current,
-            &.current:hover {
-                color: $table-control-color !important;
-                border: 1px solid darken($table-paging-button-active, 27%);
-                @include gradient(lighten($table-paging-button-active, 28%),
-                    $table-paging-button-active);
-            }
-
-            &.disabled,
-            &.disabled:hover,
-            &.disabled:active {
-                cursor: default;
-                color: #666 !important;
-                border: 1px solid transparent;
-                background: transparent;
-                box-shadow: none;
-            }
-
-            &:hover {
-                color: white !important;
-                border: 1px solid $table-paging-button-hover;
-                @include gradient(lighten($table-paging-button-hover, 28%),
-                    $table-paging-button-hover);
-            }
-
-            &:active {
-                outline: none;
-                @include gradient(lighten($table-paging-button-hover, 10%),
-                    darken($table-paging-button-hover, 2%));
-                box-shadow: inset 0 0 3px #111;
-            }
-        }
-
-        .ellipsis {
-            padding: 0 1em;
+            width: auto;
         }
     }
 
-    // Processing
-    .dataTables_processing {
+    div.dataTables_info {
+        padding-top: .85em;
+    }
+
+    div.dataTables_paginate {
+        margin: 0;
+        white-space: nowrap;
+        text-align: right;
+
+        ul.pagination {
+            margin: 2px 0;
+            white-space: nowrap;
+            justify-content: flex-end;
+        }
+    }
+
+    div.dataTables_processing {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 100%;
-        height: 40px;
-        margin-left: -50%;
-        margin-top: -25px;
-        padding-top: 20px;
-
+        width: 200px;
+        margin-left: -100px;
+        margin-top: -26px;
         text-align: center;
-        font-size: 1.2em;
+        padding: 1em 0;
+    }
+}
 
-        background-color: white;
-        background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba($table-row-background, 0)), color-stop(25%, rgba($table-row-background, 0.9)), color-stop(75%, rgba($table-row-background, 0.9)), color-stop(100%, rgba(255, 255, 255, 0)));
-        background: -webkit-linear-gradient(left, rgba($table-row-background, 0) 0%, rgba($table-row-background, 0.9) 25%, rgba($table-row-background, 0.9) 75%, rgba($table-row-background, 0) 100%);
-        background: -moz-linear-gradient(left, rgba($table-row-background, 0) 0%, rgba($table-row-background, 0.9) 25%, rgba($table-row-background, 0.9) 75%, rgba($table-row-background, 0) 100%);
-        background: -ms-linear-gradient(left, rgba($table-row-background, 0) 0%, rgba($table-row-background, 0.9) 25%, rgba($table-row-background, 0.9) 75%, rgba($table-row-background, 0) 100%);
-        background: -o-linear-gradient(left, rgba($table-row-background, 0) 0%, rgba($table-row-background, 0.9) 25%, rgba($table-row-background, 0.9) 75%, rgba($table-row-background, 0) 100%);
-        background: linear-gradient(to right, rgba($table-row-background, 0) 0%, rgba($table-row-background, 0.9) 25%, rgba($table-row-background, 0.9) 75%, rgba($table-row-background, 0) 100%);
+div.dataTables_scrollHead {
+    table.dataTable {
+        margin-bottom: 0 !important;
     }
 
-    .dataTables_length,
-    .dataTables_filter,
-    .dataTables_info,
-    .dataTables_processing,
-    .dataTables_paginate {
-        color: $table-control-color;
+    table.table-bordered {
+        border-bottom-width: 0;
     }
+}
 
-    // Scrolling
-    .dataTables_scroll {
-        clear: both;
+div.dataTables_scrollBody {
+    >table {
+        border-top: none;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
 
-        div.dataTables_scrollBody {
-            *margin-top: -1px;
-            -webkit-overflow-scrolling: touch;
-
-            >table>thead>tr,
-            >table>tbody>tr {
-
-                >th,
-                >td {
-                    // Setting v-align baseline can cause the headers to be visible
-                    vertical-align: middle;
+        >thead {
+            .sorting {
+                &:before {
+                    display: none;
                 }
 
-                >th>div.dataTables_sizing,
-                >td>div.dataTables_sizing {
-                    // Hide the element used to wrap the content in the header for
-                    // the body scrolling table
-                    height: 0;
-                    overflow: hidden;
-                    margin: 0 !important;
-                    padding: 0 !important;
+                &:after {
+                    display: none;
+                }
+            }
+
+            .sorting_asc {
+                &:before {
+                    display: none;
+                }
+
+                &:after {
+                    display: none;
+                }
+            }
+
+            .sorting_desc {
+                &:before {
+                    display: none;
+                }
+
+                &:after {
+                    display: none;
+                }
+            }
+        }
+
+        >tbody {
+            tr {
+                &:first-child {
+                    th {
+                        border-top: none;
+                    }
+
+                    td {
+                        border-top: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+div.dataTables_scrollFoot {
+    >.dataTables_scrollFootInner {
+        box-sizing: content-box;
+
+        >table {
+            margin-top: 0 !important;
+            border-top: none;
+        }
+    }
+}
+
+table.dataTable.table-sm {
+    >thead {
+        >tr {
+            >th {
+                &:not(.sorting_disabled) {
+                    padding-right: 20px;
                 }
             }
         }
     }
 
-    &.no-footer {
-        .dataTables_scrollBody {
-            border-bottom: $table-header-border;
+    .sorting {
+        &:before {
+            top: 5px;
+            right: .85em;
         }
 
-        div.dataTables_scrollHead table.dataTable,
-        div.dataTables_scrollBody>table {
-            border-bottom: none;
+        &:after {
+            top: 5px;
         }
     }
 
-    // Self clear the wrapper
-    &:after {
-        visibility: hidden;
-        display: block;
-        content: "";
-        clear: both;
-        height: 0;
+    .sorting_asc {
+        &:before {
+            top: 5px;
+            right: .85em;
+        }
+
+        &:after {
+            top: 5px;
+        }
+    }
+
+    .sorting_desc {
+        &:before {
+            top: 5px;
+            right: .85em;
+        }
+
+        &:after {
+            top: 5px;
+        }
     }
 }
 
+table.table-bordered.dataTable {
+    border-right-width: 0;
 
-// Collapse the two column display of the control elements when the screen is
-// small - the info and paging control get collapsed first as they are wider,
-// and then the length and filter controls
+    th {
+        border-left-width: 0;
+
+        &:last-child {
+            border-right-width: 1px;
+            border-right-width: 1px;
+        }
+    }
+
+    td {
+        border-left-width: 0;
+
+        &:last-child {
+            border-right-width: 1px;
+            border-right-width: 1px;
+        }
+    }
+
+    tbody {
+        th {
+            border-bottom-width: 0;
+        }
+
+        td {
+            border-bottom-width: 0;
+        }
+    }
+}
+
+div.table-responsive {
+    >div.dataTables_wrapper {
+        >div.row {
+            margin: 0;
+
+            >div[class^=col-] {
+                &:first-child {
+                    padding-left: 0;
+                }
+
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 767px) {
-    .dataTables_wrapper {
-
-        .dataTables_info,
-        .dataTables_paginate {
-            float: none;
+    div.dataTables_wrapper {
+        div.dataTables_length {
             text-align: center;
         }
 
-        .dataTables_paginate {
-            margin-top: 0.5em;
-        }
-    }
-}
-
-@media screen and (max-width: 640px) {
-    .dataTables_wrapper {
-
-        .dataTables_length,
-        .dataTables_filter {
-            float: none;
+        div.dataTables_filter {
             text-align: center;
         }
 
-        .dataTables_filter {
-            margin-top: 0.5em;
+        div.dataTables_info {
+            text-align: center;
+        }
+
+        div.dataTables_paginate {
+            text-align: center;
+
+            ul.pagination {
+                justify-content: center !important;
+            }
         }
     }
 }

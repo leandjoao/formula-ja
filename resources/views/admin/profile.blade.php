@@ -23,9 +23,25 @@
                     <div class="profile-context-section-content-form">
                         <form action="{{ route('profile.update')}}" method="POST" class="form">
                             @csrf
-                            <input type="text" name="name" placeholder="Nome" value="{{Auth::user()->name}}" />
-                            <input type="email" name="email" placeholder="E-mail" value="{{Auth::user()->email}}" />
-                            <input type="text" name="phone" placeholder="Telefone" value="{{Auth::user()->phone}}" />
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="text" id="name" name="name" value="{{Auth::user()->name}}" required />
+                                    <label for="name">Nome:</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="email" name="email" id="email" value="{{Auth::user()->email}}" required />
+                                    <label for="email">E-mail:</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="text" name="phone" id="phone" value="{{Auth::user()->phone}}" required />
+                                    <label for="phone">Telefone:</label>
+                                </div>
+                            </div>
                             <button type="submit">Salvar</button>
                         </form>
                     </div>
@@ -49,9 +65,27 @@
                     <div class="profile-context-section-content-form">
                         <form action="{{route('profile.password')}}" method="POST" class="form">
                             @csrf
-                            <input type="password" name="old_pass" placeholder="Senha atual">
-                            <input type="password" name="new_pass" placeholder="Senha nova">
-                            <input type="password" name="new_pass_confirmation" placeholder="Confirme a nova senha">
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="password" name="old_pass" id="old_pass" required />
+                                    <label for="old_pass">Senha atual:</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="password" name="new_pass" id="new_pass" required />
+                                    <label for="new_pass">Senha nova:</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="password" name="new_pass_confirmation" id="new_pass_confirm" required />
+                                    <label for="new_pass_confirm">Confirme a nova senha:</label>
+                                </div>
+                            </div>
+
                             <button type="submit">Alterar senha</button>
                         </form>
                     </div>
@@ -66,14 +100,60 @@
                     <div class="profile-context-section-content-form">
                         <form action="{{ route('profile.address') }}" method="POST" class="form">
                             @csrf
-                            <input type="text" name="cep" placeholder="CEP" value="{{Auth::user()->zipCode}}">
-                            <input type="text" name="address" placeholder="Rua" readonly>
-                            <input type="text" name="neighborhood" placeholder="Bairro" readonly>
-                            <input type="text" name="city" placeholder="Cidade" readonly>
-                            <input type="text" name="state" placeholder="Estado" readonly>
-                            <input type="text" name="number" placeholder="Número">
-                            <input type="text" name="complement" placeholder="Complemento">
-                            <input type="text" name="reference" placeholder="Ponto de Referência">
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="text" name="cep" id="zipCode" value="{{Auth::user()->zipCode}}" required />
+                                    <label for="zipCode">CEP:</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="text" name="address" id="address" required />
+                                    <label for="address">Rua: </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="text" name="neighborhood" id="neighborhood" required />
+                                    <label for="neighborhood">Bairro: </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="text" name="city" id="city" required />
+                                    <label for="city">Cidade: </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="text" name="state" id="state" required />
+                                    <label for="state">Estado: </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="text" name="number" id="number" required />
+                                    <label for="number">Número: </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="text" name="complement" id="complement" />
+                                    <label for="complement">Complemento: </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="text" name="reference" id="reference" />
+                                    <label for="reference">Ponto de Referência: </label>
+                                </div>
+                            </div>
+
                             <button type="submit">Salvar Endereço</button>
                         </form>
                     </div>
@@ -91,7 +171,12 @@
 
                         <form action="{{route('profile.remove')}}" class="form" method="POST">
                             @csrf
-                            <input type="password" placeholder="Insira sua senha" name="password">
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="password" id="deleteAccount" name="password" required />
+                                    <label for="deleteAccount">Insira sua senha</label>
+                                </div>
+                            </div>
                             <button type="submit">Apagar minha conta</button>
                         </form>
                     </div>

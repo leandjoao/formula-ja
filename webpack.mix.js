@@ -12,5 +12,6 @@ mix.options({
     processCssUrls: false
 });
 
-mix.browserSync('localhost:8000');
+// mix.browserSync('localhost:8000');
+mix.browserSync('127.0.0.1:8000');
 mix.disableNotifications();

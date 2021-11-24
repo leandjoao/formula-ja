@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -132,6 +133,7 @@ class ProfileController extends Controller
         $request->file->storeAs("public/avatar/", $imageName);
 
         $user = User::find(Auth::user()->id);
+        Storage::delete('public/avatar/'.$user->avatar);
         $user->avatar = $imageName;
         $user->save();
 
