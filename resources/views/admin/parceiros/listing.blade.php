@@ -13,6 +13,7 @@
             <table class="table table-striped table-bordered" cellspacing=0>
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Logo</th>
                         <th>Nome</th>
                         <th>PET?</th>
@@ -61,6 +62,7 @@
         ajax: "{{route('partners.getPartners')}}",
         autoWidth: false,
         columns: [
+        { data: 'id' },
         { data: function (row, type, set) {
             return image(row.logo);
         }, "defaultContent": ""},
