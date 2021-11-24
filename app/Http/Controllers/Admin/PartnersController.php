@@ -61,7 +61,7 @@ class PartnersController extends Controller
         Storage::delete($partner->logo);
         $partner->delete();
 
-        return redirect()->back()->with(['status' => ['text' => 'Parceiro removido!', 'icon' => 'success']]);
+        return redirect()->route('partners')->with(['status' => ['text' => 'Parceiro removido!', 'icon' => 'success']]);
     }
 
     public function getPartners(Request $request)
