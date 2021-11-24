@@ -63,7 +63,7 @@
         columns: [
         { data: function (row, type, set) {
             return image(row.logo);
-        }},
+        }, "defaultContent": ""},
         { data: 'name' },
         { data: function (row, type, set) {
             return pet(row.pet);
