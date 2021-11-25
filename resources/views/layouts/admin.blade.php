@@ -4,11 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="shortcut icon" href="{{asset('storage/icon.png')}}">
     <link rel="apple-touch-icon" href="{{asset('storage/icon.png')}}">
     <link rel="image_src" href="{{asset('storage/icon.png')}}">
-
+    @if(config('app.env') === "production")
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    @endif
 
     <title>Dashboard :: {{ config('app.name') }}</title>
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">

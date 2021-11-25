@@ -3,14 +3,10 @@
 <section class="banner">
     <div class="banner-container">
         <div class="banner-container-text">
-            <h4>Lorem Ipsum</h4>
-            <h2>Cuide do bem-estar e saúde do seu animalzinho</h2>
-            <p>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur.
-            </p>
-            <a href="{{route('guest.receita.pet')}}">Envie sua receita!</a>
+            <h4>{{$data['banner']['super_text']}}</h4>
+            <h2>{{$data['banner']['slogan']}}</h2>
+            <p>{{$data['banner']['under_text']}}</p>
+            <a href="{{route('send.receipt')}}">Envie sua receita!</a>
         </div>
     </div>
 </section>
@@ -20,41 +16,23 @@
         <h4>Como funciona?</h4>
     </div>
     <div class="hiw-container">
+        @foreach($data['hiw'] as $hiw)
         <div class="hiw-container-step">
-            <img src="{{asset('storage/icons/pet/upload.png')}}" alt="">
-            <p>Envio da Receita</p>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
+            <img src="{{asset('storage/icons/pet/'.$hiw['icon'])}}" alt="{{$hiw['title']}}">
+            <p>{{$hiw['title']}}</p>
+            <span>{{$hiw['text']}}</span>
         </div>
-        <div class="hiw-container-step">
-            <img src="{{asset('storage/icons/pet/budget.png')}}" alt="">
-            <p>Orçamento</p>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
-        </div>
-        <div class="hiw-container-step">
-            <img src="{{asset('storage/icons/pet/payment.png')}}" alt="">
-            <p>Pagamento</p>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
-        </div>
-        <div class="hiw-container-step">
-            <img src="{{asset('storage/icons/pet/manipulate.png')}}" alt="">
-            <p>Manipulação</p>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
-        </div>
-        <div class="hiw-container-step">
-            <img src="{{asset('storage/icons/pet/deliver.png')}}" alt="">
-            <p>Envio do produto</p>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
-        </div>
+        @endforeach
     </div>
 </div>
 
-@if(!empty($posts))
+@if(!empty($data['posts']))
 <div class="blog">
     <div class="blog-container">
         <h2>Blog</h2>
         <h6>Fique por dentro das últimas notícias</h6>
         <div class="posts">
-            @foreach ($posts as $post)
+            @foreach ($data['posts'] as $post)
             <div class="posts-item">
                 <div class="posts-item-image">
                     <img src="{{$post['banner']}}" alt="{{$post['title']}}" title="{{$post['title']}}">
@@ -115,11 +93,11 @@
 
     <div class="parceiros-slider swiper-container">
         <div class="swiper-wrapper">
-            @for($i = 0; $i < 5; $i++)
+            @foreach($partnersPet as $partner)
             <div class="swiper-slide">
-                <img src="{{asset('storage/pet-example.png')}}" alt="">
+                <img src="{{$partner['logo']}}" alt="">
             </div>
-            @endfor
+            @endforeach
         </div>
         <div class="swiper-button-prev parceiros-prev"></div>
         <div class="swiper-button-next parceiros-next"></div>

@@ -4,11 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="shortcut icon" href="{{asset('storage/icon.png')}}">
     <link rel="apple-touch-icon" href="{{asset('storage/icon.png')}}">
     <link rel="image_src" href="{{asset('storage/icon.png')}}">
-
+    @if(config('app.env') === "production")
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    @endif
     <title>{{ config('app.name') }}</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
@@ -17,9 +18,9 @@
     <div class="super">
         <div class="super-container">
             <ul class="super-container-social">
-                <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href=""><i class="fab fa-instagram"></i></a></li>
-                <li><a href=""><i class="fab fa-youtube"></i></a></li>
+                @foreach($sm as $media)
+                    <li><a href="{{$media['link']}}"><i class="{{$media['media']}}"></i></a></li>
+                @endforeach
             </ul>
             <ul class="super-container-links">
                 <li><a href="">FAQ</a></li>
@@ -72,7 +73,7 @@
     </main>
     <div class="cta-send">
         <div class="cta-send-container">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, error?</p>
+            <p>{{$cta}}</p>
         <a href="{{route('guest.receita')}}">Envie sua receita</a>
         </div>
     </div>
@@ -127,9 +128,9 @@
                             consequat.
                         </p>
                         <ul>
-                            <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href=""><i class="fab fa-instagram"></i></a></li>
-                            <li><a href=""><i class="fab fa-youtube"></i></a></li>
+                            @foreach($sm as $media)
+                                <li><a href="{{$media['link']}}"><i class="{{$media['media']}}"></i></a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

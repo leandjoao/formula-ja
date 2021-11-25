@@ -3,13 +3,9 @@
 <section class="banner">
     <div class="banner-container">
         <div class="banner-container-text">
-            <h4>Lorem Ipsum</h4>
-            <h2>A sua fórmula, já na mão!</h2>
-            <p>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur.
-            </p>
+            <h4>{{$data['banner']['super_text']}}</h4>
+            <h2>{{$data['banner']['slogan']}}</h2>
+            <p>{{$data['banner']['under_text']}}</p>
             <a href="{{route('send.receipt')}}">Envie sua receita!</a>
         </div>
     </div>
@@ -20,31 +16,13 @@
         <h4>Como funciona?</h4>
     </div>
     <div class="hiw-container">
+        @foreach($data['hiw'] as $hiw)
         <div class="hiw-container-step">
-            <img src="{{asset('storage/icons/upload.png')}}" alt="">
-            <p>Envio da Receita</p>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
+            <img src="{{asset('storage/icons/'.$hiw['icon'])}}" alt="{{$hiw['title']}}">
+            <p>{{$hiw['title']}}</p>
+            <span>{{$hiw['text']}}</span>
         </div>
-        <div class="hiw-container-step">
-            <img src="{{asset('storage/icons/budget.png')}}" alt="">
-            <p>Orçamento</p>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
-        </div>
-        <div class="hiw-container-step">
-            <img src="{{asset('storage/icons/payment.png')}}" alt="">
-            <p>Pagamento</p>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
-        </div>
-        <div class="hiw-container-step">
-            <img src="{{asset('storage/icons/manipulate.png')}}" alt="">
-            <p>Manipulação</p>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
-        </div>
-        <div class="hiw-container-step">
-            <img src="{{asset('storage/icons/deliver.png')}}" alt="">
-            <p>Envio do produto</p>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
-        </div>
+        @endforeach
     </div>
 </div>
 
@@ -55,16 +33,9 @@
         </div>
         <div class="why-us-container-text">
             <div class="why-us-container-text-content">
-                <h5>Por que nós?</h5>
-                <span>O melhor para a sua saúde!</span>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate nec quam sit amet mollis.
-                    Integer urna enim, semper vitae cursus sit amet, hendrerit eget turpis. Duis mauris massa, pharetra
-                    a scelerisque in, imperdiet non leo. Nulla feugiat purus at felis efficitur malesuada. Vestibulum
-                    vestibulum luctus lacus, nec tempor est tincidunt in. Ut velit nunc, rutrum non sem pellentesque,
-                    ultricies ultricies mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur
-                    ridiculus mus.
-                </p>
+                <h5>{{$data['wu']['title']}}</h5>
+                <span>{{$data['wu']['under_title']}}</span>
+                <p>{{$data['wu']['text']}}</p>
                 <a href="{{route('guest.about')}}">Ler mais</a>
             </div>
         </div>
@@ -74,20 +45,20 @@
 <div class="pet">
     <div class="pet-container">
         <div class="pet-container-text">
-            <h2>Cuide do bem-estar e saúde do seu animalzinho</h2>
+            <h2>{{$data['petSlogan']}}</h2>
             <p>Envie a receita do seu pet para gente! Teremos o maior prazer em ajudar!</p>
             <a href="{{route('guest.receita.pet')}}">Enviar receita</a>
         </div>
     </div>
 </div>
 
-@if(!empty($posts))
+@if(!empty($data['posts']))
 <div class="blog">
     <div class="blog-container">
         <h2>Blog</h2>
         <h6>Fique por dentro das últimas notícias</h6>
         <div class="posts">
-            @foreach ($posts as $post)
+            @foreach ($data['posts'] as $post)
             <div class="posts-item">
                 <div class="posts-item-image">
                     <img src="{{$post['banner']}}" alt="{{$post['title']}}" title="{{$post['title']}}">
@@ -146,27 +117,17 @@
 <div class="duvidas">
     <div class="duvidas-container">
         <div class="duvidas-container-text">
-            <h3>Dúvidas</h3>
-            <p>Aliquam ultrices a nunc tincidunt semper. Cras dui sapien, cursus eu ultrices quis, sodales eget lorem. Nunc varius mi a orci ornare sagittis. Nam ac venenatis mauris, condimentum malesuada eros. Aenean rutrum, augue vel consequat fringilla, ligula dui venenatis velit, et eleifend metus odio ultrices dui.</p>
+            <h3>{{$data['et']['faq_title']}}</h3>
+            <p>{{$data['et']['faq_text']}}</p>
         </div>
         <div class="duvidas-container-collapsible">
             <div class="collapsible">
-                <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> Lorem Ipsum</div>
-                <div class="collapsible-content-text">
-                    <p>Aliquam ultrices a nunc tincidunt semper. Cras dui sapien, cursus eu ultrices quis, sodales eget lorem. Nunc varius mi a orci ornare sagittis. Nam ac venenatis mauris, condimentum malesuada eros. Aenean rutrum, augue vel consequat fringilla, ligula dui venenatis velit, et eleifend metus odio ultrices dui.</p>
-                </div>
-                <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> Lorem Ipsum</div>
-                <div class="collapsible-content-text">
-                    <p>Aliquam ultrices a nunc tincidunt semper. Cras dui sapien, cursus eu ultrices quis, sodales eget lorem. Nunc varius mi a orci ornare sagittis. Nam ac venenatis mauris, condimentum malesuada eros. Aenean rutrum, augue vel consequat fringilla, ligula dui venenatis velit, et eleifend metus odio ultrices dui.</p>
-                </div>
-                <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> Lorem Ipsum</div>
-                <div class="collapsible-content-text">
-                    <p>Aliquam ultrices a nunc tincidunt semper. Cras dui sapien, cursus eu ultrices quis, sodales eget lorem. Nunc varius mi a orci ornare sagittis. Nam ac venenatis mauris, condimentum malesuada eros. Aenean rutrum, augue vel consequat fringilla, ligula dui venenatis velit, et eleifend metus odio ultrices dui.</p>
-                </div>
-                <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> Lorem Ipsum</div>
-                <div class="collapsible-content-text">
-                    <p>Aliquam ultrices a nunc tincidunt semper. Cras dui sapien, cursus eu ultrices quis, sodales eget lorem. Nunc varius mi a orci ornare sagittis. Nam ac venenatis mauris, condimentum malesuada eros. Aenean rutrum, augue vel consequat fringilla, ligula dui venenatis velit, et eleifend metus odio ultrices dui.</p>
-                </div>
+                @foreach($data['faq'] as $faq)
+                    <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> {{$faq['question']}}</div>
+                    <div class="collapsible-content-text">
+                        <p>{{$faq['answer']}}</p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

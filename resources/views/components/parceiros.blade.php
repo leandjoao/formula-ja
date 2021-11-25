@@ -3,11 +3,11 @@
 
     <div class="parceiros-slider swiper-container">
         <div class="swiper-wrapper">
-            @for($i = 0; $i < 5; $i++)
+            @foreach($partners as $partner)
             <div class="swiper-slide">
-                <img src="{{asset('storage/logo-example.png')}}" alt="">
+                <img src="{{$partner['logo']}}" alt="">
             </div>
-            @endfor
+            @endforeach
         </div>
 
         <div class="swiper-button-prev parceiros-prev"></div>

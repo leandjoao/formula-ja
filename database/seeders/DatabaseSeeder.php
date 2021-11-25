@@ -2,6 +2,13 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\Guest\BannerSeeder;
+use Database\Seeders\Guest\ExtraTextSeeder;
+use Database\Seeders\Guest\FaqSeeder;
+use Database\Seeders\Guest\GetInTouchSeeder;
+use Database\Seeders\Guest\HowItWorkSeeder;
+use Database\Seeders\Guest\SocialMediaSeeder;
+use Database\Seeders\Guest\WhyUsSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +26,15 @@ class DatabaseSeeder extends Seeder
             Config::class,
             PostCategorySeeder::class,
             PostSeeder::class,
-            // PartnersSeeder::class
+            PartnersSeeder::class,
+
+            BannerSeeder::class,
+            HowItWorkSeeder::class,
+            WhyUsSeeder::class,
+            FaqSeeder::class,
+            ExtraTextSeeder::class,
+            GetInTouchSeeder::class,
+            SocialMediaSeeder::class
         ]);
     }
 }
