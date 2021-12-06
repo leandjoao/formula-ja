@@ -17,14 +17,15 @@ class CreatePharmaciesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('street');
+            $table->string('zipCode');
             $table->string('neighborhood');
             $table->string('city');
             $table->string('state');
             $table->string('number');
-            $table->string('phone')->nullable();
-            $table->string('logo');
+            $table->string('phone');
+            $table->string('logo')->nullable();
             $table->unsignedBigInteger('owner_id');
-            $table->foreign('owner_id')->references('id')->on('users');
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('pet')->default(false);
             $table->timestamps();
         });

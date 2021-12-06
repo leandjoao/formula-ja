@@ -30,7 +30,7 @@ class PartnersController extends Controller
     {
         $this->adminAccess();
         $valid = Validator::make($request->all(), [
-            'name' => 'required|unique:partners,name',
+            'name' => 'required|unique:pharmacies,name',
             'pet' => 'required',
             'logo' => 'required|file|max:1048|mimes:png,jpg,jpeg'
         ]);

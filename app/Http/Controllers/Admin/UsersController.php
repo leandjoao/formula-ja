@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
+use App\Models\Pharmacy;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
@@ -22,15 +24,26 @@ class UsersController extends Controller
         return view('admin.users.listing', compact('users'));
     }
 
+    public function showCreate()
+    {
+        return view('admin.users.create');
+    }
+
     public function create(Request $request)
     {
         $this->adminAccess();
         $valid = Validator::make($request->all(), [
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8',
-            'phone' => 'required',
-            'access_level' => 'required|exists:access_levels,id',
+            'phone' => 'required|string',
+            'pet' => 'required|string',
+            'pharmacy' => 'required|string',
+            'cep' => 'required|string',
+            'address' => 'required|string',
+            'number' => 'required|string',
+            'neighborhood' => 'required|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
         ]);
 
         if($valid->fails()) return redirect()->back()->with(['errors' => $valid->errors()->messages(), 'icon' => 'error']);
@@ -38,10 +51,38 @@ class UsersController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $user->password = Hash::make("123456");
         $user->phone = $request->phone;
-        $user->access_level = $request->access_level;
+        $user->access_level = $request->pharmacy;
         $user->save();
+
+        $address = new Address();
+        $address->user_id = $user->id;
+        $address->cep = $request->cep;
+        $address->address = $request->address;
+        $address->neighborhood = $request->neighborhood;
+        $address->city = $request->city;
+        $address->state = $request->state;
+        $address->number = $request->number;
+        $address->complement = $request->complement ?? '';
+        $address->reference = $request->reference ?? '';
+        $address->save();
+
+
+        if($request->pharmacy == "3") {
+            $pharmacy = new Pharmacy();
+            $pharmacy->name = $request->partnerName;
+            $pharmacy->zipCode = $request->cep;
+            $pharmacy->street = $request->address;
+            $pharmacy->neighborhood = $request->neighborhood;
+            $pharmacy->city = $request->city;
+            $pharmacy->state = $request->state;
+            $pharmacy->number = $request->number;
+            $pharmacy->phone = $request->phone;
+            $pharmacy->owner_id = $user->id;
+            $pharmacy->pet = boolval($request->pet);
+            $pharmacy->save();
+        }
 
         return redirect()->back()->with(['status' => ['text' => 'Usuário criado!', 'icon' => 'success']]);
     }
@@ -130,17 +171,17 @@ class UsersController extends Controller
                 "actions" => [
                     "view" => route('users.view', $id),
                     "remove" => route('users.remove', $id),
-                ]
+                    ]
+                );
+            }
+
+            $response = array(
+                "draw" => intval($draw),
+                "iTotalRecords" => $totalRecords,
+                "iTotalDisplayRecords" => $totalRecordswithFilter,
+                "aaData" => $data_arr
             );
+
+            return response()->json($response);
         }
-
-        $response = array(
-            "draw" => intval($draw),
-            "iTotalRecords" => $totalRecords,
-            "iTotalDisplayRecords" => $totalRecordswithFilter,
-            "aaData" => $data_arr
-        );
-
-        return response()->json($response);
     }
-}

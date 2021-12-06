@@ -18,7 +18,7 @@ class CreateBudgetAnsweredsTable extends Migration
             $table->unsignedBigInteger('budget_id');
             $table->foreign('budget_id')->references('id')->on('budgets');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('answered_by');
             $table->foreign('answered_by')->references('id')->on('pharmacies');
             $table->string('description');

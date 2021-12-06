@@ -18,7 +18,7 @@ class CreateAnswerItemsTable extends Migration
             $table->unsignedBigInteger('budget_id');
             $table->foreign('budget_id')->references('id')->on('budgets');
             $table->unsignedBigInteger('partner_id');
-            $table->foreign('partner_id')->references('id')->on('users');
+            $table->foreign('partner_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('answer_id');
             $table->foreign('answer_id')->references('id')->on('budget_answereds');
             $table->string('item');

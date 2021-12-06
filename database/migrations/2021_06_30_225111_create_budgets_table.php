@@ -18,7 +18,7 @@ class CreateBudgetsTable extends Migration
             $table->unsignedBigInteger('upload_id');
             $table->foreign('upload_id')->references('id')->on('uploads');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('status')->default('novo');
             $table->boolean('pet')->default(false);
             $table->timestamps();

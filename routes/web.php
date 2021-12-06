@@ -59,6 +59,7 @@ Route::middleware(['auth'])->group(function () {
             Route::prefix('users')->group(function() {
                 Route::get('/', [UsersController::class, 'index'])->name('users');
                 Route::get('create', [UsersController::class, 'showCreate'])->name('users.create');
+                Route::post('create', [UsersController::class, 'create'])->name('users.create.save');
                 Route::get('view/{id}', [UsersController::class, 'view'])->name('users.view');
                 Route::get('remove/{id}', [UsersController::class, 'remove'])->name('users.remove');
 

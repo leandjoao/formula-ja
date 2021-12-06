@@ -156,20 +156,26 @@ main {
                                 font-size: .8em;
                                 padding: 3px 5px;
                                 border-radius: 3px;
+                                color: $bg;
 
-                                &.concluido {
-                                    background: green;
-                                    color: $bg;
+                                &.novo {
+                                    background-color: $blue;
                                 }
 
-                                &.pendente {
-                                    background: $primary;
-                                    color: $bg;
+                                &.aguardando {
+                                    background-color: orange;
+                                }
+
+                                &.enviado {
+                                    background-color: $title;
                                 }
 
                                 &.recusado {
-                                    background: $secondary;
-                                    color: $bg;
+                                    background-color: $secondary;
+                                }
+
+                                &.finalizado {
+                                    background-color: rgb(44, 146, 121);
                                 }
                             }
                         }

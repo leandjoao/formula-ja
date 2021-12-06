@@ -34978,6 +34978,16 @@ if (budget) {
     });
   }
 }
+
+$("#pharmacy").on('change', function (e) {
+  if (e.target.value == 3) {
+    $('.partnerName').show();
+    $('#partnerName').prop('required', true);
+  } else {
+    $('.partnerName').hide();
+    $('#partnerName').attr('required', false);
+  }
+});
 })();
 
 /******/ })()

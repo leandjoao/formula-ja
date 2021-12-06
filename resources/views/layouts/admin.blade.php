@@ -41,7 +41,7 @@
                     </ul>
                 </div>
 
-                @if(Auth::user()->access_level == 1)
+                {{-- @if(Auth::user()->access_level == 1)
                 <div class="nav-navbar-list-item">
                     <p>Blog</p>
                     <ul>
@@ -49,7 +49,7 @@
                         <li @if(request()->routeIs('blog.category'))class="active"@endif><a href="{{ route('blog.category')}}"><i class="fa fa-th-large"></i> Categorias</a></li>
                     </ul>
                 </div>
-                @endif
+                @endif --}}
 
             </div>
         </div>

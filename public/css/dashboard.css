@@ -381,18 +381,22 @@ main {
   font-size: 0.8em;
   padding: 3px 5px;
   border-radius: 3px;
-}
-.main-list-content table tbody tr td span.concluido {
-  background: green;
   color: #f7f7fc;
 }
-.main-list-content table tbody tr td span.pendente {
-  background: #fbcf3d;
-  color: #f7f7fc;
+.main-list-content table tbody tr td span.novo {
+  background-color: #09f;
+}
+.main-list-content table tbody tr td span.aguardando {
+  background-color: orange;
+}
+.main-list-content table tbody tr td span.enviado {
+  background-color: #5e5f5f;
 }
 .main-list-content table tbody tr td span.recusado {
-  background: #fc3043;
-  color: #f7f7fc;
+  background-color: #fc3043;
+}
+.main-list-content table tbody tr td span.finalizado {
+  background-color: #2c9279;
 }
 
 @media (min-width: 600px) and (max-width: 1199px) {
@@ -1502,6 +1506,10 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^=col-]:last-
 .form button:hover {
   background-color: transparent;
   color: #fbcf3d;
+}
+
+.partnerName {
+  display: none;
 }
 
 .hidden {

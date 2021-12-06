@@ -7,39 +7,41 @@
 
     <div class="main-content">
         <div class="main-content-boxes">
-            <div class="main-content-boxes-box">
+            {{-- <div class="main-content-boxes-box">
                 <small>Vendas</small>
                 <h5>2.000</h5>
                 <p>
                     <span class="good">+100%</span> desde o mês passado
                 </p>
-            </div>
-            <div class="main-content-boxes-box">
+            </div> --}}
+            {{-- <div class="main-content-boxes-box">
                 <small>Ganhos</small>
                 <h5>R$21.300</h5>
                 <p>
                     <span class="bad">-1.5%</span> desde o mês passado
                 </p>
-            </div>
+            </div> --}}
             <div class="main-content-boxes-box">
                 <small>Usuários</small>
-                <h5>501</h5>
-                <p>
+                <h5>{{$data['users']}}</h5>
+                <p><a href="{{route('users')}}">Ver Todos <i class="fas fa-long-arrow-alt-right"></i></a></p>
+                {{-- <p>
                     <span class="good">+10%</span> desde o mês passado
-                </p>
+                </p> --}}
             </div>
             <div class="main-content-boxes-box">
                 <small>Parceiros</small>
-                <h5>45</h5>
-                <p>
+                <h5>{{$data['partners']}}</h5>
+                <p><a href="{{route('partners')}}">Ver Todos <i class="fas fa-long-arrow-alt-right"></i></a></p>
+                {{-- <p>
                     <span class="good">+10%</span> desde o mês passado
-                </p>
+                </p> --}}
             </div>
         </div>
-        <div class="main-content-graph">
+        {{-- <div class="main-content-graph">
             <small>Movimento durante o ano</small>
             <img src="{{asset('storage/graph.png')}}" alt="">
-        </div>
+        </div> --}}
     </div>
 
     <div class="main-list">
@@ -51,30 +53,26 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>E-mail</th>
                         <th>Data de Envio</th>
                         <th>Status</th>
-                        <th>Aceito por</th>
+                        <th>PET</th>
+                        <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($data['budgets'] as $pedido)
                     <tr>
-                        <td>Nome</td>
-                        <td>{{date('d/m/Y')}}</td>
-                        <td><span class="concluido">Concluido</span></td>
-                        <td>Nome do Parceiro</td>
+                        <td>{{Str::ucfirst($pedido['sender']['name'])}}</td>
+                        <td>{{$pedido['sender']['phone']}}</td>
+                        <td>{{$pedido['sender']['email']}}</td>
+                        <td>{{ Carbon\Carbon::parse($pedido['created_at'])->diffForHumans() }}</td>
+                        <td><span class="{{$pedido['status']}}">{{Str::ucfirst($pedido['status'])}}</span></td>
+                        <td><i class="fa {{ boolval($pedido['pet']) ? "fa-check" : "fa-times" }}"></i></td>
+                        <td><a href="{{route('budgets.inner', $pedido['id'])}}">Ver Pedido</a></td>
                     </tr>
-                    <tr>
-                        <td>Nome</td>
-                        <td>{{date('d/m/Y')}}</td>
-                        <td><span class="pendente">Pendente</span></td>
-                        <td>Nome do Parceiro</td>
-                    </tr>
-                    <tr>
-                        <td>Nome</td>
-                        <td>{{date('d/m/Y')}}</td>
-                        <td><span class="recusado">Recusado</span></td>
-                        <td>Nome do Parceiro</td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
