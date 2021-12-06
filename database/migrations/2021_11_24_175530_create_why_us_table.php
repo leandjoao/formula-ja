@@ -17,7 +17,7 @@ class CreateWhyUsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('under_title');
-            $table->string('text');
+            $table->longText('text');
             $table->timestamps();
         });
     }

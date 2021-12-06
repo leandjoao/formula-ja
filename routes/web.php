@@ -49,6 +49,8 @@ Route::middleware(['auth'])->group(function () {
             Route::prefix('profile')->group(function() {
                 Route::get('/', [ProfileController::class, 'index'])->name('profile');
 
+                Route::get('/parceiro', [PartnersController::class, 'showProfile'])->name('profile.partner');
+
                 Route::post('update-account', [ProfileController::class, 'update'])->name('profile.update');
                 Route::post('change-password', [ProfileController::class, 'changePassword'])->name('profile.password');
                 Route::post('change-address', [ProfileController::class, 'changeAddress'])->name('profile.address');
@@ -68,10 +70,8 @@ Route::middleware(['auth'])->group(function () {
 
             Route::prefix('partners')->group(function() {
                 Route::get('/', [PartnersController::class, 'index'])->name('partners');
-                Route::get('create', [PartnersController::class, 'showCreate'])->name('partners.create');
-                Route::post('create', [PartnersController::class, 'create'])->name('partners.create');
-                Route::get('remove/{id}', [PartnersController::class, 'remove'])->name('partners.remove');
 
+                Route::get('remove/{id}', [PartnersController::class, 'remove'])->name('partners.remove');
                 Route::get('getPartners', [PartnersController::class, 'getPartners'])->name('partners.getPartners');
             });
 

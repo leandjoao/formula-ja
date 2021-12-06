@@ -68,6 +68,9 @@
                     </div>
                     <div class="dropdown-content">
                         <a href="{{ route('profile') }}"><i class="fa fa-user"></i> Perfil</a>
+                        @if(Auth::user()->access_level == 3)
+                            <a href="{{ route('profile.partner') }}"><i class="fa fa-user"></i> Perfil Parceiro</a>
+                        @endif
                         <a onclick="document.querySelector('#logout').submit();"><i class="fa fa-sign-out-alt"></i> Sair</a>
                     </div>
                 </div>

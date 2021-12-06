@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Upload::class, 'user_id', 'id');
     }
+
+    public function pharmacy()
+    {
+        return $this->hasOne(Pharmacy::class, 'owner_id', 'id');
+    }
 }

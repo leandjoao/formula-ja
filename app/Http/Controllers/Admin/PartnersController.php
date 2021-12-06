@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Pharmacy;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -20,10 +21,11 @@ class PartnersController extends Controller
         return view('admin.parceiros.listing', compact('partners'));
     }
 
-    public function showCreate()
+    public function showProfile()
     {
-        $this->adminAccess();
-        return view('admin.parceiros.create');
+        $pharmacy = Pharmacy::query()->where('owner_id', Auth::user()->id)->first()->toArray();
+
+        return view('admin.parceiros.profile', compact('pharmacy'));
     }
 
     public function create(Request $request)
