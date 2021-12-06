@@ -37,7 +37,7 @@
                             {{-- <li><a href=""><i class="far fa-comments"></i> Depoimentos</a></li> --}}
                             {{-- <li><a href=""><i class="fa fa-cogs"></i> Configurações</a></li> --}}
                         @endif
-                        <li @if(request()->routeIs('budgets'))class="active"@endif><a href="{{route('budgets')}}"><i class="fa fa-dollar-sign"></i> Orçamentos</a></li>
+                        <li @if(request()->routeIs('budgets'))class="active"@endif><a href="{{route('budgets')}}"><i class="fa fa-dollar-sign"></i> Pedidos</a></li>
                     </ul>
                 </div>
 

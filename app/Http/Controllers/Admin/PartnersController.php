@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Partner;
+use App\Models\Pharmacy;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Faker\Generator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -16,18 +15,20 @@ class PartnersController extends Controller
     public function index()
     {
         $this->adminAccess();
-        $partners = Partner::query()->count();
+        $partners = Pharmacy::query()->count();
 
         return view('admin.parceiros.listing', compact('partners'));
     }
 
     public function showCreate()
     {
+        $this->adminAccess();
         return view('admin.parceiros.create');
     }
 
     public function create(Request $request)
     {
+        $this->adminAccess();
         $valid = Validator::make($request->all(), [
             'name' => 'required|unique:partners,name',
             'pet' => 'required',
@@ -42,8 +43,15 @@ class PartnersController extends Controller
 
         $storagePath = 'public/partners/'.$filename;
 
-        $partner = new Partner();
+        $partner = new Pharmacy();
         $partner->name = $request->name;
+        $partner->street = $request->street;
+        $partner->neighborhood = $request->neighborhood;
+        $partner->city = $request->city;
+        $partner->state = $request->state;
+        $partner->number = (int)$request->number;
+        $partner->phone = $request->phone;
+        $partner->owner_id = $request->owner_id;
         $partner->pet = boolval($request->pet);
         $partner->logo = $storagePath;
         $partner->save();
@@ -56,8 +64,7 @@ class PartnersController extends Controller
     public function remove($id)
     {
         $this->adminAccess();
-
-        $partner = Partner::find($id);
+        $partner = Pharmacy::find($id);
         Storage::delete($partner->logo);
         $partner->delete();
 
@@ -66,6 +73,7 @@ class PartnersController extends Controller
 
     public function getPartners(Request $request)
     {
+        $this->adminAccess();
         $draw = $request->get('draw');
         $start = $request->get("start");
         $rowperpage = $request->get("length");
@@ -81,15 +89,14 @@ class PartnersController extends Controller
         $searchValue = $search_arr['value'];
 
         // Total records
-        $totalRecords = Partner::select('count(*) as allcount')->count();
-        $totalRecordswithFilter = Partner::select('count(*) as allcount')->where('name', 'like', '%' .$searchValue . '%')->count();
+        $totalRecords = Pharmacy::select('count(*) as allcount')->count();
+        $totalRecordswithFilter = Pharmacy::select('count(*) as allcount')->where('name', 'like', '%' .$searchValue . '%')->count();
 
         // Fetch records
-        $records = Partner::orderBy($columnName,$columnSortOrder)
-        ->where('partners.name', 'like', '%' .$searchValue . '%')
-        ->orWhere('partners.pet', 'like', '%' .$searchValue . '%')
-        ->orWhere('partners.logo', 'like', '%' .$searchValue . '%')
-        ->select('partners.*')
+        $records = Pharmacy::orderBy($columnName,$columnSortOrder)
+        ->where('pharmacies.name', 'like', '%' .$searchValue . '%')
+        ->orWhere('pharmacies.pet', 'like', '%' .$searchValue . '%')
+        ->select('pharmacies.*')
         ->skip($start)
         ->take($rowperpage)
         ->get();

@@ -65,15 +65,15 @@
         { data: 'id' },
         { data: function (row, type, set) {
             return image(row.logo);
-        }, "defaultContent": ""},
+        }, "defaultContent": "", "orderable": false},
         { data: 'name' },
         { data: function (row, type, set) {
             return pet(row.pet);
-        }, className: 'pet'},
+        }, className: 'pet', "orderable": false},
         { data: 'created_at' },
         { data: function (row, type, set) {
             return format(row.actions);
-        }}
+        }, "orderable": false}
         ],
         language: {
             url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/pt_br.json'

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use App\Models\Budget;
 use App\Models\Upload;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
@@ -20,12 +22,12 @@ class UploadController extends Controller
 
     public function index()
     {
-        return view('guest.enviarReceita');
+        return view('guest.enviarReceita', compact(['sm' => $this->SocialMedia(), 'cta' => $this->CTA(), 'how' => $this->HIW()]));
     }
 
     public function pet()
     {
-        return view('guest.enviarReceita');
+        return view('guest.enviarReceita', compact(['sm' => $this->SocialMedia(), 'cta' => $this->CTA(), 'how' => $this->HIW()]));
     }
 
 
@@ -40,7 +42,7 @@ class UploadController extends Controller
 
         if($valid->fails()) return redirect()->back()->withErrors($valid)->withInput();
 
-        $user = User::query()->where('email', $request->email)->first();
+        $user = User::query()->where('email', $request->email)->with('address')->first();
 
         if(!$user) {
             $user = new User();
@@ -50,6 +52,32 @@ class UploadController extends Controller
             $user->access_level = 2;
             $user->phone = $request->phone;
             $user->save();
+
+            $address = new Address();
+            $address->user_id = $user->id;
+            $address->cep = $request->zipCode;
+            $address->address = $request->street;
+            $address->neighborhood = $request->neighborhood;
+            $address->city = $request->city;
+            $address->state = $request->state;
+            $address->number = $request->number;
+            $address->complement = $request->complement ?? '';
+            $address->reference = $request->reference ?? '';
+            $address->save();
+        }
+
+        if(is_null($user['address'])) {
+            $address = new Address();
+            $address->user_id = $user->id;
+            $address->cep = $request->zipCode;
+            $address->address = $request->street;
+            $address->neighborhood = $request->neighborhood;
+            $address->city = $request->city;
+            $address->state = $request->state;
+            $address->number = $request->number;
+            $address->complement = $request->complement ?? '';
+            $address->reference = $request->reference ?? '';
+            $address->save();
         }
 
         $fileName = Str::random(64) .'.'. $request->file->extension();

@@ -206,13 +206,18 @@ table.dataTable {
                 }
 
                 &:last-child {
-                    width: 160px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    padding: 5px 0;
 
                     a {
                         color: $text;
 
                         &.button {
-                            width: 100%;
+                            min-width: 140px;
+                            position: relative;
                             height: 40px;
                             margin: 2px 0;
                             cursor: pointer;
@@ -232,7 +237,7 @@ table.dataTable {
                                     }
 
                                     &.icon {
-                                        width: 150px;
+                                        width: 100%;
                                         border-left: none;
                                         transform: translateX(0);
                                     }
@@ -269,7 +274,7 @@ table.dataTable {
 
                                 &.icon {
                                     position: absolute;
-                                    transform: translateX(110px);
+                                    transform: translateX(100px);
                                     height: 40px;
                                     width: 40px;
                                     display: flex;

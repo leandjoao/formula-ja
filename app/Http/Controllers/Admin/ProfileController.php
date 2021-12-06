@@ -23,7 +23,7 @@ class ProfileController extends Controller
     {
         $valid = Validator::make($request->all(), [
             'name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email',
             'phone' => 'required'
         ]);
 

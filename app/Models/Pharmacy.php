@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Pharmacy extends Model
 {
     use HasFactory;
+
+    public function owner()
+    {
+        return $this->hasOne(User::class, 'id', 'owner_id');
+    }
 }

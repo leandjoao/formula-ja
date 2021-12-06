@@ -6,35 +6,21 @@
             <h4>Como funciona?</h4>
         </div>
         <div class="hiw-container">
+            @foreach($how as $hiw)
             <div class="hiw-container-step">
-                <img src="@if(request()->routeIs('guest.receita.pet')) {{asset('storage/icons/pet/upload.png')}} @else {{asset('storage/icons/upload.png')}} @endif" alt="">
-                <p>Envio da Receita</p>
-                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
+                @if(request()->routeIs('guest.receita.pet'))
+                <img src="{{asset('storage/icons/pet/'.$hiw['icon'])}}" alt="{{$hiw['title']}}">
+                @else
+                <img src="{{asset('storage/icons/'.$hiw['icon'])}}" alt="{{$hiw['title']}}">
+                @endif
+                <p>{{$hiw['title']}}</p>
+                <span>{{$hiw['text']}}</span>
             </div>
-            <div class="hiw-container-step">
-                <img src="@if(request()->routeIs('guest.receita.pet')) {{asset('storage/icons/pet/budget.png')}} @else {{asset('storage/icons/budget.png')}} @endif" alt="">
-                <p>Orçamento</p>
-                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
-            </div>
-            <div class="hiw-container-step">
-                <img src="@if(request()->routeIs('guest.receita.pet')) {{asset('storage/icons/pet/payment.png')}} @else {{asset('storage/icons/payment.png')}} @endif" alt="">
-                <p>Pagamento</p>
-                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
-            </div>
-            <div class="hiw-container-step">
-                <img src="@if(request()->routeIs('guest.receita.pet')) {{asset('storage/icons/pet/manipulate.png')}} @else {{asset('storage/icons/manipulate.png')}} @endif" alt="">
-                <p>Manipulação</p>
-                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
-            </div>
-            <div class="hiw-container-step">
-                <img src="@if(request()->routeIs('guest.receita.pet')) {{asset('storage/icons/pet/deliver.png')}} @else {{asset('storage/icons/deliver.png')}} @endif" alt="">
-                <p>Envio do produto</p>
-                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula egestas.</span>
-            </div>
+            @endforeach
         </div>
     </div>
     <div class="enviar-container">
-        <form action="" class="enviar-container-steps">
+        <form action="{{route('send.receipt')}}" class="enviar-container-steps" enctype="multipart/form-data" method="POST">
             @csrf
             <div class="enviar-container-steps-step" id="passo-1">
                 <div class="enviar-container-steps-step-header">
@@ -52,7 +38,7 @@
                         <input type="text" id="phone" name="phone" value="{{Auth::user()->phone}}" readonly />
                     </div>
                     <div class="enviar-input">
-                        <input type="text" id="zipCode" name="zipCode" placeholder="CEP" autofocus />
+                        <input type="text" id="zipCode" name="zipCode" placeholder="CEP" value="{{Auth::user()->address ?? ''}}" autofocus />
                     </div>
                     <div class="enviar-input">
                         <input type="text" id="street" placeholder="Rua" name="street" readonly />
@@ -117,7 +103,7 @@
                         <input type="file" id="file" name="file" accept=".png, .jpg, .pdf, .jpeg" />
                     </div>
                 </div>
-                <p>Ao clicar em enviar a sua receita, você aceita e está de acordo com os nossos <a href="{{route('guest.termos')}}">Termos de Uso</a> e <a href="{{route('guest.privacidade')}}">Políticas de Privacidade</a>.</p>
+                <p>Ao clicar em enviar a sua receita, você aceita e está de acordo com os nossos <a href="{{route('guest.termos')}}" target="_blank">Termos de Uso</a> e <a href="{{route('guest.privacidade')}}" target="_blank">Políticas de Privacidade</a>.</p>
                 <button type="submit" class="enviar-buttons submit" disabled>Enviar receita</button>
             </div>
 

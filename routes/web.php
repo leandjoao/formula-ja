@@ -76,11 +76,21 @@ Route::middleware(['auth'])->group(function () {
 
             Route::prefix('contacts')->group(function() {
                 Route::get('/', [AdminContactController::class, 'index'])->name('contact');
+                Route::get('view/{id}')->name('contact.view');
+                Route::get('remove/{id}')->name('contact.remove');
+
+                Route::get('getContacts', [AdminContactController::class, 'getContacts'])->name('contact.getContacts');
             });
 
             Route::prefix('budgets')->group(function() {
                 Route::get('/', [BudgetsController::class, 'index'])->name('budgets');
-                Route::get('inner', [BudgetsController::class, 'inner'])->name('budgets.inner');
+
+                Route::post('saveAnswer', [BudgetsController::class, 'sendBudget'])->name('budgets.sendAnswer');
+
+                Route::get('accept-budget/{id}', [BudgetsController::class, 'accept'])->name('budgets.accept');
+                Route::get('getBudgets', [BudgetsController::class, 'getBudgets'])->name('budgets.getBudgets');
+                Route::get('getBudgetsUser', [BudgetsController::class, 'getBudgetsUser'])->name('budgets.getBudgetsUser');
+                Route::get('inner/{id}', [BudgetsController::class, 'inner'])->name('budgets.inner');
             });
 
             Route::prefix('posts')->group(function() {

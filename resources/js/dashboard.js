@@ -1,4 +1,5 @@
 const { default: axios } = require("axios");
+const { replace, parseInt } = require("lodash");
 window.$ = window.jQuery = require('jquery');
 window.mask = require('jquery-mask-plugin');
 window.Swal = require('sweetalert2');
@@ -77,9 +78,7 @@ if (profile) {
     });
 
 
-
-
-    $('input[name=phone]').mask('(00) 0000-0000');
+    $('input[name=phone]').mask('(00) 90000 0000');
     $('input[name=cep]').mask('00000-000');
 }
 
@@ -143,13 +142,80 @@ if (addressForm) {
 
 const budget = document.querySelector('.budget');
 if (budget) {
+
     const answer = budget.querySelector('.budget-answer');
     const answered = budget.querySelector('.budget-answered');
     if (answer) {
-        console.log(answer);
+
+        const add = answer.querySelector('.add');
+        const remove = answer.querySelector('.remove');
+        const sendButton = answer.querySelector('.sendBudget');
+
+        setInterval(() => {
+            calculateTotal();
+        }, 1000);
+
+        $('.money').mask('0000000.00', { reverse: true });
+
+        add.addEventListener('click', function () {
+            calculateTotal();
+
+            var $div = $('div[id^="item-"]:last');
+            var num = parseInt($div.prop("id").match(/\d+/g), 10) + 1;
+
+            const div = `<div class="form-group" id="item-${num}">
+            <div class="form-input">
+            <input type="text" name="answer[${num}][item]" id="answer-${num}-item" required />
+            <label for="answer-${num}-item">Item</label>
+            </div>
+            <div class="form-input">
+            <input type="text" class="money" name="answer[${num}][price]" id="answer-${num}-price" required />
+            <label for="answer-${num}-price">Preço</label>
+            </div>
+            </div>`
+            $('.form').append(div);
+
+            $('.money').mask('0000000.00', { reverse: true });
+        });
+
+        remove.addEventListener('click', function () {
+            var $div = $('div[id^="item-"]:last');
+            if ($div.prop('id') !== 'item-0') {
+                $div.remove();
+            }
+
+            calculateTotal();
+        });
+
+        sendButton.addEventListener('click', function () {
+            $.ajax({
+                url: $('form').attr('action'),
+                data: $('form').serialize(),
+                method: $('form').attr('method'),
+            });
+
+            clearInterval();
+        });
+
     }
 
     if (answered) {
         console.log(answered);
+    }
+
+    function calculateTotal() {
+        const allInputs = answer.querySelectorAll('.money');
+        let total = [];
+        let sum = 0;
+
+        allInputs.forEach(value => {
+            total.push(parseFloat(parseFloat(value.value).toFixed(2)));
+        });
+
+        for (let i = 0; i < total.length; i++) {
+            sum += total[i];
+        }
+
+        $('#budgetSummary').text(sum.toFixed(2));
     }
 }

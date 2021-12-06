@@ -89,4 +89,36 @@
     }
 }
 
+.status {
+    color: white;
+    width: 150px;
+    align-items: center;
+    height: 30px;
+    border-radius: 3px;
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+    justify-content: space-around;
+
+    &.new {
+        background-color: $blue;
+    }
+
+    &.waiting {
+        background-color: orange;
+    }
+
+    &.sent {
+        background-color: $title;
+    }
+
+    &.refused {
+        background-color: $secondary;
+    }
+
+    &.finished {
+        background-color: rgb(44, 146, 121);
+    }
+}
+
 @import "./datatable";

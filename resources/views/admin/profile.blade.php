@@ -102,54 +102,54 @@
                             @csrf
                             <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" name="cep" id="zipCode" value="{{Auth::user()->zipCode}}" required />
+                                    <input type="text" name="cep" id="zipCode" value="{{Auth::user()->address->cep}}" required />
                                     <label for="zipCode">CEP:</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" name="address" id="address" required />
+                                    <input type="text" name="address" id="address" value="{{Auth::user()->address->address}}" required />
                                     <label for="address">Rua: </label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" name="neighborhood" id="neighborhood" required />
+                                    <input type="text" name="neighborhood" id="neighborhood" value="{{Auth::user()->address->neighborhood}}" required />
                                     <label for="neighborhood">Bairro: </label>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" name="city" id="city" required />
+                                    <input type="text" name="city" id="city" value="{{Auth::user()->address->city}}" required />
                                     <label for="city">Cidade: </label>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" name="state" id="state" required />
+                                    <input type="text" name="state" id="state" value="{{Auth::user()->address->state}}" required />
                                     <label for="state">Estado: </label>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" name="number" id="number" required />
+                                    <input type="text" name="number" id="number" value="{{Auth::user()->address->number}}" required />
                                     <label for="number">Número: </label>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" name="complement" id="complement" />
+                                    <input type="text" name="complement" id="complement" value="{{Auth::user()->address->complement}}" />
                                     <label for="complement">Complemento: </label>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" name="reference" id="reference" />
+                                    <input type="text" name="reference" id="reference" value="{{Auth::user()->address->reference}}" />
                                     <label for="reference">Ponto de Referência: </label>
                                 </div>
                             </div>

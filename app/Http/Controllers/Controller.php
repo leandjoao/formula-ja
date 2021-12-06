@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guest\ExtraTexts;
+use App\Models\Guest\HowItWorks;
 use App\Models\Guest\SocialMedia;
-use App\Models\Partner;
+use App\Models\Pharmacy;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -22,6 +23,7 @@ class Controller extends BaseController
         $this->Partners();
         $this->PartnersPet();
         $this->CTA();
+        $this->HIW();
     }
 
     protected function adminAccess()
@@ -46,13 +48,13 @@ class Controller extends BaseController
 
     protected function PartnersPet()
     {
-        $partnersPet = Partner::query()->where('pet', true)->get()->toArray();
+        $partnersPet = Pharmacy::query()->where('pet', true)->get()->toArray();
         view()->share('partnersPet', $partnersPet);
     }
 
     protected function Partners()
     {
-        $partners = Partner::query()->where('pet', false)->get()->toArray();
+        $partners = Pharmacy::query()->where('pet', false)->get()->toArray();
         view()->share('partners', $partners);
     }
 
@@ -60,6 +62,12 @@ class Controller extends BaseController
     {
         $et = ExtraTexts::select('cta')->get()->toArray()[0]['cta'];
         view()->share('cta', $et);
+    }
+
+    protected function HIW()
+    {
+        $hiw = HowItWorks::all()->toArray();
+        view()->share('how', $hiw);
     }
 
 }

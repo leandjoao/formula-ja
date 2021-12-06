@@ -27,7 +27,9 @@ class DatabaseSeeder extends Seeder
             PostCategorySeeder::class,
             PostSeeder::class,
             PartnersSeeder::class,
+            // FakerSeeder::class,
 
+            // Guest
             BannerSeeder::class,
             HowItWorkSeeder::class,
             WhyUsSeeder::class,

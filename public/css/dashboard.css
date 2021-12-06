@@ -66,6 +66,10 @@ body {
   height: 100%;
   color: #5e5f5f;
 }
+html p,
+body p {
+  margin: 0;
+}
 
 body {
   display: flex;
@@ -614,6 +618,33 @@ main {
   border-color: #fbcf3d;
 }
 
+.status {
+  color: white;
+  width: 150px;
+  align-items: center;
+  height: 30px;
+  border-radius: 3px;
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  justify-content: space-around;
+}
+.status.new {
+  background-color: #09f;
+}
+.status.waiting {
+  background-color: orange;
+}
+.status.sent {
+  background-color: #5e5f5f;
+}
+.status.refused {
+  background-color: #fc3043;
+}
+.status.finished {
+  background-color: #2c9279;
+}
+
 td.dt-control {
   background: url("https://www.datatables.net/examples/resources/details_open.png") no-repeat center center;
   cursor: pointer;
@@ -775,13 +806,18 @@ table.dataTable tbody tr td.pet i.fa-times {
   color: red;
 }
 table.dataTable tbody tr td:last-child {
-  width: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
 }
 table.dataTable tbody tr td:last-child a {
   color: #5e5f5f;
 }
 table.dataTable tbody tr td:last-child a.button {
-  width: 100%;
+  min-width: 140px;
+  position: relative;
   height: 40px;
   margin: 2px 0;
   cursor: pointer;
@@ -798,7 +834,7 @@ table.dataTable tbody tr td:last-child a.button:hover span.text {
   color: transparent;
 }
 table.dataTable tbody tr td:last-child a.button:hover span.icon {
-  width: 150px;
+  width: 100%;
   border-left: none;
   transform: translateX(0);
 }
@@ -823,7 +859,7 @@ table.dataTable tbody tr td:last-child a.button span.text {
 }
 table.dataTable tbody tr td:last-child a.button span.icon {
   position: absolute;
-  transform: translateX(110px);
+  transform: translateX(100px);
   height: 40px;
   width: 40px;
   display: flex;
@@ -1182,8 +1218,11 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^=col-]:last-
 .budget-answer-title .btn-group, .budget-answered-title .btn-group {
   gap: 5px;
 }
-.budget-answer-title .btn-group > div, .budget-answered-title .btn-group > div {
+.budget-answer-title .btn-group > a,
+.budget-answer-title .btn-group > div, .budget-answered-title .btn-group > a,
+.budget-answered-title .btn-group > div {
   gap: 5px;
+  text-decoration: none;
 }
 .budget-answer-title .btn-group .add, .budget-answered-title .btn-group .add {
   background-color: #09f;
@@ -1267,18 +1306,72 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^=col-]:last-
 .budget-answered-list li:nth-child(odd) {
   background: #f7f7fc;
 }
-.budget-summary {
+.budget-answered .accordion {
+  color: white;
+  background-color: #2751d8;
+  cursor: pointer;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   margin-top: 15px;
+}
+.budget-answered .accordion.active, .budget-answered .accordion:hover {
+  background-color: #1f41ad;
+  color: white;
+}
+.budget-answered .panel {
+  display: none;
+}
+.budget-answered-description p {
+  margin: 0;
+  color: #666;
+}
+.budget-summary {
   background: #f7f7fc;
   height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   padding: 0 15px;
 }
 .budget-summary p {
   margin: 0;
+}
+.budget-send {
+  margin-top: 15px;
+}
+.budget-send .sendBudget {
+  background-color: #09f;
+  padding: 0 22.5px;
+  height: 40px;
+  display: flex;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+  border-radius: 100px;
+  border: 2px solid #09f;
+  transition: all ease 0.2s;
+  cursor: pointer;
+  gap: 5px;
+}
+.budget-send .sendBudget:hover {
+  background-color: transparent;
+  color: #09f;
 }
 
 .create,

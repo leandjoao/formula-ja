@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBudgetAnsweredsTable extends Migration
+class CreateAnswerItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateBudgetAnsweredsTable extends Migration
      */
     public function up()
     {
-        Schema::create('budget_answereds', function (Blueprint $table) {
+        Schema::create('answer_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('budget_id');
             $table->foreign('budget_id')->references('id')->on('budgets');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('answered_by');
-            $table->foreign('answered_by')->references('id')->on('pharmacies');
-            $table->string('description');
-            $table->boolean('accepted')->default(false);
+            $table->unsignedBigInteger('partner_id');
+            $table->foreign('partner_id')->references('id')->on('users');
+            $table->unsignedBigInteger('answer_id');
+            $table->foreign('answer_id')->references('id')->on('budget_answereds');
+            $table->string('item');
+            $table->double('price');
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ class CreateBudgetAnsweredsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('budget_answereds');
+        Schema::dropIfExists('answer_items');
     }
 }

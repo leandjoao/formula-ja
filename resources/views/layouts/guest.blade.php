@@ -17,11 +17,13 @@
 <body @if(request()->routeIs('guest.pet') || request()->routeIs('guest.receita.pet')) class="is-pet" @endif>
     <div class="super">
         <div class="super-container">
-            <ul class="super-container-social">
-                @foreach($sm as $media)
-                    <li><a href="{{$media['link']}}"><i class="{{$media['media']}}"></i></a></li>
-                @endforeach
-            </ul>
+            @if(!empty($sm))
+                <ul class="super-container-social">
+                    @foreach($sm as $media)
+                        <li><a href="{{$media['link']}}"><i class="{{$media['media']}}"></i></a></li>
+                    @endforeach
+                </ul>
+            @endif
             <ul class="super-container-links">
                 <li><a href="">FAQ</a></li>
                 <li><a href="">Políticas de Privacidade</a></li>
@@ -71,12 +73,14 @@
     <main>
         @yield('content')
     </main>
+    @if(!empty($cta))
     <div class="cta-send">
         <div class="cta-send-container">
             <p>{{$cta}}</p>
         <a href="{{route('guest.receita')}}">Envie sua receita</a>
         </div>
     </div>
+    @endif
     <span class="to-top">
         <i class="fas fa-long-arrow-alt-up"></i>
     </span>
@@ -127,11 +131,13 @@
                             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                             consequat.
                         </p>
+                        @if (!empty($sm))
                         <ul>
                             @foreach($sm as $media)
                                 <li><a href="{{$media['link']}}"><i class="{{$media['media']}}"></i></a></li>
                             @endforeach
                         </ul>
+                        @endif
                     </div>
                 </div>
             </div>

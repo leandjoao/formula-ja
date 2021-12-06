@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Address::class, 'user_id', 'id');
     }
+
+    public function uploads()
+    {
+        return $this->hasMany(Upload::class, 'user_id', 'id');
+    }
 }
