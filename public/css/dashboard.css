@@ -1325,9 +1325,15 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^=col-]:last-
   border-top-right-radius: 5px;
   margin-top: 15px;
 }
+.budget-answered .accordion.accepted {
+  background-color: darkgreen;
+}
 .budget-answered .accordion.active, .budget-answered .accordion:hover {
   background-color: #1f41ad;
   color: white;
+}
+.budget-answered .accordion.active.accepted, .budget-answered .accordion:hover.accepted {
+  background-color: darkgreen;
 }
 .budget-answered .panel {
   display: none;
@@ -1372,6 +1378,35 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^=col-]:last-
 .budget-send .sendBudget:hover {
   background-color: transparent;
   color: #09f;
+}
+
+#updateStatusForm {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  height: 100%;
+}
+#updateStatusForm select {
+  height: 30px;
+  background-color: transparent;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  width: 200px;
+  font-size: 12px;
+  padding: 0 5px;
+}
+#updateStatusForm button {
+  border: 0;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+#updateStatusForm button i {
+  margin: 0;
 }
 
 .create,

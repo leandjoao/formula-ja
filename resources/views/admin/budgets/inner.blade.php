@@ -21,12 +21,32 @@
                         <td>{{$budget['sender']['phone']}}</td>
                     </tr>
                     <tr>
+                        <th><i class="fa fa-map-marker-alt"></i> Endereço: </th>
+                        <td>{{$budget['sender']['address']['address']}}, {{$budget['sender']['address']['number']}} - {{$budget['sender']['address']['neighborhood']}}, {{$budget['sender']['address']['city']}}/{{$budget['sender']['address']['state']}} - {{$budget['sender']['address']['cep']}}</td>
+                    </tr>
+                    <tr>
                         <th><i class="fa fa-paw"></i> PET: </th>
                         <td><i class="fa {{ boolval($budget['pet']) ? 'fa-check' : 'fa-times'}}"></i></td>
                     </tr>
                     <tr>
                         <th><i class="fa fa-question"></i> Status: </th>
-                        <td>{{$budget['status']}}</td>
+                        @if(Auth::user()->access_level == 3 && $budget['answers'][0]['info']['owner_id'] == Auth::user()->id)
+                            <td>
+                                <form action="{{route('budgets.updateStatus', $budget['id'])}}" method="POST" id="updateStatusForm">
+                                    @csrf
+                                    <select name="status">
+                                        <option value="novo" disabled>Novo</option>
+                                        <option value="aguardando" {{$budget['status'] == "aguardando" ? "selected disabled" : null}}>Aguardando</option>
+                                        <option value="enviado" {{$budget['status'] == "enviado" ? "selected disabled" : null}}>Enviado</option>
+                                        <option value="recusado"{{$budget['status'] == "recusado" ? "selected disabled" : null}}>Recusado</option>
+                                        <option value="finalizado"{{$budget['status'] == "finalizado" ? "selected disabled" : null}}>Finalizado</option>
+                                    </select>
+                                    <button type="submit"><i class="fa fa-check"></i></button>
+                                </form>
+                            </td>
+                            @else
+                            <td>{{Str::ucfirst($budget['status'])}}</td>
+                        @endif
                     </tr>
                     <tr>
                         <th><i class="fa fa-calendar-alt"></i> Enviado em: </th>
@@ -39,43 +59,7 @@
                 </table>
             </div>
 
-            @if(Auth::user()->access_level == 1 || Auth::user()->access_level == 2)
-            @foreach ($budget['answers'] as $answers)
-            <div class="budget-answered">
-                <div class="budget-answered-title">
-                    <h3>Reposta de: {{$answers['info']['name']}}</h3>
-                    @if(Auth::user()->access_level == 2)
-                    <div class="btn-group">
-                        <a class="accept" href="{{route('budgets.accept', $answers['id'])}}"><i class="fa fa-check"></i> Aceitar</a>
-                    </div>
-                    @endif
-                </div>
-                @if($answers['description'])
-                    <div class="budget-answered-description">
-                        <p><strong>Descrição:</strong> {{$answers['description']}}</p>
-                    </div>
-                @endif
-                @php($total = 0)
-                <button class="accordion">Ver Items ({{count($answers['items'])}})</button>
-                <div class="panel">
-                    <ul class="budget-answered-list">
-                        @foreach ($answers['items'] as $item)
-                        <li>
-                            <p>{{$item['item']}}</p>
-                            <p>R$ {{number_format($item['price'], 2, ',','.')}}</p>
-                        </li>
-                        @php($total += number_format($item['price']))
-                        @endforeach
-                    </ul>
-                </div>
-                <div class="budget-summary">
-                    <p><strong>Total</strong></p>
-                    <p>R$ <span class="summary">{{ number_format($total, 2, ',', '.') }}</span></p>
-                </div>
-            </div>
-            @endforeach
-            @endif
-            @if(Auth::user()->access_level == 3)
+            @if(Auth::user()->access_level == 3 && $budget['status'] === 'novo')
             <div class="budget-answer">
                 <div class="budget-answer-title">
                     <h3>Responder orçamento</h3>
@@ -87,6 +71,14 @@
                 <div class="budget-answer-list">
                     <form action="{{route('budgets.sendAnswer')}}" class="form" method="POST">
                         @csrf
+                        <input type="hidden" name="user_id" value="{{$budget['user_id']}}" readonly />
+                        <input type="hidden" name="budget_id" value="{{$budget['id']}}" readonly />
+                        <div class="form-group">
+                            <div class="form-input">
+                                <input type="text" name="description" id="description" required />
+                                <label for="description">Adicionar Comentário</label>
+                            </div>
+                        </div>
                         <div class="form-group" id="item-0">
                             <div class="form-input">
                                 <input type="text" name="answer[0][item]" id="answer-0-item" required />
@@ -103,7 +95,6 @@
                     <p><strong>Total</strong></p>
                     <p>R$ <span class="summary" id="budgetSummary">00.00</span></p>
                 </div>
-
                 <div class="budget-send">
                     <div class="btn-group">
                         <button type="submit" class="sendBudget">Enviar <i class="fa fa-paper-plane"></i></button>
@@ -111,7 +102,46 @@
                 </div>
             </div>
             @endif
-
+            @if(Auth::user()->access_level == 1 || Auth::user()->access_level == 2 || (Auth::user()->access_level == 3 && $budget['answers'][0]['info']['owner_id'] == Auth::user()->id))
+            @foreach ($budget['answers'] as $answers)
+            <div class="budget-answered">
+                <div class="budget-answered-title">
+                    @if(Auth::user()->access_level == 1 || Auth::user()->access_level == 2)
+                    <h3>Reposta de: {{$answers['info']['name']}}</h3>
+                    @else
+                    <h3>Reposta do Orçamento</h3>
+                    @endif
+                    @if(Auth::user()->access_level == 2 && boolval(!$answers['accepted']))
+                    <div class="btn-group">
+                        <a class="accept" href="{{route('budgets.accept', $answers['id'])}}"><i class="fa fa-check"></i> Aceitar</a>
+                    </div>
+                    @endif
+                </div>
+                @if($answers['description'])
+                <div class="budget-answered-description">
+                    <p><strong>Descrição:</strong> {{$answers['description']}}</p>
+                </div>
+                @endif
+                @php($total = 0)
+                <button class="accordion {{(boolval($answers['accepted'])) ? 'accepted' : ''}}">Ver Items ({{count($answers['items'])}})</button>
+                <div class="panel">
+                    <ul class="budget-answered-list">
+                        @foreach ($answers['items'] as $item)
+                        <li>
+                            <p>{{$item['item']}}</p>
+                            <p>R$ {{number_format($item['price'], 2, ',','.')}}</p>
+                        </li>
+                        @php($total += $item['price'])
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="budget-summary">
+                    <p><strong>Total</strong></p>
+                    <p>R$ <span class="summary">{{ number_format($total, 2, ',', '.') }}</span></p>
+                </div>
+            </div>
+            @endforeach
+            @endif
         </div>
     </div>
 </div>

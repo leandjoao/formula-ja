@@ -19,7 +19,7 @@ class CreateBudgetsTable extends Migration
             $table->foreign('upload_id')->references('id')->on('uploads');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('status')->default('open');
+            $table->string('status')->default('novo');
             $table->boolean('pet')->default(false);
             $table->timestamps();
         });

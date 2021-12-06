@@ -20,4 +20,9 @@ class BudgetAnswered extends Model
     {
         return $this->hasOne(Pharmacy::class, 'id', 'answered_by');
     }
+
+    public function budget()
+    {
+        return $this->belongsTo(Budget::class, 'budget_id', 'id');
+    }
 }

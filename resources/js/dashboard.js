@@ -131,15 +131,6 @@ if (addressForm) {
     });
 }
 
-
-
-
-
-/* TODO
-*   SE for farmacia, funcionalidade de adicionar e remover campos
-*   SE for usuário, funcionalidade de aceitar ou recusar orçamento
-*/
-
 const budget = document.querySelector('.budget');
 if (budget) {
 
@@ -192,15 +183,23 @@ if (budget) {
                 url: $('form').attr('action'),
                 data: $('form').serialize(),
                 method: $('form').attr('method'),
+            }).then((response) => {
+                Swal.fire({
+                    text: response.text,
+                    icon: response.icon,
+                    toast: true,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    position: 'bottom-end',
+                    didClose: () => {
+                        window.location = response.redirect
+                    }
+                });
             });
 
             clearInterval();
         });
-
-    }
-
-    if (answered) {
-        console.log(answered);
     }
 
     function calculateTotal() {

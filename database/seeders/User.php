@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Pharmacy;
 use App\Models\User as UserModel;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;

@@ -123,10 +123,18 @@
             border-top-right-radius: 5px;
             margin-top: $gap;
 
+            &.accepted {
+                background-color: darkgreen;
+            }
+
             &.active,
             &:hover {
                 background-color: darken($color: rgb(39, 81, 216), $amount: 10%);
                 color: white;
+
+                &.accepted {
+                    background-color: darkgreen;
+                }
             }
         }
 
@@ -169,6 +177,38 @@
         .sendBudget {
             @include button($blue, white);
             gap: 5px;
+        }
+    }
+}
+
+#updateStatusForm {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    height: 100%;
+
+    select {
+        height: 30px;
+        background-color: transparent;
+        border: 1px solid lightgray;
+        border-radius: 3px;
+        width: 200px;
+        font-size: 12px;
+        padding: 0 5px;
+    }
+
+    button {
+        border: 0;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+
+        i {
+            margin: 0;
         }
     }
 }

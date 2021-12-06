@@ -35,10 +35,6 @@
                 <span class='text'>Ver</span>
                 <span class="icon"><i class="fa fa-eye"></i></span>
             </a>
-            <a class="button delete" href="${d.remove}">
-                <span class='text'>Remover</span>
-                <span class="icon"><i class="fa fa-trash"></i></span>
-            </a>
         </td>
         `;
     }
@@ -53,7 +49,7 @@
 
     function status(d) {
         switch (d) {
-            case "open":
+            case "novo":
             return `<td><span class="status new">Novo <i class="far fa-star"></i></span></td>`;
             break;
 

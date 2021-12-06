@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AnswerItem;
 use App\Models\Budget;
+use App\Models\BudgetAnswered;
+use App\Models\Pharmacy;
 use App\Models\User;
 use Carbon\Carbon;
 use Faker\Generator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class BudgetsController extends Controller
@@ -33,12 +35,51 @@ class BudgetsController extends Controller
 
     public function accept($id)
     {
-        return 'ok';
+        $budgetAnswer = BudgetAnswered::query()->where('id', $id)->with('budget')->first();
+        $budgetAnswer->accepted = true;
+        $budgetAnswer->save();
+
+        $budget = Budget::query()->where('id', $budgetAnswer['budget']['id'])->first();
+        $budget->status = 'aguardando';
+        $budget->save();
+
+        $removeBudgetsAnswer = BudgetAnswered::query()->where('id', 'not like', $id)->get()->toArray();
+        foreach($removeBudgetsAnswer as $remove) {
+            $remove->delete();
+        }
+
+        return redirect()->back()->with(['status' => ['text' => 'Orçamento aceito!', 'icon' => 'success']]);
     }
 
     public function sendBudget(Request $request)
     {
-        dd($request->all());
+        $answer = new BudgetAnswered();
+        $answer->budget_id = $request->budget_id;
+        $answer->user_id = $request->user_id;
+        $answer->answered_by = Pharmacy::query()->where('owner_id', Auth::user()->id)->first()->id;
+        $answer->description = $request->description;
+        $answer->save();
+
+        foreach($request->answer as $itemList) {
+            $item = new AnswerItem();
+            $item->budget_id = $request->budget_id;
+            $item->partner_id = Pharmacy::query()->where('owner_id', Auth::user()->id)->first()->id;
+            $item->answer_id = $answer->id;
+            $item->item = $itemList['item'];
+            $item->price = $itemList['price'];
+            $item->save();
+        }
+
+        return response()->json(['text' => 'Resposta salva!', 'icon' => 'success', 'redirect' => route('budgets')], 200);
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $budget = Budget::query()->where('id', $id)->first();
+        $budget->status = $request->status;
+        $budget->save();
+
+        return redirect()->back()->with(['status' => ['text' => 'Status alterado!', 'icon' => 'success']]);
     }
 
     public function getBudgets(Request $request)
