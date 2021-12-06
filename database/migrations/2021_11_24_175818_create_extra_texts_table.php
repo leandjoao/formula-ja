@@ -16,13 +16,13 @@ class CreateExtraTextsTable extends Migration
         Schema::create('extra_texts', function (Blueprint $table) {
             $table->id();
             $table->string('faq_title');
-            $table->string('faq_text');
+            $table->longText('faq_text');
             $table->string('cta');
-            $table->string('about_us_text');
+            $table->longText('about_us_text');
             $table->string('about_us_image');
-            $table->string('team_text');
+            $table->longText('team_text');
             $table->string('team_image');
-            $table->string('contact_text');
+            $table->longText('contact_text');
             $table->timestamps();
         });
     }
