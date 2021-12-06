@@ -28,39 +28,70 @@ class PartnersController extends Controller
         return view('admin.parceiros.profile', compact('pharmacy'));
     }
 
-    public function create(Request $request)
+    public function update(Request $request)
     {
-        $this->adminAccess();
         $valid = Validator::make($request->all(), [
-            'name' => 'required|unique:pharmacies,name',
+            'name' => 'required',
             'pet' => 'required',
-            'logo' => 'required|file|max:1048|mimes:png,jpg,jpeg'
+        ]);
+
+        if($valid->fails()) return redirect()->back()->with(['errors' => $valid->errors()->messages(), 'icon' => 'error']);
+
+        $partner = Pharmacy::query()->where('owner_id', Auth::user()->id)->first();
+        $partner->name = $request->name;
+        $partner->phone = $request->phone;
+        $partner->pet = boolval($request->pet);
+        $partner->save();
+
+        return redirect()->back()->with(['status' => ['text' => 'Informações alteradas!', 'icon' => 'success']]);
+    }
+
+    public function changeAddress(Request $request)
+    {
+        $valid = Validator::make($request->all(), [
+            'address' => 'required',
+            'neighborhood' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'number' => 'required',
+            'cep' => 'required',
+        ]);
+
+        if($valid->fails()) return redirect()->back()->with(['errors' => $valid->errors()->messages(), 'icon' => 'error']);
+
+        $partner = Pharmacy::query()->where('owner_id', Auth::user()->id)->first();
+        $partner->zipCode = $request->cep;
+        $partner->street = $request->address;
+        $partner->neighborhood = $request->neighborhood;
+        $partner->city = $request->city;
+        $partner->state = $request->state;
+        $partner->number = (int)$request->number;
+        $partner->save();
+
+        return redirect()->back()->with(['status' => ['text' => 'Informações alteradas!', 'icon' => 'success']]);
+    }
+
+    public function changeLogo(Request $request)
+    {
+        $valid = Validator::make($request->all(), [
+            'file' => 'required|image|mimes:png,jpg,jpeg|max:2048'
         ]);
 
         if($valid->fails()) return redirect()->back()->with(['errors' => $valid->errors()->messages(), 'icon' => 'error']);
 
         $storage = Storage::disk('local');
-        $file = $request->file('logo');
+        $file = $request->file('file');
         $filename = Str::random(32).'.'.Str::lower($file->getClientOriginalExtension());
-
         $storagePath = 'public/partners/'.$filename;
-
-        $partner = new Pharmacy();
-        $partner->name = $request->name;
-        $partner->street = $request->street;
-        $partner->neighborhood = $request->neighborhood;
-        $partner->city = $request->city;
-        $partner->state = $request->state;
-        $partner->number = (int)$request->number;
-        $partner->phone = $request->phone;
-        $partner->owner_id = $request->owner_id;
-        $partner->pet = boolval($request->pet);
-        $partner->logo = $storagePath;
-        $partner->save();
-
         $storage->put($storagePath, file_get_contents($file));
 
-        return redirect()->back()->with(['status' => ['text' => 'Parceiro criado!', 'icon' => 'success']]);
+        $partner = Pharmacy::query()->where('owner_id', Auth::user()->id)->first();
+        Storage::delete('public/partners/'.$partner->logo);
+        $partner->logo = $filename;
+        $partner->save();
+
+
+        return redirect()->back()->with(['status' => ['text' => 'Logo atualizada com sucesso!', 'icon' => 'success']]);
     }
 
     public function remove($id)
@@ -120,17 +151,17 @@ class PartnersController extends Controller
                 "created_at" => $since,
                 "actions" => [
                     "remove" => route('partners.remove', $id),
-                ]
+                    ]
+                );
+            }
+
+            $response = array(
+                "draw" => intval($draw),
+                "iTotalRecords" => $totalRecords,
+                "iTotalDisplayRecords" => $totalRecordswithFilter,
+                "aaData" => $data_arr
             );
+
+            return response()->json($response);
         }
-
-        $response = array(
-            "draw" => intval($draw),
-            "iTotalRecords" => $totalRecords,
-            "iTotalDisplayRecords" => $totalRecordswithFilter,
-            "aaData" => $data_arr
-        );
-
-        return response()->json($response);
     }
-}

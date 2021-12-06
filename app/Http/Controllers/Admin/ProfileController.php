@@ -72,7 +72,7 @@ class ProfileController extends Controller
 
         if($valid->fails()) return redirect()->back()->with(['errors' => $valid->errors()->messages(), 'icon' => 'error']);
 
-        $address = Address::query()->where('user_id', Auth::user()->id)->get();
+        $address = Address::query()->where('user_id', Auth::user()->id)->first();
 
         if($address) {
             $address->cep = $request->cep;

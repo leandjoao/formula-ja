@@ -50,6 +50,9 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('/', [ProfileController::class, 'index'])->name('profile');
 
                 Route::get('/parceiro', [PartnersController::class, 'showProfile'])->name('profile.partner');
+                Route::post('/parceiro/update-account', [PartnersController::class, 'update'])->name('profile.update.partner');
+                Route::post('/parceiro/update-address', [PartnersController::class, 'changeAddress'])->name('profile.update.address');
+                Route::post('/parceiro/update-logo', [PartnersController::class, 'changeLogo'])->name('profile.update.logo');
 
                 Route::post('update-account', [ProfileController::class, 'update'])->name('profile.update');
                 Route::post('change-password', [ProfileController::class, 'changePassword'])->name('profile.password');
