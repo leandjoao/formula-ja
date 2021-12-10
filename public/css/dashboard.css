@@ -1598,6 +1598,52 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^=col-]:last-
   display: none;
 }
 
+.user {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.user-infos, .user-address, .user-budgets, .user-pharmacy, .user-answers {
+  padding: 15px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px -2px lightgray;
+  margin: 0;
+  background: white;
+  height: 100%;
+}
+.user-infos h4, .user-address h4, .user-budgets h4, .user-pharmacy h4, .user-answers h4 {
+  margin: 0;
+}
+.user-infos table, .user-pharmacy table {
+  width: 100%;
+}
+.user-infos table tr:nth-child(even), .user-pharmacy table tr:nth-child(even) {
+  background: #f7f7fc;
+}
+.user-infos table tr th,
+.user-infos table tr td, .user-pharmacy table tr th,
+.user-pharmacy table tr td {
+  text-align: left;
+  padding: 5px 10px;
+}
+.user-infos table tr th i,
+.user-infos table tr td i, .user-pharmacy table tr th i,
+.user-pharmacy table tr td i {
+  margin-right: 15px;
+}
+.user-infos table tr th i.fa-times,
+.user-infos table tr td i.fa-times, .user-pharmacy table tr th i.fa-times,
+.user-pharmacy table tr td i.fa-times {
+  color: #fc3043;
+}
+.user-infos table tr th i.fa-check,
+.user-infos table tr td i.fa-check, .user-pharmacy table tr th i.fa-check,
+.user-pharmacy table tr td i.fa-check {
+  color: green;
+}
+
 .hidden {
   display: none !important;
 }

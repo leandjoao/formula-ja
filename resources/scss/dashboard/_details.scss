@@ -1,0 +1,51 @@
+.user {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+
+    &-infos,
+    &-address,
+    &-budgets,
+    &-pharmacy,
+    &-answers {
+        padding: $gap;
+        @include section;
+
+        h4 {
+            margin: 0;
+        }
+    }
+
+    &-infos,
+    &-pharmacy {
+        table {
+            width: 100%;
+
+            tr {
+                &:nth-child(even) {
+                    background: $bg;
+                }
+
+                th,
+                td {
+                    text-align: left;
+                    padding: 5px 10px;
+
+                    i {
+                        margin-right: $gap;
+
+                        &.fa-times {
+                            color: $secondary;
+                        }
+
+                        &.fa-check {
+                            color: green;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

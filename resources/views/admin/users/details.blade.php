@@ -70,14 +70,14 @@
                     </tbody>
                 </table>
             </div>
-            @if($user['access_level'] == 2)
+            @if($user['access_level'] == 2 && (count($user['budgets']) >= 1))
             <div class="user-budgets">
                 <h4>{{(count($user['budgets']) <= 1) ? "Pedido:" : "Pedidos:"}}</h4>
                 <table class="table table-striped table-bordered" cellspacing=0>
                     <thead>
                         <tr>
+                            <th>Número do Pedido:</th>
                             <th>Status:</th>
-                            <th>Respostas:</th>
                             <th>PET:</th>
                             <th>Criado em:</th>
                             <th colspan="2">Ação:</th>
@@ -86,8 +86,8 @@
                     <tbody>
                         @foreach ($user['budgets'] as $budget)
                         <tr>
+                            <td>{{$budget['id']}}</td>
                             <td>{{Str::ucfirst($budget['status'])}}</td>
-                            <td>{{count($budget['answers'])}}</td>
                             <td><i class="fa {{boolval($budget['pet']) ? 'fa-check' : 'fa-times'}}"></i></td>
                             <td>{{Carbon\Carbon::parse($budget['created_at'])->toFormattedDateString()}}</td>
                             <td><a href="{{route('budgets.inner', $budget['id'])}}">Ver Pedido</a></td>
@@ -125,8 +125,8 @@
                     </tr>
                 </table>
             </div>
-
-            <div class="pharmacy-answers">
+            @if(count($user['pharmacy']['answers']) >= 1)
+            <div class="user-answers">
                 <h4>{{(count($user['pharmacy']['answers']) <= 1) ? "Resposta:" : "Respostas:"}}</h4>
                 <table class="table table-striped table-bordered" cellspacing=0>
                     <thead>
@@ -151,6 +151,7 @@
                     </tbody>
                 </table>
             </div>
+            @endif
 
             @endif
         </div>
