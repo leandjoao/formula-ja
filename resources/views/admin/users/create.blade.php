@@ -47,7 +47,7 @@
                             <label for="partnerName">Nome do Estabelecimento:</label>
                         </div>
                         <div class="form-input partnerName">
-                            <input type="text" name="cnpj" data-mask="00.000.000/0000-00" id="cnpj" required />
+                            <input type="text" name="cnpj" id="partnerId" data-mask="00.000.000/0000-00" id="cnpj" required />
                             <label for="cnpj">CNPJ:</label>
                         </div>
                         <div class="form-input">
