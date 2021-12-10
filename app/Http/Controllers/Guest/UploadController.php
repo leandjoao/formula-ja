@@ -22,12 +22,12 @@ class UploadController extends Controller
 
     public function index()
     {
-        return view('guest.enviarReceita', compact(['sm' => $this->SocialMedia(), 'cta' => $this->CTA(), 'how' => $this->HIW()]));
+        return view('guest.enviarReceita', compact(['sm' => $this->SocialMedia(),'cta' => $this->CTA(),'how' => $this->HIW()]));
     }
 
     public function pet()
     {
-        return view('guest.enviarReceita', compact(['sm' => $this->SocialMedia(), 'cta' => $this->CTA(), 'how' => $this->HIW()]));
+        return view('guest.enviarReceita', compact(['sm' => $this->SocialMedia(),'cta' => $this->CTA(),'how' => $this->HIW()]));
     }
 
 
@@ -42,7 +42,7 @@ class UploadController extends Controller
 
         if($valid->fails()) return redirect()->back()->withErrors($valid)->withInput();
 
-        $user = User::query()->where('email', $request->email)->with('address')->first();
+        $user = User::query()->where('email', $request->email)->with('address')->first()->toArray();
 
         if(!$user) {
             $user = new User();
@@ -54,30 +54,70 @@ class UploadController extends Controller
             $user->save();
 
             $address = new Address();
-            $address->user_id = $user->id;
+            $address->user_id = $user['id'];
             $address->cep = $request->zipCode;
+            $address->name = $request->name;
+            $address->phone = $request->phone;
             $address->address = $request->street;
             $address->neighborhood = $request->neighborhood;
             $address->city = $request->city;
             $address->state = $request->state;
             $address->number = $request->number;
+            $address->default = isset($request->sameInfo);
             $address->complement = $request->complement ?? '';
             $address->reference = $request->reference ?? '';
             $address->save();
+
+            if(!isset($request->sameInfo)) {
+                $address = new Address();
+                $address->user_id = $user['id'];
+                $address->cep = $request->shippingZipCode;
+                $address->name = $request->shippingName;
+                $address->phone = $request->shippingPhone;
+                $address->address = $request->shippingStreet;
+                $address->neighborhood = $request->shippingNeighborhood;
+                $address->city = $request->shippingCity;
+                $address->state = $request->shippingState;
+                $address->number = $request->shippingNumber;
+                $address->default = true;
+                $address->complement = $request->shippingComplement ?? '';
+                $address->reference = $request->shippingReference ?? '';
+                $address->save();
+            }
         }
 
-        if(is_null($user['address'])) {
+        if(empty($user['address'])) {
             $address = new Address();
-            $address->user_id = $user->id;
+            $address->user_id = $user['id'];
             $address->cep = $request->zipCode;
+            $address->name = $request->name;
+            $address->phone = $request->phone;
             $address->address = $request->street;
             $address->neighborhood = $request->neighborhood;
             $address->city = $request->city;
             $address->state = $request->state;
             $address->number = $request->number;
+            $address->default = isset($request->sameInfo);
             $address->complement = $request->complement ?? '';
             $address->reference = $request->reference ?? '';
             $address->save();
+
+            if(!isset($request->sameInfo)) {
+                $address = new Address();
+                $address->user_id = $user['id'];
+                $address->cep = $request->zipCode;
+                $address->name = $request->shippingName;
+                $address->phone = $request->shippingPhone;
+                $address->address = $request->shippingStreet;
+                $address->neighborhood = $request->shippingNeighborhood;
+                $address->city = $request->shippingCity;
+                $address->state = $request->shippingState;
+                $address->number = $request->shippingNumber;
+                $address->default = true;
+                $address->complement = $request->shippingComplement ?? '';
+                $address->reference = $request->shippingReference ?? '';
+                $address->save();
+            }
         }
 
         $fileName = Str::random(64) .'.'. $request->file->extension();
@@ -85,17 +125,31 @@ class UploadController extends Controller
 
         $upload = new Upload();
         $upload->file = $fileName;
-        $upload->user_id = $user->id;
+        $upload->user_id = $user['id'];
         $upload->save();
 
         $budget = new Budget();
         $budget->upload_id = $upload->id;
-        $budget->user_id = $user->id;
+        $budget->user_id = $user['id'];
+        $budget->sendToAddress = $request['defaultAddress'] ?? $address->id;
         $budget->pet = boolval($request->pet);
         $budget->save();
 
         // TODO: Disparar e-mail alertando que enviou a receita
 
-        return redirect()->back()->with(['status' => ['text' => 'Recebemos a sua receita!', 'icon' => 'success']]);
+        return redirect()->route('budgets')->with(['status' => ['text' => 'Recebemos a sua receita!', 'icon' => 'success']]);
+    }
+
+    public function changeAddress($id)
+    {
+        $address = Address::query()->where('user_id', Auth::user()->id)->where('default', true)->first();
+        $address->default = false;
+        $address->save();
+
+        $address = Address::query()->where('user_id', Auth::user()->id)->where('id', $id)->first();
+        $address->default = true;
+        $address->save();
+
+        return response()->json(['status' => ['text' => 'Endereço alterado!', 'icon' => 'success']]);
     }
 }

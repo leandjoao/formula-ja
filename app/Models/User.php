@@ -48,7 +48,7 @@ class User extends Authenticatable
 
     public function address()
     {
-        return $this->hasOne(Address::class, 'user_id', 'id');
+        return $this->hasMany(Address::class, 'user_id', 'id');
     }
 
     public function uploads()
@@ -58,6 +58,11 @@ class User extends Authenticatable
 
     public function pharmacy()
     {
-        return $this->hasOne(Pharmacy::class, 'owner_id', 'id');
+        return $this->hasOne(Pharmacy::class, 'owner_id', 'id')->with('answers');
+    }
+
+    public function budgets()
+    {
+        return $this->hasMany(Budget::class, 'user_id', 'id')->with(['answers', 'file']);
     }
 }

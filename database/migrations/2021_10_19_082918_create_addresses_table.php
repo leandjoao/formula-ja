@@ -15,6 +15,8 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('phone');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('cep');
@@ -23,6 +25,7 @@ class CreateAddressesTable extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('number');
+            $table->boolean('default');
             $table->string('complement')->nullable();
             $table->string('reference')->nullable();
             $table->timestamps();

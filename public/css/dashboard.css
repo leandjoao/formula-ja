@@ -478,6 +478,92 @@ main {
   flex: 2;
   display: flex;
   align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
+.profile-context-section-content-form-addresses {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+}
+.profile-context-section-content-form-addresses-item {
+  max-width: 250px;
+}
+.profile-context-section-content-form-addresses-item label {
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px -2px lightgray;
+  cursor: pointer;
+  text-align: left;
+  background-color: white;
+  position: relative;
+}
+.profile-context-section-content-form-addresses-item label a {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 12px;
+  background-color: red;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  z-index: 9;
+}
+.profile-context-section-content-form-addresses-item label p,
+.profile-context-section-content-form-addresses-item label small {
+  margin: 0;
+}
+.profile-context-section-content-form-addresses-item label p {
+  font-weight: bold;
+}
+.profile-context-section-content-form-addresses-item label small {
+  font-style: italic;
+  font-size: 12px;
+}
+.profile-context-section-content-form-addresses-item label.selected {
+  border-color: #fbcf3d;
+  box-shadow: 0 0 10px -2px #fbcf3d;
+}
+.profile-context-section-content-form-addresses-item label .card-group {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  height: 30px;
+}
+.profile-context-section-content-form-add {
+  align-self: flex-start;
+}
+.profile-context-section-content-form-add button {
+  background-color: #fbcf3d;
+  padding: 0 22.5px;
+  height: 40px;
+  display: flex;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+  border-radius: 100px;
+  border: 2px solid #fbcf3d;
+  transition: all ease 0.2s;
+  cursor: pointer;
+}
+.profile-context-section-content-form-add button:hover {
+  background-color: transparent;
+  color: #fbcf3d;
 }
 .profile-context-section-content-picture {
   flex: 1;

@@ -32,12 +32,12 @@ Route::namespace('Guest')->group(function() {
     Route::get('termos-de-uso', [TermsPolitcsController::class, 'terms'])->name('guest.termos');
     Route::get('politica-de-privacidade', [TermsPolitcsController::class, 'politics'])->name('guest.privacidade');
 
-
     Route::post('blog/pesquisa-blog', [BlogController::class, 'search'])->name('blog.search');
     Route::post('enviar-newsletter', [NewsletterController::class, 'newsletter'])->name('send.newsletter');
     Route::post('enviar-contato', [ContactController::class, 'send'])->name('send.contact');
     Route::post('enviar-receita', [UploadController::class, 'send'])->name('send.receipt');
     Route::post('criar-farmacia', [PharmacyController::class, 'create']);
+    Route::post('changeAddress/{id}', [UploadController::class, 'changeAddress'])->name('changeAddress');
 });
 
 
@@ -59,6 +59,8 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('change-address', [ProfileController::class, 'changeAddress'])->name('profile.address');
                 Route::post('change-picture', [ProfileController::class, 'changePicture'])->name('profile.picture');
                 Route::post('delete-account', [ProfileController::class, 'removeAccount'])->name('profile.remove');
+
+                Route::get('remove-address/{id}', [ProfileController::class, 'removeAddress'])->name('profile.removeAddress');
             });
 
             Route::prefix('users')->group(function() {

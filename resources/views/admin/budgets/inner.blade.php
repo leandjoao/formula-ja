@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 @section('content')
+@php
+    $answered = false;
+@endphp
 <div class="main">
     <div class="main-header">
         <h3> Orçamento: #{{$budget['id']}}</h3>
@@ -21,8 +24,8 @@
                         <td>{{$budget['sender']['phone']}}</td>
                     </tr>
                     <tr>
-                        <th><i class="fa fa-map-marker-alt"></i> Endereço: </th>
-                        <td>{{$budget['sender']['address']['address']}}, {{$budget['sender']['address']['number']}} - {{$budget['sender']['address']['neighborhood']}}, {{$budget['sender']['address']['city']}}/{{$budget['sender']['address']['state']}} - {{$budget['sender']['address']['cep']}}</td>
+                        <th><i class="fa fa-map-marker-alt"></i> Enviar para: </th>
+                        <td>{{$budget['address']['address']}}, {{$budget['address']['number']}} - {{$budget['address']['neighborhood']}}, {{$budget['address']['city']}}/{{$budget['address']['state']}} - {{$budget['address']['cep']}}</td>
                     </tr>
                     <tr>
                         <th><i class="fa fa-paw"></i> PET: </th>
@@ -30,12 +33,15 @@
                     </tr>
                     <tr>
                         <th><i class="fa fa-question"></i> Status: </th>
-                        @if(Auth::user()->access_level == 3 && $budget['answers'][0]['info']['owner_id'] == Auth::user()->id)
+                        @foreach ($budget['answers'] as $answer)
+                            @php($answered = in_array(Auth::user()->pharmacy->id ?? 0, $answer))
+                        @endforeach
+                        @if(Auth::user()->access_level == 3 && $answered && $budget['status'] !== "finalizado" && $budget['status'] !== "recusado")
                             <td>
                                 <form action="{{route('budgets.updateStatus', $budget['id'])}}" method="POST" id="updateStatusForm">
                                     @csrf
                                     <select name="status">
-                                        <option value="novo" disabled>Novo</option>
+                                        <option value="novo" selected disabled>Novo</option>
                                         <option value="aguardando" {{$budget['status'] == "aguardando" ? "selected disabled" : null}}>Aguardando</option>
                                         <option value="enviado" {{$budget['status'] == "enviado" ? "selected disabled" : null}}>Enviado</option>
                                         <option value="recusado"{{$budget['status'] == "recusado" ? "selected disabled" : null}}>Recusado</option>
@@ -59,7 +65,7 @@
                 </table>
             </div>
 
-            @if(Auth::user()->access_level == 3 && $budget['status'] === 'novo')
+            @if(Auth::user()->access_level == 3 && $budget['status'] === 'novo' && !$answered)
             <div class="budget-answer">
                 <div class="budget-answer-title">
                     <h3>Responder orçamento</h3>
@@ -69,7 +75,7 @@
                     </div>
                 </div>
                 <div class="budget-answer-list">
-                    <form action="{{route('budgets.sendAnswer')}}" class="form" method="POST">
+                    <form action="{{route('budgets.sendAnswer')}}" class="form" method="POST" id="sendBudget">
                         @csrf
                         <input type="hidden" name="user_id" value="{{$budget['user_id']}}" readonly />
                         <input type="hidden" name="budget_id" value="{{$budget['id']}}" readonly />
@@ -102,16 +108,16 @@
                 </div>
             </div>
             @endif
-            @if(Auth::user()->access_level == 1 || Auth::user()->access_level == 2 || (Auth::user()->access_level == 3 && $budget['answers'][0]['info']['owner_id'] == Auth::user()->id))
             @foreach ($budget['answers'] as $answers)
+            @if(Auth::user()->access_level == 1 || Auth::user()->access_level == 2 || ($answered && $answers['answered_by'] == Auth::user()->pharmacy->id))
             <div class="budget-answered">
                 <div class="budget-answered-title">
-                    @if(Auth::user()->access_level == 1 || Auth::user()->access_level == 2)
+                    @if(Auth::user()->access_level == 1 || Auth::user()->access_level == 2 || ($answered && $answers['answered_by'] == Auth::user()->pharmacy->id))
                     <h3>Reposta de: {{$answers['info']['name']}}</h3>
                     @else
                     <h3>Reposta do Orçamento</h3>
                     @endif
-                    @if(Auth::user()->access_level == 2 && boolval(!$answers['accepted']))
+                    @if(Auth::user()->access_level == 2 && !boolval($answers['accepted']))
                     <div class="btn-group">
                         <a class="accept" href="{{route('budgets.accept', $answers['id'])}}"><i class="fa fa-check"></i> Aceitar</a>
                     </div>
@@ -140,8 +146,8 @@
                     <p>R$ <span class="summary">{{ number_format($total, 2, ',', '.') }}</span></p>
                 </div>
             </div>
-            @endforeach
             @endif
+            @endforeach
         </div>
     </div>
 </div>

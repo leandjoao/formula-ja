@@ -16,11 +16,11 @@ class CreateAnswerItemsTable extends Migration
         Schema::create('answer_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('budget_id');
-            $table->foreign('budget_id')->references('id')->on('budgets');
+            $table->foreign('budget_id')->references('id')->on('budgets')->onDelete('cascade');
             $table->unsignedBigInteger('partner_id');
-            $table->foreign('partner_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('partner_id')->references('id')->on('pharmacies')->onDelete('cascade');
             $table->unsignedBigInteger('answer_id');
-            $table->foreign('answer_id')->references('id')->on('budget_answereds');
+            $table->foreign('answer_id')->references('id')->on('budget_answereds')->onDelete('cascade');
             $table->string('item');
             $table->double('price');
             $table->timestamps();

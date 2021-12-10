@@ -2556,6 +2556,38 @@ body.is-pet .enviar-buttons.submit:hover {
   cursor: not-allowed;
   border-color: #f7f7fc;
 }
+.enviar-container-steps-step-inputs-cards label {
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px -2px lightgray;
+  cursor: pointer;
+  text-align: left;
+  background-color: transparent;
+}
+.enviar-container-steps-step-inputs-cards label p,
+.enviar-container-steps-step-inputs-cards label small {
+  margin: 0;
+}
+.enviar-container-steps-step-inputs-cards label p {
+  font-weight: bold;
+}
+.enviar-container-steps-step-inputs-cards label small {
+  font-style: italic;
+  font-size: 12px;
+}
+.enviar-container-steps-step-inputs-cards label.selected {
+  border-color: #fbcf3d;
+  box-shadow: 0 0 10px -2px #fbcf3d;
+}
+.enviar-container-steps-step-inputs-cards label .card-group {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  height: 30px;
+}
 .enviar-container-steps-step.inativo {
   box-shadow: none;
   display: none;

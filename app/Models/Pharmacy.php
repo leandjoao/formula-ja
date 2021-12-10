@@ -13,4 +13,9 @@ class Pharmacy extends Model
     {
         return $this->hasOne(User::class, 'id', 'owner_id');
     }
+
+    public function answers()
+    {
+        return $this->hasMany(BudgetAnswered::class, 'answered_by', 'id')->with('items');
+    }
 }

@@ -71,14 +71,10 @@
                                     <input type="text" name="cep" id="zipCode" value="{{$pharmacy['zipCode'] ?? "" }}" required />
                                     <label for="zipCode">CEP:</label>
                                 </div>
-                            </div>
-                            <div class="form-group">
                                 <div class="form-input">
                                     <input type="text" name="address" id="address" value="{{$pharmacy['street'] ?? "" }}" required />
                                     <label for="address">Rua: </label>
                                 </div>
-                            </div>
-                            <div class="form-group">
                                 <div class="form-input">
                                     <input type="text" name="neighborhood" id="neighborhood" value="{{$pharmacy['neighborhood'] ?? "" }}" required />
                                     <label for="neighborhood">Bairro: </label>
@@ -90,16 +86,10 @@
                                     <input type="text" name="city" id="city" value="{{$pharmacy['city'] ?? "" }}" required />
                                     <label for="city">Cidade: </label>
                                 </div>
-                            </div>
-
-                            <div class="form-group">
                                 <div class="form-input">
                                     <input type="text" name="state" id="state" value="{{$pharmacy['state'] ?? "" }}" required />
                                     <label for="state">Estado: </label>
                                 </div>
-                            </div>
-
-                            <div class="form-group">
                                 <div class="form-input">
                                     <input type="text" name="number" id="number" value="{{$pharmacy['number'] ?? "" }}" required />
                                     <label for="number">Número: </label>
@@ -111,9 +101,6 @@
                                     <input type="text" name="complement" id="complement" value="{{$pharmacy['complement'] ?? "" }}" />
                                     <label for="complement">Complemento: </label>
                                 </div>
-                            </div>
-
-                            <div class="form-group">
                                 <div class="form-input">
                                     <input type="text" name="reference" id="reference" value="{{$pharmacy['reference'] ?? "" }}" />
                                     <label for="reference">Ponto de Referência: </label>

@@ -65,6 +65,46 @@
                             }
                         }
                     }
+
+                    &-cards {
+                        label {
+                            border: 1px solid lightgray;
+                            display: flex;
+                            flex-direction: column;
+                            padding: 10px;
+                            border-radius: 5px;
+                            box-shadow: 0 0 10px -2px lightgray;
+                            cursor: pointer;
+                            text-align: left;
+                            background-color: transparent;
+
+                            p,
+                            small {
+                                margin: 0;
+                            }
+
+                            p {
+                                font-weight: bold;
+                            }
+
+                            small {
+                                font-style: italic;
+                                font-size: 12px;
+                            }
+
+                            &.selected {
+                                border-color: $primary;
+                                box-shadow: 0 0 10px -2px $primary;
+                            }
+
+                            .card-group {
+                                display: flex;
+                                gap: 5px;
+                                align-items: center;
+                                height: 30px;
+                            }
+                        }
+                    }
                 }
 
                 &.inativo {

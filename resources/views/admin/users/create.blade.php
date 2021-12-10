@@ -19,8 +19,12 @@
                             <label class="label" for="email">E-mail</label>
                         </div>
                         <div class="form-input">
-                            <input id="phone" name="phone" type="text" required />
+                            <input id="phone" name="phone" data-mask="(00) 90000-0000" type="text" required />
                             <label class="label" for="phone">Telefone</label>
+                        </div>
+                        <div class="form-input">
+                            <input type="text" name="cpf" data-mask="000.000.000-00" id="cpf" required />
+                            <label for="cpf">CPF:</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -42,8 +46,12 @@
                             <input type="text" name="partnerName" id="partnerName" required />
                             <label for="partnerName">Nome do Estabelecimento:</label>
                         </div>
+                        <div class="form-input partnerName">
+                            <input type="text" name="cnpj" data-mask="00.000.000/0000-00" id="cnpj" required />
+                            <label for="cnpj">CNPJ:</label>
+                        </div>
                         <div class="form-input">
-                            <input type="text" name="cep" id="zipCode" required />
+                            <input type="text" name="cep" data-mask="00000-000" id="zipCode" required />
                             <label for="zipCode">CEP:</label>
                         </div>
                     </div>

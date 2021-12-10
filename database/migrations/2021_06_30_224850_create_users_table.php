@@ -18,9 +18,10 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('cpf');
             $table->string('phone');
             $table->string('avatar')->nullable();
-            $table->unsignedBigInteger('access_level');
+            $table->unsignedBigInteger('access_level')->default(2);
             $table->foreign('access_level')->references('id')->on('access_levels');
             $table->rememberToken();
             $table->timestamps();

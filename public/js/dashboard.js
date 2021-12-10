@@ -34881,28 +34881,43 @@ var addressForm = document.querySelector('#address');
 
 if (addressForm) {
   var zipCode = addressForm.querySelector('input[name="cep"]');
-  zipCode.addEventListener('blur', function (cep) {
-    getAddress(cep.target.value).then(function (response) {
-      if (response.data) {
-        var _response$data = response.data,
-            logradouro = _response$data.logradouro,
-            localidade = _response$data.localidade,
-            bairro = _response$data.bairro,
-            uf = _response$data.uf;
-        document.querySelector('input[name="address"]').value = logradouro;
-        document.querySelector('input[name="neighborhood"]').value = bairro;
-        document.querySelector('input[name="city"]').value = localidade;
-        document.querySelector('input[name="state"]').value = uf;
-      } else {
-        invalidZip();
-        zipCode.value = "";
-        document.querySelector('input[name="address"]').value = "";
-        document.querySelector('input[name="neighborhood"]').value = "";
-        document.querySelector('input[name="city"]').value = "";
-        document.querySelector('input[name="state"]').value = "";
-      }
+
+  if (zipCode) {
+    zipCode.addEventListener('blur', function (cep) {
+      getAddress(cep.target.value).then(function (response) {
+        if (response.data) {
+          var _response$data = response.data,
+              logradouro = _response$data.logradouro,
+              localidade = _response$data.localidade,
+              bairro = _response$data.bairro,
+              uf = _response$data.uf;
+          document.querySelector('input[name="address"]').value = logradouro;
+          document.querySelector('input[name="neighborhood"]').value = bairro;
+          document.querySelector('input[name="city"]').value = localidade;
+          document.querySelector('input[name="state"]').value = uf;
+        } else {
+          invalidZip();
+          zipCode.value = "";
+          document.querySelector('input[name="address"]').value = "";
+          document.querySelector('input[name="neighborhood"]').value = "";
+          document.querySelector('input[name="city"]').value = "";
+          document.querySelector('input[name="state"]').value = "";
+        }
+      });
     });
-  });
+  }
+
+  var items = document.querySelectorAll('.profile-context-section-content-form-addresses-item');
+
+  if (items) {
+    items.forEach(function (item) {
+      item.addEventListener('click', function (e) {
+        axios.post(window.location.origin + "/changeAddress/".concat(this.getAttribute('id'))).then(function () {
+          window.location.reload();
+        });
+      });
+    });
+  }
 }
 
 var budget = document.querySelector('.budget');
@@ -34957,9 +34972,9 @@ if (budget) {
     });
     sendButton.addEventListener('click', function () {
       $.ajax({
-        url: $('form').attr('action'),
-        data: $('form').serialize(),
-        method: $('form').attr('method')
+        url: $('#sendBudget').attr('action'),
+        data: $('#sendBudget').serialize(),
+        method: $('#sendBudget').attr('method')
       }).then(function (response) {
         Swal.fire({
           text: response.text,

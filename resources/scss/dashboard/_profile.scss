@@ -76,6 +76,87 @@ $navWidth: 200px;
                     flex: 2;
                     display: flex;
                     align-items: center;
+                    flex-direction: column;
+                    gap: $gap;
+
+                    &-addresses {
+                        width: 100%;
+                        display: flex;
+                        gap: $gap;
+
+                        &-item {
+                            max-width: 250px;
+
+                            label {
+                                border: 1px solid lightgray;
+                                display: flex;
+                                flex-direction: column;
+                                padding: 10px;
+                                border-radius: 5px;
+                                box-shadow: 0 0 10px -2px lightgray;
+                                cursor: pointer;
+                                text-align: left;
+                                background-color: white;
+                                position: relative;
+
+                                a {
+                                    position: absolute;
+                                    top: -10px;
+                                    right: -10px;
+                                    width: 20px;
+                                    height: 20px;
+                                    cursor: pointer;
+                                    text-decoration: none;
+                                    font-size: 12px;
+                                    background-color: red;
+                                    border-radius: 100px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    color: whitesmoke;
+                                    margin: 0;
+                                    padding: 0;
+                                    line-height: 1;
+                                    z-index: 9;
+                                }
+
+                                p,
+                                small {
+                                    margin: 0;
+                                }
+
+                                p {
+                                    font-weight: bold;
+                                }
+
+                                small {
+                                    font-style: italic;
+                                    font-size: 12px;
+                                }
+
+                                &.selected {
+                                    border-color: $primary;
+                                    box-shadow: 0 0 10px -2px $primary;
+                                }
+
+                                .card-group {
+                                    display: flex;
+                                    gap: 5px;
+                                    align-items: center;
+                                    height: 30px;
+                                }
+                            }
+                        }
+                    }
+
+                    &-add {
+                        align-self: flex-start;
+
+                        button {
+                            @include button($primary, white);
+                        }
+                    }
+
                 }
 
                 &-picture {

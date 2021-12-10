@@ -68,37 +68,52 @@ class ProfileController extends Controller
             'city' => 'required',
             'state' => 'required|max:2',
             'number' => 'required',
+            'name' => 'required',
+            'phone' => 'required',
         ]);
 
         if($valid->fails()) return redirect()->back()->with(['errors' => $valid->errors()->messages(), 'icon' => 'error']);
 
-        $address = Address::query()->where('user_id', Auth::user()->id)->first();
+        $address = Address::query()->where('user_id', Auth::user()->id)->where('default', true)->first() ?? null;
 
-        if($address) {
-            $address->cep = $request->cep;
-            $address->address = $request->address;
-            $address->neighborhood = $request->neighborhood;
-            $address->city = $request->city;
-            $address->state = $request->state;
-            $address->number = $request->number;
-            $address->complement = $request->complement;
-            $address->reference = $request->reference;
+        if(!is_null($address)) {
+            $address->default = false;
             $address->save();
-        } else {
-            $newAddress = new Address();
-            $newAddress->user_id = Auth::user()->id;
-            $newAddress->cep = $request->cep;
-            $newAddress->address = $request->address;
-            $newAddress->neighborhood = $request->neighborhood;
-            $newAddress->city = $request->city;
-            $newAddress->state = $request->state;
-            $newAddress->number = $request->number;
-            $newAddress->complement = $request->complement;
-            $newAddress->reference = $request->reference;
-            $newAddress->save();
         }
 
+        $newAddress = new Address();
+        $newAddress->user_id = Auth::user()->id;
+        $newAddress->name = $request->name;
+        $newAddress->phone = $request->phone;
+        $newAddress->cep = $request->cep;
+        $newAddress->address = $request->address;
+        $newAddress->neighborhood = $request->neighborhood;
+        $newAddress->city = $request->city;
+        $newAddress->state = $request->state;
+        $newAddress->number = $request->number;
+        $newAddress->default = true;
+        $newAddress->complement = $request->complement;
+        $newAddress->reference = $request->reference;
+        $newAddress->save();
+
+
         return redirect()->back()->with(['status' => ['text' => 'Endereço atualizado!', 'icon' => 'success']]);
+    }
+
+    public function removeAddress($id)
+    {
+        $address = Address::query()->where('id', $id)->first();
+        if(!is_null($address) && ($address->user_id == Auth::user()->id)) {
+            $address->delete();
+
+            $address = Address::query()->where('user_id', Auth::user()->id)->latest()->first();
+            $address->default = true;
+            $address->save();
+
+            return redirect()->back()->with(['status' => ['text' => 'Endereço removido!', 'icon' => 'success']]);
+        } else {
+            return redirect()->back()->with(['status' => ['text' => 'Você não tem permissão para isso', 'icon' => 'error']]);
+        }
     }
 
     public function removeAccount(Request $request)

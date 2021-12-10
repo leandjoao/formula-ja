@@ -9,14 +9,13 @@ use App\Models\BudgetAnswered;
 use App\Models\Pharmacy;
 use App\Models\User;
 use Carbon\Carbon;
-use Faker\Generator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class BudgetsController extends Controller
 {
-    public function index(Generator $faker)
+    public function index()
     {
         $orcamentos = Budget::query()->count();
         return view('admin.budgets.listing', compact('orcamentos'));
@@ -25,10 +24,12 @@ class BudgetsController extends Controller
     public function inner($id)
     {
         $budget = Budget::query()
-        ->where('id', $id)
-        ->with(['file', 'sender', 'answers'])
+        ->find($id)
+        ->with(['file', 'sender', 'answers', 'address'])
         ->first()
         ->toArray();
+
+
 
         return view('admin.budgets.inner', compact('budget'));
     }
@@ -43,10 +44,7 @@ class BudgetsController extends Controller
         $budget->status = 'aguardando';
         $budget->save();
 
-        $removeBudgetsAnswer = BudgetAnswered::query()->where('id', 'not like', $id)->get()->toArray();
-        foreach($removeBudgetsAnswer as $remove) {
-            $remove->delete();
-        }
+        BudgetAnswered::query()->where('id', 'not like', $id)->delete();
 
         return redirect()->back()->with(['status' => ['text' => 'Orçamento aceito!', 'icon' => 'success']]);
     }

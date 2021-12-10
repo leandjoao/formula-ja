@@ -17,7 +17,7 @@ class User extends Seeder
      */
     public function run(Faker $faker)
     {
-        $users = ['admin', 'user', 'farmacia'];
+        $users = ['admin'];
 
         foreach($users as $key=>$value) {
             $user = new UserModel();
@@ -26,6 +26,7 @@ class User extends Seeder
             $user->password = Hash::make($value);
             $user->access_level = (int)$key + 1;
             $user->phone = $faker->phoneNumber;
+            $user->cpf = "000000000-00";
             $user->save();
         }
     }

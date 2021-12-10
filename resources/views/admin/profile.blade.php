@@ -94,7 +94,7 @@
 
             <div class="profile-context-section" id="address">
                 <div class="profile-context-section-header">
-                    <small>Alterar Endereço</small>
+                    <small>Adicionar Endereço</small>
                 </div>
                 <div class="profile-context-section-content">
                     <div class="profile-context-section-content-form">
@@ -102,60 +102,73 @@
                             @csrf
                             <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" name="cep" id="zipCode" value="{{Auth::user()->address->cep ?? "" }}" required />
+                                    <input type="text" name="name" id="addressName" required />
+                                    <label for="addressName">Nome:</label>
+                                </div>
+                                <div class="form-input">
+                                    <input type="text" name="phone" id="addressPhone" required />
+                                    <label for="addressPhone">Telefone:</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="text" name="cep" id="zipCode" required />
                                     <label for="zipCode">CEP:</label>
                                 </div>
-                            </div>
-                            <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" name="address" id="address" value="{{Auth::user()->address->address ?? "" }}" required />
+                                    <input type="text" name="address" id="address" required />
                                     <label for="address">Rua: </label>
                                 </div>
-                            </div>
-                            <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" name="neighborhood" id="neighborhood" value="{{Auth::user()->address->neighborhood ?? "" }}" required />
+                                    <input type="text" name="number" id="number" required />
+                                    <label for="number">Número: </label>
+                                </div>
+                                <div class="form-input">
+                                    <input type="text" name="neighborhood" id="neighborhood" required />
                                     <label for="neighborhood">Bairro: </label>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" name="city" id="city" value="{{Auth::user()->address->city ?? "" }}" required />
+                                    <input type="text" name="city" id="city" required />
                                     <label for="city">Cidade: </label>
                                 </div>
-                            </div>
-
-                            <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" name="state" id="state" value="{{Auth::user()->address->state ?? "" }}" required />
+                                    <input type="text" name="state" id="state" required />
                                     <label for="state">Estado: </label>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" name="number" id="number" value="{{Auth::user()->address->number ?? "" }}" required />
-                                    <label for="number">Número: </label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="form-input">
-                                    <input type="text" name="complement" id="complement" value="{{Auth::user()->address->complement ?? "" }}" />
+                                    <input type="text" name="complement" id="complement" />
                                     <label for="complement">Complemento: </label>
                                 </div>
-                            </div>
-
-                            <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" name="reference" id="reference" value="{{Auth::user()->address->reference ?? "" }}" />
+                                    <input type="text" name="reference" id="reference" />
                                     <label for="reference">Ponto de Referência: </label>
                                 </div>
                             </div>
 
                             <button type="submit">Salvar Endereço</button>
                         </form>
+                        <div class="profile-context-section-content-form-addresses">
+                            @foreach(Auth::user()->address as $address)
+                            <div class="profile-context-section-content-form-addresses-item" id="{{$address['id']}}">
+                                <label for="endereco-{{$address['id']}}" @if(boolval($address['default'])) class="selected" @endif>
+                                    @if(Auth::user()->address->count() !== 1)
+                                        <a href="{{route('profile.removeAddress', $address['id'])}}"><i class="fa fa-times"></i></a>
+                                    @endif
+                                    <div class="card-group">
+                                        <input type="radio" id="endereco-{{$address['id']}}" name="defaultAddress" value="{{$address['id']}}" @if(boolval($address['default'])) checked @endif>
+                                        <p>{{$address['name']}}</p>
+                                    </div>
+                                    <small>{{$address['address']}}, {{$address['number']}}, {{$address['neighborhood']}} - {{$address['city']}}/{{$address['state']}} - {{$address['cep']}}</small>
+                                </label>
+                            </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>

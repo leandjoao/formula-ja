@@ -7,9 +7,7 @@ use App\Models\Address;
 use App\Models\Pharmacy;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -33,6 +31,8 @@ class UsersController extends Controller
     {
         $this->adminAccess();
         $valid = Validator::make($request->all(), [
+            'cpf' => 'required',
+            'cnpj' => 'required_if:pharmacy,3',
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|string',
@@ -53,17 +53,21 @@ class UsersController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make("123456");
         $user->phone = $request->phone;
+        $user->cpf = $request->cpf;
         $user->access_level = $request->pharmacy;
         $user->save();
 
         $address = new Address();
         $address->user_id = $user->id;
         $address->cep = $request->cep;
+        $address->name = $request->partnerName ?? $request->name;
+        $address->phone = $request->phone;
         $address->address = $request->address;
         $address->neighborhood = $request->neighborhood;
         $address->city = $request->city;
         $address->state = $request->state;
         $address->number = $request->number;
+        $address->default = true;
         $address->complement = $request->complement ?? '';
         $address->reference = $request->reference ?? '';
         $address->save();
@@ -79,6 +83,7 @@ class UsersController extends Controller
             $pharmacy->state = $request->state;
             $pharmacy->number = $request->number;
             $pharmacy->phone = $request->phone;
+            $pharmacy->cnpj = $request->cnpj;
             $pharmacy->owner_id = $user->id;
             $pharmacy->pet = boolval($request->pet);
             $pharmacy->save();
@@ -109,6 +114,17 @@ class UsersController extends Controller
         $user->save();
 
         return redirect()->back()->with(['status' => ['text' => 'Usuário alterado!', 'icon' => 'success']]);
+    }
+
+    public function view($id)
+    {
+        $user = User::query()
+        ->where('id', $id)
+        ->with(['pharmacy', 'budgets', 'address'])
+        ->first()
+        ->toArray();
+
+        return view('admin.users.details', compact('user'));
     }
 
     public function remove($id)

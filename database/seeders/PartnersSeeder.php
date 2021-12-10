@@ -24,6 +24,7 @@ class PartnersSeeder extends Seeder
             $partner->city = $faker->city;
             $partner->state = $faker->word;
             $partner->number = random_int(0, 99);
+            $partner->cnpj = "00.000.000/0000-00";
             $partner->phone = $faker->phoneNumber;
             $partner->owner_id = 3;
             $partner->pet = boolval(($i % 2));

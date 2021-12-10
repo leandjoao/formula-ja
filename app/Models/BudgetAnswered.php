@@ -9,7 +9,7 @@ class BudgetAnswered extends Model
 {
     use HasFactory;
 
-    protected $hidden = ['budget_id', 'user_id', 'created_at', 'updated_at'];
+    protected $hidden = ['user_id', 'updated_at'];
 
     public function items()
     {

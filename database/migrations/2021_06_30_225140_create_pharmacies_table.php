@@ -23,6 +23,7 @@ class CreatePharmaciesTable extends Migration
             $table->string('state');
             $table->string('number');
             $table->string('phone');
+            $table->string('cnpj');
             $table->string('logo')->nullable();
             $table->unsignedBigInteger('owner_id');
             $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
