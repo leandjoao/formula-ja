@@ -159,7 +159,7 @@ class BudgetsController extends Controller
 
         // Total records
         $totalRecords = Budget::select('count(*) as allcount')->count();
-        $totalRecordswithFilter = Budget::select('count(*) as allcount')->where('name', 'like', '%' .$searchValue . '%')->count();
+        $totalRecordswithFilter = Budget::select('count(*) as allcount')->where('id', 'like', '%' .$searchValue . '%')->count();
 
         // Fetch records
         $records = Budget::orderBy($columnName,$columnSortOrder)
