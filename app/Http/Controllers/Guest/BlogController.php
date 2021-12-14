@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class BlogController extends Controller
 {
@@ -19,6 +18,7 @@ class BlogController extends Controller
         $this->posts = Post::with('category')->paginate(9);
         $this->categorias = Category::withCount('posts')->limit(5)->get()->toArray();
         $this->lastPosts = Post::with('category')->limit(4)->get()->toArray();
+        $this->SocialMedia();
     }
 
     public function index()

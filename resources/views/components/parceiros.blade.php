@@ -5,7 +5,7 @@
         <div class="swiper-wrapper">
             @foreach($partners as $partner)
             <div class="swiper-slide">
-                <img src="{{$partner['logo']}}" alt="">
+                <img src="{{$partner['logo'] ?? "http://placehold.it/150x150?text=".$partner['name']}}" alt="{{$partner['name']}}">
             </div>
             @endforeach
         </div>

@@ -1,6 +1,6 @@
 <h5>Redes Sociais</h5>
 <div class="block-social-links">
-    <a href=""><i class="fab fa-facebook-f"></i></a>
-    <a href=""><i class="fab fa-instagram"></i></a>
-    <a href=""><i class="fab fa-youtube"></i></a>
+    @foreach($sm as $media)
+    <a href="{{$media['link']}}"><i class="{{$media['media']}}"></i></a>
+    @endforeach
 </div>

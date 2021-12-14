@@ -24,13 +24,16 @@
                     @include('guest.blog.components.search')
                 </div>
 
-                <div class="block block-instagram">
+                {{-- <div class="block block-instagram">
                     @include('guest.blog.components.instagram')
-                </div>
+                </div> --}}
 
+                @if(!empty($sm))
                 <div class="block block-social">
                     @include('guest.blog.components.social')
                 </div>
+                @endif
+
                 @if(!empty($post))
                     <div class="block block-categories">
                         @include('guest.blog.components.categorias')

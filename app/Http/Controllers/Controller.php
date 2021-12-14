@@ -54,7 +54,7 @@ class Controller extends BaseController
 
     protected function Partners()
     {
-        $partners = Pharmacy::query()->where('pet', false)->get()->toArray();
+        $partners = Pharmacy::query()->get()->toArray();
         view()->share('partners', $partners);
     }
 
