@@ -63,8 +63,10 @@
                 <div class="page-header-group-dropdown dropdown">
                     <div class="dropdown-button">
                         <img src="@if(empty(Auth::user()->avatar)) {{asset('storage/icons/user.png')}} @else {{asset('storage/avatar/' . Auth::user()->avatar)}} @endif" alt="Foto de {{Auth::user()->name}}">
-                        <p>{{ Auth::user()->name }} <i class="fa fa-caret-down"></i></p>
-
+                        <p>
+                            <span>{{ Auth::user()->name }} <i class="fa fa-caret-down"></i></span>
+                            <small>{{Auth::user()->access->label}}</small>
+                        </p>
                     </div>
                     <div class="dropdown-content">
                         <a href="{{ route('profile') }}"><i class="fa fa-user"></i> Perfil</a>

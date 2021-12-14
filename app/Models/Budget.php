@@ -32,4 +32,9 @@ class Budget extends Model
     {
         return $this->hasOne(Address::class, 'id', 'sendToAddress');
     }
+
+    public function status()
+    {
+        return $this->hasOne(Status::class, 'id', 'status_id');
+    }
 }

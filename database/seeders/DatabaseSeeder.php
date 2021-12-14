@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             Config::class,
             PostCategorySeeder::class,
             PostSeeder::class,
+            Status::class,
             // PartnersSeeder::class,
             // FakerSeeder::class,
 

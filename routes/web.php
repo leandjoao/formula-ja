@@ -94,8 +94,6 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('saveAnswer', [BudgetsController::class, 'sendBudget'])->name('budgets.sendAnswer');
 
                 Route::get('accept-budget/{id}', [BudgetsController::class, 'accept'])->name('budgets.accept');
-                Route::get('getBudgets', [BudgetsController::class, 'getBudgets'])->name('budgets.getBudgets');
-                Route::get('getBudgetsUser', [BudgetsController::class, 'getBudgetsUser'])->name('budgets.getBudgetsUser');
                 Route::get('inner/{id}', [BudgetsController::class, 'inner'])->name('budgets.inner');
                 Route::post('updateStatus/{id}', [BudgetsController::class, 'updateStatus'])->name('budgets.updateStatus');
             });

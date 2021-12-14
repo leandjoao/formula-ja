@@ -31,60 +31,37 @@
 }
 
 .pagination {
-    padding: 0;
     display: flex;
     gap: 5px;
 
-    .page {
-        &-item {
-            min-width: 30px;
-            min-height: 30px;
+    li {
+        min-width: 25px;
+        width: fit-content;
+        height: 25px;
+        display: flex;
+        background: transparent;
+        border-radius: 3px;
+        border: 1px solid lightgray;
+        font-size: 12px;
+
+        &.active {
+            span {
+                background: $primary;
+                color: white;
+            }
+        }
+
+        a,
+        span {
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 3px;
-            border: 1px solid lightgray;
-            line-height: 1;
-            cursor: pointer;
-
-            &:hover {
-                background: $primary;
-                border-color: $primary;
-
-                a {
-                    color: white;
-                }
-            }
-
-            a {
-                color: $text;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            &.disabled {
-                background: lightgray;
-                color: $bg;
-                cursor: not-allowed;
-
-                &:hover {
-                    background: lightgray;
-                    border-color: lightgray;
-
-                    a {
-                        color: $bg;
-                    }
-                }
-            }
-
-            &.active {
-                background: $primary;
-                color: white;
-                border-color: $primary;
-            }
+            padding: 0 5px;
+            gap: 5px;
+            text-decoration: none;
         }
     }
 }
@@ -100,24 +77,126 @@
     font-size: 13px;
     justify-content: space-around;
 
-    &.new {
+    &.novo {
         background-color: $blue;
     }
 
-    &.waiting {
+    &.aguardando {
         background-color: orange;
     }
 
-    &.sent {
+    &.enviado {
         background-color: $title;
     }
 
-    &.refused {
+    &.recusado {
         background-color: $secondary;
     }
 
-    &.finished {
+    &.entregue {
         background-color: rgb(44, 146, 121);
+    }
+}
+
+.table {
+    tbody {
+        tr {
+            td {
+                &.pet {
+                    text-align: center;
+                    color: green;
+
+                    i {
+                        &.fa-times {
+                            color: red;
+                        }
+                    }
+                }
+
+                &:last-child {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    padding: 5px 0;
+
+                    a {
+                        color: $text;
+
+                        &.button {
+                            min-width: 140px;
+                            position: relative;
+                            height: 40px;
+                            margin: 2px 0;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            border: none;
+                            border-radius: 5px;
+                            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+                            transition: 200ms;
+                            outline: none;
+                            text-decoration: none;
+
+                            &:hover {
+                                span {
+                                    &.text {
+                                        color: transparent;
+                                    }
+
+                                    &.icon {
+                                        width: 100%;
+                                        border-left: none;
+                                        transform: translateX(0);
+                                    }
+                                }
+                            }
+
+                            &.delete {
+                                background: #e62222;
+
+                                span {
+                                    &.icon {
+                                        border-left: 1px solid #c41b1b;
+                                    }
+                                }
+                            }
+
+                            &.view {
+                                background: #2270e6;
+
+                                span {
+                                    &.icon {
+                                        border-left: 1px solid #1b51c4;
+                                    }
+                                }
+                            }
+
+                            span {
+                                transition: 200ms;
+
+                                &.text {
+                                    transform: translateX(20px);
+                                    color: white;
+                                }
+
+                                &.icon {
+                                    position: absolute;
+                                    transform: translateX(100px);
+                                    height: 40px;
+                                    width: 40px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    color: #eee;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -22,11 +22,19 @@ class UploadController extends Controller
 
     public function index()
     {
+        if(Auth::user()->access_level != 3) {
+            return redirect()->route('dashboard')->with(['status' => ['text' => 'Este usuário não pode enviar receita.', 'icon' => 'error']]);
+        }
+
         return view('guest.enviarReceita', compact(['sm' => $this->SocialMedia(),'cta' => $this->CTA(),'how' => $this->HIW()]));
     }
 
     public function pet()
     {
+        if(Auth::user()->access_level != 3) {
+            return redirect()->route('dashboard')->with(['status' => ['text' => 'Este usuário não pode enviar receita.', 'icon' => 'error']]);
+        }
+
         return view('guest.enviarReceita', compact(['sm' => $this->SocialMedia(),'cta' => $this->CTA(),'how' => $this->HIW()]));
     }
 

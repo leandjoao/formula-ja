@@ -119,8 +119,17 @@
                         }
 
                         p {
-                            i {
-                                margin-left: 10px;
+                            display: flex;
+                            flex-direction: column;
+
+                            span {
+                                i {
+                                    margin-left: 10px;
+                                }
+                            }
+
+                            small {
+                                color: lightgray;
                             }
                         }
                     }

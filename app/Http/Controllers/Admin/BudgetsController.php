@@ -7,31 +7,61 @@ use App\Models\AnswerItem;
 use App\Models\Budget;
 use App\Models\BudgetAnswered;
 use App\Models\Pharmacy;
-use App\Models\User;
-use Carbon\Carbon;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class BudgetsController extends Controller
 {
     public function index()
     {
-        $orcamentos = Budget::query()->count();
+        $orcamentos = ['answered' => [], 'new' => []];
+        if(Auth::user()->access_level == 1) {
+            $orcamentos['answered'] = Budget::query()->where('status_id', 'not like',1)->paginate(10);
+            $orcamentos['new'] = Budget::query()->where('status_id', 1)->paginate(10);
+
+        } else if(Auth::user()->access_level == 3) {
+            $budgets = Budget::query()->with(['sender','answers','status'])->get()->toArray();
+
+            foreach($budgets as $budget) {
+                foreach ($budget['answers'] as $answers) {
+                    if(Auth::user()->pharmacy->id == (int)$answers['answered_by']) {
+                        array_push($orcamentos['answered'], $budget);
+                    }
+                }
+            }
+
+            $orcamentos['new'] = Budget::query()->with(['sender', 'status'])->where('status_id', 1)->orWhere('status_id', 2)->get()->toArray();
+
+        } else {
+            $orcamentos['answered'] = Budget::query()->with(['sender', 'status'])->where('user_id', Auth::user()->id)->where('status_id', 'not like', 1)->paginate(10);
+            $orcamentos['new'] = Budget::query()->with(['sender', 'status'])->where('user_id', Auth::user()->id)->where('status_id', 'like', 1)->paginate(10);
+        }
+
         return view('admin.budgets.listing', compact('orcamentos'));
     }
 
     public function inner($id)
     {
+        $answersId = [];
+
         $budget = Budget::query()
-        ->find($id)
-        ->with(['file', 'sender', 'answers', 'address'])
+        ->where('id', $id)
+        ->with(['file', 'sender', 'answers', 'address', 'status'])
         ->first()
         ->toArray();
 
+        $status = Status::all()->toArray();
 
+        foreach($budget['answers'] as $answer) {
+            array_push($answersId, $answer['id']);
+        }
 
-        return view('admin.budgets.inner', compact('budget'));
+        if($budget['status_id'] == 1 || $budget['status_id'] == 2 || Auth::user()->access_level == 1 || Auth::user()->access_level == 2 && Auth::user()->id == $budget['user_id'] || Auth::user()->access_level == 3 && (in_array(Auth::user()->pharmacy->id, $answersId, true))) {
+            return view('admin.budgets.inner', compact('budget', 'status'));
+        } else {
+            return abort(403);
+        }
     }
 
     public function accept($id)
@@ -41,7 +71,7 @@ class BudgetsController extends Controller
         $budgetAnswer->save();
 
         $budget = Budget::query()->where('id', $budgetAnswer['budget']['id'])->first();
-        $budget->status = 'aguardando';
+        $budget->status_id = 3;
         $budget->save();
 
         BudgetAnswered::query()->where('id', 'not like', $id)->delete();
@@ -57,6 +87,10 @@ class BudgetsController extends Controller
         $answer->answered_by = Pharmacy::query()->where('owner_id', Auth::user()->id)->first()->id;
         $answer->description = $request->description;
         $answer->save();
+
+        $budget = Budget::query()->where('id', $request->budget_id)->first();
+        $budget->status_id = 2;
+        $budget->save();
 
         foreach($request->answer as $itemList) {
             $item = new AnswerItem();
@@ -74,132 +108,9 @@ class BudgetsController extends Controller
     public function updateStatus(Request $request, $id)
     {
         $budget = Budget::query()->where('id', $id)->first();
-        $budget->status = $request->status;
+        $budget->status_id = $request->status;
         $budget->save();
 
         return redirect()->back()->with(['status' => ['text' => 'Status alterado!', 'icon' => 'success']]);
-    }
-
-    public function getBudgets(Request $request)
-    {
-        $draw = $request->get('draw');
-        $start = $request->get("start");
-        $rowperpage = $request->get("length");
-
-        $columnIndex_arr = $request->get('order');
-        $columnName_arr = $request->get('columns');
-        $order_arr = $request->get('order');
-        $search_arr = $request->get('search');
-
-        $columnIndex = $columnIndex_arr[0]['column'];
-        $columnName = $columnName_arr[$columnIndex]['data'];
-        $columnSortOrder = $order_arr[0]['dir'];
-        $searchValue = $search_arr['value'];
-
-        // Total records
-        $totalRecords = Budget::select('count(*) as allcount')->count();
-        $totalRecordswithFilter = Budget::select('count(*) as allcount')->where('id', 'like', '%' .$searchValue . '%')->count();
-
-        // Fetch records
-        $records = Budget::orderBy($columnName,$columnSortOrder)
-        ->where('budgets.status', 'like', '%' .$searchValue . '%')
-        ->orWhere('budgets.id', 'like', '%' .$searchValue . '%')
-        ->select('budgets.*')
-        ->skip($start)
-        ->take($rowperpage)
-        ->get();
-
-        $data_arr = array();
-
-        foreach($records as $record){
-            $id = $record->id;
-            $name = Str::ucfirst(User::query()->where('id', $record->user_id)->first()['name']);
-            $status = $record->status;
-            $pet = boolval($record->pet);
-            $created = Carbon::parse($record->created_at)->diffForHumans();
-
-            $data_arr[] = array(
-                "id" => $id,
-                "name" => $name,
-                "status" => $status,
-                "pet" => $pet,
-                "created_at" => $created,
-                "actions" => [
-                    "remove" => route('partners.remove', $id),
-                    "view" => route('budgets.inner', $id)
-                ]
-            );
-        }
-
-        $response = array(
-            "draw" => intval($draw),
-            "iTotalRecords" => $totalRecords,
-            "iTotalDisplayRecords" => $totalRecordswithFilter,
-            "aaData" => $data_arr
-        );
-
-        return response()->json($response);
-    }
-
-    public function getBudgetsUser(Request $request)
-    {
-        $draw = $request->get('draw');
-        $start = $request->get("start");
-        $rowperpage = $request->get("length");
-
-        $columnIndex_arr = $request->get('order');
-        $columnName_arr = $request->get('columns');
-        $order_arr = $request->get('order');
-        $search_arr = $request->get('search');
-
-        $columnIndex = $columnIndex_arr[0]['column'];
-        $columnName = $columnName_arr[$columnIndex]['data'];
-        $columnSortOrder = $order_arr[0]['dir'];
-        $searchValue = $search_arr['value'];
-
-        // Total records
-        $totalRecords = Budget::select('count(*) as allcount')->count();
-        $totalRecordswithFilter = Budget::select('count(*) as allcount')->where('id', 'like', '%' .$searchValue . '%')->count();
-
-        // Fetch records
-        $records = Budget::orderBy($columnName,$columnSortOrder)
-        ->where('budgets.user_id', 'like', Auth::user()->id)
-        ->orWhere('budgets.status', 'like', '%' .$searchValue . '%')
-        ->orWhere('budgets.id', 'like', '%' .$searchValue . '%')
-        ->select('budgets.*')
-        ->skip($start)
-        ->take($rowperpage)
-        ->get();
-
-        $data_arr = array();
-
-        foreach($records as $record){
-            $id = $record->id;
-            $name = Str::ucfirst(User::query()->where('id', $record->user_id)->first()['name']);
-            $status = $record->status;
-            $pet = boolval($record->pet);
-            $created = Carbon::parse($record->created_at)->diffForHumans();
-
-            $data_arr[] = array(
-                "id" => $id,
-                "name" => $name,
-                "status" => $status,
-                "pet" => $pet,
-                "created_at" => $created,
-                "actions" => [
-                    "remove" => route('partners.remove', $id),
-                    "view" => route('budgets.inner', $id)
-                ]
-            );
-        }
-
-        $response = array(
-            "draw" => intval($draw),
-            "iTotalRecords" => $totalRecords,
-            "iTotalDisplayRecords" => $totalRecordswithFilter,
-            "aaData" => $data_arr
-        );
-
-        return response()->json($response);
     }
 }

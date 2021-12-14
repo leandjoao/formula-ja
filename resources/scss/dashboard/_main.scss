@@ -151,33 +151,6 @@ main {
                                     display: none;
                                 }
                             }
-
-                            span {
-                                font-size: .8em;
-                                padding: 3px 5px;
-                                border-radius: 3px;
-                                color: $bg;
-
-                                &.novo {
-                                    background-color: $blue;
-                                }
-
-                                &.aguardando {
-                                    background-color: orange;
-                                }
-
-                                &.enviado {
-                                    background-color: $title;
-                                }
-
-                                &.recusado {
-                                    background-color: $secondary;
-                                }
-
-                                &.finalizado {
-                                    background-color: rgb(44, 146, 121);
-                                }
-                            }
                         }
                     }
                 }

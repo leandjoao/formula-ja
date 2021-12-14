@@ -21,7 +21,7 @@ class HomeController extends Controller
         $data = [
             'users' => User::all()->count(),
             'partners' => Pharmacy::all()->count(),
-            'budgets' => Budget::orderBy('created_at', 'asc')->with(['sender', 'answers'])->limit(5)->get()->toArray()
+            'budgets' => Budget::orderBy('created_at', 'asc')->with(['sender', 'answers', 'status'])->limit(5)->get()->toArray()
         ];
 
         return view('admin.dashboard', compact('data'));

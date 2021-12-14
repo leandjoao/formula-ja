@@ -198,8 +198,15 @@ body .page.full {
   -o-object-position: center;
      object-position: center;
 }
-.page-header-group-dropdown .dropdown-button p i {
+.page-header-group-dropdown .dropdown-button p {
+  display: flex;
+  flex-direction: column;
+}
+.page-header-group-dropdown .dropdown-button p span i {
   margin-left: 10px;
+}
+.page-header-group-dropdown .dropdown-button p small {
+  color: lightgray;
 }
 .page-header-group-dropdown .dropdown-content {
   display: none;
@@ -376,27 +383,6 @@ main {
   .main-list-content table tbody tr td:nth-child(2), .main-list-content table tbody tr td:last-child {
     display: none;
   }
-}
-.main-list-content table tbody tr td span {
-  font-size: 0.8em;
-  padding: 3px 5px;
-  border-radius: 3px;
-  color: #f7f7fc;
-}
-.main-list-content table tbody tr td span.novo {
-  background-color: #09f;
-}
-.main-list-content table tbody tr td span.aguardando {
-  background-color: orange;
-}
-.main-list-content table tbody tr td span.enviado {
-  background-color: #5e5f5f;
-}
-.main-list-content table tbody tr td span.recusado {
-  background-color: #fc3043;
-}
-.main-list-content table tbody tr td span.finalizado {
-  background-color: #2c9279;
 }
 
 @media (min-width: 600px) and (max-width: 1199px) {
@@ -660,52 +646,36 @@ main {
 }
 
 .pagination {
-  padding: 0;
   display: flex;
   gap: 5px;
 }
-.pagination .page-item {
-  min-width: 30px;
-  min-height: 30px;
+.pagination li {
+  min-width: 25px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 25px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  background: transparent;
   border-radius: 3px;
   border: 1px solid lightgray;
-  line-height: 1;
-  cursor: pointer;
+  font-size: 12px;
 }
-.pagination .page-item:hover {
+.pagination li.active span {
   background: #fbcf3d;
-  border-color: #fbcf3d;
-}
-.pagination .page-item:hover a {
   color: white;
 }
-.pagination .page-item a {
-  color: #5e5f5f;
+.pagination li a,
+.pagination li span {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.pagination .page-item.disabled {
-  background: lightgray;
-  color: #f7f7fc;
-  cursor: not-allowed;
-}
-.pagination .page-item.disabled:hover {
-  background: lightgray;
-  border-color: lightgray;
-}
-.pagination .page-item.disabled:hover a {
-  color: #f7f7fc;
-}
-.pagination .page-item.active {
-  background: #fbcf3d;
-  color: white;
-  border-color: #fbcf3d;
+  border-radius: 3px;
+  padding: 0 5px;
+  gap: 5px;
+  text-decoration: none;
 }
 
 .status {
@@ -719,20 +689,90 @@ main {
   font-size: 13px;
   justify-content: space-around;
 }
-.status.new {
+.status.novo {
   background-color: #09f;
 }
-.status.waiting {
+.status.aguardando {
   background-color: orange;
 }
-.status.sent {
+.status.enviado {
   background-color: #5e5f5f;
 }
-.status.refused {
+.status.recusado {
   background-color: #fc3043;
 }
-.status.finished {
+.status.entregue {
   background-color: #2c9279;
+}
+
+.table tbody tr td.pet {
+  text-align: center;
+  color: green;
+}
+.table tbody tr td.pet i.fa-times {
+  color: red;
+}
+.table tbody tr td:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+}
+.table tbody tr td:last-child a {
+  color: #5e5f5f;
+}
+.table tbody tr td:last-child a.button {
+  min-width: 140px;
+  position: relative;
+  height: 40px;
+  margin: 2px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  transition: 200ms;
+  outline: none;
+  text-decoration: none;
+}
+.table tbody tr td:last-child a.button:hover span.text {
+  color: transparent;
+}
+.table tbody tr td:last-child a.button:hover span.icon {
+  width: 100%;
+  border-left: none;
+  transform: translateX(0);
+}
+.table tbody tr td:last-child a.button.delete {
+  background: #e62222;
+}
+.table tbody tr td:last-child a.button.delete span.icon {
+  border-left: 1px solid #c41b1b;
+}
+.table tbody tr td:last-child a.button.view {
+  background: #2270e6;
+}
+.table tbody tr td:last-child a.button.view span.icon {
+  border-left: 1px solid #1b51c4;
+}
+.table tbody tr td:last-child a.button span {
+  transition: 200ms;
+}
+.table tbody tr td:last-child a.button span.text {
+  transform: translateX(20px);
+  color: white;
+}
+.table tbody tr td:last-child a.button span.icon {
+  position: absolute;
+  transform: translateX(100px);
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #eee;
 }
 
 td.dt-control {

@@ -68,7 +68,7 @@
                         <td>{{$pedido['sender']['phone']}}</td>
                         <td>{{$pedido['sender']['email']}}</td>
                         <td>{{ Carbon\Carbon::parse($pedido['created_at'])->diffForHumans() }}</td>
-                        <td><span class="{{$pedido['status']}}">{{Str::ucfirst($pedido['status'])}}</span></td>
+                        <td><span class="status {{$pedido['status']['label']}}">{{Str::ucfirst($pedido['status']['label'])}}</span></td>
                         <td><i class="fa {{ boolval($pedido['pet']) ? "fa-check" : "fa-times" }}"></i></td>
                         <td><a href="{{route('budgets.inner', $pedido['id'])}}">Ver Pedido</a></td>
                     </tr>

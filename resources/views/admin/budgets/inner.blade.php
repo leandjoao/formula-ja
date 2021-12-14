@@ -36,22 +36,20 @@
                         @foreach ($budget['answers'] as $answer)
                             @php($answered = in_array(Auth::user()->pharmacy->id ?? 0, $answer))
                         @endforeach
-                        @if(Auth::user()->access_level == 3 && $answered && $budget['status'] !== "finalizado" && $budget['status'] !== "recusado")
+                        @if(Auth::user()->access_level == 3 && $answered && $budget['status_id'] != 5 && $budget['status_id'] != 6)
                             <td>
                                 <form action="{{route('budgets.updateStatus', $budget['id'])}}" method="POST" id="updateStatusForm">
                                     @csrf
                                     <select name="status">
-                                        <option value="novo" selected disabled>Novo</option>
-                                        <option value="aguardando" {{$budget['status'] == "aguardando" ? "selected disabled" : null}}>Aguardando</option>
-                                        <option value="enviado" {{$budget['status'] == "enviado" ? "selected disabled" : null}}>Enviado</option>
-                                        <option value="recusado"{{$budget['status'] == "recusado" ? "selected disabled" : null}}>Recusado</option>
-                                        <option value="finalizado"{{$budget['status'] == "finalizado" ? "selected disabled" : null}}>Finalizado</option>
+                                        @foreach ($status as $st)
+                                            <option value="{{$st['id']}}" @if($st['id'] == $budget['status_id']) selected disabled @endif>{{ Str::ucfirst($st['label'])}}</option>
+                                        @endforeach
                                     </select>
                                     <button type="submit"><i class="fa fa-check"></i></button>
                                 </form>
                             </td>
                             @else
-                            <td>{{Str::ucfirst($budget['status'])}}</td>
+                            <td>{{Str::ucfirst($budget['status']['label'])}}</td>
                         @endif
                     </tr>
                     <tr>
@@ -65,7 +63,7 @@
                 </table>
             </div>
 
-            @if(Auth::user()->access_level == 3 && $budget['status'] === 'novo' && !$answered)
+            @if(Auth::user()->access_level == 3 && $budget['status_id'] == 1 && !$answered || Auth::user()->access_level == 3 && $budget['status_id'] == 2 && !$answered)
             <div class="budget-answer">
                 <div class="budget-answer-title">
                     <h3>Responder orçamento</h3>

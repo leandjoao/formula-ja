@@ -87,7 +87,7 @@
                         @foreach ($user['budgets'] as $budget)
                         <tr>
                             <td>{{$budget['id']}}</td>
-                            <td>{{Str::ucfirst($budget['status'])}}</td>
+                            <td>{{Str::ucfirst($budget['status']['label'])}}</td>
                             <td><i class="fa {{boolval($budget['pet']) ? 'fa-check' : 'fa-times'}}"></i></td>
                             <td>{{Carbon\Carbon::parse($budget['created_at'])->toFormattedDateString()}}</td>
                             <td><a href="{{route('budgets.inner', $budget['id'])}}">Ver Pedido</a></td>

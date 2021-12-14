@@ -63,6 +63,6 @@ class User extends Authenticatable
 
     public function budgets()
     {
-        return $this->hasMany(Budget::class, 'user_id', 'id')->with(['answers', 'file']);
+        return $this->hasMany(Budget::class, 'user_id', 'id')->with(['answers', 'file', 'status']);
     }
 }
