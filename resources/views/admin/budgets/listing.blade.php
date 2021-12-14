@@ -78,7 +78,7 @@
                 </tbody>
             </table>
 
-            {{$orcamentos['answered']->links() ?? $orcamentos['new']->links()}}
+            {{-- {{$orcamentos['answered']->links() ?? $orcamentos['new']->links()}} --}}
 
             @else
             <p class="text-center">Sem pedidos</p>
