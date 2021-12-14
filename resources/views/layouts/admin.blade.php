@@ -10,6 +10,7 @@
     @if(config('app.env') === "production")
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @endif
+    @include('components.g-tag')
 
     <title>Dashboard :: {{ config('app.name') }}</title>
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">

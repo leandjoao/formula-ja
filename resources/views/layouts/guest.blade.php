@@ -12,6 +12,8 @@
     @endif
     <title>{{ config('app.name') }}</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    @include('components.g-tag')
 </head>
 
 <body @if(request()->routeIs('guest.pet') || request()->routeIs('guest.receita.pet')) class="is-pet" @endif>

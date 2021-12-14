@@ -10,6 +10,7 @@
 
     <title>{{config('app.name')}}</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    @include('components.g-tag')
 
 </head>
 <body>
