@@ -76,21 +76,28 @@ class BudgetsController extends Controller
 
         BudgetAnswered::query()->where('id', 'not like', $id)->delete();
 
-        return redirect()->back()->with(['status' => ['text' => 'Orçamento aceito!', 'icon' => 'success']]);
+        return true;
     }
 
     public function sendBudget(Request $request)
     {
+        $amount = 0;
+
+        foreach($request->answer as $itemList) {
+            $amount += floatval($itemList['price']);
+        }
+
+        $budget = Budget::query()->where('id', $request->budget_id)->first();
+        $budget->status_id = 2;
+        $budget->save();
+
         $answer = new BudgetAnswered();
         $answer->budget_id = $request->budget_id;
         $answer->user_id = $request->user_id;
         $answer->answered_by = Pharmacy::query()->where('owner_id', Auth::user()->id)->first()->id;
         $answer->description = $request->description;
+        $answer->amount = $amount;
         $answer->save();
-
-        $budget = Budget::query()->where('id', $request->budget_id)->first();
-        $budget->status_id = 2;
-        $budget->save();
 
         foreach($request->answer as $itemList) {
             $item = new AnswerItem();

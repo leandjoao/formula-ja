@@ -426,7 +426,7 @@ main {
   font-weight: 600;
 }
 .profile-context {
-  width: calc(100% - calc(200px - 15px));
+  width: calc(100% - (200px - 15px));
 }
 @media (max-width: 599px) {
   .profile-context {
@@ -1682,6 +1682,71 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^=col-]:last-
 .user-infos table tr td i.fa-check, .user-pharmacy table tr th i.fa-check,
 .user-pharmacy table tr td i.fa-check {
   color: green;
+}
+
+.payment {
+  padding: 15px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px -2px lightgray;
+  margin: 0;
+  background: white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  gap: 15px;
+}
+.payment-info {
+  flex: 1;
+}
+.payment-info-header, .payment-info-summary {
+  width: 100%;
+  padding: 20px 10px;
+  background: #f1f1f1;
+  border: 1px solid #09f;
+}
+.payment-info-header {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-color: #09f;
+  background: #09f;
+  color: white;
+}
+.payment-info-header h6 {
+  margin: 0;
+}
+.payment-info-items {
+  margin: 0;
+  padding: 10px 0;
+  border-left: 1px solid #09f;
+  border-right: 1px solid #09f;
+  display: flex;
+  flex-direction: column;
+}
+.payment-info-items p {
+  padding: 10px;
+  margin: 0;
+}
+.payment-info-items li {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height: 50px;
+  padding: 0 10px;
+  align-items: center;
+}
+.payment-info-items li:nth-child(even) {
+  background: #f1f1f1;
+}
+.payment-info-summary {
+  display: flex;
+  justify-content: space-between;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  font-weight: bold;
+  border-top-color: #09f;
+}
+.payment-card {
+  flex: 1.5;
 }
 
 .hidden {

@@ -23,6 +23,7 @@ class CreateBudgetAnsweredsTable extends Migration
             $table->foreign('answered_by')->references('id')->on('pharmacies');
             $table->string('description');
             $table->boolean('accepted')->default(false);
+            $table->float('amount');
             $table->timestamps();
         });
     }

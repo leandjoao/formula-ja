@@ -99,6 +99,19 @@
         })
     </script>
     @endif
+    @if(session()->get('payment'))
+    <script type="text/javascript">
+        Swal.fire({
+            text: "{{ session()->get('payment.text')}}",
+            icon: "{{ session()->get('payment.icon')}}",
+            didClose: function() {
+                if("{{session()->get('payment.success')}}") {
+                    window.location = "{{route('budgets')}}";
+                }
+            }
+        })
+    </script>
+    @endif
     @if(session()->get('errors'))
     <script type="text/javascript">
         Swal.fire({

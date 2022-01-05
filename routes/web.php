@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BudgetsController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PartnersController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UsersController;
@@ -92,10 +93,12 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('/', [BudgetsController::class, 'index'])->name('budgets');
 
                 Route::post('saveAnswer', [BudgetsController::class, 'sendBudget'])->name('budgets.sendAnswer');
-
-                Route::get('accept-budget/{id}', [BudgetsController::class, 'accept'])->name('budgets.accept');
+                // Route::get('accept-budget/{id}', [BudgetsController::class, 'accept'])->name('budgets.accept');
                 Route::get('inner/{id}', [BudgetsController::class, 'inner'])->name('budgets.inner');
                 Route::post('updateStatus/{id}', [BudgetsController::class, 'updateStatus'])->name('budgets.updateStatus');
+
+                Route::get('payment/{budgetId}', [PaymentController::class, 'index'])->name('budgets.accept');
+                Route::post('payment/checkout', [PaymentController::class, 'checkout'])->name('budgets.checkout');
             });
 
             Route::prefix('posts')->group(function() {
