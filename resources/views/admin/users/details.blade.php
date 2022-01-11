@@ -36,7 +36,6 @@
                 <table class="table table-striped table-bordered" cellspacing=0>
                     <thead>
                         <tr>
-                            <th>Nome:</th>
                             <th>Telefone:</th>
                             <th>CEP:</th>
                             <th>Endereço:</th>
@@ -46,14 +45,11 @@
                             <th>Estado:</th>
                             <th>Primário:</th>
                             <th>Complemento:</th>
-                            <th>Referência:</th>
-                            <th>Criado em:</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($user['address'] as $address)
                         <tr>
-                            <td>{{$address['name']}}</td>
                             <td>{{$address['phone']}}</td>
                             <td>{{$address['cep']}}</td>
                             <td>{!! Str::limit($address['address'], 10, ' [...]') !!}</td>
@@ -62,9 +58,7 @@
                             <td>{{$address['city']}}</td>
                             <td>{{$address['state']}}</td>
                             <td><i class="fa {{boolval($address['default']) ? 'fa-check' : 'fa-times'}}"></i></td>
-                            <td>{!! Str::limit($address['complement'], 10, ' [...]') ?? "-" !!}</td>
-                            <td>{!! Str::limit($address['reference'], 10, ' [...]') ?? "-" !!}</td>
-                            <td>{{Carbon\Carbon::parse($address['created_at'])->toFormattedDateString()}}</td>
+                            <td>{{ Str::limit($address['complement'], 10, ' [...]') ?? "-" }}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -117,10 +111,18 @@
                     </tr>
                     <tr>
                         <th><i class="fa fa-map-marker-alt"></i> Endereço: </th>
-                        <td>{{$user['pharmacy']['street']}}, {{$user['pharmacy']['number']}} - {{$user['pharmacy']['neighborhood']}}, {{$user['pharmacy']['city']}}/{{$user['pharmacy']['state']}} - {{$user['pharmacy']['zipCode']}}</td>
+                        <td>{{$user['pharmacy']['street']}}, {{$user['pharmacy']['number']}} - {{$user['pharmacy']['neighborhood']}}, {{$user['pharmacy']['city']}}/{{$user['pharmacy']['state']}} - {{$user['pharmacy']['zip_code']}}</td>
                     </tr>
                     <tr>
-                        <th><i class="fa fa-business-time"></i> Criado em: </th>
+                        <th><i class="fa fa-hand-holding-usd"></i>Código Pagar.me: </th>
+                        <td>
+                            <a href="https://dash.pagar.me/merch_ZjXgewvTd0t75ylx/{{config('app.pagarme.id')}}/recipients/{{$user['pharmacy']['recipient_id']}}" target="_blank">
+                                {{$user['pharmacy']['recipient_id']}}
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><i class="fa fa-business-time"></i>Criado em: </th>
                         <td>{{Carbon\Carbon::parse($user['pharmacy']['created_at'])->toFormattedDateString()}}</td>
                     </tr>
                 </table>

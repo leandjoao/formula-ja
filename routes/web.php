@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BudgetsController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\PagarmeController;
 use App\Http\Controllers\Admin\PartnersController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PostsController;
@@ -107,6 +108,10 @@ Route::middleware(['auth'])->group(function () {
             });
         });
     });
+});
+
+Route::prefix('pagarme')->group(function() {
+    Route::get('recebedores', [PagarmeController::class, 'allRecipients']);
 });
 
 

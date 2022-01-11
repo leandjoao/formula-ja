@@ -24,7 +24,8 @@ class ProfileController extends Controller
         $valid = Validator::make($request->all(), [
             'name' => 'required|string',
             'email' => 'required|email',
-            'phone' => 'required'
+            'phone' => 'required',
+            'cpf' => 'required|unique:users,cpf'
         ]);
 
         if($valid->fails()) return redirect()->back()->with(['errors' => $valid->errors()->messages(), 'icon' => 'error']);
@@ -33,6 +34,7 @@ class ProfileController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        $user->cpf = $request->cpf;
         $user->save();
 
         return redirect()->back()->with(['status' => ['text' => 'Perfil atualizado!', 'icon' => 'success']]);

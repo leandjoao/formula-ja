@@ -27,8 +27,9 @@ class UsersController extends Controller
         return view('admin.users.create');
     }
 
-    public function create(Request $request)
+    public function create(Request $request, PartnersController $partnersController)
     {
+
         $this->adminAccess();
         $valid = Validator::make($request->all(), [
             'cpf' => 'required',
@@ -74,19 +75,28 @@ class UsersController extends Controller
 
 
         if($request->pharmacy == "3") {
-            $pharmacy = new Pharmacy();
-            $pharmacy->name = $request->partnerName;
-            $pharmacy->zipCode = $request->cep;
-            $pharmacy->street = $request->address;
-            $pharmacy->neighborhood = $request->neighborhood;
-            $pharmacy->city = $request->city;
-            $pharmacy->state = $request->state;
-            $pharmacy->number = $request->number;
-            $pharmacy->phone = $request->phone;
-            $pharmacy->cnpj = $request->cnpj;
-            $pharmacy->owner_id = $user->id;
-            $pharmacy->pet = boolval($request->pet);
-            $pharmacy->save();
+            $body = [
+                'name' => $request->partnerName,
+                'email' => $request->email,
+                'zip_code' => $request->cep,
+                'street' => $request->address,
+                'neighborhood' => $request->neighborhood,
+                'city' => $request->city,
+                'state' => $request->state,
+                'number' => $request->number,
+                'phone' => $request->phone,
+                'cpf' => $request->cpf,
+                'cnpj' => $request->cnpj,
+                'owner_id' => $user->id,
+                'pet' => boolval($request->pet),
+                'cod_bank' => '341',
+                'branch' => '1234',
+                'branch_check' => '6',
+                'account' => '12345',
+                'account_digit' => '6',
+            ];
+
+            $partnersController->create($body);
         }
 
         return redirect()->back()->with(['status' => ['text' => 'Usuário criado!', 'icon' => 'success']]);

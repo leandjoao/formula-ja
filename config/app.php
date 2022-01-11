@@ -21,6 +21,15 @@ return [
 
     'contact' => 'contato@formulaja.com.br',
 
+    'pagarme' => [
+        'url' => env('PAGARME_API', 'https://api.pagar.me/core/v5/'),
+        'id' => env('PAGARME_ID', 'acc_JLY7qDAhZC9aMzZ3'),
+        'pk' => env('PAGARME_PK', 'sk_test_EvO5AZVU6IkA1PGw'),
+        'sk' => env('PAGARME_SK', 'sk_test_EvO5AZVU6IkA1PGw'),
+        'rp' => env('PAGARME_RP', 'rp_1LqmaR9UWUPprlPj'),
+        'tax_ammount' => 20,
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

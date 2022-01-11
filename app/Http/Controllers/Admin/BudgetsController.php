@@ -64,21 +64,6 @@ class BudgetsController extends Controller
         }
     }
 
-    public function accept($id)
-    {
-        $budgetAnswer = BudgetAnswered::query()->where('id', $id)->with('budget')->first();
-        $budgetAnswer->accepted = true;
-        $budgetAnswer->save();
-
-        $budget = Budget::query()->where('id', $budgetAnswer['budget']['id'])->first();
-        $budget->status_id = 3;
-        $budget->save();
-
-        BudgetAnswered::query()->where('id', 'not like', $id)->delete();
-
-        return true;
-    }
-
     public function sendBudget(Request $request)
     {
         $amount = 0;

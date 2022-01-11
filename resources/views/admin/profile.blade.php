@@ -42,6 +42,12 @@
                                     <label for="phone">Telefone:</label>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <input type="text" name="cpf" id="cpf" data-mask="000.000.000-00" value="{{Auth::user()->cpf}}" required />
+                                    <label for="cpf">CPF:</label>
+                                </div>
+                            </div>
                             <button type="submit">Salvar</button>
                         </form>
                     </div>
