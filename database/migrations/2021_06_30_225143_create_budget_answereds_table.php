@@ -24,6 +24,7 @@ class CreateBudgetAnsweredsTable extends Migration
             $table->string('description');
             $table->boolean('accepted')->default(false);
             $table->float('amount');
+            $table->string('order_id')->nullable();
             $table->timestamps();
         });
     }

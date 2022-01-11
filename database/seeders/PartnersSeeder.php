@@ -19,7 +19,7 @@ class PartnersSeeder extends Seeder
             $partner = new Pharmacy();
             $partner->name = $faker->company;
             $partner->street = $faker->streetName;
-            $partner->zipCode = "18000-000";
+            $partner->zip_code = "18000-000";
             $partner->neighborhood = $faker->word;
             $partner->city = $faker->city;
             $partner->state = $faker->word;

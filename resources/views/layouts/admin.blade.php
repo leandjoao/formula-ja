@@ -104,6 +104,9 @@
         Swal.fire({
             text: "{{ session()->get('payment.text')}}",
             icon: "{{ session()->get('payment.icon')}}",
+            @if(!session()->get('payment.success'))
+                text: "{{ session()->get('payment.message') }}",
+            @endif
             didClose: function() {
                 if("{{session()->get('payment.success')}}") {
                     window.location = "{{route('budgets')}}";

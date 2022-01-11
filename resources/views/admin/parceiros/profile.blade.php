@@ -68,7 +68,7 @@
                             @csrf
                             <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" name="cep" id="zipCode" value="{{$pharmacy['zipCode'] ?? "" }}" required />
+                                    <input type="text" name="cep" id="zipCode" value="{{$pharmacy['zip_code'] ?? "" }}" required />
                                     <label for="zipCode">CEP:</label>
                                 </div>
                                 <div class="form-input">

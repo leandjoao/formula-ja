@@ -21,6 +21,28 @@ class PartnersController extends Controller
         return view('admin.parceiros.listing', compact('partners'));
     }
 
+    public function create($body)
+    {
+        $this->adminAccess();
+        $pagarme = new PagarmeController();
+        $recipient = $pagarme->newRecipient($body);
+
+        $pharmacy = new Pharmacy();
+        $pharmacy->name = $body['name'];
+        $pharmacy->zip_code = $body['zip_code'];
+        $pharmacy->street = $body['street'];
+        $pharmacy->neighborhood = $body['neighborhood'];
+        $pharmacy->city = $body['city'];
+        $pharmacy->state = $body['state'];
+        $pharmacy->number = $body['number'];
+        $pharmacy->phone = $body['phone'];
+        $pharmacy->cnpj = $body['cnpj'];
+        $pharmacy->owner_id = $body['owner_id'];
+        $pharmacy->pet = boolval($body['pet']);
+        $pharmacy->recipient_id = $recipient->id;
+        $pharmacy->save();
+    }
+
     public function showProfile()
     {
         $pharmacy = Pharmacy::query()->where('owner_id', Auth::user()->id)->first()->toArray();
@@ -60,7 +82,7 @@ class PartnersController extends Controller
         if($valid->fails()) return redirect()->back()->with(['errors' => $valid->errors()->messages(), 'icon' => 'error']);
 
         $partner = Pharmacy::query()->where('owner_id', Auth::user()->id)->first();
-        $partner->zipCode = $request->cep;
+        $partner->zip_code = $request->cep;
         $partner->street = $request->address;
         $partner->neighborhood = $request->neighborhood;
         $partner->city = $request->city;
