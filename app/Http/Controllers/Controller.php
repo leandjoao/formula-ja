@@ -26,20 +26,6 @@ class Controller extends BaseController
         $this->HIW();
     }
 
-    protected function adminAccess()
-    {
-        if(Auth::user()->access_level != 1) {
-            return abort(403);
-        }
-    }
-
-    protected function pharmacyAccess()
-    {
-        if(Auth::user()->access_level != 1 || Auth::user()->access_level != 3) {
-            return abort(403);
-        }
-    }
-
     protected function SocialMedia()
     {
         $sm = SocialMedia::all()->toArray();

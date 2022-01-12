@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\Authenticate;
 use App\Models\Budget;
 use App\Models\Pharmacy;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -17,8 +15,8 @@ class HomeController extends Controller
         if(Auth::user()->access_level == 2 || Auth::user()->access_level == 3) {
             return redirect()->route('budgets');
         }
-        $pagarme = new PagarmeController();
 
+        $pagarme = new PagarmeController();
         $data = [
             'users' => User::all()->count(),
             'partners' => Pharmacy::all()->count(),

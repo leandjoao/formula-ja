@@ -10,17 +10,19 @@ use Illuminate\Support\Str;
 
 class ContactController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     public function index()
     {
-        $this->adminAccess();
         $contacts = Contact::query()->count();
-
         return view('admin.contacts.listing', compact('contacts'));
     }
 
     public function getContacts(Request $request)
     {
-        $this->adminAccess();
         $draw = $request->get('draw');
         $start = $request->get("start");
         $rowperpage = $request->get("length");

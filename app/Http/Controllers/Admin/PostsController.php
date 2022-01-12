@@ -10,9 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     public function index(Generator $faker)
     {
-        $this->adminAccess();
 
         $posts = [];
         for($i=0; $i<10; $i++) {
@@ -29,8 +33,6 @@ class PostsController extends Controller
 
     public function category()
     {
-        $this->adminAccess();
-
         $categories = [
             [
                 'label' => 'teste',

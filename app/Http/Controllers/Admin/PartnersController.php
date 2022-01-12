@@ -15,17 +15,19 @@ use Illuminate\Support\Str;
 
 class PartnersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => ['showProfile', 'update', 'changeAddress', 'changeLogo']]);
+    }
+
     public function index()
     {
-        $this->adminAccess();
         $partners = Pharmacy::query()->count();
-
         return view('admin.parceiros.listing', compact('partners'));
     }
 
     public function showCreate()
     {
-        $this->adminAccess();
         $users = User::all()->toArray();
         $banks = Bank::all()->toArray();
 
@@ -34,7 +36,6 @@ class PartnersController extends Controller
 
     public function create(Request $request)
     {
-        $this->adminAccess();
         $valid = Validator::make($request->all(), [
             'name' => 'required',
             'cnpj' => 'required|unique:pharmacies,cnpj',
@@ -162,7 +163,6 @@ class PartnersController extends Controller
 
     public function remove($id)
     {
-        $this->adminAccess();
         $partner = Pharmacy::find($id);
         Storage::delete($partner->logo);
         $partner->delete();
@@ -172,7 +172,6 @@ class PartnersController extends Controller
 
     public function getPartners(Request $request)
     {
-        $this->adminAccess();
         $draw = $request->get('draw');
         $start = $request->get("start");
         $rowperpage = $request->get("length");

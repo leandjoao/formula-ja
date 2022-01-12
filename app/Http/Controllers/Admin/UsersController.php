@@ -15,9 +15,12 @@ use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
+    public function __construct() {
+        $this->middleware('admin');
+    }
+
     public function index()
     {
-        $this->adminAccess();
         $users = User::query()->count();
         return view('admin.users.listing', compact('users'));
     }
@@ -29,8 +32,6 @@ class UsersController extends Controller
 
     public function create(Request $request)
     {
-
-        $this->adminAccess();
         $valid = Validator::make($request->all(), [
             'cpf' => 'required',
             'name' => 'required|string',
@@ -75,7 +76,6 @@ class UsersController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->adminAccess();
         $valid = Validator::make($request->all(), [
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
@@ -110,7 +110,6 @@ class UsersController extends Controller
 
     public function remove($id)
     {
-        $this->adminAccess();
         $user = User::find($id);
         $user->delete();
 
@@ -119,7 +118,6 @@ class UsersController extends Controller
 
     public function getUsers(Request $request)
     {
-        $this->adminAccess();
         $draw = $request->get('draw');
         $start = $request->get("start");
         $rowperpage = $request->get("length");
