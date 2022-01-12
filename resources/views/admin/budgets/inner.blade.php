@@ -5,7 +5,7 @@
 @endphp
 <div class="main">
     <div class="main-header">
-        <h3> Orçamento: #{{$budget['id']}}</h3>
+        <h3> Pedido: #{{$budget['id']}}</h3>
     </div>
     <div class="main-content">
         <div class="budget">

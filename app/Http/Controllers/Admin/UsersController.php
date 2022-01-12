@@ -27,18 +27,15 @@ class UsersController extends Controller
         return view('admin.users.create');
     }
 
-    public function create(Request $request, PartnersController $partnersController)
+    public function create(Request $request)
     {
 
         $this->adminAccess();
         $valid = Validator::make($request->all(), [
             'cpf' => 'required',
-            'cnpj' => 'required_if:pharmacy,3',
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|string',
-            'pet' => 'required|string',
-            'pharmacy' => 'required|string',
             'cep' => 'required|string',
             'address' => 'required|string',
             'number' => 'required|string',
@@ -55,7 +52,7 @@ class UsersController extends Controller
         $user->password = Hash::make("123456");
         $user->phone = $request->phone;
         $user->cpf = $request->cpf;
-        $user->access_level = $request->pharmacy;
+        $user->access_level = 2;
         $user->save();
 
         $address = new Address();
@@ -72,32 +69,6 @@ class UsersController extends Controller
         $address->complement = $request->complement ?? '';
         $address->reference = $request->reference ?? '';
         $address->save();
-
-
-        if($request->pharmacy == "3") {
-            $body = [
-                'name' => $request->partnerName,
-                'email' => $request->email,
-                'zip_code' => $request->cep,
-                'street' => $request->address,
-                'neighborhood' => $request->neighborhood,
-                'city' => $request->city,
-                'state' => $request->state,
-                'number' => $request->number,
-                'phone' => $request->phone,
-                'cpf' => $request->cpf,
-                'cnpj' => $request->cnpj,
-                'owner_id' => $user->id,
-                'pet' => boolval($request->pet),
-                'cod_bank' => '341',
-                'branch' => '1234',
-                'branch_check' => '6',
-                'account' => '12345',
-                'account_digit' => '6',
-            ];
-
-            $partnersController->create($body);
-        }
 
         return redirect()->back()->with(['status' => ['text' => 'Usuário criado!', 'icon' => 'success']]);
     }

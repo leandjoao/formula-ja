@@ -98,7 +98,6 @@ class ProfileController extends Controller
         $newAddress->reference = $request->reference;
         $newAddress->save();
 
-
         return redirect()->back()->with(['status' => ['text' => 'Endereço atualizado!', 'icon' => 'success']]);
     }
 

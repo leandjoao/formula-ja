@@ -37,11 +37,11 @@ class PagarmeController extends Controller
                     'bank' => $body['cod_bank'],
                     'branch_number' => $body['branch'],
                     'branch_check_digit' => $body['branch_check'],
-                    'account_number' => $body['account'],
+                    'account_number' => $body['account_number'],
                     'account_check_digit' => $body['account_digit'],
                     'type' => 'checking',
                     'metadata' => [
-                        "user_id" => $body['owner_id'],
+                        "user_cpf" => $body['owner'],
                     ],
                 ],
                 'transfer_settings' => [
@@ -57,7 +57,6 @@ class PagarmeController extends Controller
 
         $response = $this->PAGARME->post('recipients', $payload);
         return json_decode($response->getBody());
-
 
     }
 
@@ -78,6 +77,12 @@ class PagarmeController extends Controller
         ];
 
         $response = $this->PAGARME->post('orders', $payload);
+        return json_decode($response->getBody());
+    }
+
+    public function getBalance($recipient_id)
+    {
+        $response = $this->PAGARME->get('recipients/'.$recipient_id.'/balance', ['headers' => $this->HEADER]);
         return json_decode($response->getBody());
     }
 }

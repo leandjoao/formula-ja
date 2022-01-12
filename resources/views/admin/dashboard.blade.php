@@ -7,41 +7,33 @@
 
     <div class="main-content">
         <div class="main-content-boxes">
-            {{-- <div class="main-content-boxes-box">
-                <small>Vendas</small>
-                <h5>2.000</h5>
+            <div class="main-content-boxes-box">
+                <small>Pedidos</small>
+                <h5>{{count($data['budgets'])}}</h5>
+                <p><a href="{{route('budgets')}}">Ver Todos <i class="fas fa-long-arrow-alt-right"></i></a></p>
+            </div>
+            <div class="main-content-boxes-box">
+                <small>Saldo</small>
+                <h5>R$ {{number_format($data['balance']->available_amount/100, 2, ',', ' ')}}</h5>
                 <p>
-                    <span class="good">+100%</span> desde o mês passado
+                    @if($data['balance']->waiting_funds_amount > 0)
+                    <span class="good">+ R$ {{number_format($data['balance']->waiting_funds_amount/100, 2, ',', ' ')}}</span> para ser liberado
+                    @else
+                    <span class="bad">R$ {{number_format($data['balance']->waiting_funds_amount/100, 2, ',', ' ')}}</span> para ser liberado
+                    @endif
                 </p>
-            </div> --}}
-            {{-- <div class="main-content-boxes-box">
-                <small>Ganhos</small>
-                <h5>R$21.300</h5>
-                <p>
-                    <span class="bad">-1.5%</span> desde o mês passado
-                </p>
-            </div> --}}
+            </div>
             <div class="main-content-boxes-box">
                 <small>Usuários</small>
                 <h5>{{$data['users']}}</h5>
                 <p><a href="{{route('users')}}">Ver Todos <i class="fas fa-long-arrow-alt-right"></i></a></p>
-                {{-- <p>
-                    <span class="good">+10%</span> desde o mês passado
-                </p> --}}
             </div>
             <div class="main-content-boxes-box">
                 <small>Parceiros</small>
                 <h5>{{$data['partners']}}</h5>
                 <p><a href="{{route('partners')}}">Ver Todos <i class="fas fa-long-arrow-alt-right"></i></a></p>
-                {{-- <p>
-                    <span class="good">+10%</span> desde o mês passado
-                </p> --}}
             </div>
         </div>
-        {{-- <div class="main-content-graph">
-            <small>Movimento durante o ano</small>
-            <img src="{{asset('storage/graph.png')}}" alt="">
-        </div> --}}
     </div>
 
     <div class="main-list">

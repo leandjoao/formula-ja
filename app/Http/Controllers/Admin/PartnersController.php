@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bank;
 use App\Models\Pharmacy;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,32 +23,74 @@ class PartnersController extends Controller
         return view('admin.parceiros.listing', compact('partners'));
     }
 
-    public function create($body)
+    public function showCreate()
     {
         $this->adminAccess();
+        $users = User::all()->toArray();
+        $banks = Bank::all()->toArray();
+
+        return view('admin.parceiros.create', compact('users', 'banks'));
+    }
+
+    public function create(Request $request)
+    {
+        $this->adminAccess();
+        $valid = Validator::make($request->all(), [
+            'name' => 'required',
+            'cnpj' => 'required|unique:pharmacies,cnpj',
+            'cep' => 'required',
+            'number' => 'required',
+            'phone' => 'required',
+            'owner' => 'required|exists:users,cpf',
+            'cod_bank' => 'required',
+            'branch' => 'required',
+            'account_number' => 'required',
+            'account_check_digit' => 'required',
+            'logo' => 'required|file|max:1024',
+        ]);
+
+        if($valid->fails()) return redirect()->back()->with(['errors' => $valid->errors()->messages(), 'icon' => 'error']);
+
+        $user = User::query()->where('cpf', $request->owner)->get()->first();
+        $user->access_level = 3;
+        $user->save();
+
+        $recipientData = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'cpf' => $request->owner,
+            'cod_bank' => $request->cod_bank,
+            'branch' => $request->branch,
+            'branch_check' => $request->branch_check_digit ?? null,
+            'account_number' => $request->account_number,
+            'account_digit' => $request->account_check_digit,
+            'owner' => $request->owner,
+        ];
+
         $pagarme = new PagarmeController();
-        $recipient = $pagarme->newRecipient($body);
+        $recipient = $pagarme->newRecipient($recipientData);
 
         $pharmacy = new Pharmacy();
-        $pharmacy->name = $body['name'];
-        $pharmacy->zip_code = $body['zip_code'];
-        $pharmacy->street = $body['street'];
-        $pharmacy->neighborhood = $body['neighborhood'];
-        $pharmacy->city = $body['city'];
-        $pharmacy->state = $body['state'];
-        $pharmacy->number = $body['number'];
-        $pharmacy->phone = $body['phone'];
-        $pharmacy->cnpj = $body['cnpj'];
-        $pharmacy->owner_id = $body['owner_id'];
-        $pharmacy->pet = boolval($body['pet']);
+        $pharmacy->name = $request->name;
+        $pharmacy->zip_code = $request->cep;
+        $pharmacy->street = $request->address;
+        $pharmacy->neighborhood = $request->neighborhood;
+        $pharmacy->city = $request->city;
+        $pharmacy->state = $request->state;
+        $pharmacy->number = $request->number;
+        $pharmacy->phone = $request->phone;
+        $pharmacy->cnpj = $request->cnpj;
+        $pharmacy->owner_id = $user->id;
+        $pharmacy->pet = boolval($request->pet);
         $pharmacy->recipient_id = $recipient->id;
         $pharmacy->save();
+
+        return redirect()->back()->with(['status' => ['text' => 'Parceiro criado!', 'icon' => 'success']]);
     }
 
     public function showProfile()
     {
         $pharmacy = Pharmacy::query()->where('owner_id', Auth::user()->id)->first()->toArray();
-
         return view('admin.parceiros.profile', compact('pharmacy'));
     }
 
@@ -162,7 +206,7 @@ class PartnersController extends Controller
             $id = $record->id;
             $name = Str::ucfirst($record->name);
             $pet = boolval($record->pet);
-            $logo = Storage::url($record->logo);
+            $logo = Storage::url('partners/'.$record->logo);
             $since = Carbon::parse($record->created_at)->diffForHumans();
 
             $data_arr[] = array(

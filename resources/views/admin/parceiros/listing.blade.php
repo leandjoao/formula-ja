@@ -8,7 +8,7 @@
         <div class="listing">
             <div class="listing-title">
                 <h3>Listagem de parceiros ({{$partners}})</h3>
-                <a href="{{route('users.create')}}"><i class="fa fa-plus"></i> Adicionar parceiro</a>
+                <a href="{{route('partners.create')}}"><i class="fa fa-plus"></i> Adicionar parceiro</a>
             </div>
             <table class="table table-striped table-bordered" cellspacing=0>
                 <thead>

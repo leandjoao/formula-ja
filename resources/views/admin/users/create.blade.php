@@ -29,34 +29,9 @@
                     </div>
                     <div class="form-group">
                         <div class="form-input">
-                            <select name="pet" id="pet">
-                                <option value="1">Sim</option>
-                                <option value="0" selected>Não</option>
-                            </select>
-                            <label class="label" for="pet">PET?</label>
-                        </div>
-                        <div class="form-input">
-                            <select name="pharmacy" id="pharmacy">
-                                <option value="3">Sim</option>
-                                <option value="2" selected>Não</option>
-                            </select>
-                            <label class="label" for="pharmacy">Parceiro?</label>
-                        </div>
-                        <div class="form-input partnerName">
-                            <input type="text" name="partnerName" id="partnerName" />
-                            <label for="partnerName">Nome do Estabelecimento:</label>
-                        </div>
-                        <div class="form-input partnerName">
-                            <input type="text" name="cnpj" id="partnerId" data-mask="00.000.000/0000-00" id="cnpj" />
-                            <label for="cnpj">CNPJ:</label>
-                        </div>
-                        <div class="form-input">
                             <input type="text" name="cep" data-mask="00000-000" id="zipCode" required />
                             <label for="zipCode">CEP:</label>
                         </div>
-                    </div>
-
-                    <div class="form-group">
                         <div class="form-input">
                             <input type="text" name="address" id="address" required />
                             <label for="address">Rua: </label>
@@ -69,6 +44,9 @@
                             <input type="text" name="neighborhood" id="neighborhood" required />
                             <label for="neighborhood">Bairro: </label>
                         </div>
+                    </div>
+
+                    <div class="form-group">
                         <div class="form-input">
                             <input type="text" name="city" id="city" required />
                             <label for="city">Cidade: </label>
@@ -77,16 +55,9 @@
                             <input type="text" name="state" id="state" required />
                             <label for="state">Estado: </label>
                         </div>
-                    </div>
-
-                    <div class="form-group">
                         <div class="form-input">
                             <input type="text" name="complement" id="complement" />
                             <label for="complement">Complemento: </label>
-                        </div>
-                        <div class="form-input">
-                            <input type="text" name="reference" id="reference" />
-                            <label for="reference">Ponto de Referência: </label>
                         </div>
                     </div>
 

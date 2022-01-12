@@ -77,7 +77,8 @@ Route::middleware(['auth'])->group(function () {
 
             Route::prefix('partners')->group(function() {
                 Route::get('/', [PartnersController::class, 'index'])->name('partners');
-
+                Route::get('create', [PartnersController::class, 'showCreate'])->name('partners.create');
+                Route::post('create', [PartnersController::class, 'create'])->name('partners.create.save');
                 Route::get('remove/{id}', [PartnersController::class, 'remove'])->name('partners.remove');
                 Route::get('getPartners', [PartnersController::class, 'getPartners'])->name('partners.getPartners');
             });
@@ -94,7 +95,6 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('/', [BudgetsController::class, 'index'])->name('budgets');
 
                 Route::post('saveAnswer', [BudgetsController::class, 'sendBudget'])->name('budgets.sendAnswer');
-                // Route::get('accept-budget/{id}', [BudgetsController::class, 'accept'])->name('budgets.accept');
                 Route::get('inner/{id}', [BudgetsController::class, 'inner'])->name('budgets.inner');
                 Route::post('updateStatus/{id}', [BudgetsController::class, 'updateStatus'])->name('budgets.updateStatus');
 
@@ -109,10 +109,5 @@ Route::middleware(['auth'])->group(function () {
         });
     });
 });
-
-Route::prefix('pagarme')->group(function() {
-    Route::get('recebedores', [PagarmeController::class, 'allRecipients']);
-});
-
 
 require __DIR__.'/auth.php';
