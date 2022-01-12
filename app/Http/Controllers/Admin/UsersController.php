@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NewUser;
 use App\Models\Address;
-use App\Models\Pharmacy;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -47,10 +48,12 @@ class UsersController extends Controller
 
         if($valid->fails()) return redirect()->back()->with(['errors' => $valid->errors()->messages(), 'icon' => 'error']);
 
+        $pwd = Str::random(8);
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = Hash::make("123456");
+        $user->password = Hash::make($pwd);
         $user->phone = $request->phone;
         $user->cpf = $request->cpf;
         $user->access_level = 2;
@@ -70,6 +73,15 @@ class UsersController extends Controller
         $address->complement = $request->complement ?? '';
         $address->reference = $request->reference ?? '';
         $address->save();
+
+
+        $message = [
+            'name' => $request->name,
+            'password' => $pwd,
+            'email' => $request->email,
+        ];
+
+        Mail::to($request->email)->send(new NewUser($message));
 
         return redirect()->back()->with(['status' => ['text' => 'Usuário criado!', 'icon' => 'success']]);
     }

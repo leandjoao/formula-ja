@@ -34,8 +34,6 @@ class ContactController extends Controller
         $message->message = $request->message;
         $message->save();
 
-        // Newsletter::query()->findOrNew('',['email' => $request->message]);
-
         return redirect()->back()->with(['status' => ['text' => 'Recebemos o seu contato!', 'icon' => 'success']]);
     }
 }

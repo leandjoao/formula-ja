@@ -14,12 +14,17 @@ return [
     */
 
     'name' => 'Formulajá',
-
     'domain' => 'formulaja.com.br',
-
-    'cnpj' => '00.000.000/0000-00',
-
+    'cnpj' => '41.897.982/0001-43',
     'contact' => 'contato@formulaja.com.br',
+    'address' => [
+        'street' => 'Rua Grécia',
+        'number' => '196',
+        'neighborhood' => 'Jd. Europa',
+        'city' => 'Sorocaba',
+        'state' => 'SP',
+        'zip' => '18045-350'
+    ],
 
     'pagarme' => [
         'url' => env('PAGARME_API', 'https://api.pagar.me/core/v5/'),

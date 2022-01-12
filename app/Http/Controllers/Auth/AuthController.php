@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NewUser;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
@@ -30,6 +31,14 @@ class AuthController extends Controller
         $user->phone = $request->phone ?? "";
         $user->password = Hash::make($request->password);
         $user->save();
+
+        $message = [
+            'name' => $request->name,
+            'password' => $request->password,
+            'email' => $request->email,
+        ];
+
+        Mail::to($request->email)->send(new NewUser($message));
 
         Auth::login($user);
 

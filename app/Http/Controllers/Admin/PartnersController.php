@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NewPartner;
 use App\Models\Bank;
 use App\Models\Pharmacy;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -47,7 +49,7 @@ class PartnersController extends Controller
             'branch' => 'required',
             'account_number' => 'required',
             'account_check_digit' => 'required',
-            'logo' => 'required|file|max:1024',
+            'logo' => 'required|image|mimes:png,jpg,jpeg|max:1024'
         ]);
 
         if($valid->fails()) return redirect()->back()->with(['errors' => $valid->errors()->messages(), 'icon' => 'error']);
@@ -68,6 +70,12 @@ class PartnersController extends Controller
             'owner' => $request->owner,
         ];
 
+        $storage = Storage::disk('local');
+        $file = $request->file('logo');
+        $filename = Str::random(32).'.'.Str::lower($file->getClientOriginalExtension());
+        $storagePath = 'public/partners/'.$filename;
+        $storage->put($storagePath, file_get_contents($file));
+
         $pagarme = new PagarmeController();
         $recipient = $pagarme->newRecipient($recipientData);
 
@@ -84,7 +92,16 @@ class PartnersController extends Controller
         $pharmacy->owner_id = $user->id;
         $pharmacy->pet = boolval($request->pet);
         $pharmacy->recipient_id = $recipient->id;
+        $pharmacy->logo = $filename;
         $pharmacy->save();
+
+        $data = [
+            'name' => $user->name,
+            'partnerName' => $request->name,
+            'address' => $request->address.', '.$request->number.', '.$request->neighborhood.' - '.$request->city.'/'.$request->state
+        ];
+
+        Mail::to($user->email)->send(new NewPartner($data));
 
         return redirect()->back()->with(['status' => ['text' => 'Parceiro criado!', 'icon' => 'success']]);
     }
@@ -141,7 +158,7 @@ class PartnersController extends Controller
     public function changeLogo(Request $request)
     {
         $valid = Validator::make($request->all(), [
-            'file' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+            'file' => 'required|image|mimes:png,jpg,jpeg|max:1024'
         ]);
 
         if($valid->fails()) return redirect()->back()->with(['errors' => $valid->errors()->messages(), 'icon' => 'error']);

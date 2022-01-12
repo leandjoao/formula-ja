@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NewBudget;
 use App\Models\Address;
 use App\Models\Budget;
+use App\Models\Pharmacy;
 use App\Models\Upload;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,22 +26,13 @@ class UploadController extends Controller
 
     public function index()
     {
-        // if(Auth::user()->access_level != 3) {
-        //     return redirect()->route('dashboard')->with(['status' => ['text' => 'Este usuário não pode enviar receita.', 'icon' => 'error']]);
-        // }
-
         return view('guest.enviarReceita', compact(['sm' => $this->SocialMedia(),'cta' => $this->CTA(),'how' => $this->HIW()]));
     }
 
     public function pet()
     {
-        // if(Auth::user()->access_level != 3) {
-        //     return redirect()->route('dashboard')->with(['status' => ['text' => 'Este usuário não pode enviar receita.', 'icon' => 'error']]);
-        // }
-
         return view('guest.enviarReceita', compact(['sm' => $this->SocialMedia(),'cta' => $this->CTA(),'how' => $this->HIW()]));
     }
-
 
     public function send(Request $request)
     {
@@ -143,7 +138,23 @@ class UploadController extends Controller
         $budget->pet = boolval($request->pet);
         $budget->save();
 
-        // TODO: Disparar e-mail alertando que enviou a receita
+        if(!isset($request->sameInfo)) {
+            $addr = $request->shippingStreet.', '.$request->shippingNumber.', '.$request->shippingNeighborhood.' - '.$request->shippingCity.'/'.$request->shippingState;
+        } else {
+            $addr = $request->street.', '.$request->number.', '.$request->neighborhood.' - '.$request->city.'/'.$request->state;
+        }
+
+        $mail = [
+            'name' => $request->name,
+            'date' => Carbon::now()->format('d/m/Y H:m'),
+            'file' => $fileName,
+            'address' => $addr,
+        ];
+
+        $parceiros = Pharmacy::query()->with('owner')->get()->toArray();
+        foreach($parceiros as $parceiro) {
+            Mail::to($parceiro['owner']['email'])->send(new NewBudget($mail));
+        }
 
         return redirect()->route('budgets')->with(['status' => ['text' => 'Recebemos a sua receita!', 'icon' => 'success']]);
     }
