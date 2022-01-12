@@ -19,7 +19,7 @@
             <ul class="mail-context-data">
                 <li><strong>Cliente:</strong> {{ $name }} </li>
                 <li><strong>Data de envio:</strong> {{ $date }} </li>
-                <li><strong>Arquivo:</strong> {{ asset('storage/uploads/'.$file) }} </li>
+                <li><strong>Arquivo:</strong> <a href="{{ asset('storage/uploads/'.$file) }}" target="_blank">Ver Arquivo</a> </li>
             </ul>
 
             <p>
