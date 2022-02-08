@@ -44,7 +44,6 @@
                     @endforeach
                 </tbody>
             </table>
-            {{$orcamentos['new']->links()}}
 
             <div class="listing-title">
                 <h3>Listagem de respondidos</h3>
@@ -78,7 +77,6 @@
                     @endforeach
                 </tbody>
             </table>
-            {{$orcamentos['answered']->links()}}
 
             @else
             <p class="text-center">Sem pedidos</p>
