@@ -12,6 +12,7 @@
                 <h5>{{count($data['budgets'])}}</h5>
                 <p><a href="{{route('budgets')}}">Ver Todos <i class="fas fa-long-arrow-alt-right"></i></a></p>
             </div>
+            @if($data['balance'] !== null)
             <div class="main-content-boxes-box">
                 <small>Saldo</small>
                 <h5>R$ {{number_format($data['balance']->available_amount/100, 2, ',', ' ')}}</h5>
@@ -23,6 +24,7 @@
                     @endif
                 </p>
             </div>
+            @endif
             <div class="main-content-boxes-box">
                 <small>Usuários</small>
                 <h5>{{$data['users']}}</h5>

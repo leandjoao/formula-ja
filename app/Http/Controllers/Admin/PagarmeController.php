@@ -82,7 +82,12 @@ class PagarmeController extends Controller
 
     public function getBalance($recipient_id)
     {
-        $response = $this->PAGARME->get('recipients/'.$recipient_id.'/balance', ['headers' => $this->HEADER]);
-        return json_decode($response->getBody());
+        try {
+            $response = $this->PAGARME->get('recipients/'.$recipient_id.'/balance', ['headers' => $this->HEADER]);
+            return json_decode($response->getBody());
+        } catch (\Throwable $th) {
+            return null;
+        }
+
     }
 }
