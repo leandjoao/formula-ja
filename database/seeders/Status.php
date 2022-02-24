@@ -14,7 +14,7 @@ class Status extends Seeder
      */
     public function run()
     {
-        $status = ['novo', 'aguardando cliente', 'aguardando envio', 'enviado', 'entregue', 'recusado'];
+        $status = ['novo', 'aguardando cliente/pagamento', 'aguardando envio', 'enviado', 'entregue', 'recusado'];
         foreach ($status as $value) {
             $save = new ModelsStatus();
             $save->label = $value;

@@ -35430,6 +35430,11 @@ $("#pharmacy").on('change', function (e) {
     $('#partnerId').attr('required', false);
   }
 });
+
+window.copyQR = function () {
+  navigator.clipboard.writeText($(".qr_code").val());
+  $('.pixAlert').removeClass('d-none');
+};
 })();
 
 /******/ })()

@@ -32,7 +32,7 @@ return [
         'pk' => env('PAGARME_PK', 'sk_test_EvO5AZVU6IkA1PGw'),
         'sk' => env('PAGARME_SK', 'sk_test_EvO5AZVU6IkA1PGw'),
         'rp' => env('PAGARME_RP', 'rp_1LqmaR9UWUPprlPj'),
-        'tax_ammount' => 20,
+        'tax_ammount' => 15,
     ],
 
     /*

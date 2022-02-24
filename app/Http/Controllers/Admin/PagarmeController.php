@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PagarmeController extends Controller
 {
@@ -15,7 +16,7 @@ class PagarmeController extends Controller
     {
         $this->PAGARME = new Client(['base_uri' => config('app.pagarme.url'), 'verify' => false]);
         $this->HEADER = [
-            'Authorization' => 'Basic ' . base64_encode(config('app.pagarme.sk').':'),
+            'Authorization' => 'Basic ' . base64_encode(config('app.pagarme.sk').':'.config('app.pagarme.pk')),
             'Content-Type' => 'application/json'
         ];
     }
@@ -82,6 +83,9 @@ class PagarmeController extends Controller
 
     public function getBalance($recipient_id)
     {
+        $response = $this->PAGARME->get('recipients', ['headers' => $this->HEADER]);
+        dd($response);
+
         try {
             $response = $this->PAGARME->get('recipients/'.$recipient_id.'/balance', ['headers' => $this->HEADER]);
             return json_decode($response->getBody());
