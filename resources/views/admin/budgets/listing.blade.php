@@ -8,9 +8,6 @@
         <div class="listing">
             <div class="listing-title">
                 <h3>Listagem de novos</h3>
-                @if(Auth::user()->access_level == 2)
-                <a href="{{route('guest.receita')}}">Enviar receita</a>
-                @endif
             </div>
             @if(count($orcamentos['answered']) + count($orcamentos['new']) !== 0)
             <table class="table table-striped table-bordered" cellspacing=0>

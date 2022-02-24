@@ -36,7 +36,6 @@ class NewPartner extends Mailable
         ->with([
             'name' => $this->data['name'],
             'partnerName' => $this->data['partnerName'],
-            'pet' => $this->data['pet'],
             'address' => $this->data['address'],
         ]);
     }

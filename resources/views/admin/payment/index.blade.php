@@ -6,8 +6,8 @@
         <h3>Pagamento</h3>
     </div>
     <div class="main-content">
-        <div class="payment">
-            <div class="payment-info">
+        <div class="payment row">
+            <div class="payment-info col-md-5">
                 <div class="payment-info-header">
                     <h6>Orçamento de {{$budget['info']['name']}}</h6>
                 </div>
@@ -25,15 +25,15 @@
                     <p>R$ <span class="summary">{{ number_format($budget['amount'], 2, ',', '.') }}</span></p>
                 </div>
             </div>
-
-            <div class="payment-methods col-7">
+            @if(empty($budget['payment']))
+            <div class="payment-methods col-md-7">
                 <h6 class="mb-3">Selecione o meio de pagamento</h6>
                 <div class="payment-methods-options mb-3">
-                    <button class="btn btn-dark"><i class="fa fa-credit-card"></i> Cartão de Crédito</button>
-                    <button class="btn btn-dark"><i class="fab fa-pix"></i> PIX</button>
+                    <button class="btn btn-dark" id="card"><i class="fa fa-credit-card"></i> Cartão de Crédito</button>
+                    <button class="btn btn-dark" id="pix"><i class="fab fa-pix"></i> PIX</button>
                 </div>
 
-                <div class="payment-card">
+                <div class="payment-card d-none">
                     <p>Preencha com os dados do seu cartão para pagamento</p>
                     <small>Não guardamos nenhum dado de pagamento. Todas as suas informações estão seguras.</small>
                     <form action="{{route('budgets.checkout')}}" method="POST" class="form">
@@ -92,11 +92,19 @@
                     </form>
                 </div>
 
-                <div class="payment-pix d-none">
-                    <div class="row">
+                <div class="payment-pix {{ !session()->get('pix') ? 'd-none' : null}}">
+                    <form action="{{route('budgets.checkout')}}" method="POST" class="form {{ session()->get('pix') ? 'd-none' : null}}">
+                        @csrf
+                        <input type="hidden" name="payMethod" value="pix" />
+                        <input type="hidden" name="answerId" value="{{$budget['id']}}" />
+                        <div class="btn-group">
+                            <button type="submit">Pagar <i class="fab fa-pix"></i></button>
+                        </div>
+                    </form>
+                    <div class="row {{ !session()->get('pix') ? 'd-none' : null}}">
                         <div class="col-12 text-center">
                             <h6>Aponte o aplicativo do seu banco para realizar o pagamento</h6>
-                            <img src="https://place-hold.it/200x200" alt="" class="img-fluid mt-2">
+                            <img src="https://place-hold.it/200x200?text=PIX" alt="" class="qr_img img-fluid mt-2">
                         </div>
                         <div class="col-12 mt-5">
                             <input class="form-control qr_code" onclick="copyQR()" />
@@ -104,19 +112,55 @@
                                 <i class="fa fa-check"></i>  Copiado!
                             </div>
                         </div>
+                        <div class="col-12 mt-1 text-center">
+                            <p>Após realizar o pagamento, clique no botão abaixo para finalizar a compra *</p>
+                            <form action="{{route('budgets.pix')}}" method="POST">
+                                @csrf
+                                <input type="text" name="answer_id" value="{{$budget['id']}}" readonly class="d-none" />
+                                <input type="text" name="amount" value="{{$budget['amount']}}" readonly class="d-none" />
+                                <input type="text" name="code" id="paycode" value="" readonly class="d-none" />
+                                <button class="btn btn-formulaja mx-auto my-2" type="submit">Finalizar pagamento</button>
+                            </form>
+                            <small>* Sujeito a aprovação de pagamento</small>
+                        </div>
                     </div>
                 </div>
             </div>
+            @elseif($budget['payment']['status'] == 'paid')
+            <div class="col-7 aproving">
+            <h6 class="text-muted"><i class="fa fa-check text-success"></i> Pagamento Confirmado!</h6>
+            </div>
+            @else
+            <div class="col-7 aproving">
+                <h6 class="text-muted"><i class="fa fa-spin fa-spinner"></i> Aguardando confirmação de pagamento</h6>
+            </div>
+            @endif
         </div>
+
     </div>
 </div>
 @endsection
 
-
+@if(empty($budget['budget']['payment']))
 @section('extraJS')
 @if(session()->get('pix'))
-    <script type="text/javascript">
-        $('.qr_code').val("{{session()->get('pix.qr_code')}}");
-    </script>
+<script type="text/javascript">
+    $('.qr_code').val("{{session()->get('pix.qr_code')}}");
+    $('.qr_img').attr("src","{{session()->get('pix.qr_image')}}");
+    $('#paycode').val("{{session()->get('pix.code')}}");
+</script>
 @endif
+<script type="text/javascript">
+    $('#card').on('click', function(e) {
+        e.preventDefault();
+        $('.payment-card').removeClass('d-none');
+        $('.payment-pix').addClass('d-none');
+    });
+    $('#pix').on('click', function(e) {
+        e.preventDefault();
+        $('.payment-card').addClass('d-none');
+        $('.payment-pix').removeClass('d-none');
+    });
+</script>
 @endsection
+@endif

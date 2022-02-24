@@ -63,6 +63,9 @@
             <div class="page-header-group">
                 <div class="page-header-group-dropdown dropdown">
                     <div class="dropdown-button">
+                        @if(Auth::user()->access_level == 2)
+                            <a class="btn btn-formulaja" href="{{route('guest.receita')}}">Envie sua receita</a>
+                        @endif
                         <img src="@if(empty(Auth::user()->avatar)) {{asset('storage/icons/user.png')}} @else {{asset('storage/avatar/' . Auth::user()->avatar)}} @endif" alt="Foto de {{Auth::user()->name}}">
                         <p>
                             <span>{{ Auth::user()->name }} <i class="fa fa-caret-down"></i></span>

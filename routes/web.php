@@ -91,6 +91,7 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('updateStatus/{id}', [BudgetsController::class, 'updateStatus'])->name('budgets.updateStatus');
                 Route::get('payment/{budgetId}', [PaymentController::class, 'index'])->name('budgets.accept');
                 Route::post('payment/checkout', [PaymentController::class, 'checkout'])->name('budgets.checkout');
+                Route::post('confirm-pix', [PaymentController::class, 'confirmPix'])->name('budgets.pix');
             });
 
             Route::prefix('posts')->group(function() {

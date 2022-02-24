@@ -46,7 +46,7 @@ class PagarmeController extends Controller
                     ],
                 ],
                 'transfer_settings' => [
-                    'transfer_enabled' => false,
+                    'transfer_enabled' => true,
                     'transfer_interval' => 'Daily',
                     'transfer_day' => 0
                 ],
@@ -83,9 +83,6 @@ class PagarmeController extends Controller
 
     public function getBalance($recipient_id)
     {
-        $response = $this->PAGARME->get('recipients', ['headers' => $this->HEADER]);
-        dd($response);
-
         try {
             $response = $this->PAGARME->get('recipients/'.$recipient_id.'/balance', ['headers' => $this->HEADER]);
             return json_decode($response->getBody());
@@ -93,5 +90,15 @@ class PagarmeController extends Controller
             return null;
         }
 
+    }
+
+    public function getOrderStatus($order_id)
+    {
+        try {
+            $response = $this->PAGARME->get('orders/'.$order_id, ['headers' => $this->HEADER]);
+            return json_decode($response->getBody());
+        } catch (\Throwable $th) {
+            return null;
+        }
     }
 }

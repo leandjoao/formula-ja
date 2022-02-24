@@ -14,7 +14,7 @@ class Access extends Seeder
      */
     public function run()
     {
-        $accesses = ['admin', 'user', 'farmacia'];
+        $accesses = ['Administrador', 'Usuário', 'Parceiro'];
 
         foreach($accesses as $access) {
             $db = new AccessLevel();

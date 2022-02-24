@@ -89,7 +89,7 @@
                                 <label for="answer-0-item">Item</label>
                             </div>
                             <div class="form-input">
-                                <input type="text" class="money"  name="answer[0][price]" id="answer-0-price" required />
+                                <input type="text" class="money" name="answer[0][price]" id="answer-0-price" required />
                                 <label for="answer-0-price">Preço</label>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                     @else
                     <h3>Reposta do Orçamento</h3>
                     @endif
-                    @if(Auth::user()->access_level == 2 && !boolval($answers['accepted']))
+                    @if(Auth::user()->access_level == 2 && !boolval($answers['accepted']) && empty($answers['payment']))
                     <div class="btn-group">
                         <a class="accept" href="{{route('budgets.accept', $answers['id'])}}"><i class="fa fa-check"></i> Aceitar</a>
                     </div>

@@ -227,8 +227,7 @@ if (budget) {
         for (let i = 0; i < total.length; i++) {
             sum += total[i];
         }
-
-        $('#budgetSummary').text(sum.toFixed(2));
+        $('#budgetSummary').text(sum.toFixed(2).replace('.', ','));
     }
 }
 

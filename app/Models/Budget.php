@@ -25,7 +25,7 @@ class Budget extends Model
 
     public function answers()
     {
-        return $this->hasMany(BudgetAnswered::class)->with(['info', 'items']);
+        return $this->hasMany(BudgetAnswered::class)->with(['info', 'items', 'payment']);
     }
 
     public function address()

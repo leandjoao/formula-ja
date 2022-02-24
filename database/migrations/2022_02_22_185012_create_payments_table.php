@@ -16,12 +16,13 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->string('method');
-            $table->unsignedBigInteger('budget_id');
+            $table->unsignedBigInteger('answer_id');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('budget_id')->references('id')->on('budgets');
+            $table->foreign('answer_id')->references('id')->on('budget_answereds');
             $table->foreign('user_id')->references('id')->on('users');
             $table->float('amount');
-            $table->string('code');
+            $table->string('status');
+            $table->string('code')->nullable();
             $table->timestamps();
         });
     }

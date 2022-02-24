@@ -83,3 +83,7 @@ body {
         display: none;
     }
 }
+
+.btn-formulaja {
+    @include button($primary, white);
+}

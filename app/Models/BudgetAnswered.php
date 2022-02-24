@@ -25,4 +25,9 @@ class BudgetAnswered extends Model
     {
         return $this->belongsTo(Budget::class, 'budget_id', 'id');
     }
+
+    public function payment()
+    {
+        return $this->hasOne(Payment::class, 'answer_id', 'id');
+    }
 }

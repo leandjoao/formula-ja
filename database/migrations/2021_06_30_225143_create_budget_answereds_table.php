@@ -22,9 +22,9 @@ class CreateBudgetAnsweredsTable extends Migration
             $table->unsignedBigInteger('answered_by');
             $table->foreign('answered_by')->references('id')->on('pharmacies');
             $table->string('description');
+            $table->string('order_id')->nullable();
             $table->boolean('accepted')->default(false);
             $table->float('amount');
-            $table->string('order_id')->nullable();
             $table->timestamps();
         });
     }

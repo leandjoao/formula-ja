@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AnswerItem;
 use App\Models\Budget;
 use App\Models\BudgetAnswered;
+use App\Models\Payment;
 use App\Models\Pharmacy;
 use App\Models\Status;
 use Carbon\Carbon;
@@ -42,9 +43,10 @@ class BudgetsController extends Controller
         return view('admin.budgets.listing', compact('orcamentos'));
     }
 
-    public function inner($id)
+    public function inner($id, Request $request)
     {
         $answersId = [];
+        $payment = null;
 
         $budget = Budget::query()
         ->where('id', $id)
@@ -53,8 +55,10 @@ class BudgetsController extends Controller
         ->toArray();
 
         $status = Status::all()->toArray();
-
         foreach($budget['answers'] as $answer) {
+            if(!empty($answer['payment'])) {
+                $this->updatePayment($answer);
+            }
             array_push($answersId, $answer['id']);
         }
 
@@ -105,5 +109,30 @@ class BudgetsController extends Controller
         $budget->save();
 
         return redirect()->back()->with(['status' => ['text' => 'Status alterado!', 'icon' => 'success']]);
+    }
+
+    protected function updatePayment($answer)
+    {
+        $paymentStatus = new PagarmeController();
+        $payment = $paymentStatus->getOrderStatus($answer['payment']['code']);
+
+        if($payment->status == 'paid') {
+            $budgetAnswer = BudgetAnswered::query()->where('id', $answer['id'])->first();
+            $budgetAnswer->accepted = true;
+            $budgetAnswer->order_id = $payment->id;
+            $budgetAnswer->save();
+
+            $budgets = Budget::query()->where('id', $answer['budget_id'])->first();
+            $budgets->status_id = 3;
+            $budgets->save();
+
+            $updatePayment = Payment::query()->where('id', $answer['payment']['id'])->first();
+            $updatePayment->status = $payment->status;
+            $updatePayment->save();
+
+            return true;
+        }
+
+        return false;
     }
 }

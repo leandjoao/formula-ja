@@ -7,17 +7,18 @@ use App\Models\Address;
 use App\Models\AnswerItem;
 use App\Models\Budget;
 use App\Models\BudgetAnswered;
-use Carbon\Carbon;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
     protected $items = [];
+    protected $mock = true;
 
     public function index($budgetId)
     {
-        $budget = BudgetAnswered::query()->with(['items', 'info'])->where('id', $budgetId)->first()->toArray();
+        $budget = BudgetAnswered::query()->with(['items', 'info', 'budget', 'payment'])->where('id', $budgetId)->first()->toArray();
         return view('admin.payment.index', compact('budget'));
     }
 
@@ -80,7 +81,9 @@ class PaymentController extends Controller
             $payments = [
                 [
                     'payment_method' => 'pix',
-                    'pix' => $this->pix($this->items),
+                    'pix' => [
+                        'expires_in' => 600
+                    ],
                     'split' => $splitRule
                 ],
             ];
@@ -107,26 +110,31 @@ class PaymentController extends Controller
             'payments' => $payments
         ];
 
-        // $pay = new PagarmeController();
-        // $payment = $pay->checkout($data);
 
-        $payment = response(json_encode([
-            'status' => 'pending',
-            'charges' => [
-                [
-                    'last_transaction' => [
-                        'qr_code' => "00020101021226480019BR.COM.STONE.QRCODE0108A37F8712020912345678927820 014BR.GOV.BCB.PIX2560sandbox-qrcode.stone.com.br/api/v2/qr/sGY7FyVExavqkzFvkQu MXA28580010BR.COM.ELO0104516002151234567890000000308933BB1100401P520400 00530398654041.005802BR5911STONE TESTE6009SAO PAULO62600522sGY7FyVExavqkzFvkQuMXA50300017BR.GOV.BCB.BRCODE01051.0.0 80500010BR.COM.ELO01100915132023020200030201040613202363043BA1",
-                        'qr_code_url' => ""
+        if($this->mock) {
+            $payment = response(json_encode([
+                'id' => 'or_5bZEAgXIBSpX89vK',
+                'status' => 'pending',
+                'charges' => [
+                    [
+                        'last_transaction' => [
+                            'qr_code' => "00020101021226480019BR.COM.STONE.QRCODE0108A37F8712020912345678927820 014BR.GOV.BCB.PIX2560sandbox-qrcode.stone.com.br/api/v2/qr/sGY7FyVExavqkzFvkQu MXA28580010BR.COM.ELO0104516002151234567890000000308933BB1100401P520400 00530398654041.005802BR5911STONE TESTE6009SAO PAULO62600522sGY7FyVExavqkzFvkQuMXA50300017BR.GOV.BCB.BRCODE01051.0.0 80500010BR.COM.ELO01100915132023020200030201040613202363043BA1",
+                            'qr_code_url' => asset('images/qrcode.png')
+                        ]
                     ]
                 ]
-            ]
-        ]));
+            ]));
 
-        $payment = json_decode($payment->original);
+            $payment = json_decode($payment->original);
+        } else {
+            $pay = new PagarmeController();
+            $payment = $pay->checkout($data);
+        }
+
 
         if($payment->status == "pending" && $request->payMethod == "pix") {
 
-            return redirect()->back()->with(['pix' => ['qr_code' => $payment->charges[0]->last_transaction->qr_code, 'qr_image' => $payment->charges[0]->last_transaction->qr_code_url]]);
+            return redirect()->back()->with(['pix' => ['qr_code' => $payment->charges[0]->last_transaction->qr_code, 'qr_image' => $payment->charges[0]->last_transaction->qr_code_url, 'code' => $payment->id]]);
         }
 
         if($payment->status == "paid") {
@@ -141,6 +149,8 @@ class PaymentController extends Controller
             $budget->save();
 
             BudgetAnswered::query()->where('id', 'not like', $request->answerId)->delete();
+
+            $this->paymentMethod($request->answerId, $request->payMethod, $payment->status, $budget['amount'], $payment->id);
 
             return redirect()->back()->with(['payment' => ['text' => 'Pagamento aprovado!', 'icon' => 'success', 'success' => true]]);
         }
@@ -172,11 +182,23 @@ class PaymentController extends Controller
         ];
     }
 
-    protected function pix($items)
+    protected function paymentMethod($id, $method, $status, $amount, $code = null)
     {
-        return [
-            'expires_in' => 600,
-            'additional_information' => $items
-        ];
+        $payment = new Payment();
+        $payment->method = $method;
+        $payment->answer_id = $id;
+        $payment->user_id = Auth::user()->id;
+        $payment->amount = floatval($amount);
+        $payment->status = $status;
+        $payment->code = $code;
+        $payment->save();
+
+        return true;
+    }
+
+    public function confirmPix(Request $request)
+    {
+        $this->paymentMethod($request->answer_id, "pix", "pending", $request->amount, $request->code);
+        return redirect()->back()->with(['payment' => ['text' => 'Aguardando confimação de pagamento!', 'icon' => 'success', 'success' => true]]);
     }
 }
