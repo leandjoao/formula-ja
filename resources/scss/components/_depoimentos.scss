@@ -83,9 +83,16 @@
                 object-fit: cover;
             }
 
-            p {
-                margin: 0;
+            &-info {
                 text-align: left;
+                p,small {
+                    margin: 0;
+                }
+
+                small {
+                    font-size: 0.7em;
+                    color: grey;
+                }
             }
         }
 

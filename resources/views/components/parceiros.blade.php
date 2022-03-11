@@ -5,7 +5,8 @@
         <div class="swiper-wrapper">
             @foreach($partners as $partner)
             <div class="swiper-slide">
-                <img src="{{$partner['logo'] ?? "http://placehold.it/150x150?text=".$partner['name']}}" alt="{{$partner['name']}}">
+
+                <img src="{{ asset('storage/partners/'.$partner['logo'])}}" alt="{{$partner['name']}}">
             </div>
             @endforeach
         </div>
@@ -14,7 +15,7 @@
         <div class="swiper-button-next parceiros-next"></div>
     </div>
 
-    <button onclick="toggleModal()">Seja um parceiro</button>
+    {{-- <button onclick="toggleModal()">Seja um parceiro</button> --}}
 </div>
 
 @section('modal')

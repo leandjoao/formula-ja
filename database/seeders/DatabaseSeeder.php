@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Database\Seeders\Guest\BannerSeeder;
 use Database\Seeders\Guest\ExtraTextSeeder;
-use Database\Seeders\Guest\FaqSeeder;
 use Database\Seeders\Guest\GetInTouchSeeder;
 use Database\Seeders\Guest\HowItWorkSeeder;
 use Database\Seeders\Guest\SocialMediaSeeder;
@@ -24,21 +23,20 @@ class DatabaseSeeder extends Seeder
             Access::class,
             User::class,
             Config::class,
-            PostCategorySeeder::class,
-            PostSeeder::class,
             Status::class,
             Bank::class,
-            // PartnersSeeder::class,
-            // FakerSeeder::class,
-
-            // Guest
             BannerSeeder::class,
             HowItWorkSeeder::class,
             WhyUsSeeder::class,
-            FaqSeeder::class,
             ExtraTextSeeder::class,
             GetInTouchSeeder::class,
             SocialMediaSeeder::class
+
+            // PartnersSeeder::class,
+            // FakerSeeder::class,
+            // PostCategorySeeder::class,
+            // PostSeeder::class,
+            // FaqSeeder::class,
         ]);
     }
 }

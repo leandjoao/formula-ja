@@ -14,6 +14,7 @@
 
     <title>Dashboard :: {{ config('app.name') }}</title>
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    @yield('extraCSS')
 </head>
 <body>
     <nav class="nav">
@@ -35,14 +36,13 @@
                             <li @if(request()->routeIs('partners'))class="active"@endif><a href="{{route('partners')}}"><i class="far fa-handshake"></i> Parceiros</a></li>
                             <li @if(request()->routeIs('contact'))class="active"@endif><a href="{{route('contact')}}"><i class="fa fa-mail-bulk"></i> Contatos</a></li>
                             {{-- <li><a href=""><i class="fa fa-spell-check"></i> Textos</a></li> --}}
-                            {{-- <li><a href=""><i class="far fa-comments"></i> Depoimentos</a></li> --}}
                             {{-- <li><a href=""><i class="fa fa-cogs"></i> Configurações</a></li> --}}
                         @endif
                         <li @if(request()->routeIs('budgets'))class="active"@endif><a href="{{route('budgets')}}"><i class="fa fa-dollar-sign"></i> Pedidos</a></li>
                     </ul>
                 </div>
 
-                {{-- @if(Auth::user()->access_level == 1)
+                @if(Auth::user()->access_level == 1)
                 <div class="nav-navbar-list-item">
                     <p>Blog</p>
                     <ul>
@@ -50,7 +50,13 @@
                         <li @if(request()->routeIs('blog.category'))class="active"@endif><a href="{{ route('blog.category')}}"><i class="fa fa-th-large"></i> Categorias</a></li>
                     </ul>
                 </div>
-                @endif --}}
+                <div class="nav-navbar-list-item">
+                    <p>Depoimentos</p>
+                    <ul>
+                        <li @if(request()->routeIs('testemonials'))class="active"@endif><a href="{{route('testemonials')}}"><i class="fa fa-comment-dots"></i> Depoimentos</a></li>
+                    </ul>
+                </div>
+                @endif
 
             </div>
         </div>
@@ -98,7 +104,8 @@
             timer: 3000,
             timerProgressBar: true,
             showConfirmButton: false,
-            position: 'bottom-end'
+            showCloseButton: true,
+            position: 'top'
         })
     </script>
     @endif

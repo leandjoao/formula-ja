@@ -88,6 +88,37 @@
 </div>
 @endif
 
+<div class="duvidas">
+    <div class="duvidas-container">
+        <div class="duvidas-container-text">
+            <h3>{{$data['et']['faq_title']}}</h3>
+            <p>{{$data['et']['faq_text']}}</p>
+        </div>
+        <div class="duvidas-container-collapsible">
+            <div class="collapsible">
+                <div class="collapsible-title">Ajuda para Usuários</div>
+                @foreach($data['faq']['user'] as $faq)
+                    <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> {{$faq['question']}}</div>
+                    <div class="collapsible-content-text">
+                        <p>{{$faq['answer']}}</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        <div class="duvidas-container-collapsible">
+            <div class="collapsible">
+                <div class="collapsible-title">Ajuda para Perceiros</div>
+                @foreach($data['faq']['partner'] as $faq)
+                    <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> {{$faq['question']}}</div>
+                    <div class="collapsible-content-text">
+                        <p>{{$faq['answer']}}</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="parceiros">
     <h2>Conheça os nossos parceiros</h2>
 

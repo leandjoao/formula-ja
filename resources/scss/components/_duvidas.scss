@@ -32,6 +32,11 @@
                     text-align: center;
                 }
             }
+
+            p {
+                text-align: justify;
+                word-break: break-word;
+            }
         }
 
         &-collapsible {
@@ -39,6 +44,7 @@
 
             @include mobile-only {
                 width: 100%;
+                margin-bottom: 40px;
             }
 
             @include tablet {
@@ -48,6 +54,14 @@
             .collapsible {
                 display: flex;
                 flex-direction: column;
+
+                &-title {
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    font-size: 0.9em;
+                    position: relative;
+                    margin: 0;
+                }
 
                 &-content {
 
@@ -62,9 +76,16 @@
                         gap: $gap;
                         margin-top: $gap;
                         box-shadow: 0 4px 10px -2px lightgray;
+                        color: white;
+                        font-weight: 600;
 
                         i {
                             color: $bg;
+                        }
+
+                        &.active {
+                            border-bottom-left-radius: 0;
+                            border-bottom-right-radius: 0;
                         }
                     }
 

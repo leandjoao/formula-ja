@@ -136,7 +136,24 @@
             </div>
             @endif
         </div>
-
+    </div>
+    <div class="secure">
+        <ul class="secure-enviroment">
+            <li><img src="{{asset('storage/icons/logos/ssl.svg')}}" alt="Logo SSL" /></li>
+            <li><img src="{{asset('storage/icons/logos/pagarme.svg')}}" alt="Logo Pagar.Me" /></li>
+            <li><img src="{{asset('storage/icons/logos/cloudflare.svg')}}" alt="Logo CloudFlare" /></li>
+            <li><img src="{{asset('storage/icons/logos/google.svg')}}" alt="Logo Google" /></li>
+        </ul>
+        <ul class="secure-methods">
+            <p>Aceitamos: </p>
+            <li><i class="fa-brands fa-cc-visa"></i></li>
+            <li><i class="fa-brands fa-cc-mastercard"></i></li>
+            <li><i class="fa-brands fa-cc-diners-club"></i></li>
+            <li><i class="fa-brands fa-cc-amex"></i></li>
+            <li><i class="fa-brands fa-cc-discover"></i></li>
+            <li><i class="fa-brands fa-cc-jcb"></i></li>
+            <li><i class="fa-brands fa-pix"></i></li>
+        </ul>
     </div>
 </div>
 @endsection

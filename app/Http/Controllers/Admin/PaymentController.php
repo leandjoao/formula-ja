@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class PaymentController extends Controller
 {
     protected $items = [];
-    protected $mock = true;
+    protected $mock = false;
 
     public function index($budgetId)
     {
@@ -130,7 +130,6 @@ class PaymentController extends Controller
             $pay = new PagarmeController();
             $payment = $pay->checkout($data);
         }
-
 
         if($payment->status == "pending" && $request->payMethod == "pix") {
 

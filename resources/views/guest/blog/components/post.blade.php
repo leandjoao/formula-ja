@@ -1,6 +1,6 @@
 <div class="post">
     <div class="post-image">
-        <img src="{{$post['banner']}}" alt="">
+        <img src="{{asset('storage/blog/'.$post['banner'])}}" alt="{{$post['title']}}">
     </div>
     <div class="post-text">
         <h4>{{ $post['title']}} </h4>

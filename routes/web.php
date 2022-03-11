@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PartnersController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\TestemonialController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Guest\AboutController;
 use App\Http\Controllers\Guest\BlogController;
@@ -96,7 +97,25 @@ Route::middleware(['auth'])->group(function () {
 
             Route::prefix('posts')->group(function() {
                 Route::get('/', [PostsController::class, 'index'])->name('blog');
-                Route::get('category', [PostsController::class, 'category'])->name('blog.category');
+                Route::get('new', [PostsController::class, 'new'])->name('blog.new');
+                Route::post('new/save', [PostsController::class, 'save'])->name('blog.save');
+                Route::get('remove/{slug}', [PostsController::class, 'remove'])->name('blog.remove');
+
+                Route::prefix('category')->group(function () {
+                    Route::get('/', [PostsController::class, 'category'])->name('blog.category');
+                    Route::get('new', [PostsController::class, 'newCategory'])->name('blog.category.new');
+                    Route::post('new/save', [PostsController::class, 'saveCategory'])->name('blog.category.save');
+                    Route::get('remove/{id}', [PostsController::class, 'removeCategory'])->name('blog.category.remove');
+                });
+            });
+
+            Route::prefix('testemonials')->group(function() {
+                Route::get('/', [TestemonialController::class, 'index'])->name('testemonials');
+                Route::get('new', [TestemonialController::class, 'new'])->name('testemonials.new');
+                Route::post('new/save', [TestemonialController::class, 'save'])->name('testemonials.save');
+                Route::get('edit/{id}', [TestemonialController::class, 'edit'])->name('testemonials.edit');
+                Route::post('edit/{id}/save', [TestemonialController::class, 'editSave'])->name('testemonials.edit.save');
+                Route::get('remove/{id}', [TestemonialController::class, 'remove'])->name('testemonials.remove');
             });
         });
     });

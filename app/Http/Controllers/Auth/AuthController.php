@@ -21,7 +21,7 @@ class AuthController extends Controller
             'email' => 'required|string|email|unique:users',
             'cpf' => 'required|string|unique:users',
             'phone' => 'required|unique:users',
-            'password' => ['required', 'confirmed', Password::defaults()],
+            'password' => 'required', 'confirmed',
         ]);
 
         $user = new User();

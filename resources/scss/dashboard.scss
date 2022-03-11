@@ -87,3 +87,7 @@ body {
 .btn-formulaja {
     @include button($primary, white);
 }
+
+.swal2-timer-progress-bar {
+    background: $primary !important;
+}

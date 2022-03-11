@@ -11,7 +11,7 @@
     <div class="blog-section-content">
         <section class="blog-content">
             <div class="blog-content-banner">
-                <img src="{{ $post['banner'] }}" title="Imagem de {{ $post['title'] }}" alt="{{ $post['title'] }}">
+                <img src="{{asset('storage/blog/'.$post['banner'])}}" title="Imagem de {{ $post['title'] }}" alt="{{ $post['title'] }}">
             </div>
             <div class="blog-content-text">
                 {!! $post['content'] !!}

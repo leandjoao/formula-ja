@@ -2078,8 +2078,8 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -2225,20 +2225,23 @@ var depoimentos = new Swiper('.depoimentos-slider', {
   }
 });
 depoimentos.init();
-var collapsible = document.querySelector('.collapsible');
+var collapsible = document.querySelectorAll('.collapsible');
 
 if (collapsible) {
-  (function () {
-    var title = collapsible.querySelectorAll('.collapsible-content-title');
-    var body = collapsible.querySelectorAll('.collapsible-content-text');
+  collapsible.forEach(function (item) {
+    var title = item.querySelectorAll('.collapsible-content-title');
+    var body = item.querySelectorAll('.collapsible-content-text');
     var i;
 
     for (i = 0; i < title.length; i++) {
       title[i].addEventListener('click', function () {
-        this.classList.toggle('active');
+        title.forEach(function (obj) {
+          obj.classList.remove('active');
+        });
         body.forEach(function (item) {
           item.style.display = "none";
         });
+        this.classList.add('active');
         var content = this.nextElementSibling;
 
         if (content.style.display === "block") {
@@ -2248,7 +2251,7 @@ if (collapsible) {
         }
       });
     }
-  })();
+  });
 }
 
 var invalidZip = function invalidZip() {

@@ -153,7 +153,9 @@ class UploadController extends Controller
 
         $parceiros = Pharmacy::query()->with('owner')->get()->toArray();
         foreach($parceiros as $parceiro) {
-            Mail::to($parceiro['owner']['email'])->send(new NewBudget($mail));
+            if(boolval($request->pet) == boolval($parceiro['pet'])) {
+                Mail::to($parceiro['owner']['email'])->send(new NewBudget($mail));
+            }
         }
 
         return redirect()->route('budgets')->with(['status' => ['text' => 'Recebemos a sua receita!', 'icon' => 'success']]);

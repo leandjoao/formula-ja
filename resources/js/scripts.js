@@ -113,27 +113,34 @@ const depoimentos = new Swiper('.depoimentos-slider', {
 depoimentos.init();
 
 
-const collapsible = document.querySelector('.collapsible');
+const collapsible = document.querySelectorAll('.collapsible');
 if (collapsible) {
-    const title = collapsible.querySelectorAll('.collapsible-content-title');
-    const body = collapsible.querySelectorAll('.collapsible-content-text');
-    let i;
-    for (i = 0; i < title.length; i++) {
-        title[i].addEventListener('click', function () {
-            this.classList.toggle('active');
+    collapsible.forEach(item => {
+        const title = item.querySelectorAll('.collapsible-content-title');
+        const body = item.querySelectorAll('.collapsible-content-text');
+        let i;
+        for (i = 0; i < title.length; i++) {
+            title[i].addEventListener('click', function () {
+                title.forEach(obj => {
+                    obj.classList.remove('active');
+                });
 
-            body.forEach(item => {
-                item.style.display = "none";
-            })
+                body.forEach(item => {
+                    item.style.display = "none";
+                });
 
-            let content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-              } else {
-                content.style.display = "block";
-              }
-        });
-    }
+                this.classList.add('active');
+
+                let content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    })
+
 }
 
 const invalidZip = () => {

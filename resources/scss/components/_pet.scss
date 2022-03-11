@@ -173,6 +173,20 @@ body {
             }
         }
 
+        .duvidas {
+            &-container {
+                &-collapsible {
+                    .collapsible {
+                        &-content {
+                            &-title {
+                                background: $pet;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         .footer {
             background-color: $text;
 

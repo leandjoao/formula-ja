@@ -78,3 +78,52 @@ $bc: #f1f1f1;
     justify-content: center;
     align-items: center;
 }
+
+.secure {
+    @include section;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+    padding: 0 10px;
+    border-radius: 3px;
+    background: rgb(249, 249, 249);
+
+    img {
+        max-width: 70px;
+        filter: grayscale(100%);
+        opacity: 0.4;
+        transition: all ease 0.2s;
+    }
+
+    &-enviroment, &-methods {
+        margin: 0;
+        padding: 0;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        height: 100%;
+    }
+
+    &-enviroment {
+        gap: 20px;
+        img {
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    &-methods {
+        justify-content: flex-end;
+        img {
+            max-height: 30px;
+            object-fit: scale-down;
+        }
+        i {
+            font-size: 1.3em;
+        }
+    }
+}

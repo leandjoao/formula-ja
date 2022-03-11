@@ -28,7 +28,7 @@
             @endif
             <ul class="super-container-links">
                 <li><a href="">FAQ</a></li>
-                <li><a href="">Políticas de Privacidade</a></li>
+                <li><a href="{{route('guest.privacidade')}}">Políticas de Privacidade</a></li>
             </ul>
         </div>
     </div>
@@ -40,7 +40,7 @@
                 </a>
             </div>
             <div class="nav-navbar-links">
-                <a href="" class="nav-navbar-links-link">SAF</a>
+                <a href="" class="nav-navbar-links-link">Dúvidas</a>
                 <a href="{{ route('guest.pet') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.pet')) active @endif">PET</a>
                 @guest
                     <a href="{{ route('login') }}" class="nav-navbar-links-link">Fazer Login</a>
@@ -99,6 +99,7 @@
                         <li><a href="{{route('guest.blog')}}">Blog</a></li>
                         <li><a href="{{route('guest.pet')}}">PET</a></li>
                         <li><a href="{{route('guest.contact')}}">Contato</a></li>
+                        <li><a href="mailto:ouvidoria@formulaja.com.br">Ouvidoria</a></li>
                     </ul>
                 </div>
                 <div class="block">
@@ -107,8 +108,6 @@
                     </div>
                     <ul class="block-links">
                         <li><a href="">Dúvidas</a></li>
-                        <li><a href="">SAF</a></li>
-                        <li><a href="">SAC</a></li>
                         <li><a href="">Seja um parceiro</a></li>
                         <li><a href="{{route('guest.termos')}}">Termos de Uso</a></li>
                         <li><a href="{{route('guest.privacidade')}}">Política de Privacidade</a></li>
@@ -130,8 +129,7 @@
                         </form>
                         @error('newsletter')<small>{{ $message }}</small>@enderror
                         <p>
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat.
+                            Seus dados estão seguros conosco, não fazemos spam e muito menos compartilhamos ou vendemos dados pessoais.
                         </p>
                         @if (!empty($sm))
                         <ul>

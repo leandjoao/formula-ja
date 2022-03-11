@@ -1757,6 +1757,54 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^=col-]:last-
   align-items: center;
 }
 
+.secure {
+  border-radius: 3px;
+  box-shadow: 0 0 10px -2px lightgray;
+  margin: 0;
+  background: white;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+  padding: 0 10px;
+  border-radius: 3px;
+  background: #f9f9f9;
+}
+.secure img {
+  max-width: 70px;
+  filter: grayscale(100%);
+  opacity: 0.4;
+  transition: all ease 0.2s;
+}
+.secure-enviroment, .secure-methods {
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+}
+.secure-enviroment {
+  gap: 20px;
+}
+.secure-enviroment img:hover {
+  opacity: 0.8;
+}
+.secure-methods {
+  justify-content: flex-end;
+}
+.secure-methods img {
+  max-height: 30px;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
+}
+.secure-methods i {
+  font-size: 1.3em;
+}
+
 .hidden {
   display: none !important;
 }
@@ -1794,4 +1842,8 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^=col-]:last-
 .btn-formulaja:hover {
   background-color: transparent;
   color: #fbcf3d;
+}
+
+.swal2-timer-progress-bar {
+  background: #fbcf3d !important;
 }

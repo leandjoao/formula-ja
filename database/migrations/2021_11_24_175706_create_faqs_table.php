@@ -17,6 +17,8 @@ class CreateFaqsTable extends Migration
             $table->id();
             $table->string('question');
             $table->longText('answer');
+            $table->boolean('pet')->default(false);
+            $table->boolean('partner')->default(false);
             $table->timestamps();
         });
     }

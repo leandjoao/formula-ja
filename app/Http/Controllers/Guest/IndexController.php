@@ -9,6 +9,7 @@ use App\Models\Guest\Faq;
 use App\Models\Guest\HowItWorks;
 use App\Models\Guest\WhyUs;
 use App\Models\Post;
+use App\Models\Testemonial;
 
 class IndexController extends Controller
 {
@@ -19,8 +20,10 @@ class IndexController extends Controller
         $pet = Banner::select('slogan')->where('isPet', true)->first()->toArray()['slogan'];
         $hiw = HowItWorks::all()->toArray();
         $wu = WhyUs::query()->first()->toArray();
-        $faq = Faq::all()->random(4)->toArray();
+        $faqPartner = Faq::where('partner', '=' , 1)->where('pet', '!=', 1)->limit(4)->get()->toArray();
+        $faqUser = Faq::where('partner', '=' , 0)->where('pet', '!=', 1)->limit(4)->get()->toArray();
         $et = ExtraTexts::select('faq_title', 'faq_text')->get()->toArray()[0];
+        $testemonials = Testemonial::inRandomOrder()->limit(6)->get()->toArray();
 
         $data = [
             "posts" => $posts,
@@ -28,8 +31,12 @@ class IndexController extends Controller
             "petSlogan" => $pet,
             "hiw" => $hiw,
             "wu" => $wu,
-            "faq" => $faq,
-            "et" => $et
+            "faq" => [
+                "partner" => $faqPartner,
+                "user" => $faqUser,
+            ],
+            "et" => $et,
+            "depoimentos" => $testemonials
         ];
 
         return view('guest.index', compact('data'));

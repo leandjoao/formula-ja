@@ -30,7 +30,7 @@ class PartnersController extends Controller
 
     public function showCreate()
     {
-        $users = User::all()->toArray();
+        $users = User::query()->where('id', '!=', 1)->get()->toArray();
         $banks = Bank::all()->toArray();
 
         return view('admin.parceiros.create', compact('users', 'banks'));
