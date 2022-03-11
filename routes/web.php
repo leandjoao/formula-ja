@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Guest\AboutController;
 use App\Http\Controllers\Guest\BlogController;
 use App\Http\Controllers\Guest\ContactController;
+use App\Http\Controllers\Guest\HelpController;
 use App\Http\Controllers\Guest\IndexController;
 use App\Http\Controllers\Guest\NewsletterController;
 use App\Http\Controllers\Guest\PetController;
@@ -39,6 +40,10 @@ Route::namespace('Guest')->group(function() {
     Route::post('enviar-receita', [UploadController::class, 'send'])->name('send.receipt');
     Route::post('criar-farmacia', [PharmacyController::class, 'create']);
     Route::post('changeAddress/{id}', [UploadController::class, 'changeAddress'])->name('changeAddress');
+
+    Route::prefix('faq')->group(function() {
+        Route::get('/', [HelpController::class, 'index'])->name('guest.faq');
+    });
 });
 
 

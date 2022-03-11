@@ -14,3 +14,9 @@ yarn-error.log
 /.vscode
 /storage/app/public/uploads/
 /storage/app/public/uploads/*
+/storage/app/public/partners/
+/storage/app/public/partners/*
+/storage/app/public/blog/
+/storage/app/public/blog/*
+/storage/app/public/testemonials/
+/storage/app/public/testemonials/*

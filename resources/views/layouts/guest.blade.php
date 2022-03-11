@@ -27,7 +27,7 @@
                 </ul>
             @endif
             <ul class="super-container-links">
-                <li><a href="">FAQ</a></li>
+                <li><a href="{{route('guest.faq')}}">FAQ</a></li>
                 <li><a href="{{route('guest.privacidade')}}">Políticas de Privacidade</a></li>
             </ul>
         </div>
@@ -40,7 +40,7 @@
                 </a>
             </div>
             <div class="nav-navbar-links">
-                <a href="" class="nav-navbar-links-link">Dúvidas</a>
+                <a href="{{route('guest.faq')}}" class="nav-navbar-links-link">Dúvidas</a>
                 <a href="{{ route('guest.pet') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.pet')) active @endif">PET</a>
                 @guest
                     <a href="{{ route('login') }}" class="nav-navbar-links-link">Fazer Login</a>
@@ -107,7 +107,7 @@
                         <h2>Informações</h2>
                     </div>
                     <ul class="block-links">
-                        <li><a href="">Dúvidas</a></li>
+                        <li><a href="{{route('guest.faq')}}">Dúvidas</a></li>
                         <li><a href="">Seja um parceiro</a></li>
                         <li><a href="{{route('guest.termos')}}">Termos de Uso</a></li>
                         <li><a href="{{route('guest.privacidade')}}">Política de Privacidade</a></li>

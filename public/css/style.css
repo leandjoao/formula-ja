@@ -2817,6 +2817,83 @@ body.is-pet .enviar-buttons.submit:hover {
   font-size: 0.9em;
 }
 
+.faq {
+  border-radius: 3px;
+  box-shadow: 0 0 10px -2px lightgray;
+  margin: 0;
+  background: white;
+  height: 100%;
+  padding: 40px 0;
+}
+.faq-container {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+@media (max-width: 599px) {
+  .faq-container {
+    width: 100%;
+    padding: 0 15px;
+  }
+}
+@media (min-width: 600px) and (max-width: 1199px) {
+  .faq-container {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1200px) {
+  .faq-container {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+}
+.faq h3 {
+  margin: 0;
+  color: #5e5f5f;
+  font-weight: 400;
+  font-size: 2em;
+  text-align: center;
+}
+.faq-general, .faq-pet {
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+  gap: 50px;
+  flex: 1;
+}
+.faq-general a, .faq-pet a {
+  flex: 1;
+  background-color: #fbcf3d;
+  padding: 0 22.5px;
+  height: 40px;
+  display: flex;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+  border-radius: 100px;
+  border: 2px solid #fbcf3d;
+  transition: all ease 0.2s;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
+.faq-general a:hover, .faq-pet a:hover {
+  background-color: transparent;
+  color: #fbcf3d;
+}
+.faq span {
+  background-color: #f7f7fc;
+  width: 1000%;
+  margin-left: -100%;
+  height: 1px;
+}
+
 .hidden {
   display: none !important;
 }
