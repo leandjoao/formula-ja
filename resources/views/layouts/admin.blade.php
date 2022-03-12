@@ -36,8 +36,8 @@
                             <li @if(request()->routeIs('partners'))class="active"@endif><a href="{{route('partners')}}"><i class="far fa-handshake"></i> Parceiros</a></li>
                             <li @if(request()->routeIs('contact'))class="active"@endif><a href="{{route('contact')}}"><i class="fa fa-mail-bulk"></i> Contatos</a></li>
                             <li @if(request()->routeIs('faq'))class="active"@endif><a href="{{route('faq')}}"><i class="fas fa-question-circle"></i> Dúvidas</a></li>
-                            {{-- <li @if(request()->routeIs('config.texts'))class="active"@endif><a href="{{route('config.texts')}}"><i class="fa fa-spell-check"></i> Textos</a></li>
-                            <li @if(request()->routeIs('config.info'))class="active"@endif><a href="{{route('config.info')}}"><i class="fa fa-cogs"></i> Informações</a></li> --}}
+                            <li @if(request()->routeIs('config.texts'))class="active"@endif><a href="{{route('config.texts')}}"><i class="fa fa-spell-check"></i> Textos</a></li>
+                            <li @if(request()->routeIs('config.info'))class="active"@endif><a href="{{route('config.info')}}"><i class="fa fa-cogs"></i> Informações</a></li>
                         @endif
                         <li @if(request()->routeIs('budgets'))class="active"@endif><a href="{{route('budgets')}}"><i class="fa fa-dollar-sign"></i> Pedidos</a></li>
                     </ul>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BudgetsController;
+use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\HomeController;
@@ -135,8 +136,10 @@ Route::middleware(['auth'])->group(function () {
             });
 
             Route::prefix('config')->group(function() {
-                Route::get('texts')->name('config.texts');
-                Route::get('info')->name('config.info');
+                Route::get('texts', [ConfigController::class, 'index'])->name('config.texts');
+                Route::post('texts/save', [ConfigController::class, 'saveEdit'])->name('config.save');
+                Route::get('info', [ConfigController::class, 'infos'])->name('config.info');
+                Route::post('info/save', [ConfigController::class, 'infosSave'])->name('config.info.save');
             });
         });
     });
