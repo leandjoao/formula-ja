@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BudgetsController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PartnersController;
 use App\Http\Controllers\Admin\PaymentController;
@@ -43,6 +44,7 @@ Route::namespace('Guest')->group(function() {
 
     Route::prefix('faq')->group(function() {
         Route::get('/', [HelpController::class, 'index'])->name('guest.faq');
+        Route::get('{kind}', [HelpController::class, 'kind'])->name('guest.faq.inner');
     });
 });
 
@@ -121,6 +123,15 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('edit/{id}', [TestemonialController::class, 'edit'])->name('testemonials.edit');
                 Route::post('edit/{id}/save', [TestemonialController::class, 'editSave'])->name('testemonials.edit.save');
                 Route::get('remove/{id}', [TestemonialController::class, 'remove'])->name('testemonials.remove');
+            });
+
+            Route::prefix('faq')->group(function() {
+                Route::get('/', [FaqController::class, 'index'])->name('faq');
+                Route::get('new', [FaqController::class, 'new'])->name('faq.new');
+                Route::post('new/save', [FaqController::class, 'save'])->name('faq.save');
+                Route::get('remove/{id}', [FaqController::class, 'remove'])->name('faq.remove');
+                Route::get('edit/{id}', [FaqController::class, 'edit'])->name('faq.edit');
+                Route::post('edit/{id}/save', [FaqController::class, 'editSave'])->name('faq.edit.save');
             });
         });
     });

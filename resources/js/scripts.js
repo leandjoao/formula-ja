@@ -258,3 +258,9 @@ if (steps) {
     }
 
 }
+
+
+$('.question').on('click', function (e) {
+    $('.faq-collapsible-item').removeClass('open');
+    $(e.target.parentElement).addClass('open');
+})

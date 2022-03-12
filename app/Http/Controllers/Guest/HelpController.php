@@ -12,15 +12,34 @@ class HelpController extends Controller
         return view('guest.faq.index');
     }
 
-    public function nonPet()
+    public function kind($kind)
     {
-        $faq = Faq::query()->where('pet', false)->get();
-        return view('guest.faq.nonPet', compact('faq'));
-    }
+        switch ($kind) {
+            case 'general-user':
+                $page = "Dúvidas Gerais - Usuários";
+                $faqs = Faq::query()->where('pet', false)->where('partner', false)->get();
+                break;
 
-    public function pet()
-    {
-        $faq = Faq::query()->where('pet', true)->get();
-        return view('guest.faq.pet', compact('faq'));
+            case 'general-partner':
+                $page = "Dúvidas Gerais - Parceiros";
+                $faqs = Faq::query()->where('pet', false)->where('partner', true)->get();
+                break;
+
+            case 'pet-user':
+                $page = "Dúvidas PET - Usuários";
+                $faqs = Faq::query()->where('pet', true)->where('partner', false)->get();
+                break;
+
+            case 'pet-partner':
+                $page = "Dúvidas PET - Parceiros";
+                $faqs = Faq::query()->where('pet', true)->where('partner', true)->get();
+                break;
+            default:
+                $page = "Dúvidas";
+                $faqs = Faq::all();
+                break;
+        }
+
+        return view('guest.faq.inner', compact('faqs', 'page'));
     }
 }

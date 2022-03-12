@@ -11,13 +11,13 @@
             <h3>Selecione a categoria da sua dúvida</h3>
         </div>
         <div class="faq-general">
-            <a href="">Dúvidas Gerais &mdash; Usuários</a>
-            <a href="">Dúvidas Gerais &mdash; Parceiros</a>
+            <a href="{{route('guest.faq') . '/general-user'}}">Dúvidas Gerais &mdash; Usuários</a>
+            <a href="{{route('guest.faq') . '/general-partner'}}">Dúvidas Gerais &mdash; Parceiros</a>
         </div>
         <span></span>
         <div class="faq-pet">
-            <a href="">Dúvidas PET &mdash; Usuários</a>
-            <a href="">Dúvidas PET &mdash; Parceiros</a>
+            <a href="{{route('guest.faq') . '/pet-user'}}">Dúvidas PET &mdash; Usuários</a>
+            <a href="{{route('guest.faq') . '/pet-partner'}}">Dúvidas PET &mdash; Parceiros</a>
         </div>
     </div>
 </section>

@@ -35,6 +35,7 @@
                             <li @if(request()->routeIs('users'))class="active"@endif><a href="{{route('users')}}"><i class="far fa-user"></i> Usuários</a></li>
                             <li @if(request()->routeIs('partners'))class="active"@endif><a href="{{route('partners')}}"><i class="far fa-handshake"></i> Parceiros</a></li>
                             <li @if(request()->routeIs('contact'))class="active"@endif><a href="{{route('contact')}}"><i class="fa fa-mail-bulk"></i> Contatos</a></li>
+                            <li @if(request()->routeIs('faq'))class="active"@endif><a href="{{route('faq')}}"><i class="fas fa-question-circle"></i> Dúvidas</a></li>
                             {{-- <li><a href=""><i class="fa fa-spell-check"></i> Textos</a></li> --}}
                             {{-- <li><a href=""><i class="fa fa-cogs"></i> Configurações</a></li> --}}
                         @endif

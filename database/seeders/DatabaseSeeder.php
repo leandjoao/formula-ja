@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Database\Seeders\Guest\BannerSeeder;
 use Database\Seeders\Guest\ExtraTextSeeder;
+use Database\Seeders\Guest\FaqSeeder;
 use Database\Seeders\Guest\GetInTouchSeeder;
 use Database\Seeders\Guest\HowItWorkSeeder;
 use Database\Seeders\Guest\SocialMediaSeeder;
@@ -30,7 +31,7 @@ class DatabaseSeeder extends Seeder
             WhyUsSeeder::class,
             ExtraTextSeeder::class,
             GetInTouchSeeder::class,
-            SocialMediaSeeder::class
+            SocialMediaSeeder::class,
 
             // PartnersSeeder::class,
             // FakerSeeder::class,
