@@ -14,7 +14,6 @@
             <a href="{{route('guest.faq') . '/general-user'}}">Dúvidas Gerais &mdash; Usuários</a>
             <a href="{{route('guest.faq') . '/general-partner'}}">Dúvidas Gerais &mdash; Parceiros</a>
         </div>
-        <span></span>
         <div class="faq-pet">
             <a href="{{route('guest.faq') . '/pet-user'}}">Dúvidas PET &mdash; Usuários</a>
             <a href="{{route('guest.faq') . '/pet-partner'}}">Dúvidas PET &mdash; Parceiros</a>
