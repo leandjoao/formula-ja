@@ -133,19 +133,13 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('edit/{id}', [FaqController::class, 'edit'])->name('faq.edit');
                 Route::post('edit/{id}/save', [FaqController::class, 'editSave'])->name('faq.edit.save');
             });
+
+            Route::prefix('config')->group(function() {
+                Route::get('texts')->name('config.texts');
+                Route::get('info')->name('config.info');
+            });
         });
     });
-});
-
-
-Route::get('test-email', function(Generator $faker) {
-    $message = [
-        'name' => $faker->name(),
-        'password' => $faker->password,
-        'email' => $faker->safeEmail(),
-    ];
-
-    return view('mail.newUser')->with(['message' => $message]);
 });
 
 require __DIR__.'/auth.php';

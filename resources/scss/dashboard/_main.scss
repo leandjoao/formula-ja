@@ -157,4 +157,32 @@ main {
             }
         }
     }
+
+    &-help {
+        margin-top: $gap;
+        background: white;
+        padding: $gap;
+        border-radius: 3px;
+        box-shadow: 0 0 10px -2px lightgray;
+        display: flex;
+        flex-direction: column;
+        gap: $gap;
+        &-header {
+            p {
+                font-size: 1.2em;
+                font-weight: 500;
+            }
+        }
+        &-channels {
+            display: flex;
+            gap: $gap;
+            &-item {
+                @include button($text, white);
+                gap: 10px;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
 }
