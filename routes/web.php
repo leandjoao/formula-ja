@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\TestemonialController;
+use App\Http\Controllers\Admin\TextController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Guest\AboutController;
 use App\Http\Controllers\Guest\BlogController;
@@ -135,11 +136,22 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('edit/{id}/save', [FaqController::class, 'editSave'])->name('faq.edit.save');
             });
 
-            Route::prefix('config')->group(function() {
-                Route::get('texts', [ConfigController::class, 'index'])->name('config.texts');
-                Route::post('texts/save', [ConfigController::class, 'saveEdit'])->name('config.save');
-                Route::get('info', [ConfigController::class, 'infos'])->name('config.info');
-                Route::post('info/save', [ConfigController::class, 'infosSave'])->name('config.info.save');
+
+            Route::prefix('texts')->group(function() {
+                Route::get('edit-home', [TextController::class, 'home'])->name('texts.home');
+                Route::post('edit-home/save', [TextController::class, 'saveHome'])->name('texts.home.save');
+
+                Route::get('edit-about', [TextController::class, 'about'])->name('texts.about');
+                Route::post('edit-about/save', [TextController::class, 'saveAbout'])->name('texts.about.save');
+
+                Route::get('edit-infos', [TextController::class, 'infos'])->name('texts.infos');
+                Route::post('edit-infos/save', [TextController::class, 'saveInfos'])->name('texts.infos.save');
+
+                Route::get('edit-policy', [TextController::class, 'policy'])->name('texts.policy');
+                Route::post('edit-policy/save', [TextController::class, 'savePolicy'])->name('texts.policy.save');
+
+                Route::get('edit-terms', [TextController::class, 'terms'])->name('texts.terms');
+                Route::post('edit-terms/save', [TextController::class, 'saveTerms'])->name('texts.terms.save');
             });
         });
     });

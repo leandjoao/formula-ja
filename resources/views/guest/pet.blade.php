@@ -55,32 +55,39 @@
 </div>
 @endif
 
-@if(!empty($depoimentos))
+@if(!empty($data['depoimentos']))
 <div class="depoimentos">
     <div class="depoimentos-container">
         <div class="depoimentos-container-title">
             <h3>Depoimentos</h3>
-            <p>Lorem Ipsum</p>
         </div>
         <div class="swiper-container depoimentos-slider">
             <div class="swiper-wrapper">
-                @for($i = 0; $i < 4; $i++)
+
+                @foreach ($data['depoimentos'] as $depoimento)
                 <div class="swiper-slide">
                     <div class="depoimentos-item">
                         <div class="depoimentos-item-header">
-                            <img src="{{asset('storage/icons/user.png')}}" alt="">
-                            <p>Nome do Usuário</p>
+                            @if(is_null($depoimento['avatar']))
+                            <img src="{{asset('storage/icons/user.png')}}" alt="Avatar de {{$depoimento['name']}}">
+                            @else
+                            <img src="{{asset('storage/testemonials/'.$depoimento['avatar'])}}" alt="Avatar de {{$depoimento['name']}}">
+                            @endif
+                            <div class="depoimentos-item-header-info">
+                                <p>{{$depoimento['name']}}</p>
+                                <small>{{$depoimento['business']}}</small>
+                            </div>
                         </div>
                         <div class="depoimentos-item-content">
-                            <h5>Título</h5>
+                            <h5>{{$depoimento['title']}}</h5>
                             <p>
-                                Aliquam ultrices a nunc tincidunt semper. Cras dui sapien, cursus eu ultrices quis, sodales eget lorem. Nunc varius mi a orci ornare sagittis. Nam ac venenatis mauris, condimentum malesuada eros. Aenean rutrum, augue vel consequat fringilla, ligula dui venenatis velit, et eleifend metus odio ultrices dui.
+                                {{$depoimento['testemonial']}}
                             </p>
-                            <span><small>{{ date('d/m/Y') }}</small></span>
+                            <span><small>{{ Carbon\Carbon::parse($depoimento['created_at'])->diffForHumans() }}</small></span>
                         </div>
                     </div>
                 </div>
-                @endfor
+                @endforeach
             </div>
             <div class="swiper-pagination depoimentos-pagination"></div>
         </div>
@@ -88,6 +95,7 @@
 </div>
 @endif
 
+@if((count($data['faq']['user']) + count($data['faq']['partner'])) !== 0)
 <div class="duvidas">
     <div class="duvidas-container">
         <div class="duvidas-container-text">
@@ -98,10 +106,10 @@
             <div class="collapsible">
                 <div class="collapsible-title">Ajuda para Usuários</div>
                 @foreach($data['faq']['user'] as $faq)
-                    <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> {{$faq['question']}}</div>
-                    <div class="collapsible-content-text">
-                        <p>{{$faq['answer']}}</p>
-                    </div>
+                <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> {{$faq['question']}}</div>
+                <div class="collapsible-content-text">
+                    <p>{{$faq['answer']}}</p>
+                </div>
                 @endforeach
             </div>
         </div>
@@ -109,16 +117,18 @@
             <div class="collapsible">
                 <div class="collapsible-title">Ajuda para Perceiros</div>
                 @foreach($data['faq']['partner'] as $faq)
-                    <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> {{$faq['question']}}</div>
-                    <div class="collapsible-content-text">
-                        <p>{{$faq['answer']}}</p>
-                    </div>
+                <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> {{$faq['question']}}</div>
+                <div class="collapsible-content-text">
+                    <p>{{$faq['answer']}}</p>
+                </div>
                 @endforeach
             </div>
         </div>
     </div>
 </div>
+@endif
 
+@if(!empty($partnersPet))
 <div class="parceiros">
     <h2>Conheça os nossos parceiros</h2>
 
@@ -134,5 +144,6 @@
         <div class="swiper-button-next parceiros-next"></div>
     </div>
 </div>
+@endif
 
 @endsection
