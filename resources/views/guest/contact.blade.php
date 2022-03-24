@@ -12,27 +12,15 @@
             Entre em contato conosco para tirar qualquer dúvida, será um prazer em lhe atender.
         </p>
         <ul>
+            @foreach ($contacts as $c)
             <li>
-                <i class="fa fa-mobile-alt"></i>
+                <i class="{{$c['type']}}"></i>
                 <div class="text">
-                    <p>Celular:</p>
-                    <p>(15) 9 9999-9999</p>
+                    <p>{{$c['label']}}</p>
+                    <p>{{$c['value']}}</p>
                 </div>
             </li>
-            <li>
-                <i class="fa fa-phone"></i>
-                <div class="text">
-                    <p>Telefone:</p>
-                    <p>(15) 9999-9999</p>
-                </div>
-            </li>
-            <li>
-                <i class="far fa-envelope"></i>
-                <div class="text">
-                    <p>E-Mail:</p>
-                    <p>{{config('app.contact')}}</p>
-                </div>
-            </li>
+            @endforeach
         </ul>
     </div>
     <div class="pages-content-form">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
+use App\Models\Guest\GetInTouch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -11,7 +12,9 @@ class ContactController extends Controller
 {
     public function index()
     {
-        return view('guest.contact');
+        $contacts = GetInTouch::all()->toArray();
+
+        return view('guest.contact', compact('contacts'));
     }
 
     public function send(Request $request)
