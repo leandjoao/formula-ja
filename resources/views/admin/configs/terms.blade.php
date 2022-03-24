@@ -39,7 +39,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#terms').summernote({
-            placeholder: "Politicas de Privacidade",
+            placeholder: "Termos de Uso",
             height: 400,
             toolbar: [
             ['font', ['bold', 'italic']],

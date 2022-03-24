@@ -1609,7 +1609,7 @@ body.is-pet .enviar-buttons.submit:hover {
   max-width: 100%;
 }
 .blog-section-content .blog-content-banner img {
-  max-width: 100%;
+  width: 100%;
 }
 .blog-section-content .blog-content-text {
   text-align: justify;

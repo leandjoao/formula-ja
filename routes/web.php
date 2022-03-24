@@ -18,6 +18,7 @@ use App\Http\Controllers\Guest\ContactController;
 use App\Http\Controllers\Guest\HelpController;
 use App\Http\Controllers\Guest\IndexController;
 use App\Http\Controllers\Guest\NewsletterController;
+use App\Http\Controllers\Guest\PasswordController;
 use App\Http\Controllers\Guest\PetController;
 use App\Http\Controllers\Guest\PharmacyController;
 use App\Http\Controllers\Guest\TermsPolitcsController;
@@ -49,6 +50,8 @@ Route::namespace('Guest')->group(function() {
         Route::get('{kind}', [HelpController::class, 'kind'])->name('guest.faq.inner');
     });
 });
+
+Route::post('/password-reset', [PasswordController::class, 'sendResetLink'])->name('reset.password');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -155,6 +158,14 @@ Route::middleware(['auth'])->group(function () {
             });
         });
     });
+});
+
+Route::get('test-email', function(Generator $faker) {
+
+    return view('mail.resetPassword')->with([
+        'name' => $faker->name(),
+        'link' => $faker->safeEmail()
+    ]);;
 });
 
 require __DIR__.'/auth.php';
