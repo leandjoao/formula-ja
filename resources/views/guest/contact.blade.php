@@ -9,7 +9,7 @@
     <div class="pages-content-info">
         <h3>Informações de Contato</h3>
         <p>
-            Entre em contato conosco para tirar qualquer dúvida, será um prazer em lhe atender.
+            {{$text}}
         </p>
         <ul>
             @foreach ($contacts as $c)

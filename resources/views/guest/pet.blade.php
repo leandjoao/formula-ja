@@ -35,7 +35,7 @@
             @foreach ($data['posts'] as $post)
             <div class="posts-item">
                 <div class="posts-item-image">
-                    <img src="{{$post['banner']}}" alt="{{$post['title']}}" title="{{$post['title']}}">
+                    <img src="{{asset('storage/blog/'.$post['banner'])}}" alt="{{$post['title']}}" title="{{$post['title']}}">
                 </div>
                 <div class="posts-item-title">
                     <p>{{$post['title']}}</p>
