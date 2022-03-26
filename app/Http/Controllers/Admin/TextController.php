@@ -66,6 +66,12 @@ class TextController extends Controller
         $bannerUpdate->under_text = $banner[1]['under_text'];
         $bannerUpdate->save();
 
+        $bannerPet = Banner::query()->where('id', 2)->first();
+        $bannerPet->super_text = $banner[2]['super_text'];
+        $bannerPet->slogan = $banner[2]['slogan'];
+        $bannerPet->under_text = $banner[2]['under_text'];
+        $bannerPet->save();
+
         foreach($hiw as $key => $value) {
             $hiwUpdate = HowItWorks::query()->where('id', $key)->first();
             $hiwUpdate->title = $value['title'];
