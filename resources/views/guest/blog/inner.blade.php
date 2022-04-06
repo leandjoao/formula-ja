@@ -2,7 +2,7 @@
 @section('content')
 <div class="blog-section">
     <div class="blog-section-banner">
-        <h3>{{ $post['title'] }}</h3>
+        <h3>Blog</h3>
         <ul class="blog-section-banner-breadcrumb">
             <li><a href="{{ route('guest.blog')}}">Blog</a></li>
             <li><span>{{$post['title']}}</span></li>
@@ -14,6 +14,7 @@
                 <img src="{{asset('storage/blog/'.$post['banner'])}}" title="Imagem de {{ $post['title'] }}" alt="{{ $post['title'] }}">
             </div>
             <div class="blog-content-text">
+                <h1>{{ $post['title'] }}</h1>
                 {!! $post['content'] !!}
             </div>
         </section>

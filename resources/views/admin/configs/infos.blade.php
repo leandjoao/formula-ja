@@ -91,7 +91,11 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" id="about_us_text" name="about_us_text" value="{{$extra->about_us_text}}" required>
+                                    {{-- <input type="text" id="about_us_text" name="about_us_text" value="{{$extra->about_us_text}}" required> --}}
+                                    
+                                    <textarea id="about_us_text" name="about_us_text" required>
+                                        {{$extra->about_us_text}}
+                                    </textarea>
                                     <label for="about_us_text">Texto</label>
                                 </div>
                             </div>
@@ -128,7 +132,10 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <div class="form-input">
-                                    <input type="text" id="team_text" name="team_text" value="{{$extra->team_text}}" required>
+                                    {{-- <input type="text" id="team_text" name="team_text" value="{{$extra->team_text}}" required> --}}
+                                    <textarea id="team_text" name="team_text" required>
+                                        {{$extra->team_text}}
+                                    </textarea>
                                     <label for="team_text">Texto</label>
                                 </div>
                             </div>
@@ -159,3 +166,23 @@
     </form>
 </div>
 @endsection
+@section('extraJS')
+<script src="//cdn.ckeditor.com/4.12.1/full/ckeditor.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        CKEDITOR.replace('about_us_text', {
+                toolbar: [
+                    { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+                    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Strike', '-', 'RemoveFormat' ] },
+                ]
+            });
+        CKEDITOR.replace('team_text', {
+                toolbar: [
+                    { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+                    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Strike', '-', 'RemoveFormat' ] },
+                ]
+            });
+    });
+</script>
+@endsection
+

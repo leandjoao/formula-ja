@@ -42,7 +42,8 @@ class BlogController extends Controller
 
     public function category(Request $request)
     {
-        $category = Category::query()->where('label', $request->category)->firstOrFail();
+        // dd($request->category);
+        $category = Category::query()->where('slug', $request->category)->firstOrFail();
         $posts = Post::query()->where('category_id', $category->id)->paginate(9);
 
         return view('guest.blog.result', [
@@ -60,7 +61,7 @@ class BlogController extends Controller
             $category = Category::query()->where('label', 'LIKE', '%'.$request->search.'%')->firstOrFail();
             $search = Post::query()->where('category_id', $category->id)->paginate(9);
         }
-
+        
         return view('guest.blog.result', [
             'posts' => $search,
             'category' => ['label' => $request->search],

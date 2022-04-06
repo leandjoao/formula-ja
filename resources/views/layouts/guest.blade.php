@@ -4,19 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{{asset('storage/icon.png')}}">
-    <link rel="apple-touch-icon" href="{{asset('storage/icon.png')}}">
-    <link rel="image_src" href="{{asset('storage/icon.png')}}">
+    <link rel="shortcut icon" href="{{asset('storage/favicon.png')}}">
+    <link rel="apple-touch-icon" href="{{asset('storage/favicon.png')}}">
+    <link rel="image_src" href="{{asset('storage/favicon.png')}}">
     @if(config('app.env') === "production")
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @endif
     <title>{{ config('app.name') }}</title>
+    <link rel="stylesheet" href="{{ asset('css/lgpd.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     @include('components.g-tag')
 </head>
 
-<body @if(request()->routeIs('guest.pet') || request()->routeIs('guest.receita.pet')) class="is-pet" @endif>
+<body @if(request()->routeIs('guest.pet') || request()->routeIs('guest.receita.pet')) class="is-pet" @endif id="structure-html">
     <div class="super">
         <div class="super-container">
             @if(!empty($sm))
@@ -108,7 +109,8 @@
                     </div>
                     <ul class="block-links">
                         <li><a href="{{route('guest.faq')}}">Dúvidas</a></li>
-                        <li><a href="">Seja um parceiro</a></li>
+                        {{-- <li><a href="{{ url('seja-um-parceiro', []) }}">Seja um parceiro</a></li> --}}
+                        <li><a href="{{route('guest.parceiro')}}">Seja um Parceiro</a></li>
                         <li><a href="{{route('guest.termos')}}">Termos de Uso</a></li>
                         <li><a href="{{route('guest.privacidade')}}">Política de Privacidade</a></li>
                         <li><a href="{{route('guest.receita')}}">Envie sua Receita</a></li>
@@ -163,6 +165,7 @@
 
     <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
+    <script src="{{ asset('js/lgpd.js') }}"></script>
     <script src="//code-eu1.jivosite.com/widget/kuqi5ZCYFS" async></script>
     @if(session()->get('status'))
     <script type="text/javascript">

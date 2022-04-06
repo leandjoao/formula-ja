@@ -93,6 +93,7 @@ class PostsController extends Controller
 
         $category = new Category();
         $category->label = Str::ucfirst(Str::lower($request->label));
+        $category->slug = Str::slug($request->label);
         $category->save();
 
         return redirect()->route('blog.category')->with(['status' => ['text' => 'Categoria criada!', 'icon' => 'success']]);
