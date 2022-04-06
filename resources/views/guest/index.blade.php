@@ -35,7 +35,7 @@
             <div class="why-us-container-text-content">
                 <h5>{{$data['wu']['title']}}</h5>
                 <span>{{$data['wu']['under_title']}}</span>
-                <p>{{$data['wu']['text']}}</p>
+                <p>{!!$data['wu']['text']!!}</p>
                 <a href="{{route('guest.about')}}">Ler mais</a>
             </div>
         </div>
@@ -67,11 +67,11 @@
                     <p>{{$post['title']}}</p>
                 </div>
                 <div class="posts-item-text">
-                    {!! Str::limit($post['content'], 130, ' [...]') !!}
+                    {!! Str::limit($post['content'], 130, '...') !!}
                 </div>
                 <div class="posts-item-footer">
                     <p>{{ Carbon\Carbon::parse($post['created_at'])->diffForHumans() }}</p>
-                    <a href="{{route('guest.blog.inner', [$post['category']['label'], $post['slug']])}}">Ler Mais <i class="fas fa-long-arrow-alt-right"></i></a>
+                    <a href="{{route('guest.blog.inner', [\Str::slug($post['category']['label']), $post['slug']])}}">Ler Mais <i class="fas fa-long-arrow-alt-right"></i></a>
                 </div>
             </div>
             @endforeach

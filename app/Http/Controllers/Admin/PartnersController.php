@@ -181,7 +181,8 @@ class PartnersController extends Controller
     public function remove($id)
     {
         $partner = Pharmacy::find($id);
-        Storage::delete($partner->logo);
+        // Storage::delete($partner->logo);
+        Storage::delete('public/partners/'.$partner->logo);
         $partner->delete();
 
         return redirect()->route('partners')->with(['status' => ['text' => 'Parceiro removido!', 'icon' => 'success']]);

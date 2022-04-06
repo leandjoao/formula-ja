@@ -22,6 +22,7 @@ use App\Http\Controllers\Guest\PasswordController;
 use App\Http\Controllers\Guest\PetController;
 use App\Http\Controllers\Guest\PharmacyController;
 use App\Http\Controllers\Guest\TermsPolitcsController;
+use App\Http\Controllers\Guest\SejaUmParceiroController;
 use App\Http\Controllers\Guest\UploadController;
 use Faker\Generator;
 use Illuminate\Support\Facades\Route;
@@ -38,12 +39,16 @@ Route::namespace('Guest')->group(function() {
     Route::get('enviar-receita-pet', [UploadController::class, 'pet'])->name('guest.receita.pet');
     Route::get('termos-de-uso', [TermsPolitcsController::class, 'terms'])->name('guest.termos');
     Route::get('politica-de-privacidade', [TermsPolitcsController::class, 'politics'])->name('guest.privacidade');
+    Route::get('seja-um-parceiro', [SejaUmParceiroController::class, 'parceiro'])->name('guest.parceiro');
     Route::post('blog/pesquisa-blog', [BlogController::class, 'search'])->name('blog.search');
     Route::post('enviar-newsletter', [NewsletterController::class, 'newsletter'])->name('send.newsletter');
     Route::post('enviar-contato', [ContactController::class, 'send'])->name('send.contact');
     Route::post('enviar-receita', [UploadController::class, 'send'])->name('send.receipt');
     Route::post('criar-farmacia', [PharmacyController::class, 'create']);
     Route::post('changeAddress/{id}', [UploadController::class, 'changeAddress'])->name('changeAddress');
+    // Route::get('seja-um-parceiro', function () {
+    //     return view('guest.seja-um-parceiro');
+    // });
 
     Route::prefix('faq')->group(function() {
         Route::get('/', [HelpController::class, 'index'])->name('guest.faq');

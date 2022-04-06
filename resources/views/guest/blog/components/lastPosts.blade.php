@@ -2,7 +2,7 @@
 <ul class="block-feed-posts">
     @foreach ($lastPosts as $post)
     <li>
-        <a href="{{ route('guest.blog.inner', [$post['category']['label'], $post['slug']]) }}">
+        <a href="{{ route('guest.blog.inner', [\Str::slug($post['category']['label']), $post['slug']]) }}">
             <img src="{{asset('storage/blog/'.$post['banner'])}}" alt="{{ $post['title'] }}">
             <span>
                 <p>{{ $post['title'] }}</p>

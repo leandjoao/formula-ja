@@ -51,19 +51,28 @@
 </style>
 @endsection
 @section('extraJS')
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src="//cdn.ckeditor.com/4.12.1/full/ckeditor.js"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script> --}}
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#text').summernote({
-            placeholder: "Conteudo do post",
-            height: 250,
-            toolbar: [
-            ['font', ['bold', 'italic']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['insert', ['link']],
-            ]
-        });
+        CKEDITOR.replace( 'text' 
+            // {
+            // 	filebrowserBrowseUrl: '/assets/painel/ckfinder/ckfinder.html',
+            //     filebrowserImageBrowseUrl: '/assets/painel/ckfinder/ckfinder.html?type=Images',
+            //     filebrowserUploadUrl: '/assets/painel/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+            //     filebrowserImageUploadUrl: '/assets/painel/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+            // } 
+        );
+        // $('#text').summernote({
+        //     placeholder: "Conteudo do post",
+        //     height: 250,
+        //     toolbar: [
+        //     ['font', ['bold', 'italic']],
+        //     ['color', ['color']],
+        //     ['para', ['ul', 'ol', 'paragraph']],
+        //     ['insert', ['link']],
+        //     ]
+        // });
     });
 </script>
 @endsection

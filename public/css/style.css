@@ -310,6 +310,7 @@ body {
   .cta-send-container {
     width: 100%;
     padding: 0 15px;
+    display: block;
   }
 }
 @media (min-width: 600px) and (max-width: 1199px) {
@@ -338,6 +339,8 @@ body {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
+  min-width: 200px;
+  margin-left: 50px;
   align-items: center;
   color: #fbcf3d;
   font-weight: 600;
@@ -351,6 +354,14 @@ body {
 .cta-send-container a:hover {
   background-color: transparent;
   color: white;
+}
+@media (max-width: 599px) {
+  .cta-send-container a{
+    width: auto;
+    min-width: auto;
+    margin: 0;
+    display: inline-flex;
+  }
 }
 
 .super {
@@ -717,6 +728,9 @@ body {
     background-position: center right;
     background-blend-mode: difference;
   }
+  body.is-pet .banner {
+    background-blend-mode: inherit;
+  }
 }
 .banner-container {
   display: flex;
@@ -999,7 +1013,7 @@ body {
 }
 @media (max-width: 599px) {
   .pet {
-    padding: 50px 0;
+    padding: 0px 0;
   }
 }
 .pet-container {
@@ -1012,7 +1026,7 @@ body {
 @media (max-width: 599px) {
   .pet-container {
     background-position: center;
-    background-blend-mode: color;
+    /* background-blend-mode: color; */
   }
 }
 .pet-container-text {
@@ -1182,7 +1196,8 @@ body.is-pet .to-top {
   background-color: #437e6a;
 }
 body.is-pet .cta-send {
-  background-color: #f7f7fc;
+  background-color: #FFF;
+  /* background-color: #f7f7fc; */
 }
 body.is-pet .cta-send-container p {
   color: #437e6a;
@@ -1461,6 +1476,8 @@ body.is-pet .enviar-buttons.submit:hover {
   background-position: bottom;
   position: relative;
   flex-direction: column;
+  padding: 0 8%;
+  text-align: center;
 }
 .blog-section-banner h3 {
   font-size: 3.5em;
@@ -1468,6 +1485,11 @@ body.is-pet .enviar-buttons.submit:hover {
   z-index: 2;
   margin: 0;
   line-height: 1;
+}
+@media (max-width: 599px) {
+  .blog-section-banner h3 {
+    font-size: 2.2em;
+  }
 }
 .blog-section-banner-breadcrumb {
   padding: 0;
@@ -1615,6 +1637,10 @@ body.is-pet .enviar-buttons.submit:hover {
   text-align: justify;
   margin: 40px 0;
 }
+.blog-section-content .blog-content-text h1{
+  font-size: 2.2em;
+  text-align: left;
+}
 .blog-section-content .blog-content-text p,
 .blog-section-content .blog-content-text ul,
 .blog-section-content .blog-content-text span,
@@ -1753,7 +1779,9 @@ body.is-pet .enviar-buttons.submit:hover {
   width: 100%;
   height: 70px;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  align-items: flex-start;
+  margin-bottom: 10px;
   gap: 10px;
   color: #5e5f5f;
 }
@@ -3005,3 +3033,66 @@ body.is-pet .enviar-buttons.submit:hover {
 .invisible {
   opacity: 0 !important;
 }
+
+
+/* POLITICA DE PRIVACIDADE - COOKIES */
+.grid-x {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-flow: row wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-flow: row wrap;
+}
+.grid-x > .auto {
+  width: auto;
+}
+.cell.auto {
+  -ms-flex: 1 1 0px;
+  -webkit-box-flex: 1;
+  flex: 1 1 0px;
+}
+.grid-x > .shrink {
+  width: auto;
+}
+.cell.shrink {
+  -ms-flex: 0 0 auto;
+  -webkit-box-flex: 0;
+  flex: 0 0 auto;
+}
+.cell {
+  -ms-flex: 0 0 auto;
+  -webkit-box-flex: 0;
+  flex: 0 0 auto;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+}
+
+#LGPD_MODAL a.button {
+  background: #fbcf3d;
+  border: 2px solid #fbcf3d;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  height: 56px;
+  line-height: 54px;
+  margin: 0;
+  padding: 0 30px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  width: 100%;
+}
+#LGPD_MODAL a.policity {
+  font-size: 12px;
+  text-decoration: underline;
+  line-height: 56px;
+  color: #fbcf3d;
+}
+/* POLITICA DE PRIVACIDADE - COOKIES */

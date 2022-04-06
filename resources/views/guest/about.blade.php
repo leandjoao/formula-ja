@@ -10,7 +10,7 @@
         <img src="{{asset('storage/team.jpeg')}}" alt="">
     </div>
     <div class="pages-content-text">
-        <p>{{$text->about_us_text}}</p>
+        <p>{!!$text->about_us_text!!}</p>
     </div>
 </section>
 <section class="team">

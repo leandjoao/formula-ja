@@ -30,9 +30,9 @@
                     @include('guest.blog.components.search')
                 </div>
 
-                <div class="block block-instagram">
+                {{-- <div class="block block-instagram">
                     @include('guest.blog.components.instagram')
-                </div>
+                </div> --}}
 
                 <div class="block block-social">
                     @include('guest.blog.components.social')

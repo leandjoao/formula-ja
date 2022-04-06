@@ -124,7 +124,10 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <div class="form-input">
-                                        <textarea id="wu-text-{{$data['wu']['id']}}" name="wu[text]" class="form-control" rows="5" required>{{$data['wu']['text']}}</textarea>
+                                        {{-- <textarea id="wu-text-{{$data['wu']['id']}}" name="wu[text]" class="form-control" rows="5" required>{{$data['wu']['text']}}</textarea> --}}
+                                        <textarea id="wu-text-{{$data['wu']['id']}}" name="wu[text]" class="form-control" rows="5" required>
+                                            {{$data['wu']['text']}}
+                                        </textarea>
                                     </div>
                                 </div>
                             </div>
@@ -182,4 +185,23 @@
         </div>
     </form>
 </div>
+@endsection
+@section('extraJS')
+<script src="//cdn.ckeditor.com/4.12.1/full/ckeditor.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // CKEDITOR.replace('about_us_text', {
+        //         toolbar: [
+        //             { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+        //             { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Strike', '-', 'RemoveFormat' ] },
+        //         ]
+        //     });
+        CKEDITOR.replace('wu-text-{{$data['wu']['id']}}', {
+                toolbar: [
+                    { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+                    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Strike', '-', 'RemoveFormat' ] },
+                ]
+            });
+    });
+</script>
 @endsection
