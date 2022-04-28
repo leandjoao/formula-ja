@@ -75,13 +75,13 @@ class UsersController extends Controller
         $address->save();
 
 
-        // $message = [
-        //     'name' => $request->name,
-        //     'password' => $pwd,
-        //     'email' => $request->email,
-        // ];
+        $message = [
+            'name' => $request->name,
+            'password' => $pwd,
+            'email' => $request->email,
+        ];
 
-        // Mail::to($request->email)->send(new NewUser($message));
+        Mail::to($request->email)->send(new NewUser($message));
 
         return redirect()->back()->with(['status' => ['text' => 'Usuário criado!', 'icon' => 'success']]);
     }
