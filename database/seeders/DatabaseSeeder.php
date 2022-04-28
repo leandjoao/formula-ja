@@ -8,6 +8,7 @@ use Database\Seeders\Guest\FaqSeeder;
 use Database\Seeders\Guest\GetInTouchSeeder;
 use Database\Seeders\Guest\HowItWorkSeeder;
 use Database\Seeders\Guest\SocialMediaSeeder;
+// use Database\Seeders\Guest\SocialMediaSeeder;
 use Database\Seeders\Guest\WhyUsSeeder;
 use Illuminate\Database\Seeder;
 
@@ -32,6 +33,14 @@ class DatabaseSeeder extends Seeder
             ExtraTextSeeder::class,
             GetInTouchSeeder::class,
             SocialMediaSeeder::class,
+            InfoAbout::class,
+            InfoBlog::class,
+            InfoContato::class,
+            InfoFaq::class,
+            InfoGeral::class,
+            InfoHome::class,
+            InfoParceiro::class,
+            InfoPet::class,
 
             // PartnersSeeder::class,
             // FakerSeeder::class,
