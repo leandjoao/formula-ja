@@ -9,6 +9,7 @@ use App\Models\Budget;
 use App\Models\Pharmacy;
 use App\Models\Upload;
 use App\Models\User;
+use App\Models\Guest\HowItWorks;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,11 @@ class UploadController extends Controller
 
     public function index()
     {
-        return view('guest.enviarReceita', compact(['sm' => $this->SocialMedia(),'cta' => $this->CTA(),'how' => $this->HIW()]));
+        // dd($this->HIW());
+        $getInfo = $this->getInfo();
+        $how = HowItWorks::all()->toArray();
+
+        return view('guest.enviarReceita', compact('how','getInfo'));
     }
 
     public function pet()

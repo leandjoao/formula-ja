@@ -20,15 +20,31 @@
 <body @if(request()->routeIs('guest.pet') || request()->routeIs('guest.receita.pet')) class="is-pet" @endif id="structure-html">
     <div class="super">
         <div class="super-container">
-            @if(!empty($sm))
+            {{-- @if(!empty($sm)) --}}
                 <ul class="super-container-social">
-                    @foreach($sm as $media)
-                        <li><a href="{{$media['link']}}"><i class="{{$media['media']}}"></i></a></li>
-                    @endforeach
+                    {{-- @foreach($sm as $media) --}}
+                        {{-- <li><a href="{{$media['link']}}"><i class="{{$media['media']}}"></i></a></li> --}}
+                        
+                        @if ($getInfo->facebook != "")
+                            <li><a href="{{$getInfo->facebook}}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                        @endif
+                        @if ($getInfo->instagram != "")
+                            <li><a href="{{$getInfo->instagram}}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                        @endif
+                        @if ($getInfo->linkedin != "")
+                            <li><a href="{{$getInfo->linkedin}}" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                        @endif
+                        @if ($getInfo->twitter != "")
+                            <li><a href="{{$getInfo->twitter}}" target="_blank"><i class="fab fa-twitter-in"></i></a></li>
+                        @endif
+                        @if ($getInfo->youtube != "")
+                            <li><a href="{{$getInfo->youtube}}" target="_blank"><i class="fab fa-youtube-in"></i></a></li>
+                        @endif
+                    {{-- @endforeach --}}
                 </ul>
-            @endif
+            {{-- @endif --}}
             <ul class="super-container-links">
-                <li><a href="{{route('guest.faq')}}">FAQ</a></li>
+                {{-- <li><a href="{{route('guest.faq')}}">FAQ</a></li> --}}
                 <li><a href="{{route('guest.privacidade')}}">Políticas de Privacidade</a></li>
             </ul>
         </div>
@@ -41,8 +57,9 @@
                 </a>
             </div>
             <div class="nav-navbar-links">
-                <a href="{{route('guest.faq')}}" class="nav-navbar-links-link">Dúvidas</a>
-                <a href="{{ route('guest.pet') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.pet')) active @endif">PET</a>
+                <a href="{{route('guest.faq') . '/general-user'}}" class="nav-navbar-links-link">Dúvidas</a>
+                {{-- <a href="{{route('guest.faq')}}" class="nav-navbar-links-link">Dúvidas</a> --}}
+                {{-- <a href="{{ route('guest.pet') }}" class="nav-navbar-links-link @if (request()->routeIs('guest.pet')) active @endif">PET</a> --}}
                 @guest
                     <a href="{{ route('login') }}" class="nav-navbar-links-link">Fazer Login</a>
                 @endguest
@@ -76,10 +93,10 @@
     <main>
         @yield('content')
     </main>
-    @if(!empty($cta))
+    @if(!empty($getInfo->cta))
     <div class="cta-send">
         <div class="cta-send-container">
-            <p>{{$cta}}</p>
+            <p>{{$getInfo->cta}}</p>
         <a href="{{route('guest.receita')}}">Envie sua receita</a>
         </div>
     </div>
@@ -98,7 +115,7 @@
                         <li><a href="{{route('guest.index')}}">Página Inicial</a></li>
                         <li><a href="{{route('guest.about')}}">A Formulajá</a></li>
                         <li><a href="{{route('guest.blog')}}">Blog</a></li>
-                        <li><a href="{{route('guest.pet')}}">PET</a></li>
+                        {{-- <li><a href="{{route('guest.pet')}}">PET</a></li> --}}
                         <li><a href="{{route('guest.contact')}}">Contato</a></li>
                         <li><a href="mailto:ouvidoria@formulaja.com.br">Ouvidoria</a></li>
                     </ul>
@@ -108,7 +125,8 @@
                         <h2>Informações</h2>
                     </div>
                     <ul class="block-links">
-                        <li><a href="{{route('guest.faq')}}">Dúvidas</a></li>
+                        <li><a href="{{route('guest.faq') . '/general-user'}}">Dúvidas</a></li>
+                        {{-- <li><a href="{{route('guest.faq')}}">Dúvidas</a></li> --}}
                         {{-- <li><a href="{{ url('seja-um-parceiro', []) }}">Seja um parceiro</a></li> --}}
                         <li><a href="{{route('guest.parceiro')}}">Seja um Parceiro</a></li>
                         <li><a href="{{route('guest.termos')}}">Termos de Uso</a></li>
@@ -133,13 +151,29 @@
                         <p>
                             Seus dados estão seguros conosco, não fazemos spam e muito menos compartilhamos ou vendemos dados pessoais.
                         </p>
-                        @if (!empty($sm))
+                        {{-- @if (!empty($sm)) --}}
                         <ul>
-                            @foreach($sm as $media)
-                                <li><a href="{{$media['link']}}"><i class="{{$media['media']}}"></i></a></li>
-                            @endforeach
+                            {{-- @foreach($sm as $media) --}}
+                                {{-- <li><a href="{{$media['link']}}"><i class="{{$media['media']}}"></i></a></li> --}}
+                                
+                                @if ($getInfo->facebook != "")
+                                    <li><a href="{{$getInfo->facebook}}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                @endif
+                                @if ($getInfo->instagram != "")
+                                    <li><a href="{{$getInfo->instagram}}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                @endif
+                                @if ($getInfo->linkedin != "")
+                                    <li><a href="{{$getInfo->linkedin}}" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                                @endif
+                                @if ($getInfo->twitter != "")
+                                    <li><a href="{{$getInfo->twitter}}" target="_blank"><i class="fab fa-twitter-in"></i></a></li>
+                                @endif
+                                @if ($getInfo->youtube != "")
+                                    <li><a href="{{$getInfo->youtube}}" target="_blank"><i class="fab fa-youtube-in"></i></a></li>
+                                @endif
+                            {{-- @endforeach --}}
                         </ul>
-                        @endif
+                        {{-- @endif --}}
                     </div>
                 </div>
             </div>

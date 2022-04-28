@@ -35,6 +35,7 @@
                         <div class="form-input">
                             <input id="logo" name="logo" type="file" required accept="image/png, image/jpg, image/jpeg" />
                             <label class="label" for="logo">Logo</label>
+                            <small class="text-danger">Dimensões: 230x60 | Peso Máx: 1MB | Formatos: .JPG, .PNG, .JPEG</small>
                         </div>
                     </div>
                     <div class="form-group">

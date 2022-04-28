@@ -1957,8 +1957,8 @@ body.is-pet .enviar-buttons.submit:hover {
   font-size: 2em;
 }
 .parceiros-slider .swiper-slide img {
-  height: 80px;
-  width: 150px;
+  height: auto;
+  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   transition: all 0.4s ease-in-out;
@@ -2184,7 +2184,7 @@ body.is-pet .enviar-buttons.submit:hover {
   background-image: url("../storage/team-banner.jpg");
   background-repeat: no-repeat;
   background-position: right center;
-  background-size: 40% auto;
+  background-size: 45% auto;
 }
 @media (min-width: 600px) and (max-width: 1199px) {
   .team {
@@ -2221,7 +2221,7 @@ body.is-pet .enviar-buttons.submit:hover {
 .team-container-text {
   color: #5e5f5f;
   padding: 0 15px 0 0;
-  width: 65%;
+  width: 56%;
 }
 @media (min-width: 600px) and (max-width: 1199px) {
   .team-container-text {

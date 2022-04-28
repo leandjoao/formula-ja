@@ -2,7 +2,7 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css);
-@charset "UTF-8";
+/* @charset "UTF-8"; */
 @-webkit-keyframes shadow-pulse-primary {
   0% {
     box-shadow: 0 0 0 0px rgba(251, 207, 61, 0.8);
@@ -725,7 +725,8 @@ main {
   color: white;
   width: 150px;
   align-items: center;
-  height: 30px;
+  height: auto;
+  padding: 3px 5px;
   border-radius: 3px;
   display: flex;
   gap: 10px;
@@ -1588,7 +1589,8 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^=col-]:last-
   box-shadow: 0 0 10px -2px lightgray;
   margin: 0;
   background: white;
-  height: 100%;
+  /* height: 100%; */
+  height: auto;
   width: 100%;
   padding: 15px;
   overflow: auto;

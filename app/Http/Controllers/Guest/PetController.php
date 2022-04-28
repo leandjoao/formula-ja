@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 class PetController extends Controller
 {
     public function index() {
+        $getInfo = $this->getInfo();
         $banner = Banner::query()->where('isPet', true)->first()->toArray();
         $hiw = HowItWorks::all()->toArray();
         $posts = Post::with('category')->limit(4)->get()->toArray();
@@ -34,6 +35,6 @@ class PetController extends Controller
             "depoimentos" => $testemonials
         ];
 
-        return view('guest.pet', compact('data'));
+        return view('guest.pet', compact('data','getInfo'));
     }
 }

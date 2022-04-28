@@ -6,6 +6,7 @@ use App\Models\Guest\ExtraTexts;
 use App\Models\Guest\HowItWorks;
 use App\Models\Guest\SocialMedia;
 use App\Models\Pharmacy;
+use App\Models\InfoGeral;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -54,6 +55,13 @@ class Controller extends BaseController
     {
         $hiw = HowItWorks::all()->toArray();
         view()->share('how', $hiw);
+    }
+
+    public function getInfo()
+    {
+        $getInfo = InfoGeral::first();
+
+        return $getInfo;
     }
 
 }

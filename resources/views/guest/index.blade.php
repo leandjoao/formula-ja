@@ -1,11 +1,11 @@
 @extends('layouts.guest')
 @section('content')
-<section class="banner">
+<section class="banner" style="background-image: linear-gradient(-18deg, rgba(253, 232, 161, 0.4), rgba(255, 250, 236, 0.4) 80%), url({{asset('storage/paginas/home/'.$data['dataPage']['img_banner'])}});">
     <div class="banner-container">
         <div class="banner-container-text">
-            <h4>{{$data['banner']['super_text']}}</h4>
-            <h2>{{$data['banner']['slogan']}}</h2>
-            <p>{{$data['banner']['under_text']}}</p>
+            <h4>{{$data['dataPage']['tag_banner']}}</h4>
+            <h2>{{$data['dataPage']['title_banner']}}</h2>
+            <p>{{$data['dataPage']['subtitle_banner']}}</p>
             <a href="{{route('send.receipt')}}">Envie sua receita!</a>
         </div>
     </div>
@@ -13,50 +13,70 @@
 
 <div class="hiw">
     <div class="hiw-title">
-        <h4>Como funciona?</h4>
+        <h4>{{$data['dataPage']['title_como_funciona']}}</h4>
     </div>
     <div class="hiw-container">
-        @foreach($data['hiw'] as $hiw)
+        {{-- @foreach($data['hiw'] as $hiw) --}}
         <div class="hiw-container-step">
-            <img src="{{asset('storage/icons/'.$hiw['icon'])}}" alt="{{$hiw['title']}}">
-            <p>{{$hiw['title']}}</p>
-            <span>{{$hiw['text']}}</span>
+            <img src="{{asset('storage/icons/upload.png')}}" alt="{{$data['dataPage']['title_cf1']}}">
+            <p>{{$data['dataPage']['title_cf1']}}</p>
+            <span>{{$data['dataPage']['subtitle_cf1']}}</span>
         </div>
-        @endforeach
+        <div class="hiw-container-step">
+            <img src="{{asset('storage/icons/budget.png')}}" alt="{{$data['dataPage']['title_cf2']}}">
+            <p>{{$data['dataPage']['title_cf2']}}</p>
+            <span>{{$data['dataPage']['subtitle_cf2']}}</span>
+        </div>
+        <div class="hiw-container-step">
+            <img src="{{asset('storage/icons/payment.png')}}" alt="{{$data['dataPage']['title_cf3']}}">
+            <p>{{$data['dataPage']['title_cf3']}}</p>
+            <span>{{$data['dataPage']['subtitle_cf3']}}</span>
+        </div>
+        <div class="hiw-container-step">
+            <img src="{{asset('storage/icons/manipulate.png')}}" alt="{{$data['dataPage']['title_cf4']}}">
+            <p>{{$data['dataPage']['title_cf4']}}</p>
+            <span>{{$data['dataPage']['subtitle_cf4']}}</span>
+        </div>
+        <div class="hiw-container-step">
+            <img src="{{asset('storage/icons/deliver.png')}}" alt="{{$data['dataPage']['title_cf5']}}">
+            <p>{{$data['dataPage']['title_cf5']}}</p>
+            <span>{{$data['dataPage']['subtitle_cf5']}}</span>
+        </div>
+        {{-- @endforeach --}}
     </div>
 </div>
 
 <div class="why-us">
     <div class="why-us-container">
         <div class="why-us-container-image">
-            <img src="{{asset('storage/team.jpeg')}}" alt="">
+            <img src="{{asset('storage/paginas/home/'.$data['dataPage']['img_about'])}}" alt="{{$data['dataPage']['title_about']}}">
         </div>
         <div class="why-us-container-text">
             <div class="why-us-container-text-content">
-                <h5>{{$data['wu']['title']}}</h5>
-                <span>{{$data['wu']['under_title']}}</span>
-                <p>{!!$data['wu']['text']!!}</p>
+                <h5>{{$data['dataPage']['title_about']}}</h5>
+                <span>{{$data['dataPage']['subtitle_about']}}</span>
+                <p>{!!$data['dataPage']['txt_about']!!}</p>
                 <a href="{{route('guest.about')}}">Ler mais</a>
             </div>
         </div>
     </div>
 </div>
 
-<div class="pet">
+{{-- <div class="pet" style="background-image: linear-gradient(to left, rgba(67, 126, 106, 0.2), rgba(67, 126, 106, 0.8) 80%), url({{asset('storage/paginas/home/'.$data['dataPage']['img_pet'])}});">
     <div class="pet-container">
         <div class="pet-container-text">
-            <h2>{{$data['petSlogan']}}</h2>
-            <p>Envie a receita do seu pet para gente! Teremos o maior prazer em ajudar!</p>
+            <h2>{{$data['dataPage']['title_pet']}}</h2>
+            <p>{{$data['dataPage']['subtitle_pet']}}</p>
             <a href="{{route('guest.receita.pet')}}">Enviar receita</a>
         </div>
     </div>
-</div>
+</div> --}}
 
 @if(!empty($data['posts']))
 <div class="blog">
     <div class="blog-container">
-        <h2>Blog</h2>
-        <h6>Fique por dentro das últimas notícias</h6>
+        <h2>{{$data['dataPage']['title_blog']}}</h2>
+        <h6>{{$data['dataPage']['subtitle_pet']}}</h6>
         <div class="posts">
             @foreach ($data['posts'] as $post)
             <div class="posts-item">
@@ -66,11 +86,11 @@
                 <div class="posts-item-title">
                     <p>{{$post['title']}}</p>
                 </div>
-                {{--
+                
                 <div class="posts-item-text">
-                    {!! Str::limit($post['content'], 130, '...') !!}
+                    {!! strip_tags(Str::limit($post['content'], 130, '...')) !!}
                 </div>
-                --}}
+               
                 <div class="posts-item-footer">
                     <p>{{ Carbon\Carbon::parse($post['created_at'])->diffForHumans() }}</p>
                     <a href="{{route('guest.blog.inner', [\Str::slug($post['category']['label']), $post['slug']])}}">Ler Mais <i class="fas fa-long-arrow-alt-right"></i></a>
@@ -87,7 +107,7 @@
 <div class="depoimentos">
     <div class="depoimentos-container">
         <div class="depoimentos-container-title">
-            <h3>Depoimentos</h3>
+            <h3>{{$data['dataPage']['title_depoimentos']}}</h3>
         </div>
         <div class="swiper-container depoimentos-slider">
             <div class="swiper-wrapper">
@@ -127,12 +147,12 @@
 <div class="duvidas">
     <div class="duvidas-container">
         <div class="duvidas-container-text">
-            <h3>{{$data['et']['faq_title']}}</h3>
-            <p>{{$data['et']['faq_text']}}</p>
+            <h3>{{$data['dataPage']['title_faq']}}</h3>
+            <p>{{$data['dataPage']['subtitle_faq']}}</p>
         </div>
         <div class="duvidas-container-collapsible">
             <div class="collapsible">
-                <div class="collapsible-title">Ajuda para Usuários</div>
+                {{-- <div class="collapsible-title">Ajuda para Usuários</div> --}}
                 @foreach($data['faq']['user'] as $faq)
                 <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> {{$faq['question']}}</div>
                 <div class="collapsible-content-text">
@@ -141,7 +161,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="duvidas-container-collapsible">
+        {{-- <div class="duvidas-container-collapsible">
             <div class="collapsible">
                 <div class="collapsible-title">Ajuda para Perceiros</div>
                 @foreach($data['faq']['partner'] as $faq)
@@ -151,13 +171,13 @@
                 </div>
                 @endforeach
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 @endif
 
 @if(!empty($partners))
-    @include('components.parceiros')
+    @include('components.parceiros', ['title_parceiros' => $title_parceiros ?? 'Conheça os nossos parceiros'])
 @endif
 
 @endsection

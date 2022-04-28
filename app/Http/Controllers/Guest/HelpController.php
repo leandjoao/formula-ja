@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Models\Guest\Faq;
+use App\Models\Paginas\InfoFaq;
 
 class HelpController extends Controller
 {
@@ -14,6 +15,8 @@ class HelpController extends Controller
 
     public function kind($kind)
     {
+        $getInfo = $this->getInfo();
+        $dataPage = InfoFaq::findOrFail(1);
         switch ($kind) {
             case 'general-user':
                 $page = "Dúvidas Gerais - Usuários";
@@ -40,6 +43,6 @@ class HelpController extends Controller
                 break;
         }
 
-        return view('guest.faq.inner', compact('faqs', 'page'));
+        return view('guest.faq.inner', compact('faqs', 'page', 'dataPage', 'getInfo'));
     }
 }

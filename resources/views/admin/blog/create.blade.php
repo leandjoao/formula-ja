@@ -28,6 +28,7 @@
                         <div class="form-input">
                             <input type="file" id="banner" name="banner" accept="image/jpg, image/png, image/jpeg" required />
                             <label for="banner">Banner do post</label>
+                            <small class="text-danger">Dimensões: 866x488 | Peso Máx: 1MB | Formatos: .JPG, .PNG, .JPEG</small>
                         </div>
                     </div>
                     <div class="form-group">

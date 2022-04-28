@@ -7,6 +7,14 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PartnersController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\InfoGeralController;
+use App\Http\Controllers\Admin\Paginas\InfoHomeController;
+use App\Http\Controllers\Admin\Paginas\InfoPetController;
+use App\Http\Controllers\Admin\Paginas\InfoAboutController;
+use App\Http\Controllers\Admin\Paginas\InfoContatoController;
+use App\Http\Controllers\Admin\Paginas\InfoBlogController;
+use App\Http\Controllers\Admin\Paginas\InfoFaqController;
+use App\Http\Controllers\Admin\Paginas\InfoParceiroController;
 use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\TestemonialController;
@@ -78,6 +86,11 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('remove-address/{id}', [ProfileController::class, 'removeAddress'])->name('profile.removeAddress');
             });
 
+            Route::prefix('informacoes-gerais')->group(function() {
+                Route::get('/', [InfoGeralController::class, 'index'])->name('info');
+                Route::post('edit', [InfoGeralController::class, 'edit'])->name('info.save');
+            });
+            
             Route::prefix('users')->group(function() {
                 Route::get('/', [UsersController::class, 'index'])->name('users');
                 Route::get('create', [UsersController::class, 'showCreate'])->name('users.create');
@@ -93,6 +106,8 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('create', [PartnersController::class, 'create'])->name('partners.create.save');
                 Route::get('remove/{id}', [PartnersController::class, 'remove'])->name('partners.remove');
                 Route::get('getPartners', [PartnersController::class, 'getPartners'])->name('partners.getPartners');
+                Route::get('edit/{id}', [PartnersController::class, 'edit'])->name('partners.edit');
+                Route::post('edit/{id}/save', [PartnersController::class, 'editSave'])->name('partners.edit.save');
             });
 
             Route::prefix('contacts')->group(function() {
@@ -117,12 +132,16 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('new', [PostsController::class, 'new'])->name('blog.new');
                 Route::post('new/save', [PostsController::class, 'save'])->name('blog.save');
                 Route::get('remove/{slug}', [PostsController::class, 'remove'])->name('blog.remove');
+                Route::get('edit/{id}', [PostsController::class, 'edit'])->name('blog.edit');
+                Route::post('edit/{id}/save', [PostsController::class, 'editSave'])->name('blog.edit.save');
 
                 Route::prefix('category')->group(function () {
                     Route::get('/', [PostsController::class, 'category'])->name('blog.category');
                     Route::get('new', [PostsController::class, 'newCategory'])->name('blog.category.new');
                     Route::post('new/save', [PostsController::class, 'saveCategory'])->name('blog.category.save');
                     Route::get('remove/{id}', [PostsController::class, 'removeCategory'])->name('blog.category.remove');
+                    Route::get('edit/{id}', [PostsController::class, 'editCategory'])->name('blog.category.edit');
+                    Route::post('edit/{id}/save', [PostsController::class, 'editSaveCategory'])->name('blog.category.edit.save');
                 });
             });
 
@@ -143,17 +162,39 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('edit/{id}', [FaqController::class, 'edit'])->name('faq.edit');
                 Route::post('edit/{id}/save', [FaqController::class, 'editSave'])->name('faq.edit.save');
             });
-
+            
+            Route::prefix('paginas')->group(function() {
+                Route::get('edit-home', [InfoHomeController::class, 'home'])->name('texts.home');
+                Route::post('edit-home/save', [InfoHomeController::class, 'saveHome'])->name('texts.home.save');
+                
+                Route::get('edit-pet', [InfoPetController::class, 'pet'])->name('texts.pet');
+                Route::post('edit-pet/save', [InfoPetController::class, 'savePet'])->name('texts.pet.save');
+                
+                Route::get('edit-about', [InfoAboutController::class, 'about'])->name('texts.about');
+                Route::post('edit-about/save', [InfoAboutController::class, 'saveAbout'])->name('texts.about.save');
+                
+                Route::get('edit-contato', [InfoContatoController::class, 'contato'])->name('texts.contato');
+                Route::post('edit-contato/save', [InfoContatoController::class, 'saveContato'])->name('texts.contato.save');
+                
+                Route::get('edit-blog', [InfoBlogController::class, 'blog'])->name('texts.blog');
+                Route::post('edit-blog/save', [InfoBlogController::class, 'saveBlog'])->name('texts.blog.save');
+                
+                Route::get('edit-faq', [InfoFaqController::class, 'faq'])->name('texts.faq');
+                Route::post('edit-faq/save', [InfoFaqController::class, 'saveFaq'])->name('texts.faq.save');
+                
+                Route::get('edit-parceiro', [InfoParceiroController::class, 'parceiro'])->name('texts.parceiro');
+                Route::post('edit-parceiro/save', [InfoParceiroController::class, 'saveParceiro'])->name('texts.parceiro.save');
+            });
 
             Route::prefix('texts')->group(function() {
-                Route::get('edit-home', [TextController::class, 'home'])->name('texts.home');
-                Route::post('edit-home/save', [TextController::class, 'saveHome'])->name('texts.home.save');
+                // Route::get('edit-home', [TextController::class, 'home'])->name('texts.home');
+                // Route::post('edit-home/save', [TextController::class, 'saveHome'])->name('texts.home.save');
 
-                Route::get('edit-about', [TextController::class, 'about'])->name('texts.about');
-                Route::post('edit-about/save', [TextController::class, 'saveAbout'])->name('texts.about.save');
+                // Route::get('edit-about', [TextController::class, 'about'])->name('texts.about');
+                // Route::post('edit-about/save', [TextController::class, 'saveAbout'])->name('texts.about.save');
 
-                Route::get('edit-infos', [TextController::class, 'infos'])->name('texts.infos');
-                Route::post('edit-infos/save', [TextController::class, 'saveInfos'])->name('texts.infos.save');
+                // Route::get('edit-infos', [TextController::class, 'infos'])->name('texts.infos');
+                // Route::post('edit-infos/save', [TextController::class, 'saveInfos'])->name('texts.infos.save');
 
                 Route::get('edit-policy', [TextController::class, 'policy'])->name('texts.policy');
                 Route::post('edit-policy/save', [TextController::class, 'savePolicy'])->name('texts.policy.save');

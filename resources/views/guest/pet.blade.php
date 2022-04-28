@@ -106,7 +106,7 @@
         </div>
         <div class="duvidas-container-collapsible">
             <div class="collapsible">
-                <div class="collapsible-title">Ajuda para Usuários</div>
+                {{-- <div class="collapsible-title">Ajuda para Usuários</div> --}}
                 @foreach($data['faq']['user'] as $faq)
                 <div class="collapsible-content-title"><i class="fa fa-caret-right"></i> {{$faq['question']}}</div>
                 <div class="collapsible-content-text">
@@ -115,7 +115,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="duvidas-container-collapsible">
+        {{-- <div class="duvidas-container-collapsible">
             <div class="collapsible">
                 <div class="collapsible-title">Ajuda para Perceiros</div>
                 @foreach($data['faq']['partner'] as $faq)
@@ -125,7 +125,7 @@
                 </div>
                 @endforeach
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 @endif

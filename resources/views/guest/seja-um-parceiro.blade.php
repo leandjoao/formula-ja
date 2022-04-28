@@ -90,8 +90,10 @@
                 <div class="menu-half-block">
                     <address>
                         <ul class="menu-contact-info">
-                            <li><a href="mailto:">contato@formulaja.com.br</a></li>
-                            <li>(15) 9 9999-9999</li>
+                            <li><a href="mailto:{{$getInfo->email}}">{{$getInfo->email}}</a></li>
+                            <li><a href="tel:{{$getInfo->telefone}}">{{$getInfo->telefone}}</a></li>
+                            <li><a href="tel:{{$getInfo->celular}}">{{$getInfo->celular}}</a></li>
+                            {{-- <li>(15) 9 9999-9999</li> --}}
                             {{-- <li>(15) 9 9999-9999</li>
                             <li>
                                 <span>71 Amsteroum Avenue Sedney,</span>
@@ -157,9 +159,9 @@
 
                             <div class="hero-text">
 
-                                <h1>Aumente o faturamento da sua farmácia de manipulação sem mexer na operação</h1>
+                                <h1>{{$dataPage['title_banner']}}</h1>
 
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima saepe harum porro quibusdam perspiciatis.</p>
+                                <p>{{$dataPage['subtitle_banner']}}</p>
 
                                 <div class="quote-form">
 
@@ -179,7 +181,7 @@
                         <div class="col-md-5 col-xs-5 col-sm-5 col-12">
 
                             <div class="sec-img">
-                                <img src="storage/seja-um-parceiro/images/device.png" class="img-device" alt="">
+                                <img src="{{asset('storage/paginas/parceiro/'.$dataPage['img_banner'])}}" class="img-device" alt="">
                             </div>
                             <!-- slider image -->
 
@@ -215,7 +217,7 @@
 
                     <div class="col-md-5 col-lg-5 col-sm-5 col-12">
 
-                        <h2>Veja alguns números da plataforma</h2>
+                        <h2>{{$dataPage['title_numeros']}}</h2>
 
                     </div>
 
@@ -233,8 +235,8 @@
 
                                     <img src="storage/seja-um-parceiro/images/icons/favorites.png" class="animate-icon" alt="">
 
-                                    <h3>Avaliação</h3>
-                                    <span>Aprovado por todos os nossos parceiros</span>
+                                    <h3>{{$dataPage['title_numero1']}}</h3>
+                                    <span>{{$dataPage['subtitle_numero1']}}</span>
 
                                 </div>
 
@@ -246,8 +248,8 @@
 
                                     <img src="storage/seja-um-parceiro/images/icons/secure-shield.png" alt="">
 
-                                    <h3>Seguro</h3>
-                                    <span>Informações totalmente seguras</span>
+                                    <h3>{{$dataPage['title_numero2']}}</h3>
+                                    <span>{{$dataPage['subtitle_numero2']}}</span>
 
                                 </div>
 
@@ -259,8 +261,8 @@
 
                                     <img src="storage/seja-um-parceiro/images/icons/headphones.png" alt="">
 
-                                    <h3>Suporte</h3>
-                                    <span>Te responderemos em média de 1 minuto</span>
+                                    <h3>{{$dataPage['title_numero3']}}</h3>
+                                    <span>{{$dataPage['subtitle_numero3']}}</span>
 
                                 </div>
 
@@ -296,7 +298,7 @@
                         <!-- image-->
                         <div class="col-lg-6 col-md-6 col-12 wow fadeInLeft">
 
-                            <img src="storage/seja-um-parceiro/images/team.png" alt="">
+                            <img src="{{asset('storage/paginas/parceiro/'.$dataPage['img_about'])}}" alt="{{$dataPage['title_about']}}">
 
                         </div>
 
@@ -306,17 +308,17 @@
 
                         <div class="col-lg-6 col-md-6 col-12 ">
 
-                            <h2 class="title-h2">Sobre o FormulaJá</h2>
+                            <h2 class="title-h2">{{$dataPage['title_about']}}</h2>
 
-                            <h3>A sua fórmula, já na mão!</h3>
+                            <h3>{{$dataPage['subtitle_about']}}</h3>
 
                             <p class="font-p mg-tp-30 mg-bt-30">
 
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                                {!!$dataPage['txt_about']!!}
 
                             </p>
 
-                            <ul class="list-text">
+                            {{-- <ul class="list-text">
                                 <li><img src="storage/seja-um-parceiro/images/icons/padlock.png" alt="">
 
                                     <p>Transferências seguras com sistema anti-fraude</p>
@@ -329,7 +331,7 @@
                                 <li><img src="storage/seja-um-parceiro/images/icons/investment.png" alt="">
                                     <p>Começe de graça, você paga apenas pelas transações</p>
                                 </li>
-                            </ul>
+                            </ul> --}}
 
                             <div class="actions-btn">
 
@@ -368,10 +370,10 @@
 
                                 <!--text-->
 
-                                <h2 class="title-h2">Nossos diferenciais</h2>
+                                <h2 class="title-h2">{{$dataPage['title_diferenciais']}}</h2>
 
                                 <p class="font-p mg-tp-30 mg-bt-30">
-                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
+                                    {{$dataPage['subtitle_diferenciais']}}
                                 </p>
                                 <!--text-->
 
@@ -389,8 +391,8 @@
                                     <img src="storage/seja-um-parceiro/images/icons/performance.png" alt="">
                                 </div>
 
-                                <h3>Performance</h3>
-                                <p>Aumente o resultado da sua farmácia sem mexer no custo fixo</p>
+                                <h3>{{$dataPage['title_diferencial1']}}</h3>
+                                <p>{{$dataPage['subtitle_diferencial1']}}</p>
 
                             </div>
 
@@ -406,9 +408,8 @@
                                     <img src="storage/seja-um-parceiro/images/icons/clientes.png" alt="">
                                 </div>
 
-                                <h3>Clientes</h3>
-                                <p>Aquisição de novos clientes para sua farmácia sem investimento em marketing
-                                </p>
+                                <h3>{{$dataPage['title_diferencial2']}}</h3>
+                                <p>{{$dataPage['subtitle_diferencial2']}}</p>
 
                             </div>
 
@@ -423,9 +424,8 @@
                                     <img src="storage/seja-um-parceiro/images/icons/agilidade.png" alt="">
                                 </div>
 
-                                <h3>Agilidade</h3>
-                                <p>Menor esforço em orçamentos e análise de receitas médicas
-                                </p>
+                                <h3>{{$dataPage['title_diferencial3']}}</h3>
+                                <p>{{$dataPage['subtitle_diferencial3']}}</p>
 
                             </div>
 
@@ -872,11 +872,10 @@
 
                         <div class="row-centered">
                             <div class="col-centered col-lg-7">
-                                <h2 class="title-h2">Depoimentos</h2>
+                                <h2 class="title-h2">{{$dataPage['title_depoimentos']}}</h2>
 
                                 <p class="font-p mg-tp-30 mg-bt-30">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-
+                                    {{$dataPage['subtitle_depoimentos']}}
                                 </p>
 
                             </div>
@@ -1270,8 +1269,8 @@
                     <div class="col-md-6 col-lg-6 col-sm-6 col-12 wow fadeInRight order-first order-md-last">
 
                         <div class="padd-80">
-                            <h2 class="title-h2 color-white">Comece hoje sua parceria com a plataforma FormulaJá</h2>
-                            <p class="color-white font-p mg-tp-30 mg-bt-30 font-20">A FormulaJá proporciona a sua farmácia um sistema de orçamento altamente personalizado e qualificado para seu processo de vendas.</p>
+                            <h2 class="title-h2 color-white">{{$dataPage['title_cta']}}</h2>
+                            <p class="color-white font-p mg-tp-30 mg-bt-30 font-20">{{$dataPage['subtitle_cta']}}</p>
 
                             <a href="" class="btn btn-white"> Quero Fazer Parte deste Time</a>
 
@@ -1281,7 +1280,7 @@
                     
                     <div class="col-md-6 col-lg-6 col-sm-6 col-12">
 
-                        <img src="storage/seja-um-parceiro/images/cta.png" alt="">
+                        <img src="{{asset('storage/paginas/parceiro/'.$dataPage['img_cta'])}}" alt="{{$dataPage['title_cta']}}">
 
                     </div>
 
@@ -1305,11 +1304,10 @@
                     <div class="row-centered">
                         <div class="col-centered col-lg-7">
 
-                            <h2 class="title-h2">Quero Fazer Parte deste Time! </h2>
+                            <h2 class="title-h2">{{$dataPage['title_form']}}</h2>
 
                             <p class="font-p mg-tp-30 mg-bt-60 ">
-                                Preencha agora nosso formulário para ser um parceiro FormulaJá!
-
+                                {{$dataPage['subtitle_cta']}}
                             </p>
 
                         </div>

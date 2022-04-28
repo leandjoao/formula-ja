@@ -1,5 +1,5 @@
 <div class="parceiros">
-    <h2>Conheça os nossos parceiros</h2>
+    <h2>{{$title_parceiros}}</h2>
 
     <div class="parceiros-slider swiper-container">
         <div class="swiper-wrapper">

@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Auth;
 class BudgetsController extends Controller
 {
     public function index()
-    {
+    {   
+        // dd(\Hash::make('123456'));
         $orcamentos = ['answered' => [], 'new' => []];
         if(Auth::user()->access_level == 1) {
             $orcamentos['answered'] = Budget::query()->where('status_id', 'not like',1)->paginate(10);

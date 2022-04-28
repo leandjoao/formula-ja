@@ -32,6 +32,7 @@
                             <li @if(request()->routeIs('dashboard'))class="active"@endif><a href="{{route('dashboard')}}"><i class="fa fa-tools"></i> Dashboard</a></li>
                         @endif
                         @if(Auth::user()->access_level == 1)
+                            <li @if(request()->routeIs('info'))class="active"@endif><a href="{{route('info')}}"><i class="fas fa-info"></i> Informações Gerais</a></li>
                             <li @if(request()->routeIs('users'))class="active"@endif><a href="{{route('users')}}"><i class="far fa-user"></i> Usuários</a></li>
                             <li @if(request()->routeIs('partners'))class="active"@endif><a href="{{route('partners')}}"><i class="far fa-handshake"></i> Parceiros</a></li>
                             <li @if(request()->routeIs('contact'))class="active"@endif><a href="{{route('contact')}}"><i class="fa fa-mail-bulk"></i> Contatos</a></li>
@@ -56,6 +57,33 @@
                     </ul>
                 </div>
                 <div class="nav-navbar-list-item">
+                    <p>Páginas</p>
+                    <ul>
+                        <li @if(request()->routeIs('texts.home'))class="active"@endif><a href="{{route('texts.home')}}"><i class="fa fa-spell-check"></i> Home</a></li>
+                        <li @if(request()->routeIs('texts.about'))class="active"@endif><a href="{{route('texts.about')}}"><i class="fa fa-spell-check"></i> Sobre Nós</a></li>
+                        <li @if(request()->routeIs('texts.blog'))class="active"@endif><a href="{{route('texts.blog')}}"><i class="fa fa-spell-check"></i> Blog</a></li>
+                        <li @if(request()->routeIs('texts.pet'))class="active"@endif><a href="{{route('texts.pet')}}"><i class="fa fa-spell-check"></i> PET</a></li>
+                        <li @if(request()->routeIs('texts.contato'))class="active"@endif><a href="{{route('texts.contato')}}"><i class="fa fa-spell-check"></i> Contato</a></li>
+                        <li @if(request()->routeIs('texts.faq'))class="active"@endif><a href="{{route('texts.faq')}}"><i class="fa fa-spell-check"></i> FAQ</a></li>
+                        <li @if(request()->routeIs('texts.parceiro'))class="active"@endif><a href="{{route('texts.parceiro')}}"><i class="fa fa-spell-check"></i> Seja um Parceiro</a></li>
+                    </ul>
+                </div>
+                <div class="nav-navbar-list-item">
+                    <p>Termos Empresarial</p>
+                    <ul>
+                        {{-- <li @if(request()->routeIs('texts.home'))class="active"@endif><a href="{{route('texts.home')}}"><i class="fa fa-spell-check"></i> Home</a></li>
+                        <li @if(request()->routeIs('texts.infos'))class="active"@endif><a href="{{route('texts.infos')}}"><i class="fa fa-spell-check"></i> Outros Textos</a></li> --}}
+                        {{-- <li @if(request()->routeIs('texts.sobre-nos'))class="active"@endif><a href="{{route('texts.sobre-nos')}}"><i class="fa fa-spell-check"></i> Sobre Nós</a></li>
+                        <li @if(request()->routeIs('texts.blog'))class="active"@endif><a href="{{route('texts.blog')}}"><i class="fa fa-spell-check"></i> Blog</a></li>
+                        <li @if(request()->routeIs('texts.pet'))class="active"@endif><a href="{{route('texts.pet')}}"><i class="fa fa-spell-check"></i> PET</a></li>
+                        <li @if(request()->routeIs('texts.contato'))class="active"@endif><a href="{{route('texts.contato')}}"><i class="fa fa-spell-check"></i> Contato</a></li>
+                        <li @if(request()->routeIs('texts.faq'))class="active"@endif><a href="{{route('texts.faq')}}"><i class="fa fa-spell-check"></i> FAQ</a></li>
+                        <li @if(request()->routeIs('texts.lp-parceiro'))class="active"@endif><a href="{{route('texts.lp-parceiro')}}"><i class="fa fa-spell-check"></i> Seja um Parceiro</a></li> --}}
+                        <li @if(request()->routeIs('texts.policy'))class="active"@endif><a href="{{route('texts.policy')}}"><i class="fa fa-spell-check"></i> Politicas de Privacidade</a></li>
+                        <li @if(request()->routeIs('texts.terms'))class="active"@endif><a href="{{route('texts.terms')}}"><i class="fa fa-spell-check"></i> Termos de Uso</a></li>
+                    </ul>
+                </div>
+                {{-- <div class="nav-navbar-list-item">
                     <p>Textos e Imagens</p>
                     <ul>
                         <li @if(request()->routeIs('texts.home'))class="active"@endif><a href="{{route('texts.home')}}"><i class="fa fa-spell-check"></i> Home</a></li>
@@ -63,7 +91,7 @@
                         <li @if(request()->routeIs('texts.policy'))class="active"@endif><a href="{{route('texts.policy')}}"><i class="fa fa-spell-check"></i> Politicas de Privacidade</a></li>
                         <li @if(request()->routeIs('texts.terms'))class="active"@endif><a href="{{route('texts.terms')}}"><i class="fa fa-spell-check"></i> Termos de Uso</a></li>
                     </ul>
-                </div>
+                </div> --}}
                 @endif
 
             </div>

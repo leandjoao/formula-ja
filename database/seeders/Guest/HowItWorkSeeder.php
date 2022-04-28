@@ -17,31 +17,31 @@ class HowItWorkSeeder extends Seeder
         $hiw = new HowItWorks();
         $hiw->icon = "upload.png";
         $hiw->title = "Envio da Receita";
-        $hiw->text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula.";
+        $hiw->text = "Através da Fórmulajá, você envia o arquivo de sua prescrição com segurança, às farmácias parceiras.";
         $hiw->save();
 
         $hiw = new HowItWorks();
         $hiw->icon = "budget.png";
         $hiw->title = "Orçamento";
-        $hiw->text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula.";
+        $hiw->text = "Analise o orçamento de cada farmácia em seu ambiente de usuário, aqui na plataforma.";
         $hiw->save();
 
         $hiw = new HowItWorks();
         $hiw->icon = "payment.png";
         $hiw->title = "Pagamento";
-        $hiw->text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula.";
+        $hiw->text = "Realize o pagamento de seus manipulados de forma simples, rápida e segura.";
         $hiw->save();
 
         $hiw = new HowItWorks();
         $hiw->icon = "manipulate.png";
         $hiw->title = "Manipulação";
-        $hiw->text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula.";
+        $hiw->text = "A farmácia escolhida iniciará a produção de seu manipulado.";
         $hiw->save();
 
         $hiw = new HowItWorks();
         $hiw->icon = "deliver.png";
         $hiw->title = "Envio do Produto";
-        $hiw->text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet nulla sed elit fermentum, at vulputate ligula.";
+        $hiw->text = "Acompanhe o envio do seu pedido pelo código de rastreio.";
         $hiw->save();
     }
 }

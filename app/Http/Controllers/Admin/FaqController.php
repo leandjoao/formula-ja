@@ -73,6 +73,6 @@ class FaqController extends Controller
         $faq->partner = boolval($request->partner) ?? false;
         $faq->save();
 
-        return redirect()->route('faq')->with(['status' => ['text' => 'Criado!', 'icon' => 'success']]);
+        return redirect()->route('faq')->with(['status' => ['text' => 'Editado!', 'icon' => 'success']]);
     }
 }

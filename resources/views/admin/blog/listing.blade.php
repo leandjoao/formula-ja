@@ -26,6 +26,10 @@
                             <td>{{$post->category->label}}</td>
                             <td>{{Carbon\Carbon::parse($post->created_at)->diffForHumans()}}</td>
                             <td>
+                                <a class="button view" href="{{route('blog.edit', $post->id)}}">
+                                    <span class='text'>Editar</span>
+                                    <span class="icon"><i class="fa fa-edit"></i></span>
+                                </a>
                                 <a class="button view" href="{{route('guest.blog.inner', [$post->category, $post->slug])}}">
                                     <span class='text'>Ver</span>
                                     <span class="icon"><i class="fa fa-eye"></i></span>

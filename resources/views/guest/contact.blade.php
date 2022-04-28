@@ -1,30 +1,52 @@
 @extends('layouts.guest')
 @section('content')
-<section class="pages-header contact">
+<section class="pages-header contact" style="background-image: linear-gradient(-18deg, rgba(251, 208, 66, 0.4), rgba(252, 213, 86, 0.4) 80%), url({{asset('storage/paginas/contato/'.$dataPage['img_banner'])}});">
     <div class="pages-header-title">
-        <h2>Contato</h2>
+        <h2>{{$dataPage['title_banner']}}</h2>
     </div>
 </section>
 <section class="pages-content">
     <div class="pages-content-info">
-        <h3>Informações de Contato</h3>
+        <h3>{{$dataPage['title_info']}}</h3>
         <p>
-            {{$text}}
+            {{$dataPage['subtitle_info']}}
         </p>
         <ul>
-            @foreach ($contacts as $c)
-            <li>
-                <i class="{{$c['type']}}"></i>
-                <div class="text">
-                    <p>{{$c['label']}}</p>
-                    <p>{{$c['value']}}</p>
-                </div>
-            </li>
-            @endforeach
+            {{-- @foreach ($contacts as $c) --}}
+            
+            @if ($getInfo->celular != NULL)
+                <li>
+                    <i class="fa fa-mobile-alt"></i>
+                    <div class="text">
+                        <p>Celular</p>
+                        <p>{{$getInfo->celular}}</p>
+                    </div>
+                </li>
+            @endif
+            @if ($getInfo->telefone != NULL)
+                <li>
+                    <i class="fa fa-phone"></i>
+                    <div class="text">
+                        <p>Telefone</p>
+                        <p>{{$getInfo->telefone}}</p>
+                    </div>
+                </li>
+            @endif
+            @if ($getInfo->email != NULL)
+                <li>
+                    <i class="far fa-envelope"></i>
+                    <div class="text">
+                        <p>E-mail</p>
+                        <p>{{$getInfo->email}}</p>
+                    </div>
+                </li>
+            @endif
+            
+            {{-- @endforeach --}}
         </ul>
     </div>
     <div class="pages-content-form">
-        <h4>Como podemos ajudar você?</h4>
+        <h4>{{$dataPage['title_form']}}</h4>
         <form action="{{ route('send.contact') }}" method="POST" class="form">
             @csrf
             <div class="form-input">

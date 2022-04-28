@@ -1,8 +1,8 @@
 @extends('layouts.guest')
 @section('content')
-<section class="pages-header">
+<section class="pages-header" style="background-image: linear-gradient(-18deg, rgba(251, 208, 66, 0.4), rgba(252, 213, 86, 0.4) 80%), url({{asset('storage/paginas/faq/'.$dataPage['img_banner'])}});">
     <div class="pages-header-title">
-        <h2>FAQ :: {{$page}}</h2>
+        <h2>{{$dataPage['title_banner']}}</h2>
     </div>
 </section>
 <section class="faq">

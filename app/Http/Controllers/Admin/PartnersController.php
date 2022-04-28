@@ -7,6 +7,7 @@ use App\Mail\NewPartner;
 use App\Models\Bank;
 use App\Models\Pharmacy;
 use App\Models\User;
+use App\Models\BudgetAnswered;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,7 @@ class PartnersController extends Controller
     public function index()
     {
         $partners = Pharmacy::query()->count();
+
         return view('admin.parceiros.listing', compact('partners'));
     }
 
@@ -48,8 +50,7 @@ class PartnersController extends Controller
             'cod_bank' => 'required',
             'branch' => 'required',
             'account_number' => 'required',
-            'account_check_digit' => 'required',
-            'logo' => 'required|image|mimes:png,jpg,jpeg|max:1024'
+            'account_check_digit' => 'required'
         ]);
 
         if($valid->fails()) return redirect()->back()->with(['errors' => $valid->errors()->messages(), 'icon' => 'error']);
@@ -60,7 +61,8 @@ class PartnersController extends Controller
 
         $recipientData = [
             'name' => $request->name,
-            'email' => $request->email,
+            'email' => $user->email,
+            // 'email' => $request->email,
             'cpf' => $request->owner,
             'cod_bank' => $request->cod_bank,
             'branch' => $request->branch,
@@ -76,8 +78,9 @@ class PartnersController extends Controller
         $storagePath = 'public/partners/'.$filename;
         $storage->put($storagePath, file_get_contents($file));
 
-        $pagarme = new PagarmeController();
-        $recipient = $pagarme->newRecipient($recipientData);
+        // $pagarme = new PagarmeController();
+        // $recipient = $pagarme->newRecipient($recipientData);
+        $recipient = Str::random(15);
 
         $pharmacy = new Pharmacy();
         $pharmacy->name = $request->name;
@@ -91,7 +94,8 @@ class PartnersController extends Controller
         $pharmacy->cnpj = $request->cnpj;
         $pharmacy->owner_id = $user->id;
         $pharmacy->pet = boolval($request->pet);
-        $pharmacy->recipient_id = $recipient->id;
+        // $pharmacy->recipient_id = $recipient->id;
+        $pharmacy->recipient_id = $recipient;
         $pharmacy->logo = $filename;
         $pharmacy->save();
 
@@ -180,8 +184,24 @@ class PartnersController extends Controller
 
     public function remove($id)
     {
+
         $partner = Pharmacy::find($id);
-        // Storage::delete($partner->logo);
+        
+        $user = User::query()->where('id', $partner->owner_id)->get()->first();
+        // dd($user);
+        $user->access_level = 2;
+        $user->save();
+        
+        $budgetAnswered = BudgetAnswered::whereAnsweredBy($id)->get();
+        
+        if (!is_null($budgetAnswered)) {
+
+            foreach ($budgetAnswered as $ba) {
+                $ba->delete();
+            }
+
+        }
+        
         Storage::delete('public/partners/'.$partner->logo);
         $partner->delete();
 
@@ -234,6 +254,7 @@ class PartnersController extends Controller
                 "created_at" => $since,
                 "actions" => [
                     "remove" => route('partners.remove', $id),
+                    "editar" => route('partners.edit', $id),
                     ]
                 );
             }
@@ -246,5 +267,93 @@ class PartnersController extends Controller
             );
 
             return response()->json($response);
+        }
+
+        public function edit($id)
+        {
+            $data = Pharmacy::query()->with('owner')->where('id', $id)->first();
+            $users = User::query()->where('id', '!=', 1)->get()->toArray();
+            $banks = Bank::all()->toArray();
+            // dd($data);
+            return view('admin.parceiros.edit', compact('data','users', 'banks'));
+        }
+
+        public function editSave(Request $request, $id)
+        {
+            // dd($request->all());
+            $valid = Validator::make($request->all(), [
+                'name' => 'required',
+                'cnpj' => 'required',
+                'zip_code' => 'required',
+                'number' => 'required',
+                'phone' => 'required',
+                'owner' => 'required',
+                // 'cod_bank' => 'required',
+                // 'branch' => 'required',
+                // 'account_number' => 'required',
+                // 'account_check_digit' => 'required'
+            ]);
+
+            if($valid->fails()) return redirect()->back()->withErrors($valid)->withInput();
+            
+            if($request->owner != $request->cpf_antigo){
+                $user_antigo = User::query()->where('cpf', $request->cpf_antigo)->get()->first();
+                $user_antigo->access_level = 2;
+                $user_antigo->save();
+
+                $user = User::query()->where('cpf', $request->owner)->get()->first();
+                $user->access_level = 3;
+                $user->save();
+            }else{
+                $user = User::query()->where('cpf', $request->owner)->get()->first();
+            }
+            
+            // dd($user);
+
+            if ($request->hasFile('logo')) {
+
+                $storage = Storage::disk('local');
+                $file = $request->file('logo');
+                $filename = Str::random(32).'.'.Str::lower($file->getClientOriginalExtension());
+                $storagePath = 'public/partners/'.$filename;
+                $storage->put($storagePath, file_get_contents($file));
+                
+                $pharmacy = Pharmacy::query()->where('id', $id)->first();
+                $pharmacy->name = $request->name;
+                $pharmacy->zip_code = $request->zip_code;
+                $pharmacy->street = $request->street;
+                $pharmacy->neighborhood = $request->neighborhood;
+                $pharmacy->city = $request->city;
+                $pharmacy->state = $request->state;
+                $pharmacy->number = $request->number;
+                $pharmacy->phone = $request->phone;
+                $pharmacy->cnpj = $request->cnpj;
+                $pharmacy->owner_id = $user->id;
+                $pharmacy->pet = boolval($request->pet);
+                // $pharmacy->recipient_id = $recipient->id;
+                // $pharmacy->recipient_id = $recipient;
+                $pharmacy->logo = $filename;
+                $pharmacy->save();
+
+            }else{
+                $pharmacy = Pharmacy::query()->where('id', $id)->first();
+                $pharmacy->name = $request->name;
+                $pharmacy->zip_code = $request->zip_code;
+                $pharmacy->street = $request->street;
+                $pharmacy->neighborhood = $request->neighborhood;
+                $pharmacy->city = $request->city;
+                $pharmacy->state = $request->state;
+                $pharmacy->number = $request->number;
+                $pharmacy->phone = $request->phone;
+                $pharmacy->cnpj = $request->cnpj;
+                $pharmacy->owner_id = $user->id;
+                $pharmacy->pet = boolval($request->pet);
+                // $pharmacy->recipient_id = $recipient->id;
+                // $pharmacy->recipient_id = $recipient;
+                // $pharmacy->logo = $filename;
+                $pharmacy->save();
+            }
+
+            return redirect()->back()->with(['status' => ['text' => 'Farmácia Editada!', 'icon' => 'success']]);
         }
     }

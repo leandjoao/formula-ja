@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 @section('content')
 <div class="blog-section">
-    <div class="blog-section-banner">
+    <div class="blog-section-banner" style="background-image: linear-gradient(-18deg, rgba(251, 208, 66, 0.8), rgba(252, 213, 86, 0.6) 80%), url({{asset('storage/paginas/blog/'.$dataPage['img_banner'])}});">
         <h3>{{ $category['label'] }}</h3>
         <ul class="blog-section-banner-breadcrumb">
             <li><a href="{{ route('guest.blog')}}">Blog</a></li>

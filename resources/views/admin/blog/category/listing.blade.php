@@ -26,6 +26,10 @@
                             <td>{{$category->posts_count}}</td>
                             <td>{{Carbon\Carbon::parse($category->created_at)->diffForHumans()}}</td>
                             <td>
+                                <a class="button view" href="{{route('blog.category.edit', $category->id)}}">
+                                    <span class='text'>Editar</span>
+                                    <span class="icon"><i class="fa fa-edit"></i></span>
+                                </a>
                                 <a class="button delete" href="{{route('blog.category.remove', $category->id)}}">
                                     <span class='text'>Remover</span>
                                     <span class="icon"><i class="fa fa-trash"></i></span>

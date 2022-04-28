@@ -8,15 +8,18 @@ use App\Models\Guest\ExtraTexts;
 use App\Models\Guest\GetInTouch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Paginas\InfoContato;
 
 class ContactController extends Controller
 {
     public function index()
     {
+        $getInfo = $this->getInfo();
         $contacts = GetInTouch::all()->toArray();
         $text = ExtraTexts::select('contact_text')->first()->contact_text;
+        $dataPage = InfoContato::findOrFail(1);
 
-        return view('guest.contact', compact('contacts', 'text'));
+        return view('guest.contact', compact('contacts', 'text', 'dataPage', 'getInfo'));
     }
 
     public function send(Request $request)

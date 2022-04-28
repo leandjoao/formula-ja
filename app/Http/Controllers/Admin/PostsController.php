@@ -70,6 +70,49 @@ class PostsController extends Controller
         return redirect()->route('blog')->with(['status' => ['text' => 'Post removido!', 'icon' => 'success']]);
     }
 
+    public function edit($id)
+    {
+        $data = Post::query()->where('id', $id)->first();
+        $category = Category::pluck('label', 'id');
+        // dd($data);
+        return view('admin.blog.edit', compact('data','category'));
+    }
+
+    public function editSave(Request $request, $id)
+    {
+        
+        $valid = Validator::make($request->all(), [
+            'title' => 'required|string'
+        ]);
+
+        if($valid->fails()) return redirect()->back()->withErrors($valid)->withInput();
+        
+        if ($request->hasFile('banner')) {
+            $fileName = Str::random(64) .'.'. Str::lower($request->file('banner')->extension());
+            $request->file('banner')->storeAs("public/blog/", $fileName);
+            
+            $post = Post::query()->where('id', $id)->first();
+            $post->title = $request->title;
+            $post->category_id = $request->category_id;
+            $post->slug = Str::slug($request->title);
+            $post->content = $request->content;
+            $post->banner = $fileName;
+            $post->user_id = Auth::user()->id;
+            $post->save();
+
+        }else{
+            $post = Post::query()->where('id', $id)->first();
+            $post->title = $request->title;
+            $post->category_id = $request->category_id;
+            $post->slug = Str::slug($request->title);
+            $post->content = $request->content;
+            $post->user_id = Auth::user()->id;
+            $post->save();
+        }
+
+        return redirect()->route('blog')->with(['status' => ['text' => 'Post Editado!', 'icon' => 'success']]);
+    }
+
     // Categorias
 
     public function category()
@@ -110,5 +153,27 @@ class PostsController extends Controller
         $category->delete();
 
         return redirect()->route('blog.category')->with(['status' => ['text' => 'Categoria removida!', 'icon' => 'success']]);
+    }
+    
+    public function editCategory($id)
+    {
+        $category = Category::query()->where('id', $id)->first();
+        // dd($category);
+        return view('admin.blog.category.edit', compact('category'));
+    }
+
+    public function editSaveCategory(Request $request, $id)
+    {
+        $valid = Validator::make($request->all(), [
+            'label' => 'required|string'
+        ]);
+
+        if($valid->fails()) return redirect()->back()->withErrors($valid)->withInput();
+
+        $category = Category::query()->where('id', $id)->first();
+        $category->label = $request->label;
+        $category->save();
+
+        return redirect()->route('blog.category')->with(['status' => ['text' => 'Editado!', 'icon' => 'success']]);
     }
 }

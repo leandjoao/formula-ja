@@ -32,6 +32,10 @@
     function format(d) {
         return `
         <td>
+            <a class="button view" href="${d.editar}">
+                <span class='text'>Editar</span>
+                <span class="icon"><i class="fa fa-edit"></i></span>
+            </a>
             <a class="button delete" href="${d.remove}">
                 <span class='text'>Remover</span>
                 <span class="icon"><i class="fa fa-trash"></i></span>
